@@ -1,0 +1,227 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using Microsoft.AspNetCore.Mvc;
+@using Microsoft.AspNetCore.Mvc.Rendering;
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+@{
+    var account = ViewBag.Account as ApplicationUser;
+    var blogList = ViewBag.blogList;
+    var currentUser = ViewBag.currentUser;
+    bool isEditUserName = false;
+}
+
+<div class="body_container">
+    <div class="d-flex flex-column gap-4 p-3 profile_container">
+        <div class="d-flex profile_header gap-4 align-items-center">
+            <div class="profile_photo position-relative">
+                <div class="profile_img_container">
+                    <img style="border-radius: 100%;" id="profile_photo" class="w-100" src="@account.ImageUrl" />
+                </div>
+
+                <div class="profile_changePhoto position-absolute top-0 w-100 h-100 justify-content-center align-items-center">
+                    <a class="w-100">
+                        <label for="profile_photo_input">
+                            <i class="profile_icon bi bi-camera"></i>
+                        </label>
+                    </a>
+                </div>
+            </div>
+
+            <div class="d-flex flex-column profile_info">
+                <div class="d-flex gap-4 align-items-center">
+                    <h1 id="user_name_h1" class="profile_username mw-100">
+                        @account.UserName
+                    </h1>
+                    <input onchange="" style="min-width: 100%; font-size: 1.4rem;" value="@account.UserName" id="input_username_edit" class="hidden w-100 form-control" />
+                    @if ( UserManager.GetUserId(User) == account.Id )
+                    {
+                        <a onclick="toogleEditUsername()" class="text-white hover_class">
+                            <i class="pen_icon bi bi-pen"></i>
+                        </a>
+                    }
+                </div>
+                <p class="profile_date fst-italic">Date created: @account.DateCreated.ToShortDateString()</p
+            </div>
+        </div>
+    </div>
+
+    @if ( UserManager.GetUserId(User) == account.Id )
+    {
+        <div class="flex-column justify-content-end" id="saveChange_button">
+            <form asp-action="Edit" method="Post" enctype="multipart/form-data">
+                <input name="profile_photo" hidden type="file" accept="image/*" id="profile_photo_input" />
+                <button type="submit" class="btn btn-outline-light" style="margin-left: 14px;">Save Changes</button>
+            </form>
+        </div>
+
+        <div class="partial_section">
+            <partial name="_LoginPartial" />
+        </div>
+    } 
+
+    <h1>My Blogs</h1>
+    <div class="blog_container mt-0">
+        @if (blogList.Count != 0 )
+        {
+            @foreach (var item in blogList)
+            {
+                <div class="blog_card">
+                    <div class="blog_userInfo">
+                        <div class="blog_img_date">
+                            <div class="d-flex align-items-end">
+                                <div style="width: 65px; height: 65px;">
+                                    <img src="@(ViewBag.GetPhotoById(item.AccountId))"
+                                        class="w-100 h-100"
+                                        style="border-radius: 100%; object-fit: cover"
+                                        alt="user_profile image"
+                                    />
+                                </div>
+                                <p class="blog_username mb-0 fw-bold">@(ViewBag.GetUserName(item.AccountId))</p>
+                            </div>
+                            <p class="mt-2">
+                                Publish at: @item.PublishDate.ToShortDateString()
+                            </p>
+                        </div>
+
+                        @if (currentUser?.Id == item.AccountId)
+                        {
+                            <div style="position: relative;">
+                                <a class="text-white" href="#" onclick="handleToggle(@item.Id)">
+                                    <i style="font-size: 32px;" class="bi bi-three-dots-vertical"></i>
+                                </a>
+                                <div id="@item.Id" class="hidden actions_ud" style="top:-10px; right: 20px; position: absolute; background-color: #282b2d; padding: 16px; border-radius: 12px 12px 0 0;" aria-hidden="true">
+                                    <a asp-controller="Blog" asp-route-id="@item.Id" asp-action="Edit" class="btn btn-outline-light">Edit</a>
+                                    <a class="btn btn-outline-light">Delete</a>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                    <div class="heading">
+                        <div class="d-flex justify-content-between">
+                            <h1 style="max-width: 80%">@item.Title</h1>
+                        </div>
+                        <p class="mt-4">@item.Description</p>
+                    </div>
+
+                    <div class="BlogCard_Img">
+                        <img src="@item.BlogImageUrl" />
+                    </div>
+
+                    <div class="Blogcard_Content mt-4">
+                        <p>@Html.Raw(@item.Content.Replace("\n", "<br>"))</p>
+                    </div>
+
+                    <div class="BlogCard_Actions">
+
+                    </div>
+                </div>
+                @*  <a class="text-decoration-none text-black" asp-controller="Blog" asp-action="Details" asp-route-id="@item.Id">
+                    <div class="col">
+                        <div class="card w-100">
+                            <img src="@item.BlogImageUrl" class="card-img-top" alt="Blog Image">
+                            <div class="card-body bg-dark text-white">
+                                <h5 class="card-title">@item.Title</h5>
+                                <p class="card-text">@LimitDescriptionLength(item.Description, 150)</p>
+                            </div>
+                        </div>
+                    </div>
+                </a> *@
+            }
+        }
+        else
+        {
+            <h1>Not Found</h1>
+        }
+    </div>
+
+</div>
+<style>
+    .hidden {
+        display: none;
+    }
+    .flex {
+        display: flex;
+    }
+    .pen_icon {
+        font-size: 18px;
+        margin-left: 12px;
+    }
+    .hover_class:hover {
+        opacity: 0.7;
+    }
+</style>
+<script>
+    function handleToggle(id) {
+        console.log("dang chay toogle id")
+        var element = document.getElementById(id);
+        if (element.classList.contains("hidden")) {
+            element.classList.remove("hidden");
+            element.classList.add("flex");
+        } else {
+            element.classList.add("hidden");
+            element.classList.remove("flex");
+        }
+    }
+    function toogleEditUsername() {
+        var h1 = document.getElementById("user_name_h1");
+        var input_username = document.getElementById("input_username_edit")
+        if (h1.classList.contains("hidden")) {
+            h1.classList.remove("hidden")
+            input_username.classList.add("hidden")
+        } else {
+            h1.classList.add("hidden")
+            input_username.classList.remove("hidden")
+        }
+    }
+    function handleEdituserName() {
+        var input_username = document.getElementById("input_username_edit")
+        if (!input_username.classList.contains("hidden")) {
+            document.getElementById("saveChange_button").classList.remove("hidden")
+            document.getElementById("saveChange_button").classList.add("flex")
+        } else {
+            document.getElementById("saveChange_button").classList.remove("flex")
+            document.getElementById("saveChange_button").classList.add("hidden")
+        }
+    }
+    function handlePreviewPhoto() {
+        console.log("Da chay")
+        if (!this.files || !this.files[0]) return;
+
+        const FR = new FileReader();
+        var img = document.getElementById('profile_photo');
+
+        FR.addEventListener("load", function (evt) {
+            img.src = evt.target.result;
+        });
+
+        console.log("Check >>> " , img.src)
+
+        FR.readAsDataURL(this.files[0]);
+
+        if (document.getElementById("profile_photo_input").value != "") 
+        {
+            console.log("Chay lan hai")
+            document.getElementById("saveChange_button").classList.remove("hidden")
+            document.getElementById("saveChange_button").classList.add("flex")
+        } else {
+            console.log("Chay lan dau")
+            document.getElementById("saveChange_button").classList.remove("flex")
+            document.getElementById("saveChange_button").classList.add("hidden")
+        }
+    }
+
+    document.querySelector("#profile_photo_input").addEventListener("change", handlePreviewPhoto);
+
+    if (!document.getElementById("profile_photo_input").value != "") 
+    {
+        console.log("Chay lan dau")
+        document.getElementById("saveChange_button").classList.remove("flex")
+        document.getElementById("saveChange_button").classList.add("hidden")
+    }
+</script>
+
+@functions {
+    
+}

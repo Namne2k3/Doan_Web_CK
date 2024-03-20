@@ -1,0 +1,248 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+.hover:hover {
+    color: red;
+}
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    margin-bottom: 60px;
+    background-color: #212529;
+}
+.nav_item {
+    padding: 1rem;
+    border-radius: 12px;  
+    background-color: #212529;
+    display: flex;
+    align-content: center;
+    text-decoration: none;
+    color: #fff;
+}
+.icon {
+    font-size: 32px;
+}
+.partial_section ul {
+    margin: 0!important;
+}
+.blog_container {
+    /*my-4 d-flex flex-column gap-4*/
+    margin: 16px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    max-height: 100%;
+}
+.body_container {
+    overflow-y: scroll;
+    height: 100vh;
+    scrollbar-width: none;
+}
+.blog_userInfo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.blog_img_date img {
+    max-width: 65px;
+}
+.blog_img_date p {
+    margin-left: 6px;
+    color: #ccc;
+    font-style: italic;
+}
+.blog_card {
+    display: flex;
+    flex-direction: column;
+    max-width: 100%;
+    color: #fff;
+    border-radius: 6px;
+    background-color: #282b2d;
+    padding: 20px;
+    gap: 16px;
+    margin: 6px 0;
+}
+.blog_img_date {
+    display: flex;
+    flex-direction: column;
+}
+.BlogCard_Img img {
+    max-width: 100%;
+    border-radius: 12px;
+}
+.navIcon,
+.logoImage {
+    width: 25%;
+}
+.nav_container {
+    display: flex;
+}
+img {
+    object-fit: contain;
+}
+.filter_modal {
+    animation: fadeInAnimation ease 0.5s;
+    margin-top: 14px;
+}
+
+.profile_username {
+    font-size: 1.5rem;
+}
+.profile_info {
+    margin-left: 12px;
+}
+.profile_changePhoto {
+    display: none;
+}
+.profile_img_container {
+    width: 150px;
+    height: 150px;
+}
+.profile_img_container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.profile_photo:hover .profile_changePhoto {
+    display: flex;
+    cursor: pointer;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+.profile_changePhoto .profile_icon {
+    font-size: 24px;
+    color: white;
+}
+.profile_icon:hover {
+    opacity: 0.5;
+    cursor: pointer;
+}
+.actions_ud {
+    display: flex;
+    gap: 6px;
+}
+@media (max-width: 1065px) {
+    .navTitle {
+        display: none;
+    }
+    .nav_item {
+        justify-content: center;
+    }
+    .navIcon {
+        justify-content: center;
+        width: 100%;
+    }
+    .navActions {
+        display: none;
+    }
+    .body_section {
+        width: 85%;
+    }
+    .logoImage {
+        width: 70%;
+    }
+    .navIcons {
+        width: 15%;
+    }
+    .navLog_Res {
+        font-size: 16px !important;
+        margin: 12px !important;
+    }
+}
+@media (max-width: 550px) {
+    .actions_ud {
+        padding: 0!important;
+        right: -10px!important;
+        bottom: 55px!important;
+        top: -40px !important;
+    }
+    .blog_username {
+        display: none;
+    }
+    .navIcons .navLog_Res {
+        display: none;
+    }
+    .nav_container {
+        flex-direction: column;
+    }
+    .navIcons {
+        flex-direction: row !important;
+        width: 100%;
+        position: fixed;
+    }
+    .navIcons ul {
+        flex-direction: row !important;
+    }
+    .body_section {
+        width: 100%;
+        height: 100vh;
+        margin-top: 90px;
+    }
+    .logo_container {
+        justify-content: start !important;
+    }
+    .logoImage {
+        display: none;
+    }
+    .navItems {
+        justify-content: space-around;
+        width: 100%;
+    }
+    .nav_item:first-child {
+        display: none !important;
+    }
+}
+@media (max-width: 300px) {
+    .icon {
+        font-size: 22px;
+    }
+    .body_section {
+        margin-top: 75px;
+    }
+
+    #newestBlogCb {
+        font-size: 12px;
+    }
+    .filter_modal {
+        margin-right: 26px;
+    }
+    .filter_modal h3 {
+        font-size: 12px;
+    }
+    .filter_modal button,
+    .filter_modal label {
+        font-size: 12px;
+    }
+    .filter_modal input {
+        font-size: 9px;
+    }
+    .input_add {
+        max-width: 180px;
+    }
+}
+
+@keyframes fadeInAnimation {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px)
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0px)
+    }
+}

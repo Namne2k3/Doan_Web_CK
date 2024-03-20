@@ -1,0 +1,89 @@
+﻿@using Microsoft.AspNetCore.Identity
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Doan_Web_CK</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/Doan_Web_CK.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+</head>
+<body>
+    <div class="d-flex flex-column h-100">
+        <div class="nav_container h-100">
+            <div class="navIcons col-md-3 bg-dark justify-content-between d-flex flex-column" style="border-right: 1px solid #ccc">
+                <ul class="d-flex flex-column list-unstyled text-white gap-3 my-2 mx-2 navItems">
+                    <div class="nav_item">
+                        <div class="logo_container d-flex gap-2 w-100 justify-content-center">
+                            <img src="/images/logo_noneBG.png" class="logoImage" />
+                            <h2 style="font-family: fantasy" class="navTitle m-auto">WebCommun</h2>
+                        </div>
+                    </div>
+                    <a asp-controller="Blog" asp-action="Index" class="nav_item">
+                        <div class="navIcon text-center">
+                            <i class="icon bi bi-house-door-fill"></i>
+                        </div>
+                        <div class="navTitle w-75 fs-4 text-start my-auto">
+                            Blogs
+                        </div>
+                    </a>
+                    <a asp-action="" id="navFriends" class="nav_item">
+                        <div class="navIcon text-center">
+                            <i class="icon bi bi-people-fill"></i>
+                        </div>
+                        <div class="navTitle w-75 fs-4 text-start my-auto">
+                            Friends
+                        </div>
+                    </a>
+                    <a asp-action="" id="navNofitication" class="nav_item">
+                        <div class="navIcon text-center">
+                            <i class="icon bi bi-bell-fill"></i>
+                        </div>
+                        <div class="navTitle w-75 fs-4 text-start my-auto">
+                            Nofitications
+                        </div>
+                    </a>
+                    <a asp-controller="Profile" asp-action="Index" class="nav_item">
+                        <div class="navIcon text-center">
+                            <i class="icon bi bi-person-circle"></i>
+                        </div>
+                        <div class="navTitle w-75 fs-4 text-start my-auto">
+                            Profile
+                        </div>
+                    </a>
+                </ul>
+                
+                @if (!SignInManager.IsSignedIn(User))
+                {
+                    <partial hidden name="_LoginPartial" />
+                }
+                
+            </div>
+            <div class="body_section col-md-7 text-white" style="background-color: #212529">
+                <main role="main" class="pb-3 m-4">
+                    @RenderBody()
+                </main>
+            </div>
+            <div class="navActions col-md-2 text-white" style="background-color: #212529;">  
+                
+            </div>
+        </div>
+        <footer class="border-top footer text-muted bg-dark">
+            <div class="container">
+                &copy; 2024 - Doan_Web_CK - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            </div>
+        </footer>
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,46 @@
+﻿@model Doan_Web_CK.Models.Blog
+@using System.Net
+@{
+    ViewData["Title"] = "Edit";
+    var user = ViewBag.User;
+}
+<div>
+    <a class="btn btn-outline-light" asp-action="Index">Back to List</a>
+</div>
+<h1 class="mt-2">Edit</h1>
+<hr />
+<div class="row">
+    <div class="col-lg-12 mx-auto">
+        <form class="d-flex flex-column gap-3" method="post" asp-action="Edit" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="input-group">
+                <span class="input-group-text" id="title-addon">Title</span>
+                <input asp-for="Title" type="text" class="form-control" placeholder="Title" aria-label="Title" aria-describedby="title-addon" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            <div class="input-group">
+                <span class="input-group-text" id="description-addon">Description</span>
+                <input style="height: 70px" type="text" placeholder="Description" aria-label="Description" aria-describedby="description-addon" asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="input-group">
+                <span class="input-group-text" id="Content-addon">Content</span>
+                <textarea style="height: 200px" aria-label="Content" aria-describedby="Content-addon" asp-for="Content" class="form-control"></textarea>
+                <span asp-validation-for="Content" class="text-danger"></span>
+            </div>
+            <div class="input-group">
+                <input type="file" accept="image/*" asp-for="BlogImageUrl" class="form-control w-100" />
+                <span asp-validation-for="BlogImageUrl" class="text-danger mt-1"></span>
+            </div>
+            <div class="input-group">
+                <label for="categorySelect" asp-for="CategoryId" class="input-group-text">Category</label>
+                <select id="categorySelect" asp-for="CategoryId" class="form-select" asp-items="@ViewBag.Categories"></select>
+            </div>
+            <div class="form-group mt-4">
+                <button type="submit" class="btn btn-outline-light w-100">Update</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+

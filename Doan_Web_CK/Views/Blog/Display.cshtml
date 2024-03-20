@@ -1,0 +1,84 @@
+﻿@model Doan_Web_CK.Models.Blog
+@{
+    ViewData["Title"] = "Display";
+    var comment = new Comment();
+    var blog = ViewBag.Blog as Blog;
+}
+
+<h1>Display</h1>
+
+<div>
+    <h4>Blog</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.ReferenceId)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ReferenceId)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+        <dt class = "col-sm-2">
+            AuthorId
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.AccountId)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.BlogImageUrl)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.BlogImageUrl)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.IsAccepted)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.IsAccepted)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.PublishDate)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.PublishDate)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Likes)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Likes)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
+    <form asp-controller="Blog" asp-action="AddComment">
+        <div class="form-group">
+            <label asp-for="@comment.Content" class="control-label"></label>
+            <input asp-for="@comment.Content" class="form-control" />
+            <span asp-validation-for="@comment.Content" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <input value="@DateTime.Now.ToString("yyyy-MM-ddTHH:mm:ss")" hidden asp-for="@comment.CommentDate" />
+        </div>
+        <div class="form-group">
+            <input hidden value="@Model?.Id" asp-for="@comment.BlogId" />
+        </div>
+        <div class="form-group">
+            <input hidden value="1" asp-for="@comment.AccountId" />
+        </div>
+        <button class="btn btn-primary" type="submit">AddComment</button>
+    </form>
+    <a asp-action="Index">Back to List</a>
+</div>
