@@ -1,5 +1,6 @@
 html {
-  font-size: 14px;
+    font-size: 14px;
+    scroll-behavior: smooth;
 }
 
 @media (min-width: 768px) {
@@ -18,7 +19,9 @@ html {
     position: relative;
     min-height: 100%;
 }
-
+.photo_image_border {
+    border: 2px solid #fff;
+}
 body {
     margin-bottom: 60px;
     background-color: #212529;
@@ -51,6 +54,7 @@ body {
     height: 100vh;
     scrollbar-width: none;
 }
+
 .blog_userInfo {
     display: flex;
     justify-content: space-between;
@@ -136,6 +140,9 @@ img {
     gap: 6px;
 }
 @media (max-width: 1065px) {
+    .recently_post_container {
+        display: none!important;
+    }
     .navTitle {
         display: none;
     }

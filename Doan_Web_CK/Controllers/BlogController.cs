@@ -30,7 +30,7 @@ namespace Doan_Web_CK.Controllers
         public async Task<IActionResult> Search(string blog_title, DateTime? blog_date, string blog_newest, string cate_filter)
         {
             var blogs = await _blogRepository.GetAllAsync();
-            var filteredBlogs = blogs;
+            var filteredBlogs = blogs.Where(p => p.IsAccepted == true);
             if (cate_filter != null)
             {
                 filteredBlogs = filteredBlogs.Where(p => p.CategoryId.ToString() == cate_filter).ToList();
@@ -53,10 +53,15 @@ namespace Doan_Web_CK.Controllers
                 }
             }
             var categories = await _categoryRepository.GetAllAsync();
+            var currentUser = await _userManager.GetUserAsync(User);
             ViewBag.GetUserName = new Func<string, string>(GetUserName);
             ViewBag.BlogList = filteredBlogs;
             ViewBag.Categories = new SelectList(categories, "Id", "Name");
             ViewBag.GetPhotoById = new Func<string, string>(GetPhotoById);
+            if (currentUser != null)
+            {
+                ViewBag.MyBlogs = blogs.Where(p => p.AccountId == currentUser.Id);
+            }
             return View("Index");
         }
         public async Task<string> GetUserNameByIdAsync(string id)
@@ -84,6 +89,10 @@ namespace Doan_Web_CK.Controllers
             ViewBag.BlogList = blogList;
             ViewBag.GetUserName = new Func<string, string>(GetUserName);
             ViewBag.GetPhotoById = new Func<string, string>(GetPhotoById);
+            if (currentUser != null)
+            {
+                ViewBag.MyBlogs = blogList.Where(p => p.AccountId == currentUser.Id);
+            }
             return View();
         }
         public async Task<IActionResult> Display(int id)

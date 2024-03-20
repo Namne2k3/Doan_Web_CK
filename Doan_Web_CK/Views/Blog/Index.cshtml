@@ -4,158 +4,175 @@
     ViewData["Title"] = "Request Blogs";
     var blogList = ViewBag.BlogList;
     var currentUser = ViewBag?.CurrentUser;
+    var MyBlogs = ViewBag.MyBlogs;
 }
-<div class="body_container">
-    <h1>Blogs</h1>
+<div class="d-flex gap-4">
+    <div class="body_container" style="width: 75%">
+        <h1>Blogs</h1>
 
-    <div class="mt-3 d-flex justify-content-between align-items-center">
-        <div class="d-flex flex-column gap-2"> 
-            <div class="input_add" style="width: 210px">
-                <input class="form-control w-50 text-white w-100" placeholder="Share your blog now..." style="background-color: #282b2d" data-bs-toggle="modal" data-bs-target="#exampleModal" />
-            </div>
-            @* <button data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-outline-light">Create new blog</button> *@
-            <div id="filter_modal" class="filter_modal p-3 rounded-3 hidden" style="background-color: #282b2d; flex-direction: column;">
-                <h3>Filter</h3>
-                <form asp-action="Search" method="post">
-                    <div class="input-group">
-                        <input type="text" name="blog_title" id="searchInput" class="form-control" placeholder="Search your blog title..." />
-                        <input name="blog_date" class="form-control" type="date" />
-                    </div>
-                    
-                    <div class="input-group mt-2">
-                        <label for="cate_filter"  class="input-group-text">Category</label>
-                        <select name="cate_filter" id="cate_filter" class="form-select" asp-items="@ViewBag.Categories"></select>
-                    </div>
-                    
-                    <div class="form-check form-switch mt-2 d-flex align-items-center justify-content-between">
-                        <div class="d-flex gap-2">
-                            <input name="blog_newest" class="form-check-input" type="checkbox" id="newestBlogCb">
-                            <label class="form-check-label" for="newestBlogCb">Newest Blog</label>
-                        </div>
-                        <button class="btn btn-outline-light">Search</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-        <a onclick="handleToggleFilter()" class="text-white" href="#">
-            <i class="bi bi-filter" style="font-size: 32px"></i>
-        </a>
-    </div>
-    @* Modal *@
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div style="max-width: 600px;" class="modal-dialog">
-            <div style="background-color: #212529;" class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Create new Blog</h5>
-                    <a type="button" style="background-color: transparent;" data-bs-dismiss="modal" aria-label="Close">
-                        <i class="bi bi-x-lg text-white fs-5    "></i>
-                    </a>
+        <div class="mt-3 d-flex justify-content-between align-items-center">
+            <div class="d-flex flex-column gap-2"> 
+                <div class="input_add" style="width: 210px">
+                    <input class="form-control w-50 text-white w-100" placeholder="Share your blog now..." style="background-color: #282b2d" data-bs-toggle="modal" data-bs-target="#exampleModal" />
                 </div>
-                <div class="modal-body">
-                    <form class="d-flex flex-column gap-3" asp-action="Add" method="post" enctype="multipart/form-data">
-                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                @* <button data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-outline-light">Create new blog</button> *@
+                <div id="filter_modal" class="filter_modal p-3 rounded-3 hidden" style="background-color: #282b2d; flex-direction: column;">
+                    <h3>Filter</h3>
+                    <form asp-action="Search" method="post">
                         <div class="input-group">
-                            <span class="input-group-text" id="title-addon">Title</span>
-                            <input asp-for="Title" type="text" class="form-control" placeholder="Title" aria-label="Title" aria-describedby="title-addon" />
-                            <span asp-validation-for="Title" class="text-danger"></span>
+                            <input type="text" name="blog_title" id="searchInput" class="form-control" placeholder="Search your blog title..." />
+                            <input style="color: #989292;" name="blog_date" class="form-control" type="date" />
                         </div>
-                        <div class="input-group">
-                            <span class="input-group-text" id="description-addon">Description</span>
-                            <input style="height: 70px" type="text" placeholder="Description" aria-label="Description" aria-describedby="description-addon" asp-for="Description" class="form-control" />
-                            <span asp-validation-for="Description" class="text-danger"></span>
+                    
+                        <div class="input-group mt-2">
+                            <label for="cate_filter"  class="input-group-text">Category</label>
+                            <select name="cate_filter" id="cate_filter" class="form-select" asp-items="@ViewBag.Categories"></select>
                         </div>
-                        <div class="input-group">
-                            <span class="input-group-text" id="Content-addon">Content</span>
-                            <textarea style="height: 200px" aria-label="Content" aria-describedby="Content-addon" asp-for="Content" class="form-control"></textarea>
-                            <span asp-validation-for="Content" class="text-danger"></span>
-                        </div>
-                        <div class="input-group">
-                            <input type="file" accept="image/*" asp-for="BlogImageUrl" class="form-control" />
-                            <span asp-validation-for="BlogImageUrl" class="text-danger"></span>
-                        </div>
-                        <div class="input-group">
-                            <label for="categorySelect" asp-for="CategoryId" class="input-group-text">Category</label>
-                            <select id="categorySelect" asp-for="CategoryId" class="form-select" asp-items="@ViewBag.Categories"></select>
-                        </div>
-                        <div class="form-group mt-4">
-                            <button type="submit" class="btn btn-outline-light w-100">Submit</button>
+                    
+                        <div class="form-check form-switch mt-2 d-flex align-items-center justify-content-between">
+                            <div class="d-flex gap-2">
+                                <input name="blog_newest" class="form-check-input" type="checkbox" id="newestBlogCb">
+                                <label class="form-check-label" for="newestBlogCb">Newest Blog</label>
+                            </div>
+                            <button class="btn btn-outline-light">Search</button>
                         </div>
                     </form>
                 </div>
             </div>
+            <a onclick="handleToggleFilter()" class="text-white" href="#">
+                <i class="bi bi-filter" style="font-size: 32px"></i>
+            </a>
         </div>
-    </div>
-    <div class="blog_container">
-        @if (blogList.Count != 0 )
-        {
-            @foreach (var item in blogList)
-            {
-                <div class="blog_card">
-                    <div class="blog_userInfo">
-                        <div class="blog_img_date">
-                            <div class="d-flex align-items-end">
-                                <div style="width: 65px; height: 65px;">
-                                    <img src="@(ViewBag.GetPhotoById(item.AccountId))"
-                                        class="w-100 h-100"
-                                        style="border-radius: 100%; object-fit: cover"
-                                        alt="user_profile image"
-                                    />
-                                </div>
-                                <p class="blog_username mb-0 fw-bold">@(ViewBag.GetUserName(item.AccountId))</p>
+        @* Modal *@
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div style="max-width: 600px;" class="modal-dialog">
+                <div style="background-color: #212529;" class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Create new Blog</h5>
+                        <a type="button" style="background-color: transparent;" data-bs-dismiss="modal" aria-label="Close">
+                            <i class="bi bi-x-lg text-white fs-5    "></i>
+                        </a>
+                    </div>
+                    <div class="modal-body">
+                        <form class="d-flex flex-column gap-3" asp-action="Add" method="post" enctype="multipart/form-data">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <div class="input-group">
+                                <span class="input-group-text" id="title-addon">Title</span>
+                                <input asp-for="Title" type="text" class="form-control" placeholder="Title" aria-label="Title" aria-describedby="title-addon" />
+                                <span asp-validation-for="Title" class="text-danger"></span>
                             </div>
-                            <p class="mt-2">
-                                Publish at: @item.PublishDate.ToShortDateString()
-                            </p>
-                        </div>
-
-                        @if (currentUser?.Id == item.AccountId)
-                        {
-                            <div style="position: relative;">
-                                <a class="text-white" href="#" onclick="handleToggle(@item.Id)">
-                                    <i style="font-size: 32px;" class="bi bi-three-dots-vertical"></i>
-                                </a>
-                                <div id="@item.Id" class="hidden actions_ud" style="top:-10px; right: 20px; position: absolute; background-color: #282b2d; padding: 16px; border-radius: 12px 12px 0 0;" aria-hidden="true">
-                                    <a asp-controller="Blog" asp-route-id="@item.Id" asp-action="Edit" class="btn btn-outline-light">Edit</a>
-                                    <a class="btn btn-outline-light">Delete</a>
-                                </div>
+                            <div class="input-group">
+                                <span class="input-group-text" id="description-addon">Description</span>
+                                <input style="height: 70px" type="text" placeholder="Description" aria-label="Description" aria-describedby="description-addon" asp-for="Description" class="form-control" />
+                                <span asp-validation-for="Description" class="text-danger"></span>
                             </div>
-                        }
-                    </div>
-                    <div class="heading">
-                        <div class="d-flex justify-content-between">
-                            <h1 style="max-width: 80%">@item.Title</h1>
-                        </div>
-                        <p class="mt-4">@item.Description</p>
-                    </div>
-
-                    <div class="BlogCard_Img">
-                        <img src="@item.BlogImageUrl" />
-                    </div>
-
-                    <div class="Blogcard_Content mt-4">
-                        <p>@Html.Raw(@item.Content.Replace("\n", "<br>"))</p>
-                    </div>
-
-                    <div class="BlogCard_Actions">
-
+                            <div class="input-group">
+                                <span class="input-group-text" id="Content-addon">Content</span>
+                                <textarea style="height: 200px" aria-label="Content" aria-describedby="Content-addon" asp-for="Content" class="form-control"></textarea>
+                                <span asp-validation-for="Content" class="text-danger"></span>
+                            </div>
+                            <div class="input-group">
+                                <input type="file" accept="image/*" asp-for="BlogImageUrl" class="form-control" />
+                                <span asp-validation-for="BlogImageUrl" class="text-danger"></span>
+                            </div>
+                            <div class="input-group">
+                                <label for="categorySelect" asp-for="CategoryId" class="input-group-text">Category</label>
+                                <select id="categorySelect" asp-for="CategoryId" class="form-select" asp-items="@ViewBag.Categories"></select>
+                            </div>
+                            <div class="form-group mt-4">
+                                <button type="submit" class="btn btn-outline-light w-100">Submit</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
-                @*  <a class="text-decoration-none text-black" asp-controller="Blog" asp-action="Details" asp-route-id="@item.Id">
-                    <div class="col">
-                        <div class="card w-100">
-                            <img src="@item.BlogImageUrl" class="card-img-top" alt="Blog Image">
-                            <div class="card-body bg-dark text-white">
-                                <h5 class="card-title">@item.Title</h5>
-                                <p class="card-text">@LimitDescriptionLength(item.Description, 150)</p>
+            </div>
+        </div>
+        <div class="blog_container">
+            @if (blogList.Count != 0 )
+            {
+                @foreach (var item in blogList)
+                {
+                    <div class="blog_card">
+                        <div class="blog_userInfo">
+                            <div class="blog_img_date">
+                                <div class="d-flex align-items-end">
+                                    <div style="width: 65px; height: 65px;">
+                                        <img src="@(ViewBag.GetPhotoById(item.AccountId))"
+                                             class="w-100 h-100 photo_image_border"
+                                             style="border-radius: 100%; object-fit: cover;"
+                                            alt="user_profile image"
+                                        />
+                                    </div>
+                                    <p class="blog_username mb-0 fw-bold">@(ViewBag.GetUserName(item.AccountId))</p>
+                                </div>
+                                <p class="mt-2">
+                                    Publish at: @item.PublishDate.ToShortDateString()
+                                </p>
                             </div>
+
+                            @if (currentUser?.Id == item.AccountId)
+                            {
+                                <div style="position: relative;">
+                                    <a class="text-white" href="#" onclick="handleToggle(@item.Id)">
+                                        <i style="font-size: 32px;" class="bi bi-three-dots-vertical"></i>
+                                    </a>
+                                    <div id="@item.Id" class="hidden actions_ud" style="top:-10px; right: 20px; position: absolute; background-color: #282b2d; padding: 16px; border-radius: 12px 12px 0 0;" aria-hidden="true">
+                                        <a asp-controller="Blog" asp-route-id="@item.Id" asp-action="Edit" class="btn btn-outline-light">Edit</a>
+                                        <a class="btn btn-outline-light">Delete</a>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                        <div class="heading">
+                            <div class="d-flex justify-content-between">
+                                <h1 style="max-width: 80%">@item.Title</h1>
+                            </div>
+                            <p class="mt-4">@item.Description</p>
+                        </div>
+
+                        <div class="BlogCard_Img">
+                            <img src="@item.BlogImageUrl" />
+                        </div>
+
+                        <div class="Blogcard_Content mt-4">
+                            <p>@Html.Raw(@item.Content.Replace("\n", "<br>"))</p>
+                        </div>
+
+                        <div class="BlogCard_Actions">
+
                         </div>
                     </div>
-                </a> *@
+                    @*  <a class="text-decoration-none text-black" asp-controller="Blog" asp-action="Details" asp-route-id="@item.Id">
+                        <div class="col">
+                            <div class="card w-100">
+                                <img src="@item.BlogImageUrl" class="card-img-top" alt="Blog Image">
+                                <div class="card-body bg-dark text-white">
+                                    <h5 class="card-title">@item.Title</h5>
+                                    <p class="card-text">@LimitDescriptionLength(item.Description, 150)</p>
+                                </div>
+                            </div>
+                        </div>
+                    </a> *@
+                }
             }
-        }
-        else
-        {
-            <h1>Not Found</h1>
+            else
+            {
+                <h1>Not Found</h1>
+            }
+        </div>
+    </div>
+    <div class="recently_post_container" style="width: 25%">
+        @if ( MyBlogs != null ) {
+            <h2>Recently Blogs</h2>
+            foreach (var blog in MyBlogs )
+            {
+                <div id="@blog.Id" class="recent_card w-100">
+                    <a href="#">
+                        <p class="fw-bold">@blog.Title</p>
+                    </a>
+                    <img src="@blog.BlogImageUrl" style="object-fit: contain; max-width: 100%; border-radius: 12px;" />
+                </div>
+            }
         }
     </div>
 </div>
@@ -196,5 +213,38 @@
     .block {
         display: block;
     }
+    .recently_post_container {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        padding: 0 12px 12px 12px;
+    }
+    .recent_card {
+        background-color: #36393b;
+        padding: 8px;
+        border-radius: 12px;
+        display: flex;
+        transition: transform 0.2s; /* Animation */
+        flex-direction: column;
+    }
+
+    .recently_post_container {
+        height: 100vh;
+        overflow-y: scroll;
+        scrollbar-width: none;
+    }
+    .recent_card:hover {
+        transform: scale(1.1);
+    }
+
+    .recent_card a {
+        color: #ccc;
+        text-decoration: none;
+    }
+
+    .recent_card a:hover {
+        opacity: 0.6;
+    }
+    
 </style>
 

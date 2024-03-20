@@ -9,7 +9,6 @@
     var account = ViewBag.Account as ApplicationUser;
     var blogList = ViewBag.blogList;
     var currentUser = ViewBag.currentUser;
-    bool isEditUserName = false;
 }
 
 <div class="body_container">
@@ -17,7 +16,7 @@
         <div class="d-flex profile_header gap-4 align-items-center">
             <div class="profile_photo position-relative">
                 <div class="profile_img_container">
-                    <img style="border-radius: 100%;" id="profile_photo" class="w-100" src="@account.ImageUrl" />
+                    <img style="border-radius: 100%;" id="profile_photo" class="w-100 photo_image_border" src="@account.ImageUrl" />
                 </div>
 
                 <div class="profile_changePhoto position-absolute top-0 w-100 h-100 justify-content-center align-items-center">
@@ -34,7 +33,7 @@
                     <h1 id="user_name_h1" class="profile_username mw-100">
                         @account.UserName
                     </h1>
-                    <input onchange="" style="min-width: 100%; font-size: 1.4rem;" value="@account.UserName" id="input_username_edit" class="hidden w-100 form-control" />
+                    <input type="text" oninput="syncInputs(this.value,'input2')" style="min-width: 100%; font-size: 1.4rem; background-color: #282b2d; margin-bottom: 8px;" value="@account.UserName" id="input_username_edit" class="hidden w-100 form-control text-white" />
                     @if ( UserManager.GetUserId(User) == account.Id )
                     {
                         <a onclick="toogleEditUsername()" class="text-white hover_class">
@@ -51,8 +50,9 @@
     {
         <div class="flex-column justify-content-end" id="saveChange_button">
             <form asp-action="Edit" method="Post" enctype="multipart/form-data">
-                <input name="profile_photo" hidden type="file" accept="image/*" id="profile_photo_input" />
-                <button type="submit" class="btn btn-outline-light" style="margin-left: 14px;">Save Changes</button>
+                <input value="@account.ImageUrl" name="profile_photo" hidden type="file" accept="image/*" id="profile_photo_input" />
+                <input value="@account.UserName" onchange="handleEdituserName()" name="user_name" hidden type="text" id="input2" />
+                <button type="submit" class="btn btn-outline-light">Save Changes</button>
             </form>
         </div>
 
@@ -73,7 +73,7 @@
                             <div class="d-flex align-items-end">
                                 <div style="width: 65px; height: 65px;">
                                     <img src="@(ViewBag.GetPhotoById(item.AccountId))"
-                                        class="w-100 h-100"
+                                        class="w-100 h-100 photo_image_border"
                                         style="border-radius: 100%; object-fit: cover"
                                         alt="user_profile image"
                                     />
@@ -167,13 +167,14 @@
     function toogleEditUsername() {
         var h1 = document.getElementById("user_name_h1");
         var input_username = document.getElementById("input_username_edit")
-        if (h1.classList.contains("hidden")) {
-            h1.classList.remove("hidden")
-            input_username.classList.add("hidden")
-        } else {
+        if (!h1.classList.contains("hidden"))
+        {
             h1.classList.add("hidden")
             input_username.classList.remove("hidden")
         }
+        document.getElementById("saveChange_button").classList.remove("hidden")
+        document.getElementById("saveChange_button").classList.add("flex")
+        
     }
     function handleEdituserName() {
         var input_username = document.getElementById("input_username_edit")
@@ -184,6 +185,12 @@
             document.getElementById("saveChange_button").classList.remove("flex")
             document.getElementById("saveChange_button").classList.add("hidden")
         }
+        console.log("dang chay handleEdituserName")
+    }
+    function syncInputs(value, targetId) {
+        var targetInput = document.getElementById(targetId);
+        targetInput.value = value;
+        console.log("dang chay syncinput")
     }
     function handlePreviewPhoto() {
         console.log("Da chay")

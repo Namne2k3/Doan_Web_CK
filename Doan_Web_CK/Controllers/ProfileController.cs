@@ -34,11 +34,14 @@ namespace Doan_Web_CK.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Edit(IFormFile profile_photo)
+        public async Task<IActionResult> Edit(IFormFile profile_photo, string user_name)
         {
             var user = await _userManager.GetUserAsync(User);
-            user.ImageUrl = await SaveImage(profile_photo);
-
+            if (profile_photo != null)
+            {
+                user.ImageUrl = await SaveImage(profile_photo);
+            }
+            user.UserName = user_name;
             await _accountRepository.UpdateAsync(user);
 
             var account = await _accountRepository.GetByIdAsync(user.Id);
