@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Text;
 
 namespace Doan_Web_CK.Controllers
 {
@@ -17,7 +18,7 @@ namespace Doan_Web_CK.Controllers
         private readonly IAccountRepository _accountRepository;
         private readonly UserManager<ApplicationUser> _userManager;
 
-        public BlogController(UserManager<ApplicationUser> userManager, IBlogRepository blogRepository, ICategoryRepository categoryRepository, ILogger<BlogController> logger, INotifiticationRepository notifiticationRepository, IAccountRepository accountRepository)
+        public BlogController(UserManager<ApplicationUser> userManager, IBlogRepository blogRepository, ICategoryRepository categoryRepository, ILogger<BlogController> logger, INotifiticationRepository notifiticationRepository, IAccountRepository accountRepository, ICommentRepository commentRepository)
         {
             _blogRepository = blogRepository;
             _categoryRepository = categoryRepository;
@@ -25,6 +26,7 @@ namespace Doan_Web_CK.Controllers
             _notifiticationRepository = notifiticationRepository;
             _userManager = userManager;
             _accountRepository = accountRepository;
+            _commentRepository = commentRepository;
         }
         [HttpPost]
         public async Task<IActionResult> Search(string blog_title, DateTime? blog_date, string blog_newest, string cate_filter)
@@ -58,12 +60,31 @@ namespace Doan_Web_CK.Controllers
             ViewBag.BlogList = filteredBlogs;
             ViewBag.Categories = new SelectList(categories, "Id", "Name");
             ViewBag.GetPhotoById = new Func<string, string>(GetPhotoById);
+            ViewBag.GetAllBlogComments = new Func<int, IEnumerable<Comment>>(GetAllBlogComments);
             if (currentUser != null)
             {
                 ViewBag.MyBlogs = blogs.Where(p => p.AccountId == currentUser.Id);
+                ViewBag.CurrentUser = currentUser;
             }
             return View("Index");
         }
+        //public async Task<IActionResult> AddComment(int comment_blogid, string comment_accountid, DateTime comment_commentdate, string comment_content)
+        //{
+        //    var blog = await _blogRepository.GetByIdAsync(comment_blogid);
+        //    var account = await _accountRepository.GetByIdAsync(comment_accountid);
+        //    if (blog == null || account == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    var newComment = new Comment
+        //    {
+        //        Content = comment_content
+
+        //    }
+
+
+        //}
         public async Task<string> GetUserNameByIdAsync(string id)
         {
             var user = await _accountRepository.GetByIdAsync(id);
@@ -75,12 +96,30 @@ namespace Doan_Web_CK.Controllers
             task.Wait();
             return task.Result;
         }
+        public async Task<IEnumerable<Comment>?> GetAllBlogCommentsAsync(int blogId)
+        {
+            var comments = await _commentRepository.GetAllComments();
+            if (comments != null)
+            {
+                var filered = comments.Where(p => p.BlogId == blogId).OrderByDescending(p => p.CommentDate).ToList().Take(3);
+                return filered;
+            }
+            return comments;
+        }
+        public IEnumerable<Comment>? GetAllBlogComments(int blogId)
+        {
+            var task = GetAllBlogCommentsAsync(blogId);
+            task.Wait();
+            return task.Result;
+
+        }
         public async Task<IActionResult> Index()
         {
             var blogs = await _blogRepository.GetAllAsync();
             var blogList = blogs.Where(p => p.IsAccepted == true).ToList();
             var categories = await _categoryRepository.GetAllAsync();
             var currentUser = await _userManager.GetUserAsync(User);
+
             if (currentUser != null)
             {
                 ViewBag.CurrentUser = currentUser;
@@ -89,6 +128,7 @@ namespace Doan_Web_CK.Controllers
             ViewBag.BlogList = blogList;
             ViewBag.GetUserName = new Func<string, string>(GetUserName);
             ViewBag.GetPhotoById = new Func<string, string>(GetPhotoById);
+            ViewBag.GetAllBlogComments = new Func<int, IEnumerable<Comment>>(GetAllBlogComments);
             if (currentUser != null)
             {
                 ViewBag.MyBlogs = blogList.Where(p => p.AccountId == currentUser.Id);
@@ -112,38 +152,86 @@ namespace Doan_Web_CK.Controllers
             task.Wait();
             return task.Result;
         }
+        //[HttpPost]
+        //public async Task<IActionResult> AddComment(int comment_blogid, string comment_accountid, string comment_content)
+        //{
+        //    var blog = await _blogRepository.GetByIdAsync(comment_blogid);
+        //    if (blog != null || comment_content != "")
+        //    {
+
+        //        var newComment = new Comment
+        //        {
+        //            Content = comment_content,
+        //            AccountId = comment_accountid,
+        //            BlogId = comment_blogid,
+        //            CommentDate = DateTime.UtcNow,
+        //        };
+
+        //        await _commentRepository.AddAsync(newComment);
+
+        //        var nofitication = new Nofitication
+        //        {
+        //            BlogId = comment_blogid,
+        //            SenderAccountId = comment_accountid,
+        //            RecieveAccountId = blog.AccountId,
+        //            Type = "Comment",
+        //            Date = DateTime.UtcNow,
+        //        };
+        //        await _notifiticationRepository.AddAsync(nofitication);
+
+        //        return RedirectToAction("Index");
+        //    }
+        //    return NotFound();
+        //}
         [HttpPost]
-        public async Task<IActionResult> AddComment(Comment comment)
+        public async Task<IActionResult> AddComment(int comment_blogid, string comment_accountid, string comment_content)
         {
-            var blog = await _blogRepository.GetByIdAsync(comment.BlogId);
-            if (blog != null)
+            var blog = await _blogRepository.GetByIdAsync(comment_blogid);
+            StringBuilder newCommentsHtml = new StringBuilder();
+            var newComment = new Comment
             {
-                if (ModelState.IsValid)
-                {
-                    var newComment = new Comment
-                    {
-                        Content = comment.Content,
-                        AccountId = comment.AccountId,
-                        BlogId = comment.BlogId,
-                        CommentDate = comment.CommentDate
-                    };
+                Content = comment_content,
+                AccountId = comment_accountid,
+                BlogId = comment_blogid,
+                CommentDate = DateTime.UtcNow,
+            };
 
-                    await _blogRepository.AddCommentsAsync(newComment);
+            await _commentRepository.AddAsync(newComment);
 
-                    var nofitication = new Nofitication
-                    {
-                        BlogId = comment.BlogId,
-                        SenderAccountId = comment.AccountId.ToString(),
-                        RecieveAccountId = blog.AccountId.ToString(),
-                        Type = "Comment",
-                        Date = DateTime.Now
-                    };
-                    await _notifiticationRepository.AddAsync(nofitication);
+            var nofitication = new Nofitication
+            {
+                BlogId = comment_blogid,
+                SenderAccountId = comment_accountid,
+                RecieveAccountId = blog.AccountId,
+                Type = "Comment",
+                Date = DateTime.UtcNow,
+            };
+            await _notifiticationRepository.AddAsync(nofitication);
 
-                    return RedirectToAction("Index");
-                }
+            var comments = await _commentRepository.GetAllComments();
+            var filterd = comments.Where(p => p.BlogId == comment_blogid).OrderByDescending(p => p.CommentDate).ToList().Take(3);
+            foreach (var comment in filterd)
+            {
+                newCommentsHtml.Append("<div class=\"comment_card\">");
+                newCommentsHtml.Append("<div class=\"comment_card_img_container\">");
+                newCommentsHtml.Append("<img src=\"" + await GetPhotoByIdAsync(comment.AccountId) + "\" class=\"comment_card_img\" />");
+
+                newCommentsHtml.Append("</div>");
+                newCommentsHtml.Append("<div class=\"comment_card_content\">");
+                newCommentsHtml.Append("<p class=\"fw-bold\">" + await GetUserNameByIdAsync(comment.AccountId) + "</p>");
+                newCommentsHtml.Append("<p class=\"fw-normal\">" + comment.Content + "</p>");
+                newCommentsHtml.Append("</div>");
+                newCommentsHtml.Append("<div class=\"comment_card_actions\">");
+                newCommentsHtml.Append("<a href = \"#\" class=\"text-white\">");
+                newCommentsHtml.Append("<i class=\"bi bi-three-dots-vertical\"></i>");
+                newCommentsHtml.Append("</a>");
+                newCommentsHtml.Append("</div>");
+                newCommentsHtml.Append("</div>");
+
             }
-            return View();
+
+            string newCommentsHtmlString = newCommentsHtml.ToString();
+            return Json(new { commentHtml = newCommentsHtmlString });
         }
         public async Task<IActionResult> Edit(int id)
         {

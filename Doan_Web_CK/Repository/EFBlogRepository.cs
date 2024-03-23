@@ -50,13 +50,6 @@ namespace Doan_Web_CK.Repository
         {
             throw new NotImplementedException();
         }
-
-        public async Task AddCommentsAsync(Comment comment)
-        {
-            _context.Comments.Add(comment);
-            await _context.SaveChangesAsync();
-        }
-
         public async Task<Blog> GetByIdAsync(int? blogId)
         {
             return await _context.Blogs.FindAsync(blogId);

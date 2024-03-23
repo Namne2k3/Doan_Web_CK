@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Doan_Web_CK.Controllers
 {
-    [Authorize(Roles = "Member")]
+    [Authorize(Roles = "Member, Admin")]
     public class ProfileController : Controller
     {
         private readonly UserManager<ApplicationUser> _userManager;

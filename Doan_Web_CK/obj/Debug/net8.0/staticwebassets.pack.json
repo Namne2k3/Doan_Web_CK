@@ -29,8 +29,24 @@
       "PackagePath": "staticwebassets\\images\\ai-coding-1710410299-6906-1710410348.jpg"
     },
     {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\images\\cdn-vox-cdn-7896-1710813178.png",
+      "PackagePath": "staticwebassets\\images\\cdn-vox-cdn-7896-1710813178.png"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\images\\logo.png",
+      "PackagePath": "staticwebassets\\images\\logo.png"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\images\\logo_2.png",
+      "PackagePath": "staticwebassets\\images\\logo_2.png"
+    },
+    {
       "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\images\\logo_noneBG.png",
       "PackagePath": "staticwebassets\\images\\logo_noneBG.png"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\images\\terminator-style-robot-7003-1710840287.png",
+      "PackagePath": "staticwebassets\\images\\terminator-style-robot-7003-1710840287.png"
     },
     {
       "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\images\\tiktok-10-9960-1646278205-3630-1710600720.png",
