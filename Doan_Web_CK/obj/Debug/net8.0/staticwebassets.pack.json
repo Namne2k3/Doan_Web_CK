@@ -45,6 +45,10 @@
       "PackagePath": "staticwebassets\\images\\logo_noneBG.png"
     },
     {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\images\\m1-vs-m2-air-feature-toned-dow-5823-4792-1711124712.jpg",
+      "PackagePath": "staticwebassets\\images\\m1-vs-m2-air-feature-toned-dow-5823-4792-1711124712.jpg"
+    },
+    {
       "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\images\\terminator-style-robot-7003-1710840287.png",
       "PackagePath": "staticwebassets\\images\\terminator-style-robot-7003-1710840287.png"
     },
@@ -71,6 +75,10 @@
     {
       "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\images\\z5178780316377-54425f52b2bc47f-9277-1115-1710612305.jpg",
       "PackagePath": "staticwebassets\\images\\z5178780316377-54425f52b2bc47f-9277-1115-1710612305.jpg"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\images\\z5280418533623-cc40cbdf0af8195-7614-8673-1711285089.jpg",
+      "PackagePath": "staticwebassets\\images\\z5280418533623-cc40cbdf0af8195-7614-8673-1711285089.jpg"
     },
     {
       "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\js\\site.js",

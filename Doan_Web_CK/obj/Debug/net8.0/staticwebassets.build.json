@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "VrAC946aaWuZiB8VhQqrcTACl6N2w+TBKWVJm+lJ2H8=",
+  "Hash": "b7SLelEo4aymI+gEmxvkGFsDaug4cOPLRq9Udw277Dg=",
   "Source": "Doan_Web_CK",
   "BasePath": "_content/Doan_Web_CK",
   "Mode": "Default",
@@ -1347,6 +1347,25 @@
       "OriginalItemSpec": "wwwroot\\images\\logo_noneBG.png"
     },
     {
+      "Identity": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\images\\m1-vs-m2-air-feature-toned-dow-5823-4792-1711124712.jpg",
+      "SourceId": "Doan_Web_CK",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\",
+      "BasePath": "_content/Doan_Web_CK",
+      "RelativePath": "images/m1-vs-m2-air-feature-toned-dow-5823-4792-1711124712.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\m1-vs-m2-air-feature-toned-dow-5823-4792-1711124712.jpg"
+    },
+    {
       "Identity": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\images\\PhieuDangKyDeTai_2.jpg",
       "SourceId": "Doan_Web_CK",
       "SourceType": "Discovered",
@@ -1516,6 +1535,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\z5178780316377-54425f52b2bc47f-9277-1115-1710612305.jpg"
+    },
+    {
+      "Identity": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\images\\z5280418533623-cc40cbdf0af8195-7614-8673-1711285089.jpg",
+      "SourceId": "Doan_Web_CK",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\",
+      "BasePath": "_content/Doan_Web_CK",
+      "RelativePath": "images/z5280418533623-cc40cbdf0af8195-7614-8673-1711285089.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\z5280418533623-cc40cbdf0af8195-7614-8673-1711285089.jpg"
     },
     {
       "Identity": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\js\\site.js",

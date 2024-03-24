@@ -16,9 +16,10 @@ namespace Doan_Web_CK.Repository
             _context.Blogs.Add(blog);
             await _context.SaveChangesAsync();
         }
-        public Task AddLikeAsync()
+        public async Task AddLikeAsync(Blog blog, Like like)
         {
-            throw new NotImplementedException();
+            blog.Likes.Add(like);
+            await _context.SaveChangesAsync();
         }
 
         public async Task DeleteAsync(int id)
@@ -36,9 +37,10 @@ namespace Doan_Web_CK.Repository
             throw new NotImplementedException();
         }
 
-        public Task DeleteLikeAsync()
+        public async Task DeleteLikeAsync(Blog blog, Like like)
         {
-            throw new NotImplementedException();
+            blog.Likes.Remove(like);
+            await _context.SaveChangesAsync();
         }
         public async Task UpdateAsync(Blog blog)
         {

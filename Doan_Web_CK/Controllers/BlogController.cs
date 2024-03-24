@@ -16,9 +16,19 @@ namespace Doan_Web_CK.Controllers
         private readonly INotifiticationRepository _notifiticationRepository;
         private readonly ILogger<BlogController> _logger;
         private readonly IAccountRepository _accountRepository;
+        private readonly ILikeRepository _likeRepository;
         private readonly UserManager<ApplicationUser> _userManager;
 
-        public BlogController(UserManager<ApplicationUser> userManager, IBlogRepository blogRepository, ICategoryRepository categoryRepository, ILogger<BlogController> logger, INotifiticationRepository notifiticationRepository, IAccountRepository accountRepository, ICommentRepository commentRepository)
+        public BlogController(
+            UserManager<ApplicationUser> userManager,
+            IBlogRepository blogRepository,
+            ICategoryRepository categoryRepository,
+            ILogger<BlogController> logger,
+            INotifiticationRepository notifiticationRepository,
+            IAccountRepository accountRepository,
+            ICommentRepository commentRepository,
+            ILikeRepository likeRepository
+        )
         {
             _blogRepository = blogRepository;
             _categoryRepository = categoryRepository;
@@ -27,6 +37,7 @@ namespace Doan_Web_CK.Controllers
             _userManager = userManager;
             _accountRepository = accountRepository;
             _commentRepository = commentRepository;
+            _likeRepository = likeRepository;
         }
         [HttpPost]
         public async Task<IActionResult> Search(string blog_title, DateTime? blog_date, string blog_newest, string cate_filter)
@@ -61,6 +72,7 @@ namespace Doan_Web_CK.Controllers
             ViewBag.Categories = new SelectList(categories, "Id", "Name");
             ViewBag.GetPhotoById = new Func<string, string>(GetPhotoById);
             ViewBag.GetAllBlogComments = new Func<int, IEnumerable<Comment>>(GetAllBlogComments);
+            ViewBag.IsCurrentUserLiked = new Func<int, string, bool>(IsCurrentUserLiked);
             if (currentUser != null)
             {
                 ViewBag.MyBlogs = blogs.Where(p => p.AccountId == currentUser.Id);
@@ -68,23 +80,6 @@ namespace Doan_Web_CK.Controllers
             }
             return View("Index");
         }
-        //public async Task<IActionResult> AddComment(int comment_blogid, string comment_accountid, DateTime comment_commentdate, string comment_content)
-        //{
-        //    var blog = await _blogRepository.GetByIdAsync(comment_blogid);
-        //    var account = await _accountRepository.GetByIdAsync(comment_accountid);
-        //    if (blog == null || account == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    var newComment = new Comment
-        //    {
-        //        Content = comment_content
-
-        //    }
-
-
-        //}
         public async Task<string> GetUserNameByIdAsync(string id)
         {
             var user = await _accountRepository.GetByIdAsync(id);
@@ -129,12 +124,35 @@ namespace Doan_Web_CK.Controllers
             ViewBag.GetUserName = new Func<string, string>(GetUserName);
             ViewBag.GetPhotoById = new Func<string, string>(GetPhotoById);
             ViewBag.GetAllBlogComments = new Func<int, IEnumerable<Comment>>(GetAllBlogComments);
+            ViewBag.IsCurrentUserLiked = new Func<int, string, bool>(IsCurrentUserLiked);
             if (currentUser != null)
             {
                 ViewBag.MyBlogs = blogList.Where(p => p.AccountId == currentUser.Id);
             }
             return View();
         }
+        public bool IsCurrentUserLiked(int blogId, string userId)
+        {
+            var task = IsCurrentUserLikedAsync(blogId, userId);
+            task.Wait();
+            return task.Result;
+        }
+        public async Task<bool> IsCurrentUserLikedAsync(int blogId, string userId)
+        {
+            var blog = await _blogRepository.GetByIdAsync(blogId);
+            var like = await _likeRepository.GetAllLikeAsync();
+            var userLike = like.SingleOrDefault(p => p.ApplicationUserId == userId && p.BlogId == blogId);
+            if (blog != null || blog.Likes != null)
+            {
+                if (userLike != null)
+                {
+                    return true;
+                }
+                return false;
+            }
+            return false;
+        }
+
         public async Task<IActionResult> Display(int id)
         {
             var blog = await _blogRepository.GetByIdAsync(id);
@@ -183,6 +201,51 @@ namespace Doan_Web_CK.Controllers
         //    }
         //    return NotFound();
         //}
+
+        [HttpPost]
+        public async Task<IActionResult> UnLike(string like_accountId, int like_blogId)
+        {
+            var blog = await _blogRepository.GetByIdAsync(like_blogId);
+            var likes = await _likeRepository.GetAllLikeAsync();
+            var like = likes.SingleOrDefault(p => p.ApplicationUserId == like_accountId && p.BlogId == like_blogId);
+            if (blog != null)
+            {
+                await _blogRepository.DeleteLikeAsync(blog, like);
+                return Json(new
+                {
+                    message = "DeleteLike  Successfully"
+                });
+            }
+            return NotFound();
+        }
+        [HttpPost]
+        public async Task<IActionResult> AddLike(string like_accountId, int like_blogId)
+        {
+            var blog = await _blogRepository.GetByIdAsync(like_blogId);
+            if (blog != null)
+            {
+                // chay lan dau tien
+                if (blog.Likes == null)
+                {
+                    blog.Likes = new List<Like>();
+                }
+
+                var newLike = new Like
+                {
+                    BlogId = like_blogId,
+                    ApplicationUserId = like_accountId,
+                };
+
+                await _blogRepository.AddLikeAsync(blog, newLike);
+                return Json(new
+                {
+                    message = "Add Like Successfully"
+                });
+            }
+            return NotFound();
+        }
+
+
         [HttpPost]
         public async Task<IActionResult> UpdateComment(int edit_cmt_id, string edit_cmt_accountid, int edit_cmt_blogid, string edit_cmt_content)
         {
@@ -365,14 +428,11 @@ namespace Doan_Web_CK.Controllers
                 Description = blog.Description,
                 Content = blog.Content,
                 CategoryId = blog.CategoryId,
-                PublishDate = DateTime.UtcNow,
+                PublishDate = DateTime.Now,
                 AccountId = user.Id,
             };
             if (BlogImageUrl == null)
             {
-                var categories = await _categoryRepository.GetAllAsync();
-                ViewBag.Categories = new SelectList(categories, "Id", "Name");
-                TempData["ShowModal"] = true;
                 return RedirectToAction("Index");
             }
             else

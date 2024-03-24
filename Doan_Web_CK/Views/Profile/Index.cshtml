@@ -219,13 +219,13 @@
         }
         else
         {
-            <h1>Not Found</h1>
+            <h3></h3>
         }
     </div>
 </div>
 <style>
     .hidden {
-        display: none;
+        display: none!important;
     }
     .flex {
         display: flex;
@@ -399,17 +399,7 @@
     }
 </style>
 <script>
-    function handleToggle(id) {
-        console.log("dang chay toogle id")
-        var element = document.getElementById(id);
-        if (element.classList.contains("hidden")) {
-            element.classList.remove("hidden");
-            element.classList.add("flex");
-        } else {
-            element.classList.add("hidden");
-            element.classList.remove("flex");
-        }
-    }
+    
     function toogleEditUsername() {
         var h1 = document.getElementById("user_name_h1");
         var input_username = document.getElementById("input_username_edit")
@@ -472,6 +462,140 @@
         console.log("Chay lan dau")
         document.getElementById("saveChange_button").classList.remove("flex")
         document.getElementById("saveChange_button").classList.add("hidden")
+    }
+
+    function handleEditToggleComment(id) {
+        
+        var form = document.getElementById("comment_form_"+id)
+        var p = document.getElementById("p_content_" + id);
+        if ( !p.classList.contains("hidden") ) {
+            p.classList.add("hidden");
+            form.classList.remove("hidden");
+            form.focus();
+        } else {
+            p.classList.remove("hidden")
+            form.classList.add("hidden")
+        }
+        
+    }
+    function toggleActionComment(id) {
+        var element = document.getElementById("comments_actions_"+id)
+        if (element.classList.contains("hidden")) {
+            element.classList.remove("hidden");
+        } else {
+            element.classList.add("hidden");
+        }
+    }
+    function handleSubmitAddCmt(id) {
+        event.preventDefault(); 
+        var formData = new FormData(document.getElementById("form_comment_"+id));
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "/Blog/AddComment", true);
+        xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest"); // Đảm bảo yêu cầu được nhận biết là AJAX
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+                if (xhr.status === 200) {
+                    var response = JSON.parse(xhr.responseText);
+
+                    // Cập nhật nội dung của phần tử commentContainer
+                    document.getElementById("form_input_comment_" + id).value = ""
+                    var commentContainer = document.getElementById("comment_container_lower_" + id);
+                    if (commentContainer) {
+                        commentContainer.innerHTML = '';
+                        commentContainer.innerHTML = response.commentHtml;
+                    }
+                } else {
+                    // Xử lý lỗi
+                }
+            }
+        };
+        xhr.send(formData);
+    }
+    function handleToggleMore(id) {
+        console.log(id)
+        const element = document.getElementById("content_"+id);
+        const toggle_icon = document.getElementById("toggle_icon_"+id)
+        var parentElement = element.parentElement
+        if (element.classList.contains("temp_hidden")) {
+            console.log("Da xoa")
+            element.classList.remove("temp_hidden")
+            toggle_icon.classList.remove("bi-arrow-down-circle")
+            toggle_icon.classList.add("bi-arrow-up-circle")
+
+        } else {
+            console.log("Da them")
+            parentElement.scrollIntoView({ behavior: 'smooth' })
+            element.classList.add("temp_hidden")
+            // scroll execute
+            console.log("da chay scroll")
+            toggle_icon.classList.remove("bi-arrow-up-circle")
+            toggle_icon.classList.add("bi-arrow-down-circle")
+        }
+    }
+   
+    function handleToggle(id) {
+        var element = document.getElementById(id);
+        if (element.classList.contains("hidden")) {
+            element.classList.remove("hidden");
+            element.classList.add("flex");
+        } else {
+            element.classList.add("hidden");
+            element.classList.remove("flex");
+        }
+    }
+    function handleSubmitEditCmt(id, cmtId) {
+        event.preventDefault();
+        console.log("Check cmtid >>> " , cmtId)
+        var formData = new FormData(document.getElementById("edit_form_cmt_" + cmtId));
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "/Blog/UpdateComment", true);
+        xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest"); // Đảm bảo yêu cầu được nhận biết là AJAX
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+                if (xhr.status === 200) {
+                    var response = JSON.parse(xhr.responseText);
+
+                    var commentContainer = document.getElementById("comment_container_lower_" + id);
+                    if (commentContainer) {
+                        commentContainer.innerHTML = '';
+                        commentContainer.innerHTML = response.commentHtml;
+                    }
+                } else {
+                    // Xử lý lỗi
+                }
+            }
+        };
+        xhr.send(formData);
+    }
+    function handleKeyPressInputEditComment(event, id, commentId) {
+        if (event.key === 'Enter') {
+            handleSubmitEditCmt(id,commentId)
+
+            console.log("Check" + commentId);
+            handleEditToggleComment(commentId)
+        }
+    }
+
+    function handleKeyPress(event, id) {
+        // Kiểm tra xem phím được nhấn có phải là phím Enter không
+        if (event.key === "Enter") {
+            // Xử lý sự kiện tại đây, ví dụ: gọi một hàm JavaScript hoặc thực hiện một hành động khác
+            handleSubmitAddCmt(id)
+        }
+        return false;
+    }
+    function handleToggleFilter() {
+        console.log("Dang chay")
+        var element = document.getElementById("filter_modal");
+        if (element) {
+            if (element.classList.contains("hidden")) {
+                element.classList.remove("hidden");
+                element.classList.add("block");
+            } else {
+                element.classList.add("hidden");
+                element.classList.remove("block");
+            }
+        }
     }
 </script>
 

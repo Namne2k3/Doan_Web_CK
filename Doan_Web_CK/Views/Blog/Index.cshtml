@@ -9,40 +9,42 @@
 <div class="d-flex gap-4">
     <div class="body_container" style="width: 75%">
         <h1>Blogs</h1>
-
-        <div class="mt-3 d-flex justify-content-between align-items-center">
-            <div class="d-flex flex-column gap-2"> 
-                <div class="input_add" style="width: 210px">
-                    <input class="form-control w-50 text-white w-100" placeholder="Share your blog now..." style="background-color: #282b2d" data-bs-toggle="modal" data-bs-target="#exampleModal" />
-                </div>
-                @* <button data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-outline-light">Create new blog</button> *@
-                <div id="filter_modal" class="filter_modal p-3 rounded-3 hidden" style="background-color: #282b2d; flex-direction: column;">
-                    <h3>Filter</h3>
-                    <form asp-action="Search" method="post">
-                        <div class="input-group">
-                            <input type="text" name="blog_title" id="searchInput" class="form-control" placeholder="Search your blog title..." />
-                            <input style="color: #989292;" name="blog_date" class="form-control" type="date" />
-                        </div>
-                    
-                        <div class="input-group mt-2">
-                            <label for="cate_filter"  class="input-group-text">Category</label>
-                            <select name="cate_filter" id="cate_filter" class="form-select" asp-items="@ViewBag.Categories"></select>
-                        </div>
-                    
-                        <div class="form-check form-switch mt-2 d-flex align-items-center justify-content-between">
-                            <div class="d-flex gap-2">
-                                <input name="blog_newest" class="form-check-input" type="checkbox" id="newestBlogCb">
-                                <label class="form-check-label" for="newestBlogCb">Newest Blog</label>
+        @if ( currentUser != null )
+        {
+            <div class="mt-3 d-flex justify-content-between align-items-center">
+                <div class="d-flex flex-column gap-2"> 
+                    <div class="input_add" style="width: 210px">
+                        <input class="form-control w-50 text-white w-100" placeholder="Share your blog now..." style="background-color: #282b2d" data-bs-toggle="modal" data-bs-target="#exampleModal" />
+                    </div>
+                    @* <button data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-outline-light">Create new blog</button> *@
+                    <div id="filter_modal" class="filter_modal p-3 rounded-3 hidden" style="background-color: #282b2d; flex-direction: column;">
+                        <h3>Filter</h3>
+                        <form asp-action="Search" method="post">
+                            <div class="input-group">
+                                <input type="text" name="blog_title" id="searchInput" class="form-control" placeholder="Search your blog title..." />
+                                <input style="color: #989292;" name="blog_date" class="form-control" type="date" />
                             </div>
-                            <button class="btn btn-outline-light">Search</button>
-                        </div>
-                    </form>
+                    
+                            <div class="input-group mt-2">
+                                <label for="cate_filter"  class="input-group-text">Category</label>
+                                <select name="cate_filter" id="cate_filter" class="form-select" asp-items="@ViewBag.Categories"></select>
+                            </div>
+                    
+                            <div class="form-check form-switch mt-2 d-flex align-items-center justify-content-between">
+                                <div class="d-flex gap-2">
+                                    <input name="blog_newest" class="form-check-input" type="checkbox" id="newestBlogCb">
+                                    <label class="form-check-label" for="newestBlogCb">Newest Blog</label>
+                                </div>
+                                <button class="btn btn-outline-light">Search</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
+                <a onclick="handleToggleFilter()" class="text-white" href="#">
+                    <i class="bi bi-filter" style="font-size: 32px"></i>
+                </a>
             </div>
-            <a onclick="handleToggleFilter()" class="text-white" href="#">
-                <i class="bi bi-filter" style="font-size: 32px"></i>
-            </a>
-        </div>
+        }
         @* Modal *@
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div style="max-width: 600px;" class="modal-dialog">
@@ -146,12 +148,29 @@
 
                         <div class="blog_actions mt-2 d-flex flex-column">
                             <div class="d-flex justify-content-around">
+
+                                <!-- Start Section likes action-->
                                 <div class="action_container">
-                                    <a href="#" class="actions_item">
-                                        <p>Like</p>
-                                        <i class="bi bi-heart"></i>
-                                    </a>
+                                        @if ( ViewBag.IsCurrentUserLiked(item.Id, currentUser?.Id) == true )
+                                        {
+                                            <a onclick="handleUnLike(@item.Id)" id="action_like_@item.Id" href="#" class="actions_item">
+                                                <p>Like</p>
+                                                <i style="color: #c66b6b;" id="like_icon_@item.Id" class="bi bi-heart-fill"></i>
+                                            </a>
+                                        } else
+                                        {
+                                            <a onclick="handleLike(@item.Id)" id="action_like_@item.Id" href="#" class="actions_item">
+                                                <p>Like</p>
+                                                <i style="color: #c66b6b;" id="like_icon_@item.Id" class="bi bi-heart"></i>
+                                            </a>
+                                        }
+                                    <form id="like_form_@item.Id" hidden method="post">
+                                        <input type="text" value="@currentUser?.Id" name="like_accountId" />
+                                        <input type="number" value="@item.Id" name="like_blogId" />
+                                    </form>
                                 </div>
+                                <!-- End Section likes action-->
+
                                 <div class="action_container">
                                     <label for="form_input_comment_@item.Id" class="actions_item">
                                         <p>Comment</p>
@@ -182,43 +201,43 @@
                                         <input id="form_input_comment_@item.Id" onkeypress="handleKeyPress(event, @item.Id)" type="text" name="comment_content" style="background-color: #282b2d" class="form-control text-white" placeholder="Add comment..." />
                                     </form>
                                 </div>
-                                @if (ViewBag.GetAllBlogComments(item.Id) != null )
-                                {
-                                    <div id="comment_container_lower_@item.Id" class="comment_container_lower">
-                                        @foreach (var comment in ViewBag.GetAllBlogComments(item.Id))
-                                        {
-                                            <div class="comment_card">
-                                                <div class="comment_card_img_container">
-                                                    <img src="@(ViewBag.GetPhotoById(comment.AccountId))" class="comment_card_img" />
-                                                </div>
-                                                <div class="comment_card_content">
-                                                    <p class="fw-bold">@(ViewBag.GetUserName(comment.AccountId)) <span class="comment_card_date">@comment.CommentDate</span> </p>
-                                                    <p id="p_content_@comment.Id" class="fw-normal">@comment.Content</p>
-                                                    <form method="post" id="edit_form_cmt_@comment.Id">
-                                                        <input type="number" name="edit_cmt_id" hidden value="@comment.Id" />
-                                                        <input type="text" name="edit_cmt_accountid" value="@comment.AccountId" hidden />
-                                                        <input type="number" name="edit_cmt_blogid" value="@item.Id" hidden />
-                                                        <input onkeypress="handleKeyPressInputEditComment(event, @item.Id, @comment.Id)" type="text" name="edit_cmt_content" value="@comment.Content" id="comment_form_@comment.Id" class="text-white hidden comments_inputs p-2" style="border: none;" />
-                                                    </form>
-                                                </div>
+                            }
+                            @if (ViewBag.GetAllBlogComments(item.Id) != null )
+                            {
+                                <div id="comment_container_lower_@item.Id" class="comment_container_lower">
+                                    @foreach (var comment in ViewBag.GetAllBlogComments(item.Id))
+                                    {
+                                        <div class="comment_card">
+                                            <div class="comment_card_img_container">
+                                                <img src="@(ViewBag.GetPhotoById(comment.AccountId))" class="comment_card_img" />
+                                            </div>
+                                            <div class="comment_card_content">
+                                                <p class="fw-bold">@(ViewBag.GetUserName(comment.AccountId)) <span class="comment_card_date">@comment.CommentDate</span> </p>
+                                                <p id="p_content_@comment.Id" class="fw-normal">@comment.Content</p>
+                                                <form method="post" id="edit_form_cmt_@comment.Id">
+                                                    <input type="number" name="edit_cmt_id" hidden value="@comment.Id" />
+                                                    <input type="text" name="edit_cmt_accountid" value="@comment.AccountId" hidden />
+                                                    <input type="number" name="edit_cmt_blogid" value="@item.Id" hidden />
+                                                    <input onkeypress="handleKeyPressInputEditComment(event, @item.Id, @comment.Id)" type="text" name="edit_cmt_content" value="@comment.Content" id="comment_form_@comment.Id" class="text-white hidden comments_inputs p-2" style="border: none;" />
+                                                </form>
+                                            </div>
 
-                                                <div class="comment_card_actions position-relative">
-                                                    @if (comment.AccountId == currentUser.Id)
-                                                    {
-                                                        <a onclick="toggleActionComment(@comment.Id)" href="#" class="text-white">
-                                                            <i class="bi bi-three-dots-vertical"></i>
-                                                        </a>
-                                                    }
+                                            <div class="comment_card_actions position-relative">
+                                                @if (comment.AccountId == currentUser?.Id)
+                                                {
+                                                    <a onclick="toggleActionComment(@comment.Id)" href="#" class="text-white">
+                                                        <i class="bi bi-three-dots-vertical"></i>
+                                                    </a>
+                                                }
 
-                                                    <div id="comments_actions_@comment.Id" class="comments_actions hidden">
-                                                        <a onclick="handleEditToggleComment(@comment.Id)" class="btn btn-outline-light">Edit</a>
-                                                        <a class="btn btn-outline-light">Delete</a>
-                                                    </div>
+                                                <div id="comments_actions_@comment.Id" class="comments_actions hidden">
+                                                    <a onclick="handleEditToggleComment(@comment.Id)" class="btn btn-outline-light">Edit</a>
+                                                    <a class="btn btn-outline-light">Delete</a>
                                                 </div>
                                             </div>
-                                        } 
-                                    </div>
-                                }
+                                        </div>
+                                    } 
+                                </div>
                             }
                         </div>
                     </div>
@@ -258,6 +277,81 @@
     </div>
 </div>
 <script>
+
+    function handleToggleLike(id) {
+        event.preventDefault();
+        var formData = new FormData(document.getElementById("like_form_" + id));
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "/Blog/AddLike", true);
+        xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest"); // Đảm bảo yêu cầu được nhận biết là AJAX
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+                if (xhr.status === 200) {
+                    var response = JSON.parse(xhr.responseText);
+                    if (response) {
+                        console.log("CHECK response >>> ", response)
+                    }
+                } else {
+                    // Xử lý lỗi
+                }
+            }
+        };
+        xhr.send(formData);
+    }
+    function handleChangeIcon(id) {
+        var icon = document.getElementById("like_icon_"+id);
+        if (!icon.classList.contains("bi-heart-fill")) {
+            icon.classList.remove("bi-heart")
+            icon.classList.add("bi-heart-fill")
+        } else {
+            icon.classList.remove("bi-heart-fill")
+            icon.classList.add("bi-heart")
+        }
+    }
+    function handleToggleUnLike(id) {
+        event.preventDefault();
+        var formData = new FormData(document.getElementById("like_form_" + id));
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "/Blog/UnLike", true);
+        xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest"); // Đảm bảo yêu cầu được nhận biết là AJAX
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+                if (xhr.status === 200) {
+                    var response = JSON.parse(xhr.responseText);
+                    if (response) {
+                        console.log("CHECK response >>> ", response)
+                    }
+                } else {
+                    // Xử lý lỗi
+                }
+            }
+        };
+        xhr.send(formData);
+    }
+    function handleUnLike(id) {
+        handleChangeIcon(id)
+
+        let element = document.getElementById("action_like_" + id)
+        console.log(element);
+        element.onclick = function () { 
+            handleLike(id)
+        }
+        console.log(element);
+
+        handleToggleUnLike(id)
+    }
+    function handleLike(id) {
+        handleChangeIcon(id)
+
+        let element = document.getElementById("action_like_"+id)
+        console.log(element);
+        element.onclick = function () {
+            handleUnLike(id)
+        }
+        console.log(element);
+        handleToggleLike(id)
+    }
+
     function handleEditToggleComment(id) {
         
         var form = document.getElementById("comment_form_"+id)
@@ -270,7 +364,6 @@
             p.classList.remove("hidden")
             form.classList.add("hidden")
         }
-        
     }
     function toggleActionComment(id) {
         var element = document.getElementById("comments_actions_"+id)

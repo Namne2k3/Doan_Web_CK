@@ -24,7 +24,12 @@ namespace Doan_Web_CK.Controllers
         public async Task<IActionResult> Index(string id)
         {
             var user = await _userManager.GetUserAsync(User);
-            var account = await _accountRepository.GetByIdAsync(id);
+            var account = await _accountRepository.GetByIdAsync(user.Id);
+            if (id != null)
+            {
+                account = await _accountRepository.GetByIdAsync(id);
+            }
+
             var blogs = await _blogRepository.GetAllAsync();
 
             var accountBlogs = blogs.Where(p => p.AccountId == account.Id).ToList();

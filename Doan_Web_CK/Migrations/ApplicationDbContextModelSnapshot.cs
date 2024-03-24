@@ -31,7 +31,6 @@ namespace Doan_Web_CK.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("AccountId")
-                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("BlogImageUrl")
@@ -51,9 +50,6 @@ namespace Doan_Web_CK.Migrations
 
                     b.Property<bool>("IsAccepted")
                         .HasColumnType("bit");
-
-                    b.Property<string>("Likes")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("PublishDate")
                         .HasColumnType("datetime2");
@@ -171,6 +167,29 @@ namespace Doan_Web_CK.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Friendships");
+                });
+
+            modelBuilder.Entity("Doan_Web_CK.Models.Like", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("ApplicationUserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int?>("BlogId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ApplicationUserId");
+
+                    b.HasIndex("BlogId");
+
+                    b.ToTable("Likes");
                 });
 
             modelBuilder.Entity("Doan_Web_CK.Models.Nofitication", b =>
@@ -433,9 +452,7 @@ namespace Doan_Web_CK.Migrations
                 {
                     b.HasOne("Doan_Web_CK.Models.ApplicationUser", "Account")
                         .WithMany("Blogs")
-                        .HasForeignKey("AccountId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("AccountId");
 
                     b.HasOne("Doan_Web_CK.Models.Category", "Category")
                         .WithMany("Blogs")
@@ -485,6 +502,21 @@ namespace Doan_Web_CK.Migrations
                     b.Navigation("Friend");
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Doan_Web_CK.Models.Like", b =>
+                {
+                    b.HasOne("Doan_Web_CK.Models.ApplicationUser", "ApplicationUser")
+                        .WithMany()
+                        .HasForeignKey("ApplicationUserId");
+
+                    b.HasOne("Doan_Web_CK.Models.Blog", "Blog")
+                        .WithMany("Likes")
+                        .HasForeignKey("BlogId");
+
+                    b.Navigation("ApplicationUser");
+
+                    b.Navigation("Blog");
                 });
 
             modelBuilder.Entity("Doan_Web_CK.Models.Nofitication", b =>
@@ -562,6 +594,8 @@ namespace Doan_Web_CK.Migrations
             modelBuilder.Entity("Doan_Web_CK.Models.Blog", b =>
                 {
                     b.Navigation("Comments");
+
+                    b.Navigation("Likes");
                 });
 
             modelBuilder.Entity("Doan_Web_CK.Models.Category", b =>

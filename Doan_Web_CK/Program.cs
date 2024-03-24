@@ -22,6 +22,7 @@ builder.Services.AddScoped<ICategoryRepository, EFCategoryRepository>();
 builder.Services.AddScoped<ICommentRepository, EFCommentRepository>();
 builder.Services.AddScoped<INotifiticationRepository, EFNofiticationRepository>();
 builder.Services.AddScoped<IAccountRepository, EFAccountRepository>();
+builder.Services.AddScoped<ILikeRepository, EFLikeRepository>();
 
 builder.Services.AddLogging(builder => builder.AddConsole());
 
