@@ -6,7 +6,7 @@
 @inject UserManager<ApplicationUser> UserManager
 
 @{
-    var account = ViewBag.Account as ApplicationUser;
+    var account = ViewBag.Account;
     var blogList = ViewBag.blogList;
     var currentUser = ViewBag.currentUser;
 }
@@ -18,14 +18,16 @@
                 <div class="profile_img_container">
                     <img style="border-radius: 100%;" id="profile_photo" class="w-100 photo_image_border" src="@account.ImageUrl" />
                 </div>
-
-                <div class="profile_changePhoto position-absolute top-0 w-100 h-100 justify-content-center align-items-center">
-                    <a class="w-100">
-                        <label for="profile_photo_input">
-                            <i class="profile_icon bi bi-camera"></i>
-                        </label>
-                    </a>
-                </div>
+                @if ( currentUser.Id == account.Id )
+                {
+                    <div class="profile_changePhoto position-absolute top-0 w-100 h-100 justify-content-center align-items-center">
+                        <a class="w-100">
+                            <label for="profile_photo_input">
+                                <i class="profile_icon bi bi-camera"></i>
+                            </label>
+                        </a>
+                    </div>
+                }
             </div>
 
             <div class="d-flex flex-column profile_info">
@@ -34,7 +36,7 @@
                         @account.UserName
                     </h1>
                     <input type="text" oninput="syncInputs(this.value,'input2')" style="min-width: 100%; font-size: 1.4rem; background-color: #282b2d; margin-bottom: 8px;" value="@account.UserName" id="input_username_edit" class="hidden w-100 form-control text-white" />
-                    @if ( UserManager.GetUserId(User) == account.Id )
+                    @if ( currentUser.Id == account.Id )
                     {
                         <a onclick="toogleEditUsername()" class="text-white hover_class">
                             <i class="pen_icon bi bi-pen"></i>
@@ -46,7 +48,7 @@
         </div>
     </div>
 
-    @if ( UserManager.GetUserId(User) == account.Id )
+    @if ( currentUser.Id == account.Id )
     {
         <div class="flex-column justify-content-end" id="saveChange_button">
             <form asp-action="Edit" method="Post" enctype="multipart/form-data">
@@ -60,9 +62,14 @@
             <partial name="_LoginPartial" />
         </div>
     } 
-
-    <h1>My Blogs</h1>
-    <div class="blog_container mt-0">
+    @if ( currentUser.Id == account.Id )
+    {
+        <h1>My Blogs</h1>
+    } else
+    {
+        <h1>Blogs</h1>
+    }
+    <div class="blog_container">
         @if (blogList.Count != 0 )
         {
             @foreach (var item in blogList)
@@ -73,8 +80,8 @@
                             <div class="d-flex align-items-end">
                                 <div style="width: 65px; height: 65px;">
                                     <img src="@(ViewBag.GetPhotoById(item.AccountId))"
-                                        class="w-100 h-100 photo_image_border"
-                                        style="border-radius: 100%; object-fit: cover"
+                                            class="w-100 h-100 photo_image_border"
+                                            style="border-radius: 100%; object-fit: cover;"
                                         alt="user_profile image"
                                     />
                                 </div>
@@ -109,12 +116,92 @@
                         <img src="@item.BlogImageUrl" />
                     </div>
 
-                    <div class="Blogcard_Content mt-4">
+                    <div id="content_@item.Id" class="Blogcard_Content mt-4 temp_hidden">
                         <p>@Html.Raw(@item.Content.Replace("\n", "<br>"))</p>
                     </div>
 
-                    <div class="BlogCard_Actions">
+                    <div class="toggle_more justify-content-center d-flex">
+                        <a onclick="handleToggleMore(@item.Id)" href="#">
+                            <i id="toggle_icon_@item.Id" class="icon_up_down bi bi-arrow-down-circle text-white" style="font-size: 24px;"></i>
+                        </a>
+                    </div>
 
+                    <div class="blog_actions mt-2 d-flex flex-column">
+                        <div class="d-flex justify-content-around">
+                            <div class="action_container">
+                                <a href="#" class="actions_item">
+                                    <p>Like</p>
+                                    <i class="bi bi-heart"></i>
+                                </a>
+                            </div>
+                            <div class="action_container">
+                                <label for="form_input_comment_@item.Id" class="actions_item">
+                                    <p>Comment</p>
+                                    <i class="bi bi-chat"></i>
+                                </label>
+                            </div>
+                            <div class="action_container">
+                                <a href="#" class="actions_item">
+                                    <p>Share</p>
+                                    <i class="bi bi-share"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="comment_container">
+                        @if ( currentUser != null )
+                        {
+                            <div class="comment_container_upper">
+                                <div class="user_photo_comment_container">
+                                    <img class="user_photo_comment" src="@(ViewBag.GetPhotoById(currentUser.Id))" />
+                                </div>
+
+                                @* <form id="form_comment_@item.Id" asp-action="AddComment" method="post"> *@
+                                <form id="form_comment_@item.Id" method="post">
+                                    <input value="@item.Id" type="number" hidden name="comment_blogid"/>
+                                    <input value="@currentUser.Id" type="text" hidden name="comment_accountid"/>
+                                    <input id="form_input_comment_@item.Id" onkeypress="handleKeyPress(event, @item.Id)" type="text" name="comment_content" style="background-color: #282b2d" class="form-control text-white" placeholder="Add comment..." />
+                                </form>
+                            </div>
+                            @if (ViewBag.GetAllBlogComments(item.Id) != null )
+                            {
+                                <div id="comment_container_lower_@item.Id" class="comment_container_lower">
+                                    @foreach (var comment in ViewBag.GetAllBlogComments(item.Id))
+                                    {
+                                        <div class="comment_card">
+                                            <div class="comment_card_img_container">
+                                                <img src="@(ViewBag.GetPhotoById(comment.AccountId))" class="comment_card_img" />
+                                            </div>
+                                            <div class="comment_card_content">
+                                                <p class="fw-bold">@(ViewBag.GetUserName(comment.AccountId)) <span class="comment_card_date">@comment.CommentDate</span> </p>
+                                                <p id="p_content_@comment.Id" class="fw-normal">@comment.Content</p>
+                                                <form method="post" id="edit_form_cmt_@comment.Id">
+                                                    <input type="number" name="edit_cmt_id" hidden value="@comment.Id" />
+                                                    <input type="text" name="edit_cmt_accountid" value="@comment.AccountId" hidden />
+                                                    <input type="number" name="edit_cmt_blogid" value="@item.Id" hidden />
+                                                    <input onkeypress="handleKeyPressInputEditComment(event, @item.Id, @comment.Id)" type="text" name="edit_cmt_content" value="@comment.Content" id="comment_form_@comment.Id" class="text-white hidden comments_inputs p-2" style="border: none;" />
+                                                </form>
+                                            </div>
+
+                                            <div class="comment_card_actions position-relative">
+                                                @if (comment.AccountId == currentUser.Id)
+                                                {
+                                                    <a onclick="toggleActionComment(@comment.Id)" href="#" class="text-white">
+                                                        <i class="bi bi-three-dots-vertical"></i>
+                                                    </a>
+                                                }
+
+                                                <div id="comments_actions_@comment.Id" class="comments_actions hidden">
+                                                    <a onclick="handleEditToggleComment(@comment.Id)" class="btn btn-outline-light">Edit</a>
+                                                    <a class="btn btn-outline-light">Delete</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    } 
+                                </div>
+                            }
+                        }
                     </div>
                 </div>
                 @*  <a class="text-decoration-none text-black" asp-controller="Blog" asp-action="Details" asp-route-id="@item.Id">
@@ -135,7 +222,6 @@
             <h1>Not Found</h1>
         }
     </div>
-
 </div>
 <style>
     .hidden {
@@ -150,6 +236,166 @@
     }
     .hover_class:hover {
         opacity: 0.7;
+    }
+    .block {
+        display: block;
+    }
+    .recently_post_container {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        padding: 0 16px 16px 16px;
+        margin: 0 -16px -16px -16px;
+    }
+    .recent_card {
+        background-color: #36393b;
+        padding: 12px;
+        border-radius: 12px;
+        display: flex;
+        transition: transform 0.2s; /* Animation */
+        flex-direction: column;
+        border: 1px solid #585b5d;
+    }
+
+    .recently_post_container {
+        height: 100vh;
+        overflow-y: scroll;
+        scrollbar-width: none;
+    }
+    .recent_card:hover {
+        transform: scale(1.1);
+    }
+
+    .recent_card a {
+        color: #ccc;
+        text-decoration: none;
+    }
+
+    .recent_card a:hover {
+        opacity: 0.6;
+    }
+
+    .temp_hidden {
+        max-height: 200px;
+        overflow: hidden;
+    }
+    .comment_card_date {
+        font-size: small;
+        color: #ccc;
+        font-weight: 300;
+        font-style: italic;
+    }
+    .comments_inputs {
+        background-color: #33373b;
+    }
+    .actions_item {
+        display: flex;
+        text-decoration: none;
+        gap: 0.5rem;
+        color: #fff;
+    }
+    .actions_item:hover {
+        color: #ccc;
+    }
+    .comment_container {
+        display: flex;
+        gap: 12px;
+        flex-direction: column;
+        padding: 12px;
+        border-radius: 12px;
+        background-color: #212325;
+    }
+    .comment_container_upper {
+        display: flex;
+        gap: 12px;
+        justify-content: center;
+        align-items: center;
+    }
+    .comment_container_lower {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+    }
+    .comments_actions a {
+        font-size: 12px;
+    }
+    .comments_actions {
+        bottom: 0;
+        left: 32px;
+        position: absolute;
+        background-color: #33373b; 
+        border-radius: 12px;
+        padding: 12px;
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+    }
+    .comment_card {
+        display: flex;
+        gap: 6px;
+    }
+
+    .comment_card_img_container {
+        width: 40px;
+        height: 40px;
+    }
+    .comment_card_img {
+        border: 1px solid #ccc;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 100%;
+    }
+
+    .comment_card_content {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+        margin-left: 9px;
+        background-color: #33373b;
+        padding: 8px 12px;
+        border-radius: 12px;
+    }
+
+    .comment_card_content p {
+        margin: 0;
+    }
+    .comment_card_actions {
+        display: flex;
+        flex-direction: column;
+        justify-content:center;
+        align-items: center;
+    }
+
+    .comment_card_actions i {
+        font-size:24px;
+    }
+    .comment_container form {
+        width: 100%;
+    }
+    .comment_container input {
+        width: 100%;
+    }
+    .user_photo_comment_container {
+        width: 45px;
+        height: 45px;
+    }
+    .user_photo_comment {
+        width: 100%;
+        height: 100%;
+        border-radius: 100%;
+        object-fit: cover;
+    }
+    .blog_actions {
+        border-top: 1px solid #ccc;
+        padding-top: 12px;
+    }
+    .action_container {
+        display: flex;
+        gap: 8px;
+    }
+    .action_container i {
+        margin-top: 2px;
     }
 </style>
 <script>

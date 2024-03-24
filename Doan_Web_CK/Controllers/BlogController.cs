@@ -184,16 +184,72 @@ namespace Doan_Web_CK.Controllers
         //    return NotFound();
         //}
         [HttpPost]
+        public async Task<IActionResult> UpdateComment(int edit_cmt_id, string edit_cmt_accountid, int edit_cmt_blogid, string edit_cmt_content)
+        {
+            var finded = await _commentRepository.GetByIdAsync(edit_cmt_id);
+            var currentUser = await _userManager.GetUserAsync(User);
+            StringBuilder newCommentsHtml = new StringBuilder();
+            if (finded != null)
+            {
+                finded.CommentDate = DateTime.Now;
+
+                finded.Content = edit_cmt_content;
+
+
+                await _commentRepository.UpdateAsync(finded);
+
+                var comments = await _commentRepository.GetAllComments();
+                var filterd = comments.Where(p => p.BlogId == edit_cmt_blogid).OrderByDescending(p => p.CommentDate).ToList().Take(3);
+
+                foreach (var comment in filterd)
+                {
+
+                    newCommentsHtml.Append("<div class=\"comment_card\">");
+                    newCommentsHtml.Append("<div class=\"comment_card_img_container\">");
+                    newCommentsHtml.Append("<img src=\"" + await GetPhotoByIdAsync(comment.AccountId) + "\" class=\"comment_card_img\" />");
+                    newCommentsHtml.Append("</div>");
+                    newCommentsHtml.Append("<div class=\"comment_card_content\">");
+                    newCommentsHtml.Append("<p class=\"fw-bold\">" + await GetUserNameByIdAsync(comment.AccountId) + " <span class=\"comment_card_date\">" + comment.CommentDate + "</span> </p>");
+                    newCommentsHtml.Append("<p id=\"p_content_" + comment.Id + "\" class=\"fw-normal\">" + comment.Content + "</p>");
+                    newCommentsHtml.Append("<form method=\"post\" id=\"edit_form_cmt_" + comment.Id + "\">");
+                    newCommentsHtml.Append("<input type=\"number\" name=\"edit_cmt_id\" hidden value=\"" + comment.Id + "\" />");
+                    newCommentsHtml.Append("<input type=\"text\" name=\"edit_cmt_accountid\" value=\"" + comment.AccountId + "\" hidden />");
+                    newCommentsHtml.Append("<input type=\"number\" name=\"edit_cmt_blogid\" value=\"" + comment.BlogId + "\" hidden />");
+                    newCommentsHtml.Append("<input onkeypress=\"handleKeyPressInputEditComment(event, " + edit_cmt_blogid + "," + comment.Id + ")" + "\" type=\"text\" name=\"edit_cmt_content\" value=\"" + comment.Content + "\" id=\"comment_form_" + comment.Id + "\" class=\"text-white hidden comments_inputs p-2\" style=\"border: none;\" />");
+                    newCommentsHtml.Append("</form>");
+                    newCommentsHtml.Append("</div>");
+                    newCommentsHtml.Append("<div class=\"comment_card_actions position-relative\">");
+                    if (currentUser.Id == comment.AccountId)
+                    {
+                        newCommentsHtml.Append("<a onclick=\"toggleActionComment(" + comment.Id + ")\" href=\"#\" class=\"text-white\">");
+                        newCommentsHtml.Append("<i class=\"bi bi-three-dots-vertical\"></i>");
+                        newCommentsHtml.Append("</a>");
+                    }
+                    newCommentsHtml.Append("<div id=\"comments_actions_" + comment.Id + "\" class=\"comments_actions hidden\">");
+                    newCommentsHtml.Append("<a onclick=\"handleEditToggleComment(" + comment.Id + ")\" class=\"btn btn-outline-light\">Edit</a>");
+                    newCommentsHtml.Append("<a class=\"btn btn-outline-light\">Delete</a>");
+                    newCommentsHtml.Append("</div>");
+                    newCommentsHtml.Append("</div>");
+                    newCommentsHtml.Append("</div>");
+                }
+
+                string newCommentsHtmlString = newCommentsHtml.ToString();
+                return Json(new { commentHtml = newCommentsHtmlString });
+            }
+            return NotFound();
+        }
+        [HttpPost]
         public async Task<IActionResult> AddComment(int comment_blogid, string comment_accountid, string comment_content)
         {
             var blog = await _blogRepository.GetByIdAsync(comment_blogid);
+            var currentUser = await _userManager.GetUserAsync(User);
             StringBuilder newCommentsHtml = new StringBuilder();
             var newComment = new Comment
             {
                 Content = comment_content,
                 AccountId = comment_accountid,
                 BlogId = comment_blogid,
-                CommentDate = DateTime.UtcNow,
+                CommentDate = DateTime.Now,
             };
 
             await _commentRepository.AddAsync(newComment);
@@ -204,30 +260,43 @@ namespace Doan_Web_CK.Controllers
                 SenderAccountId = comment_accountid,
                 RecieveAccountId = blog.AccountId,
                 Type = "Comment",
-                Date = DateTime.UtcNow,
+                Date = DateTime.Now,
             };
             await _notifiticationRepository.AddAsync(nofitication);
 
             var comments = await _commentRepository.GetAllComments();
             var filterd = comments.Where(p => p.BlogId == comment_blogid).OrderByDescending(p => p.CommentDate).ToList().Take(3);
+
             foreach (var comment in filterd)
             {
+
                 newCommentsHtml.Append("<div class=\"comment_card\">");
                 newCommentsHtml.Append("<div class=\"comment_card_img_container\">");
                 newCommentsHtml.Append("<img src=\"" + await GetPhotoByIdAsync(comment.AccountId) + "\" class=\"comment_card_img\" />");
-
                 newCommentsHtml.Append("</div>");
                 newCommentsHtml.Append("<div class=\"comment_card_content\">");
-                newCommentsHtml.Append("<p class=\"fw-bold\">" + await GetUserNameByIdAsync(comment.AccountId) + "</p>");
-                newCommentsHtml.Append("<p class=\"fw-normal\">" + comment.Content + "</p>");
+                newCommentsHtml.Append("<p class=\"fw-bold\">" + await GetUserNameByIdAsync(comment.AccountId) + " <span class=\"comment_card_date\">" + comment.CommentDate + "</span> </p>");
+                newCommentsHtml.Append("<p id=\"p_content_" + comment.Id + "\" class=\"fw-normal\">" + comment.Content + "</p>");
+                newCommentsHtml.Append("<form action=\"/UpdateComment\" method=\"post\" id=\"edit_form_cmt_" + comment.Id + "\">");
+                newCommentsHtml.Append("<input type=\"number\" name=\"edit_cmt_id\" hidden value=\"" + comment.Id + "\" />");
+                newCommentsHtml.Append("<input type=\"text\" name=\"edit_cmt_accountid\" value=\"" + comment.AccountId + "\" hidden />");
+                newCommentsHtml.Append("<input type=\"number\" name=\"edit_cmt_blogid\" value=\"" + comment.BlogId + "\" hidden />");
+                newCommentsHtml.Append("<input onkeypress=\"handleKeyPressInputEditComment(event, " + comment_blogid + "," + comment.Id + ")" + "\" type=\"text\" name=\"edit_cmt_content\" value=\"" + comment.Content + "\" id=\"comment_form_" + comment.Id + "\" class=\"text-white hidden comments_inputs p-2\" style=\"border: none;\" />");
+                newCommentsHtml.Append("</form>");
                 newCommentsHtml.Append("</div>");
-                newCommentsHtml.Append("<div class=\"comment_card_actions\">");
-                newCommentsHtml.Append("<a href = \"#\" class=\"text-white\">");
-                newCommentsHtml.Append("<i class=\"bi bi-three-dots-vertical\"></i>");
-                newCommentsHtml.Append("</a>");
+                newCommentsHtml.Append("<div class=\"comment_card_actions position-relative\">");
+                if (currentUser.Id == comment.AccountId)
+                {
+                    newCommentsHtml.Append("<a onclick=\"toggleActionComment(" + comment.Id + ")\" href=\"#\" class=\"text-white\">");
+                    newCommentsHtml.Append("<i class=\"bi bi-three-dots-vertical\"></i>");
+                    newCommentsHtml.Append("</a>");
+                }
+                newCommentsHtml.Append("<div id=\"comments_actions_" + comment.Id + "\" class=\"comments_actions hidden\">");
+                newCommentsHtml.Append("<a onclick=\"handleEditToggleComment(" + comment.Id + ")\" class=\"btn btn-outline-light\">Edit</a>");
+                newCommentsHtml.Append("<a class=\"btn btn-outline-light\">Delete</a>");
                 newCommentsHtml.Append("</div>");
                 newCommentsHtml.Append("</div>");
-
+                newCommentsHtml.Append("</div>");
             }
 
             string newCommentsHtmlString = newCommentsHtml.ToString();

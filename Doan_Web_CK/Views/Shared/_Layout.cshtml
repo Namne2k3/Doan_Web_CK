@@ -51,7 +51,7 @@
                             Nofitications
                         </div>
                     </a>
-                    <a asp-controller="Profile" asp-action="Index" class="nav_item">
+                    <a asp-controller="Profile" asp-route-id="@UserManager.GetUserId(User)" asp-action="Index" class="nav_item">
                         <div class="navIcon text-center">
                             <i class="icon bi bi-person-circle"></i>
                         </div>
