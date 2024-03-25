@@ -21,6 +21,6 @@ namespace Doan_Web_CK.Models
         public int? CategoryId { get; set; }
         public Category? Category { get; set; }
         public List<Like>? Likes { get; set; }
-        public IEnumerable<Comment>? Comments { get; set; }
+        public List<Comment>? Comments { get; set; }
     }
 }

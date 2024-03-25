@@ -13,7 +13,6 @@ namespace Doan_Web_CK
         public DbSet<Blog> Blogs { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Comment> Comments { get; set; }
-        public DbSet<Feedback> Feedbacks { get; set; }
         public DbSet<Nofitication> Nofitications { get; set; }
         public DbSet<Friendship> Friendships { get; set; }
         public DbSet<Like> Likes { get; set; }

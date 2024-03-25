@@ -9,5 +9,10 @@ namespace Doan_Web_CK.Repository
         Task AddAsync(ApplicationUser account);
         Task DeleteAsync(int id);
         Task UpdateAsync(ApplicationUser account);
+
+        Task AddBlogAsync(ApplicationUser user, Blog blog);
+        Task AddFriendShipAsync(ApplicationUser user, Friendship friendship);
+
+        Task AddNofiticationAsync(ApplicationUser user, Nofitication nofitication);
     }
 }

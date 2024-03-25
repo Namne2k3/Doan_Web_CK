@@ -13,6 +13,24 @@ namespace Doan_Web_CK.Repository
             await _context.SaveChangesAsync();
         }
 
+        public async Task AddBlogAsync(ApplicationUser user, Blog blog)
+        {
+            user?.Blogs?.Add(blog);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task AddFriendShipAsync(ApplicationUser user, Friendship friendship)
+        {
+            user?.Friendships?.Add(friendship);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task AddNofiticationAsync(ApplicationUser user, Nofitication nofitication)
+        {
+            user?.Nofitications?.Add(nofitication);
+            await _context.SaveChangesAsync();
+        }
+
         public async Task DeleteAsync(int id)
         {
             var account = await _context.ApplicationUsers.FindAsync(id);

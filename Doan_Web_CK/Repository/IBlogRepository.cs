@@ -9,7 +9,7 @@ namespace Doan_Web_CK.Repository
         Task UpdateAsync(Blog blog);
         Task DeleteAsync(int id);
         Task UpdateCommentsAsync();
-
+        Task AddCommentAsync(Blog blog, Comment comment);
         Task DeleteCommentsAsync();
         Task AddLikeAsync(Blog blog, Like like);
         Task DeleteLikeAsync(Blog blog, Like like);

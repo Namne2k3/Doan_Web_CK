@@ -143,12 +143,14 @@
                                                 <p>Like</p>
                                                 <i style="color: #c66b6b;" id="like_icon_@item.Id" class="bi bi-heart-fill"></i>
                                             </a>
+                                            <p class="badge bg-secondary text-center">@ViewBag.GetBlogLikesCount(item.Id)</p>
                                         } else
                                         {
                                             <a onclick="handleLike(@item.Id)" id="action_like_@item.Id" href="#" class="actions_item">
                                                 <p>Like</p>
                                                 <i style="color: #c66b6b;" id="like_icon_@item.Id" class="bi bi-heart"></i>
                                             </a>
+                                            <p class="badge bg-secondary text-center">@ViewBag.GetBlogLikesCount(item.Id)</p>
                                         }
                                     <form id="like_form_@item.Id" hidden method="post">
                                         <input type="text" value="@currentUser?.Id" name="like_accountId" />
@@ -159,6 +161,7 @@
                                 <label for="form_input_comment_@item.Id" class="actions_item">
                                     <p>Comment</p>
                                     <i class="bi bi-chat"></i>
+                                    <p class="badge bg-secondary text-center">@ViewBag.GetBlogCommentsCount(item.Id)</p>
                                 </label>
                             </div>
                         </div>

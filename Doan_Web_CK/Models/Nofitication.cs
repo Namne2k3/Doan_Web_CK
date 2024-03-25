@@ -17,5 +17,6 @@ namespace Doan_Web_CK.Models
         [Required]
         public string Type { get; set; }
         public DateTime Date { get; set; }
+        public string Content { get; set; }
     }
 }

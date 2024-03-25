@@ -83,7 +83,41 @@ namespace Doan_Web_CK.Controllers
             ViewBag.GetAllBlogComments = new Func<int, IEnumerable<Comment>>(GetAllBlogComments);
             ViewBag.IsCurrentUserLiked = new Func<int, string, bool>(IsCurrentUserLiked);
             ViewBag.GetUserNameByBlogId = new Func<int, string>(GetUserNameByBlogId);
+            ViewBag.GetBlogLikesCount = new Func<int, int>(GetBlogLikesCount);
+            ViewBag.GetBlogCommentsCount = new Func<int, int>(GetBlogCommentsCount);
             return View();
+        }
+        public int GetBlogCommentsCount(int blogId)
+        {
+            var task = GetBlogCommentsCountAsync(blogId);
+            task.Wait();
+            return task.Result; ;
+        }
+        public async Task<int> GetBlogCommentsCountAsync(int blogId)
+        {
+            var blog = await _blogRepository.GetByIdAsync(blogId);
+            var comments = await _commentRepository.GetAllComments();
+            int count = comments.Where(p => p.BlogId == blogId).Count();
+            if (blog.Comments == null)
+            {
+                blog.Comments = new List<Comment>();
+            }
+            return count;
+        }
+        public int GetBlogLikesCount(int blogId)
+        {
+            var task = GetBlogLikesCountAsync(blogId);
+            task.Wait();
+            return task.Result; ;
+        }
+        public async Task<int> GetBlogLikesCountAsync(int blogId)
+        {
+            var blog = await _blogRepository.GetByIdAsync(blogId);
+            if (blog.Likes == null)
+            {
+                blog.Likes = new List<Like>();
+            }
+            return blog.Likes.Count();
         }
         public async Task<IEnumerable<Comment>?> GetAllBlogCommentsAsync(int blogId)
         {

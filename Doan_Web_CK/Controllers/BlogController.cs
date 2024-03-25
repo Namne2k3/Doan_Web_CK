@@ -74,6 +74,9 @@ namespace Doan_Web_CK.Controllers
             ViewBag.GetAllBlogComments = new Func<int, IEnumerable<Comment>>(GetAllBlogComments);
             ViewBag.IsCurrentUserLiked = new Func<int, string, bool>(IsCurrentUserLiked);
             ViewBag.GetUserNameByBlogId = new Func<int, string>(GetUserNameByBlogId);
+            ViewBag.GetBlogLikesCount = new Func<int, int>(GetBlogLikesCount);
+            ViewBag.GetBlogLikesCount = new Func<int, int>(GetBlogLikesCount);
+            ViewBag.GetBlogCommentsCount = new Func<int, int>(GetBlogCommentsCount);
             if (currentUser != null)
             {
                 ViewBag.MyBlogs = blogs.Where(p => p.AccountId == currentUser.Id);
@@ -142,6 +145,21 @@ namespace Doan_Web_CK.Controllers
             task.Wait();
             return task.Result;
         }
+        public int GetBlogLikesCount(int blogId)
+        {
+            var task = GetBlogLikesCountAsync(blogId);
+            task.Wait();
+            return task.Result; ;
+        }
+        public async Task<int> GetBlogLikesCountAsync(int blogId)
+        {
+            var blog = await _blogRepository.GetByIdAsync(blogId);
+            if (blog.Likes == null)
+            {
+                blog.Likes = new List<Like>();
+            }
+            return blog.Likes.Count();
+        }
         public async Task<IActionResult> Index()
         {
             var blogs = await _blogRepository.GetAllAsync();
@@ -160,6 +178,8 @@ namespace Doan_Web_CK.Controllers
             ViewBag.GetAllBlogComments = new Func<int, IEnumerable<Comment>>(GetAllBlogComments);
             ViewBag.IsCurrentUserLiked = new Func<int, string, bool>(IsCurrentUserLiked);
             ViewBag.GetUserNameByBlogId = new Func<int, string>(GetUserNameByBlogId);
+            ViewBag.GetBlogLikesCount = new Func<int, int>(GetBlogLikesCount);
+            ViewBag.GetBlogCommentsCount = new Func<int, int>(GetBlogCommentsCount);
             if (currentUser != null)
             {
                 ViewBag.MyBlogs = blogList.Where(p => p.AccountId == currentUser.Id);
@@ -205,38 +225,6 @@ namespace Doan_Web_CK.Controllers
             task.Wait();
             return task.Result;
         }
-        //[HttpPost]
-        //public async Task<IActionResult> AddComment(int comment_blogid, string comment_accountid, string comment_content)
-        //{
-        //    var blog = await _blogRepository.GetByIdAsync(comment_blogid);
-        //    if (blog != null || comment_content != "")
-        //    {
-
-        //        var newComment = new Comment
-        //        {
-        //            Content = comment_content,
-        //            AccountId = comment_accountid,
-        //            BlogId = comment_blogid,
-        //            CommentDate = DateTime.UtcNow,
-        //        };
-
-        //        await _commentRepository.AddAsync(newComment);
-
-        //        var nofitication = new Nofitication
-        //        {
-        //            BlogId = comment_blogid,
-        //            SenderAccountId = comment_accountid,
-        //            RecieveAccountId = blog.AccountId,
-        //            Type = "Comment",
-        //            Date = DateTime.UtcNow,
-        //        };
-        //        await _notifiticationRepository.AddAsync(nofitication);
-
-        //        return RedirectToAction("Index");
-        //    }
-        //    return NotFound();
-        //}
-
         [HttpPost]
         public async Task<IActionResult> UnLike(string like_accountId, int like_blogId)
         {
@@ -267,6 +255,11 @@ namespace Doan_Web_CK.Controllers
         )
         {
             var currentUser = await _userManager.GetUserAsync(User);
+            var account = await _accountRepository.GetByIdAsync(currentUser?.Id);
+            if (account.Blogs == null)
+            {
+                account.Blogs = new List<Blog>();
+            }
             var newBlog = new Blog
             {
                 ReferenceId = share_blog_refId,
@@ -279,8 +272,14 @@ namespace Doan_Web_CK.Controllers
                 IsAccepted = true,
                 AccountId = share_blog_accountId
             };
-            await _blogRepository.AddAsync(newBlog);
+            await _accountRepository.AddBlogAsync(account, newBlog);
             var authorBlog = await _blogRepository.GetByIdAsync(share_blog_refId);
+
+            var author = await _accountRepository.GetByIdAsync(authorBlog.AccountId);
+            if (author.Nofitications == null)
+            {
+                author.Nofitications = new List<Nofitication>();
+            }
             var nofitication = new Nofitication
             {
                 BlogId = authorBlog.Id,
@@ -288,9 +287,10 @@ namespace Doan_Web_CK.Controllers
                 RecieveAccountId = authorBlog.AccountId,
                 Type = "Share",
                 Date = DateTime.Now,
+                Content = GetUserName(currentUser.Id) + " has shared your blog"
             };
 
-            await _notifiticationRepository.AddAsync(nofitication);
+            await _accountRepository.AddNofiticationAsync(author, nofitication);
 
             return Json(new
             {
@@ -319,6 +319,7 @@ namespace Doan_Web_CK.Controllers
 
                 await _blogRepository.AddLikeAsync(blog, newLike);
 
+
                 var nofitication = new Nofitication
                 {
                     BlogId = like_blogId,
@@ -326,9 +327,16 @@ namespace Doan_Web_CK.Controllers
                     RecieveAccountId = blog.AccountId,
                     Type = "Like",
                     Date = DateTime.Now,
+                    Content = GetUserName(like_accountId) + "has liked your blog"
                 };
 
-                await _notifiticationRepository.AddAsync(nofitication);
+                var author = await _accountRepository.GetByIdAsync(blog.AccountId);
+                if (author.Nofitications == null)
+                {
+                    author.Nofitications = new List<Nofitication>();
+                }
+
+                await _accountRepository.AddNofiticationAsync(author, nofitication);
                 return Json(new
                 {
                     message = "Add Like Successfully"
@@ -398,6 +406,11 @@ namespace Doan_Web_CK.Controllers
         {
             var blog = await _blogRepository.GetByIdAsync(comment_blogid);
             var currentUser = await _userManager.GetUserAsync(User);
+            var account = await _accountRepository.GetByIdAsync(currentUser.Id);
+            if (account.Nofitications == null)
+            {
+                account.Nofitications = new List<Nofitication>();
+            }
             StringBuilder newCommentsHtml = new StringBuilder();
             var newComment = new Comment
             {
@@ -407,7 +420,12 @@ namespace Doan_Web_CK.Controllers
                 CommentDate = DateTime.Now,
             };
 
-            await _commentRepository.AddAsync(newComment);
+            if (blog.Comments == null)
+            {
+                blog.Comments = new List<Comment>();
+            }
+            //await _commentRepository.AddAsync(newComment);
+            await _blogRepository.AddCommentAsync(blog, newComment);
 
             var nofitication = new Nofitication
             {
@@ -416,8 +434,14 @@ namespace Doan_Web_CK.Controllers
                 RecieveAccountId = blog.AccountId,
                 Type = "Comment",
                 Date = DateTime.Now,
+                Content = GetUserName(comment_accountid) + "has commented your blog",
             };
-            await _notifiticationRepository.AddAsync(nofitication);
+            var author = await _accountRepository.GetByIdAsync(blog.AccountId);
+            if (author.Nofitications == null)
+            {
+                author.Nofitications = new List<Nofitication>();
+            }
+            await _accountRepository.AddNofiticationAsync(author, nofitication);
 
             var comments = await _commentRepository.GetAllComments();
             var filterd = comments.Where(p => p.BlogId == comment_blogid).OrderByDescending(p => p.CommentDate).Take(3).ToList();
@@ -543,16 +567,35 @@ namespace Doan_Web_CK.Controllers
             await _blogRepository.UpdateAsync(blog);
             return RedirectToAction("Index");
         }
+        public int GetBlogCommentsCount(int blogId)
+        {
+            var task = GetBlogCommentsCountAsync(blogId);
+            task.Wait();
+            return task.Result; ;
+        }
+        public async Task<int> GetBlogCommentsCountAsync(int blogId)
+        {
+            var blog = await _blogRepository.GetByIdAsync(blogId);
+            var comments = await _commentRepository.GetAllComments();
+            int count = comments.Where(p => p.BlogId == blogId).Count();
+            if (blog.Comments == null)
+            {
+                blog.Comments = new List<Comment>();
+            }
+            return count;
+        }
         public async Task<IActionResult> Details(int id)
         {
             var blog = await _blogRepository.GetByIdAsync(id);
             var categories = await _categoryRepository.GetAllAsync();
             ViewBag.CurrentUser = await _userManager.GetUserAsync(User);
+            ViewBag.Categories = new SelectList(categories, "Id", "Name");
             ViewBag.GetUserName = new Func<string, string>(GetUserName);
             ViewBag.GetPhotoById = new Func<string, string>(GetPhotoById);
             ViewBag.GetAllBlogComments = new Func<int, IEnumerable<Comment>>(GetAllBlogComments);
             ViewBag.IsCurrentUserLiked = new Func<int, string, bool>(IsCurrentUserLiked);
-            ViewBag.Categories = new SelectList(categories, "Id", "Name");
+            ViewBag.GetBlogLikesCount = new Func<int, int>(GetBlogLikesCount);
+            ViewBag.GetBlogCommentsCount = new Func<int, int>(GetBlogCommentsCount);
             if (blog == null)
             {
                 return NotFound();
@@ -572,6 +615,11 @@ namespace Doan_Web_CK.Controllers
         {
 
             var user = await _userManager.GetUserAsync(User);
+            var account = await _accountRepository.GetByIdAsync(user.Id);
+            if (account.Blogs == null)
+            {
+                account.Blogs = new List<Blog>();
+            }
             var newBlog = new Blog
             {
                 Title = blog.Title,
@@ -589,7 +637,7 @@ namespace Doan_Web_CK.Controllers
             {
                 newBlog.BlogImageUrl = await SaveImage(BlogImageUrl);
             }
-            await _blogRepository.AddAsync(newBlog);
+            await _accountRepository.AddBlogAsync(account, newBlog);
             return RedirectToAction("Index");
 
 

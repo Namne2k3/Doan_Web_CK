@@ -56,5 +56,11 @@ namespace Doan_Web_CK.Repository
         {
             return await _context.Blogs.FindAsync(blogId);
         }
+
+        public async Task AddCommentAsync(Blog blog, Comment comment)
+        {
+            blog.Comments.Add(comment);
+            await _context.SaveChangesAsync();
+        }
     }
 }

@@ -118,31 +118,6 @@ namespace Doan_Web_CK.Migrations
                     b.ToTable("Comments");
                 });
 
-            modelBuilder.Entity("Doan_Web_CK.Models.Feedback", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("AccountId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<int>("Rate")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Response")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("AccountId");
-
-                    b.ToTable("Feedbacks");
-                });
-
             modelBuilder.Entity("Doan_Web_CK.Models.Friendship", b =>
                 {
                     b.Property<int>("Id")
@@ -202,6 +177,10 @@ namespace Doan_Web_CK.Migrations
 
                     b.Property<int?>("BlogId")
                         .HasColumnType("int");
+
+                    b.Property<string>("Content")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
@@ -466,7 +445,7 @@ namespace Doan_Web_CK.Migrations
             modelBuilder.Entity("Doan_Web_CK.Models.Comment", b =>
                 {
                     b.HasOne("Doan_Web_CK.Models.ApplicationUser", "Account")
-                        .WithMany("Comments")
+                        .WithMany()
                         .HasForeignKey("AccountId");
 
                     b.HasOne("Doan_Web_CK.Models.Blog", "Blog")
@@ -476,15 +455,6 @@ namespace Doan_Web_CK.Migrations
                     b.Navigation("Account");
 
                     b.Navigation("Blog");
-                });
-
-            modelBuilder.Entity("Doan_Web_CK.Models.Feedback", b =>
-                {
-                    b.HasOne("Doan_Web_CK.Models.ApplicationUser", "Account")
-                        .WithMany("Feedbacks")
-                        .HasForeignKey("AccountId");
-
-                    b.Navigation("Account");
                 });
 
             modelBuilder.Entity("Doan_Web_CK.Models.Friendship", b =>
@@ -606,10 +576,6 @@ namespace Doan_Web_CK.Migrations
             modelBuilder.Entity("Doan_Web_CK.Models.ApplicationUser", b =>
                 {
                     b.Navigation("Blogs");
-
-                    b.Navigation("Comments");
-
-                    b.Navigation("Feedbacks");
 
                     b.Navigation("Friendships");
 

@@ -74,6 +74,7 @@
                         <p>Like</p>
                         <i style="color: #c66b6b;" id="like_icon_@Model.Id" class="bi bi-heart-fill"></i>
                     </a>
+                    <p class="badge bg-secondary text-center">@ViewBag.GetBlogLikesCount(Model.Id)</p>
                 }
                 else
                 {
@@ -81,6 +82,7 @@
                         <p>Like</p>
                         <i style="color: #c66b6b;" id="like_icon_@Model.Id" class="bi bi-heart"></i>
                     </a>
+                    <p class="badge bg-secondary text-center">@ViewBag.GetBlogLikesCount(Model.Id)</p>
                 }
                 <form id="like_form_@Model.Id" hidden method="post">
                     <input type="text" value="@currentUser?.Id" name="like_accountId" />
@@ -93,6 +95,7 @@
                 <label for="form_input_comment_@Model.Id" class="actions_item">
                     <p>Comment</p>
                     <i class="bi bi-chat"></i>
+                    <p class="badge bg-secondary text-center">@ViewBag.GetBlogCommentsCount(Model.Id)</p>
                 </label>
             </div>
             <!-- Start Section share action-->

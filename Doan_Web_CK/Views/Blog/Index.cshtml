@@ -165,12 +165,14 @@
                                                 <p>Like</p>
                                                 <i style="color: #c66b6b;" id="like_icon_@item.Id" class="bi bi-heart-fill"></i>
                                             </a>
+                                            <p class="badge bg-secondary text-center">@ViewBag.GetBlogLikesCount(item.Id)</p>
                                         } else
                                         {
                                             <a onclick="handleLike(@item.Id)" id="action_like_@item.Id" href="#" class="actions_item">
                                                 <p>Like</p>
                                                 <i style="color: #c66b6b;" id="like_icon_@item.Id" class="bi bi-heart"></i>
                                             </a>
+                                            <p class="badge bg-secondary text-center">@ViewBag.GetBlogLikesCount(item.Id)</p>
                                         }
                                     <form id="like_form_@item.Id" hidden method="post">
                                         <input type="text" value="@currentUser?.Id" name="like_accountId" />
@@ -183,6 +185,7 @@
                                     <label for="form_input_comment_@item.Id" class="actions_item">
                                         <p>Comment</p>
                                         <i class="bi bi-chat"></i>
+                                        <p class="badge bg-secondary text-center">@ViewBag.GetBlogCommentsCount(item.Id)</p>
                                     </label>
                                 </div>
 
@@ -273,17 +276,6 @@
                             }
                         </div>
                     </div>
-                    @*  <a class="text-decoration-none text-black" asp-controller="Blog" asp-action="Details" asp-route-id="@item.Id">
-                        <div class="col">
-                            <div class="card w-100">
-                                <img src="@item.BlogImageUrl" class="card-img-top" alt="Blog Image">
-                                <div class="card-body bg-dark text-white">
-                                    <h5 class="card-title">@item.Title</h5>
-                                    <p class="card-text">@LimitDescriptionLength(item.Description, 150)</p>
-                                </div>
-                            </div>
-                        </div>
-                    </a> *@
                 }
             }
             else
