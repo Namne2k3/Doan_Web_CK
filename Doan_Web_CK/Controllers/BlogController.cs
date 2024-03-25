@@ -17,6 +17,7 @@ namespace Doan_Web_CK.Controllers
         private readonly ILogger<BlogController> _logger;
         private readonly IAccountRepository _accountRepository;
         private readonly ILikeRepository _likeRepository;
+        private readonly IFriendShipRepository _friendShipRepository;
         private readonly UserManager<ApplicationUser> _userManager;
 
         public BlogController(
@@ -27,7 +28,8 @@ namespace Doan_Web_CK.Controllers
             INotifiticationRepository notifiticationRepository,
             IAccountRepository accountRepository,
             ICommentRepository commentRepository,
-            ILikeRepository likeRepository
+            ILikeRepository likeRepository,
+            IFriendShipRepository friendShipRepository
         )
         {
             _blogRepository = blogRepository;
@@ -38,6 +40,7 @@ namespace Doan_Web_CK.Controllers
             _accountRepository = accountRepository;
             _commentRepository = commentRepository;
             _likeRepository = likeRepository;
+            _friendShipRepository = friendShipRepository;
         }
         [HttpPost]
         public async Task<IActionResult> Search(string blog_title, DateTime? blog_date, string blog_newest, string cate_filter)
@@ -77,6 +80,7 @@ namespace Doan_Web_CK.Controllers
             ViewBag.GetBlogLikesCount = new Func<int, int>(GetBlogLikesCount);
             ViewBag.GetBlogLikesCount = new Func<int, int>(GetBlogLikesCount);
             ViewBag.GetBlogCommentsCount = new Func<int, int>(GetBlogCommentsCount);
+            ViewBag.IsRequested = new Func<string, string, bool>(IsRequested);
             if (currentUser != null)
             {
                 ViewBag.MyBlogs = blogs.Where(p => p.AccountId == currentUser.Id);
@@ -180,11 +184,28 @@ namespace Doan_Web_CK.Controllers
             ViewBag.GetUserNameByBlogId = new Func<int, string>(GetUserNameByBlogId);
             ViewBag.GetBlogLikesCount = new Func<int, int>(GetBlogLikesCount);
             ViewBag.GetBlogCommentsCount = new Func<int, int>(GetBlogCommentsCount);
+            ViewBag.IsRequested = new Func<string, string, bool>(IsRequested);
             if (currentUser != null)
             {
                 ViewBag.MyBlogs = blogList.Where(p => p.AccountId == currentUser.Id);
             }
             return View();
+        }
+        public async Task<bool> IsRequestedAsync(string userId, string friendId)
+        {
+            var friendships = await _friendShipRepository.GetAllAsync();
+            var finded = friendships.SingleOrDefault(p => p.UserId == userId && p.FriendId == friendId && p.IsConfirmed == false);
+            if (finded != null)
+            {
+                return true;
+            }
+            return false;
+        }
+        public bool IsRequested(string userId, string friendId)
+        {
+            var task = IsRequestedAsync(userId, friendId);
+            task.Wait();
+            return task.Result;
         }
         public bool IsCurrentUserLiked(int blogId, string userId)
         {
@@ -546,6 +567,54 @@ namespace Doan_Web_CK.Controllers
             }
             return NotFound();
         }
+
+        public async Task<IActionResult> AddFriend(string form_add_friend_userid, string form_add_friend_friendid)
+        {
+            var user = await _accountRepository.GetByIdAsync(form_add_friend_userid);
+            var friend = await _accountRepository.GetByIdAsync(form_add_friend_friendid);
+            StringBuilder newHtml = new StringBuilder();
+            if (user.Friendships == null)
+            {
+                user.Friendships = new List<Friendship>();
+            }
+            if (friend.Friendships == null)
+            {
+                friend.Friendships = new List<Friendship>();
+            }
+
+            var newFriendShip = new Friendship
+            {
+                IsConfirmed = false,
+                UserId = user.Id,
+                FriendId = friend.Id,
+            };
+            await _accountRepository.AddFriendShipAsync(user, newFriendShip);
+            //await _accountRepository.AddFriendShipAsync(friend, newFriendShip);
+
+            var nofitication = new Nofitication
+            {
+                SenderAccountId = user.Id,
+                RecieveAccountId = friend.Id,
+                Type = "Addfriend",
+                Date = DateTime.Now,
+                Content = GetUserName(user.Id) + " has sent a friend request"
+            };
+
+            await _accountRepository.AddNofiticationAsync(friend, nofitication);
+
+
+            // <a asp-action="Index" asp-controller="Profile" asp-route-id="@item.AccountId" class="btn btn-dark">View Profile</a>
+            newHtml.Append("<a asp-action=\"Index\" asp-controller=\"Profile\" asp-route-id=\"" + form_add_friend_friendid + "\" class=\"btn btn-dark\">View Profile</a>");
+            newHtml.Append("<a class=\"btn btn-dark disabled\">Requested</a>");
+            // <a onclick=" handleAddFriend(' @item.AccountId', @item.Id) " class="btn btn-dark disabled">Requested</a>
+            string newCommentsHtmlString = newHtml.ToString();
+            return Json(new
+            {
+                newFriendShip = newFriendShip.ToString(),
+                newHtml = newCommentsHtmlString
+            });
+        }
+
         [HttpPost]
         public async Task<IActionResult> Edit(Blog blog, IFormFile BlogImageUrl)
         {
@@ -596,6 +665,7 @@ namespace Doan_Web_CK.Controllers
             ViewBag.IsCurrentUserLiked = new Func<int, string, bool>(IsCurrentUserLiked);
             ViewBag.GetBlogLikesCount = new Func<int, int>(GetBlogLikesCount);
             ViewBag.GetBlogCommentsCount = new Func<int, int>(GetBlogCommentsCount);
+            ViewBag.IsRequested = new Func<string, string, bool>(IsRequested);
             if (blog == null)
             {
                 return NotFound();

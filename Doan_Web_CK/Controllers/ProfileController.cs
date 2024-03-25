@@ -15,7 +15,16 @@ namespace Doan_Web_CK.Controllers
         private readonly ICommentRepository _commentRepository;
         private readonly ILikeRepository _likeRepository;
         private readonly ICategoryRepository _categoryRepository;
-        public ProfileController(UserManager<ApplicationUser> userManager, IAccountRepository accountRepository, IBlogRepository blogRepository, ICommentRepository commentRepository, ILikeRepository likeRepository, ICategoryRepository categoryRepository)
+        private readonly IFriendShipRepository _friendShipRepository;
+        public ProfileController(
+            UserManager<ApplicationUser> userManager,
+            IAccountRepository accountRepository,
+            IBlogRepository blogRepository,
+            ICommentRepository commentRepository,
+            ILikeRepository likeRepository,
+            ICategoryRepository categoryRepository,
+            IFriendShipRepository friendShipRepository
+        )
         {
             _userManager = userManager;
             _accountRepository = accountRepository;
@@ -23,6 +32,7 @@ namespace Doan_Web_CK.Controllers
             _commentRepository = commentRepository;
             _likeRepository = likeRepository;
             _categoryRepository = categoryRepository;
+            _friendShipRepository = friendShipRepository;
         }
         public bool IsCurrentUserLiked(int blogId, string userId)
         {
@@ -85,7 +95,24 @@ namespace Doan_Web_CK.Controllers
             ViewBag.GetUserNameByBlogId = new Func<int, string>(GetUserNameByBlogId);
             ViewBag.GetBlogLikesCount = new Func<int, int>(GetBlogLikesCount);
             ViewBag.GetBlogCommentsCount = new Func<int, int>(GetBlogCommentsCount);
+            ViewBag.IsRequested = new Func<string, string, bool>(IsRequested);
             return View();
+        }
+        public async Task<bool> IsRequestedAsync(string userId, string friendId)
+        {
+            var friendships = await _friendShipRepository.GetAllAsync();
+            var finded = friendships.SingleOrDefault(p => p.UserId == userId && p.FriendId == friendId && p.IsConfirmed == false);
+            if (finded != null)
+            {
+                return true;
+            }
+            return false;
+        }
+        public bool IsRequested(string userId, string friendId)
+        {
+            var task = IsRequestedAsync(userId, friendId);
+            task.Wait();
+            return task.Result;
         }
         public int GetBlogCommentsCount(int blogId)
         {

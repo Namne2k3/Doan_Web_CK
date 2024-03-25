@@ -21,13 +21,22 @@ namespace Doan_Web_CK.Repository
 
         public async Task AddFriendShipAsync(ApplicationUser user, Friendship friendship)
         {
-            user?.Friendships?.Add(friendship);
+            if (user.Friendships == null)
+            {
+                user.Friendships = new List<Friendship>();
+            }
+            user.Friendships.Add(friendship);
+
             await _context.SaveChangesAsync();
         }
 
         public async Task AddNofiticationAsync(ApplicationUser user, Nofitication nofitication)
         {
-            user?.Nofitications?.Add(nofitication);
+            if (user.Nofitications == null)
+            {
+                user.Nofitications = new List<Nofitication>();
+            }
+            user.Nofitications.Add(nofitication);
             await _context.SaveChangesAsync();
         }
 
