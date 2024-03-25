@@ -13,18 +13,59 @@ namespace Doan_Web_CK.Controllers
         private readonly IAccountRepository _accountRepository;
         private readonly IBlogRepository _blogRepository;
         private readonly ICommentRepository _commentRepository;
-        public ProfileController(UserManager<ApplicationUser> userManager, IAccountRepository accountRepository, IBlogRepository blogRepository, ICommentRepository commentRepository)
+        private readonly ILikeRepository _likeRepository;
+        private readonly ICategoryRepository _categoryRepository;
+        public ProfileController(UserManager<ApplicationUser> userManager, IAccountRepository accountRepository, IBlogRepository blogRepository, ICommentRepository commentRepository, ILikeRepository likeRepository, ICategoryRepository categoryRepository)
         {
             _userManager = userManager;
             _accountRepository = accountRepository;
             _blogRepository = blogRepository;
             _commentRepository = commentRepository;
+            _likeRepository = likeRepository;
+            _categoryRepository = categoryRepository;
         }
-
+        public bool IsCurrentUserLiked(int blogId, string userId)
+        {
+            var task = IsCurrentUserLikedAsync(blogId, userId);
+            task.Wait();
+            return task.Result;
+        }
+        public async Task<bool> IsCurrentUserLikedAsync(int blogId, string userId)
+        {
+            var blog = await _blogRepository.GetByIdAsync(blogId);
+            var like = await _likeRepository.GetAllLikeAsync();
+            var userLike = like.SingleOrDefault(p => p.ApplicationUserId == userId && p.BlogId == blogId);
+            if (blog != null || blog.Likes != null)
+            {
+                if (userLike != null)
+                {
+                    return true;
+                }
+                return false;
+            }
+            return false;
+        }
+        public async Task<string> GetUserNameByBlogIdAsync(int blogId)
+        {
+            var blog = await _blogRepository.GetByIdAsync(blogId);
+            if (blog != null)
+            {
+                var author = await _accountRepository.GetByIdAsync(blog.AccountId);
+                return author.UserName;
+            }
+            return "No Blog was Found";
+        }
+        public string GetUserNameByBlogId(int blogId)
+        {
+            var task = GetUserNameByBlogIdAsync(blogId);
+            task.Wait();
+            return task.Result;
+        }
         public async Task<IActionResult> Index(string id)
         {
             var user = await _userManager.GetUserAsync(User);
             var account = await _accountRepository.GetByIdAsync(user.Id);
+
             if (id != null)
             {
                 account = await _accountRepository.GetByIdAsync(id);
@@ -34,11 +75,14 @@ namespace Doan_Web_CK.Controllers
 
             var accountBlogs = blogs.Where(p => p.AccountId == account.Id).ToList();
             ViewBag.Account = account;
+
             ViewBag.blogList = accountBlogs;
             ViewBag.currentUser = user;
             ViewBag.GetPhotoById = new Func<string, string>(GetPhotoById);
             ViewBag.GetUserName = new Func<string, string>(GetUserName);
             ViewBag.GetAllBlogComments = new Func<int, IEnumerable<Comment>>(GetAllBlogComments);
+            ViewBag.IsCurrentUserLiked = new Func<int, string, bool>(IsCurrentUserLiked);
+            ViewBag.GetUserNameByBlogId = new Func<int, string>(GetUserNameByBlogId);
             return View();
         }
         public async Task<IEnumerable<Comment>?> GetAllBlogCommentsAsync(int blogId)

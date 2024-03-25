@@ -10,6 +10,13 @@ namespace Doan_Web_CK.Repository
         {
             _context = context;
         }
+
+        public async Task DeleteAsync(Like like)
+        {
+            _context.Likes.Remove(like);
+            await _context.SaveChangesAsync();
+        }
+
         public async Task<IEnumerable<Like>> GetAllLikeAsync()
         {
             return await _context.Likes.ToListAsync();

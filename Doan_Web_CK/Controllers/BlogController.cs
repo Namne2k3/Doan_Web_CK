@@ -73,6 +73,7 @@ namespace Doan_Web_CK.Controllers
             ViewBag.GetPhotoById = new Func<string, string>(GetPhotoById);
             ViewBag.GetAllBlogComments = new Func<int, IEnumerable<Comment>>(GetAllBlogComments);
             ViewBag.IsCurrentUserLiked = new Func<int, string, bool>(IsCurrentUserLiked);
+            ViewBag.GetUserNameByBlogId = new Func<int, string>(GetUserNameByBlogId);
             if (currentUser != null)
             {
                 ViewBag.MyBlogs = blogs.Where(p => p.AccountId == currentUser.Id);
@@ -108,6 +109,39 @@ namespace Doan_Web_CK.Controllers
             return task.Result;
 
         }
+        public IEnumerable<Comment>? GetBlogComments(int blogId)
+        {
+            var task = GetBlogCommentsAsync(blogId);
+            task.Wait();
+            return task.Result;
+
+        }
+        public async Task<IEnumerable<Comment>> GetBlogCommentsAsync(int blogId)
+        {
+            var comments = await _commentRepository.GetAllComments();
+            if (comments != null)
+            {
+                var filered = comments.Where(p => p.BlogId == blogId).OrderByDescending(p => p.CommentDate).ToList();
+                return filered;
+            }
+            return comments;
+        }
+        public async Task<string> GetUserNameByBlogIdAsync(int blogId)
+        {
+            var blog = await _blogRepository.GetByIdAsync(blogId);
+            if (blog != null)
+            {
+                var author = await _accountRepository.GetByIdAsync(blog.AccountId);
+                return author.UserName;
+            }
+            return "No Blog was Found";
+        }
+        public string GetUserNameByBlogId(int blogId)
+        {
+            var task = GetUserNameByBlogIdAsync(blogId);
+            task.Wait();
+            return task.Result;
+        }
         public async Task<IActionResult> Index()
         {
             var blogs = await _blogRepository.GetAllAsync();
@@ -125,6 +159,7 @@ namespace Doan_Web_CK.Controllers
             ViewBag.GetPhotoById = new Func<string, string>(GetPhotoById);
             ViewBag.GetAllBlogComments = new Func<int, IEnumerable<Comment>>(GetAllBlogComments);
             ViewBag.IsCurrentUserLiked = new Func<int, string, bool>(IsCurrentUserLiked);
+            ViewBag.GetUserNameByBlogId = new Func<int, string>(GetUserNameByBlogId);
             if (currentUser != null)
             {
                 ViewBag.MyBlogs = blogList.Where(p => p.AccountId == currentUser.Id);
@@ -211,13 +246,59 @@ namespace Doan_Web_CK.Controllers
             if (blog != null)
             {
                 await _blogRepository.DeleteLikeAsync(blog, like);
+                await _likeRepository.DeleteAsync(like);
                 return Json(new
                 {
-                    message = "DeleteLike  Successfully"
+                    message = "Delete Like Successfully"
                 });
             }
             return NotFound();
         }
+
+        [HttpPost]
+        public async Task<IActionResult> ShareBlog(
+            int share_blog_refId,
+            string share_blog_accountId,
+            string share_blog_title,
+            string share_blog_desc,
+            string share_blog_content,
+            string share_blog_imageUrl,
+            int share_blog_categoryId
+        )
+        {
+            var currentUser = await _userManager.GetUserAsync(User);
+            var newBlog = new Blog
+            {
+                ReferenceId = share_blog_refId,
+                Title = share_blog_title,
+                Description = share_blog_desc,
+                Content = share_blog_content,
+                BlogImageUrl = share_blog_imageUrl,
+                PublishDate = DateTime.Now,
+                CategoryId = share_blog_categoryId,
+                IsAccepted = true,
+                AccountId = share_blog_accountId
+            };
+            await _blogRepository.AddAsync(newBlog);
+            var authorBlog = await _blogRepository.GetByIdAsync(share_blog_refId);
+            var nofitication = new Nofitication
+            {
+                BlogId = authorBlog.Id,
+                SenderAccountId = currentUser.Id,
+                RecieveAccountId = authorBlog.AccountId,
+                Type = "Share",
+                Date = DateTime.Now,
+            };
+
+            await _notifiticationRepository.AddAsync(nofitication);
+
+            return Json(new
+            {
+                message = "Share blog successfully",
+                newBlog = newBlog.ToString()
+            });
+        }
+
         [HttpPost]
         public async Task<IActionResult> AddLike(string like_accountId, int like_blogId)
         {
@@ -237,6 +318,17 @@ namespace Doan_Web_CK.Controllers
                 };
 
                 await _blogRepository.AddLikeAsync(blog, newLike);
+
+                var nofitication = new Nofitication
+                {
+                    BlogId = like_blogId,
+                    SenderAccountId = like_accountId,
+                    RecieveAccountId = blog.AccountId,
+                    Type = "Like",
+                    Date = DateTime.Now,
+                };
+
+                await _notifiticationRepository.AddAsync(nofitication);
                 return Json(new
                 {
                     message = "Add Like Successfully"
@@ -328,7 +420,7 @@ namespace Doan_Web_CK.Controllers
             await _notifiticationRepository.AddAsync(nofitication);
 
             var comments = await _commentRepository.GetAllComments();
-            var filterd = comments.Where(p => p.BlogId == comment_blogid).OrderByDescending(p => p.CommentDate).ToList().Take(3);
+            var filterd = comments.Where(p => p.BlogId == comment_blogid).OrderByDescending(p => p.CommentDate).Take(3).ToList();
 
             foreach (var comment in filterd)
             {
@@ -350,7 +442,7 @@ namespace Doan_Web_CK.Controllers
                 newCommentsHtml.Append("<div class=\"comment_card_actions position-relative\">");
                 if (currentUser.Id == comment.AccountId)
                 {
-                    newCommentsHtml.Append("<a onclick=\"toggleActionComment(" + comment.Id + ")\" href=\"#\" class=\"text-white\">");
+                    newCommentsHtml.Append("<a onclick=\"toggleActionComment(" + comment.Id + ")\" class=\"text-white\">");
                     newCommentsHtml.Append("<i class=\"bi bi-three-dots-vertical\"></i>");
                     newCommentsHtml.Append("</a>");
                 }
@@ -380,6 +472,56 @@ namespace Doan_Web_CK.Controllers
             return View(blog);
         }
 
+        [HttpGet]
+        public async Task<IActionResult> GetAllCommentsOfBlogs(int blogId, bool isDisplayAllCmt)
+        {
+            var comments = await _commentRepository.GetAllComments();
+            var currentUser = await _userManager.GetUserAsync(User);
+            StringBuilder newCommentsHtml = new StringBuilder();
+            if (comments != null)
+            {
+                var filtered = comments.Where(p => p.BlogId == blogId).OrderByDescending(p => p.CommentDate).ToList();
+                if (isDisplayAllCmt == false)
+                {
+                    filtered = comments.Where(p => p.BlogId == blogId).OrderByDescending(p => p.CommentDate).Take(3).ToList();
+                }
+                foreach (var comment in filtered)
+                {
+
+                    newCommentsHtml.Append("<div class=\"comment_card\">");
+                    newCommentsHtml.Append("<div class=\"comment_card_img_container\">");
+                    newCommentsHtml.Append("<img src=\"" + await GetPhotoByIdAsync(comment.AccountId) + "\" class=\"comment_card_img\" />");
+                    newCommentsHtml.Append("</div>");
+                    newCommentsHtml.Append("<div class=\"comment_card_content\">");
+                    newCommentsHtml.Append("<p class=\"fw-bold\">" + await GetUserNameByIdAsync(comment.AccountId) + " <span class=\"comment_card_date\">" + comment.CommentDate + "</span> </p>");
+                    newCommentsHtml.Append("<p id=\"p_content_" + comment.Id + "\" class=\"fw-normal\">" + comment.Content + "</p>");
+                    newCommentsHtml.Append("<form action=\"/UpdateComment\" method=\"post\" id=\"edit_form_cmt_" + comment.Id + "\">");
+                    newCommentsHtml.Append("<input type=\"number\" name=\"edit_cmt_id\" hidden value=\"" + comment.Id + "\" />");
+                    newCommentsHtml.Append("<input type=\"text\" name=\"edit_cmt_accountid\" value=\"" + comment.AccountId + "\" hidden />");
+                    newCommentsHtml.Append("<input type=\"number\" name=\"edit_cmt_blogid\" value=\"" + comment.BlogId + "\" hidden />");
+                    newCommentsHtml.Append("<input onkeypress=\"handleKeyPressInputEditComment(event, " + comment.BlogId + "," + comment.Id + ")" + "\" type=\"text\" name=\"edit_cmt_content\" value=\"" + comment.Content + "\" id=\"comment_form_" + comment.Id + "\" class=\"text-white hidden comments_inputs p-2\" style=\"border: none;\" />");
+                    newCommentsHtml.Append("</form>");
+                    newCommentsHtml.Append("</div>");
+                    newCommentsHtml.Append("<div class=\"comment_card_actions position-relative\">");
+                    if (currentUser?.Id == comment.AccountId)
+                    {
+                        newCommentsHtml.Append("<a onclick=\"toggleActionComment(" + comment.Id + ")\" class=\"text-white\">");
+                        newCommentsHtml.Append("<i class=\"bi bi-three-dots-vertical\"></i>");
+                        newCommentsHtml.Append("</a>");
+                    }
+                    newCommentsHtml.Append("<div id=\"comments_actions_" + comment.Id + "\" class=\"comments_actions hidden\">");
+                    newCommentsHtml.Append("<a onclick=\"handleEditToggleComment(" + comment.Id + ")\" class=\"btn btn-outline-light\">Edit</a>");
+                    newCommentsHtml.Append("<a class=\"btn btn-outline-light\">Delete</a>");
+                    newCommentsHtml.Append("</div>");
+                    newCommentsHtml.Append("</div>");
+                    newCommentsHtml.Append("</div>");
+                }
+
+                string newCommentsHtmlString = newCommentsHtml.ToString();
+                return Json(new { commentHtml = newCommentsHtmlString });
+            }
+            return NotFound();
+        }
         [HttpPost]
         public async Task<IActionResult> Edit(Blog blog, IFormFile BlogImageUrl)
         {
@@ -395,6 +537,7 @@ namespace Doan_Web_CK.Controllers
                 blog.IsAccepted = true;
                 blog.AccountId = user.Id;
                 blog.BlogImageUrl = await SaveImage(BlogImageUrl);
+                blog.PublishDate = DateTime.Now;
             }
 
             await _blogRepository.UpdateAsync(blog);
@@ -402,12 +545,19 @@ namespace Doan_Web_CK.Controllers
         }
         public async Task<IActionResult> Details(int id)
         {
-            var Blog = await _blogRepository.GetByIdAsync(id);
-            if (Blog == null)
+            var blog = await _blogRepository.GetByIdAsync(id);
+            var categories = await _categoryRepository.GetAllAsync();
+            ViewBag.CurrentUser = await _userManager.GetUserAsync(User);
+            ViewBag.GetUserName = new Func<string, string>(GetUserName);
+            ViewBag.GetPhotoById = new Func<string, string>(GetPhotoById);
+            ViewBag.GetAllBlogComments = new Func<int, IEnumerable<Comment>>(GetAllBlogComments);
+            ViewBag.IsCurrentUserLiked = new Func<int, string, bool>(IsCurrentUserLiked);
+            ViewBag.Categories = new SelectList(categories, "Id", "Name");
+            if (blog == null)
             {
                 return NotFound();
             }
-            return View(Blog);
+            return View(blog);
         }
         public async Task<IActionResult> Add()
         {

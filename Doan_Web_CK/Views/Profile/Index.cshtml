@@ -87,9 +87,17 @@
                                 </div>
                                 <p class="blog_username mb-0 fw-bold">@(ViewBag.GetUserName(item.AccountId))</p>
                             </div>
-                            <p class="mt-2">
-                                Publish at: @item.PublishDate.ToShortDateString()
-                            </p>
+                             @if ( item.ReferenceId == null )
+                            {
+                                <p class="mt-2">
+                                    Publish at: @item.PublishDate.ToShortDateString()
+                                </p>
+                            } else
+                            {
+                                <p class="mt-2">
+                                    Shared <a asp-action="Details" asp-controller="Blog" asp-route-id="@item.ReferenceId" class="text-white">@ViewBag.GetUserNameByBlogId(item.ReferenceId)</a>'s post - @item.PublishDate.ToShortDateString()
+                                </p>
+                            }
                         </div>
 
                         @if (currentUser?.Id == item.AccountId)
@@ -117,7 +125,7 @@
                     </div>
 
                     <div id="content_@item.Id" class="Blogcard_Content mt-4 temp_hidden">
-                        <p>@Html.Raw(@item.Content.Replace("\n", "<br>"))</p>
+                        <p>@Html.Raw(item.Content.Replace("\n", "<br>"))</p>
                     </div>
 
                     <div class="toggle_more justify-content-center d-flex">
@@ -129,10 +137,23 @@
                     <div class="blog_actions mt-2 d-flex flex-column">
                         <div class="d-flex justify-content-around">
                             <div class="action_container">
-                                <a href="#" class="actions_item">
-                                    <p>Like</p>
-                                    <i class="bi bi-heart"></i>
-                                </a>
+                                @if ( ViewBag.IsCurrentUserLiked(item.Id, currentUser?.Id) == true )
+                                        {
+                                            <a onclick="handleUnLike(@item.Id)" id="action_like_@item.Id" href="#" class="actions_item">
+                                                <p>Like</p>
+                                                <i style="color: #c66b6b;" id="like_icon_@item.Id" class="bi bi-heart-fill"></i>
+                                            </a>
+                                        } else
+                                        {
+                                            <a onclick="handleLike(@item.Id)" id="action_like_@item.Id" href="#" class="actions_item">
+                                                <p>Like</p>
+                                                <i style="color: #c66b6b;" id="like_icon_@item.Id" class="bi bi-heart"></i>
+                                            </a>
+                                        }
+                                    <form id="like_form_@item.Id" hidden method="post">
+                                        <input type="text" value="@currentUser?.Id" name="like_accountId" />
+                                        <input type="number" value="@item.Id" name="like_blogId" />
+                                    </form>
                             </div>
                             <div class="action_container">
                                 <label for="form_input_comment_@item.Id" class="actions_item">
@@ -140,15 +161,12 @@
                                     <i class="bi bi-chat"></i>
                                 </label>
                             </div>
-                            <div class="action_container">
-                                <a href="#" class="actions_item">
-                                    <p>Share</p>
-                                    <i class="bi bi-share"></i>
-                                </a>
-                            </div>
                         </div>
                     </div>
 
+                    <div>
+                        <a onclick="handleLoadAllComments(@item.Id)" class="btn btn-outline-dark text-white">All Comments</a>
+                    </div>
                     <div class="comment_container">
                         @if ( currentUser != null )
                         {
@@ -399,7 +417,104 @@
     }
 </style>
 <script>
-    
+    let isDisplayAllCmt = true
+    function handleLoadAllComments(blogId) {
+        console.log("Typeof isDisplayAllCmt >>> ", typeof (isDisplayAllCmt))
+        fetch(`/Blog/GetAllCommentsOfBlogs?blogId=${blogId}&isDisplayAllCmt=${isDisplayAllCmt}`)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                // xử lý dữ liệu trả về
+                console.log(data.commentHtml);
+                // cập nhật giao diện người dùng với dữ liệu mới
+                var commentContainer = document.getElementById("comment_container_lower_" + blogId);
+                if (commentContainer) {
+                    commentContainer.innerHTML = '';
+                    commentContainer.innerHTML = data.commentHtml;
+                    isDisplayAllCmt = !isDisplayAllCmt;
+                }
+            })
+            .catch(error => {
+                console.error('There was a problem with the fetch operation:', error);
+            });
+    }
+    function handleToggleLike(id) {
+        event.preventDefault();
+        var formData = new FormData(document.getElementById("like_form_" + id));
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "/Blog/AddLike", true);
+        xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest"); // Đảm bảo yêu cầu được nhận biết là AJAX
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+                if (xhr.status === 200) {
+                    var response = JSON.parse(xhr.responseText);
+                    if (response) {
+                        console.log("CHECK response >>> ", response)
+                    }
+                } else {
+                    // Xử lý lỗi
+                }
+            }
+        };
+        xhr.send(formData);
+    }
+    function handleChangeIcon(id) {
+        var icon = document.getElementById("like_icon_"+id);
+        if (!icon.classList.contains("bi-heart-fill")) {
+            icon.classList.remove("bi-heart")
+            icon.classList.add("bi-heart-fill")
+        } else {
+            icon.classList.remove("bi-heart-fill")
+            icon.classList.add("bi-heart")
+        }
+    }
+    function handleToggleUnLike(id) {
+        event.preventDefault();
+        var formData = new FormData(document.getElementById("like_form_" + id));
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "/Blog/UnLike", true);
+        xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest"); // Đảm bảo yêu cầu được nhận biết là AJAX
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+                if (xhr.status === 200) {
+                    var response = JSON.parse(xhr.responseText);
+                    if (response) {
+                        console.log("CHECK response >>> ", response)
+                    }
+                } else {
+                    // Xử lý lỗi
+                }
+            }
+        };
+        xhr.send(formData);
+    }
+    function handleUnLike(id) {
+        handleChangeIcon(id)
+
+        let element = document.getElementById("action_like_" + id)
+        console.log(element);
+        element.onclick = function () { 
+            handleLike(id)
+        }
+        console.log(element);
+
+        handleToggleUnLike(id)
+    }
+    function handleLike(id) {
+        handleChangeIcon(id)
+
+        let element = document.getElementById("action_like_"+id)
+        console.log(element);
+        element.onclick = function () {
+            handleUnLike(id)
+        }
+        console.log(element);
+        handleToggleLike(id)
+    }
     function toogleEditUsername() {
         var h1 = document.getElementById("user_name_h1");
         var input_username = document.getElementById("input_username_edit")

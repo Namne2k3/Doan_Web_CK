@@ -6,5 +6,6 @@ namespace Doan_Web_CK.Repository
     {
         Task<IEnumerable<Like>> GetAllLikeAsync();
         Task<Like> GetLikeByIdAsync(int id);
+        Task DeleteAsync(Like like);
     }
 }

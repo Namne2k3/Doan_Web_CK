@@ -107,9 +107,17 @@
                                     </div>
                                     <p class="blog_username mb-0 fw-bold">@(ViewBag.GetUserName(item.AccountId))</p>
                                 </div>
-                                <p class="mt-2">
-                                    Publish at: @item.PublishDate.ToShortDateString()
-                                </p>
+                                @if ( item.ReferenceId == null )
+                                {
+                                    <p class="mt-2">
+                                        Publish at: @item.PublishDate.ToShortDateString()
+                                    </p>
+                                } else
+                                {
+                                    <p class="mt-2">
+                                        Shared <a asp-action="Details" asp-controller="Blog" asp-route-id="@item.ReferenceId" class="text-white">@ViewBag.GetUserNameByBlogId(item.ReferenceId)</a>'s post - @item.PublishDate.ToShortDateString()
+                                    </p>
+                                }
                             </div>
 
                             @if (currentUser?.Id == item.AccountId)
@@ -137,7 +145,7 @@
                         </div>
 
                         <div id="content_@item.Id" class="Blogcard_Content mt-4 temp_hidden">
-                            <p>@Html.Raw(@item.Content.Replace("\n", "<br>"))</p>
+                            <p>@Html.Raw(item.Content.Replace("\n", "<br>"))</p>
                         </div>
 
                         <div class="toggle_more justify-content-center d-flex">
@@ -177,13 +185,37 @@
                                         <i class="bi bi-chat"></i>
                                     </label>
                                 </div>
-                                <div class="action_container">
-                                    <a href="#" class="actions_item">
-                                        <p>Share</p>
-                                        <i class="bi bi-share"></i>
-                                    </a>
-                                </div>
+
+
+                                <!-- Start Section share action-->
+                                @if ( currentUser?.Id != item.AccountId )
+                                {
+                                    <div class="action_container position-relative">
+                                        <a onclick="handleToggleShareActions(@item.Id)" href="#" class="actions_item">
+                                            <p>Share</p>
+                                            <i class="bi bi-share"></i>
+                                        </a>
+                                        <div id="share_actions_@item.Id" class="share_actions hidden position-absolute">
+                                            <a onclick="handleShareBlog(@item.Id)" class="btn btn-outline-light" href="#">Share blog</a>
+                                        </div>
+
+                                        <form id="share_form_@item.Id" hidden method="post" enctype="multipart/form-data">
+                                            <input value="@item.Id" type="number" name="share_blog_refId" />
+                                            <input value="@currentUser?.Id" type="text" name="share_blog_accountId" />
+                                            <input value="@item.Title" type="text" name="share_blog_title" />
+                                            <input value="@item.Description" type="text" name="share_blog_desc" />
+                                            <textarea type="text" name="share_blog_content">@item.Content</textarea>
+                                            <input type="text" value="@item.BlogImageUrl" name="share_blog_imageUrl" />
+                                            <select name="share_blog_categoryId" itemid="@item.CategoryId" asp-items="@ViewBag.Categories"></select>
+                                        </form>
+                                    </div>
+                                }
+                                <!-- End Section share action-->
                             </div>
+                        </div>
+
+                        <div>
+                            <a asp-controller="Blog" asp-action="Details" asp-route-id="@item.Id" class="btn btn-outline-dark text-white">See More</a>
                         </div>
 
                         <div class="comment_container">
@@ -266,7 +298,7 @@
             foreach (var blog in MyBlogs )
             {
                 <div id="@blog.Id" class="recent_card w-100">
-                    <a href="#">
+                    <a asp-controller="Blog" asp-action="Details" asp-route-id="@blog.Id">
                         <p class="fw-bold" style="margin: 4px 0;">@blog.Title</p>
                     </a>
                     <p style="color: #ccc; font-style: italic; margin: 4px 0;">@blog.PublishDate.ToShortDateString()</p>
@@ -277,7 +309,34 @@
     </div>
 </div>
 <script>
-
+    function handleShareBlog(id) {
+        event.preventDefault();
+        var formData = new FormData(document.getElementById("share_form_" + id));
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "/Blog/ShareBlog", true);
+        xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest"); // Đảm bảo yêu cầu được nhận biết là AJAX
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+                if (xhr.status === 200) {
+                    var response = JSON.parse(xhr.responseText);
+                    if (response) {
+                        console.log("CHECK response >>> ", response)
+                    }
+                } else {
+                    // Xử lý lỗi
+                }
+            }
+        };
+        xhr.send(formData);
+    }
+    function handleToggleShareActions(id) {
+        var element = document.getElementById("share_actions_"+id)
+        if (element.classList.contains("hidden")) {
+            element.classList.remove("hidden");
+        } else {
+            element.classList.add("hidden")
+        }
+    }
     function handleToggleLike(id) {
         event.preventDefault();
         var formData = new FormData(document.getElementById("like_form_" + id));
@@ -485,173 +544,4 @@
         }
     }
 </script>
-<style>
-    .comment_card_date {
-        font-size: small;
-        color: #ccc;
-        font-weight: 300;
-        font-style: italic;
-    }
-    .comments_inputs {
-        background-color: #33373b;
-    }
-    .actions_item {
-        display: flex;
-        text-decoration: none;
-        gap: 0.5rem;
-        color: #fff;
-    }
-    .actions_item:hover {
-        color: #ccc;
-    }
-    .comment_container {
-        display: flex;
-        gap: 12px;
-        flex-direction: column;
-        padding: 12px;
-        border-radius: 12px;
-        background-color: #212325;
-    }
-    .comment_container_upper {
-        display: flex;
-        gap: 12px;
-        justify-content: center;
-        align-items: center;
-    }
-    .comment_container_lower {
-        display: flex;
-        flex-direction: column;
-        gap: 16px;
-    }
-    .comments_actions a {
-        font-size: 12px;
-    }
-    .comments_actions {
-        bottom: 0;
-        left: 32px;
-        position: absolute;
-        background-color: #33373b; 
-        border-radius: 12px;
-        padding: 12px;
-        display: flex;
-        flex-direction: column;
-        gap: 4px;
-    }
-    .comment_card {
-        display: flex;
-        gap: 6px;
-    }
-
-    .comment_card_img_container {
-        width: 40px;
-        height: 40px;
-    }
-    .comment_card_img {
-        border: 1px solid #ccc;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        border-radius: 100%;
-    }
-
-    .comment_card_content {
-        display: flex;
-        flex-direction: column;
-        gap: 2px;
-        margin-left: 9px;
-        background-color: #33373b;
-        padding: 8px 12px;
-        border-radius: 12px;
-    }
-
-    .comment_card_content p {
-        margin: 0;
-    }
-    .comment_card_actions {
-        display: flex;
-        flex-direction: column;
-        justify-content:center;
-        align-items: center;
-    }
-
-    .comment_card_actions i {
-        font-size:24px;
-    }
-    .comment_container form {
-        width: 100%;
-    }
-    .comment_container input {
-        width: 100%;
-    }
-    .user_photo_comment_container {
-        width: 45px;
-        height: 45px;
-    }
-    .user_photo_comment {
-        width: 100%;
-        height: 100%;
-        border-radius: 100%;
-        object-fit: cover;
-    }
-    .blog_actions {
-        border-top: 1px solid #ccc;
-        padding-top: 12px;
-    }
-    .action_container {
-        display: flex;
-        gap: 8px;
-    }
-    .action_container i {
-        margin-top: 2px;
-    }
-    .hidden {
-        display: none;
-    }
-    .flex {
-        display: flex;
-        gap: 8px;
-    }
-    .block {
-        display: block;
-    }
-    .recently_post_container {
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
-        padding: 0 16px 16px 16px;
-        margin: 0 -16px -16px -16px;
-    }
-    .recent_card {
-        background-color: #36393b;
-        padding: 12px;
-        border-radius: 12px;
-        display: flex;
-        transition: transform 0.2s; /* Animation */
-        flex-direction: column;
-        border: 1px solid #585b5d;
-    }
-
-    .recently_post_container {
-        height: 100vh;
-        overflow-y: scroll;
-        scrollbar-width: none;
-    }
-    .recent_card:hover {
-        transform: scale(1.1);
-    }
-
-    .recent_card a {
-        color: #ccc;
-        text-decoration: none;
-    }
-
-    .recent_card a:hover {
-        opacity: 0.6;
-    }
-
-    .temp_hidden {
-        max-height: 200px;
-        overflow: hidden;
-    }
-</style>
 
