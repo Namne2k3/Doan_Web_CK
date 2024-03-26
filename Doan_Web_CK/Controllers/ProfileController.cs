@@ -3,6 +3,7 @@ using Doan_Web_CK.Repository;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System.Text;
 
 namespace Doan_Web_CK.Controllers
 {
@@ -16,6 +17,7 @@ namespace Doan_Web_CK.Controllers
         private readonly ILikeRepository _likeRepository;
         private readonly ICategoryRepository _categoryRepository;
         private readonly IFriendShipRepository _friendShipRepository;
+        private readonly INotifiticationRepository _notifiticationRepository;
         public ProfileController(
             UserManager<ApplicationUser> userManager,
             IAccountRepository accountRepository,
@@ -23,7 +25,8 @@ namespace Doan_Web_CK.Controllers
             ICommentRepository commentRepository,
             ILikeRepository likeRepository,
             ICategoryRepository categoryRepository,
-            IFriendShipRepository friendShipRepository
+            IFriendShipRepository friendShipRepository,
+            INotifiticationRepository noticeRepository
         )
         {
             _userManager = userManager;
@@ -33,6 +36,7 @@ namespace Doan_Web_CK.Controllers
             _likeRepository = likeRepository;
             _categoryRepository = categoryRepository;
             _friendShipRepository = friendShipRepository;
+            _notifiticationRepository = noticeRepository;
         }
         public bool IsCurrentUserLiked(int blogId, string userId)
         {
@@ -71,6 +75,164 @@ namespace Doan_Web_CK.Controllers
             task.Wait();
             return task.Result;
         }
+
+        [HttpGet]
+        public async Task<IEnumerable<Nofitication>> GetAllNofOfUserAsync(string userId)
+        {
+            var user = await _accountRepository.GetByIdAsync(userId);
+
+            var nofitications = await _notifiticationRepository.GetAllNotifitions();
+            var filtered = nofitications.Where(p => p.RecieveAccountId == userId).ToList();
+            return filtered;
+        }
+        public IEnumerable<Nofitication> GetAllNofOfUser(string userId)
+        {
+            var task = GetAllNofOfUserAsync(userId);
+            task.Wait();
+            return task.Result;
+        }
+        [HttpGet]
+        public async Task<IActionResult> DenyFriendRequest(string userId, int nofId)
+        {
+            var friendShip = await _friendShipRepository.GetAllAsync();
+            var finded = friendShip.SingleOrDefault(p => p.FriendId == userId && p.IsConfirmed == false);
+            StringBuilder newHtml = new StringBuilder();
+            if (finded != null)
+            {
+                await _friendShipRepository.DeleteAsync(finded);
+                //< a onclick = "handleAccept(' @currentUser?.Id ', @nof.Id)" class="btn btn-outline-dark">Accept</a>
+                //<a class="btn btn-outline-dark">Deny</a>
+                newHtml.Append("<a class=\"disabled btn btn-outline-dark\">Denied</a>");
+                return Json(new
+                {
+                    message = "Denied friendship successfully",
+                    newHtml = newHtml.ToString()
+                });
+            }
+            return Json(new
+            {
+                message = "Not found user"
+            });
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetReloadNofs(string userId)
+        {
+            var user = await _accountRepository.GetByIdAsync(userId);
+
+            var nofitications = await _notifiticationRepository.GetAllNotifitions();
+            var filtered = nofitications.Where(p => p.RecieveAccountId == userId).ToList();
+            StringBuilder sb = new StringBuilder();
+
+            foreach (var nof in filtered)
+            {
+                switch (nof.Type)
+                {
+                    case "Addfriend":
+                        if (IsRequested(nof.SenderAccountId, nof.RecieveAccountId) == true)
+                        {
+                            sb.Append("<div class=\"nofi_card\">");
+                            sb.Append("<p class=\"nofi_card_content\">");
+
+                            // Use string formatting for clarity and potential data validation
+                            sb.Append("<a href=\"/Profile/Index/" + nof.SenderAccountId + "\">" + GetUserName(nof.SenderAccountId) + "</a> " + nof.Content);
+                            sb.Append("<span class=\"nofi_card_date\"> ");
+                            sb.Append(nof.Date);
+                            sb.AppendLine("</span>");  // Add newline for proper formatting
+
+                            sb.Append("<div id=\"nofi_card_actions_");
+                            sb.Append(nof.Id);
+                            sb.Append("\" class=\"nofi_card_actions\">");
+
+                            sb.Append("<a onclick=\"handleAccept(");
+                            sb.Append(user?.Id ?? "null");  // Handle null case for currentUser
+                            sb.Append(", ");
+                            sb.Append(nof.Id);
+                            sb.Append(")\" class=\"btn btn-outline-dark\">Accept</a>");
+
+                            sb.Append("<a onclick=\"handleDeny(");
+                            sb.Append(user?.Id ?? "null");  // Handle null case for currentUser
+                            sb.Append(", ");
+                            sb.Append(nof.Id);
+                            sb.Append(")\" class=\"btn btn-outline-dark\">Deny</a>");
+
+                            sb.AppendLine("</div>");
+                            sb.AppendLine("</div>");
+                        }
+                        break;
+                    case "Like":
+                        sb.Append("<div class=\"nofi_card\">");
+                        sb.Append("<p class=\"nofi_card_content\">");
+
+                        // Use string formatting for clarity and potential data validation
+                        sb.Append("<a href=\"/Profile/Index/" + nof.SenderAccountId + "\">" + GetUserName(nof.SenderAccountId) + "</a> " + nof.Content);
+
+                        // Append blog link with string formatting
+                        sb.AppendFormat(" <a asp-route-id=\"{0}\" asp-action=\"Details\" asp-controller=\"Blog\">Link to blog</a>", nof.BlogId);
+
+                        sb.Append("<span class=\"nofi_card_date\"> ");
+                        sb.Append(nof.Date);
+                        sb.AppendLine("</span>");  // Add newline for proper formatting
+
+                        sb.AppendLine("</p>");
+                        sb.AppendLine("</div>");
+
+                        break;
+                    case "Comment":
+                        sb.Append("<div class=\"nofi_card\">");
+                        sb.Append("<p class=\"nofi_card_content\">");
+
+                        // Use string formatting for clarity and potential data validation
+
+                        sb.Append("<a href=\"/Profile/Index/" + nof.SenderAccountId + "\">" + GetUserName(nof.SenderAccountId) + "</a> " + nof.Content);
+
+                        // Append blog link with string formatting
+                        sb.AppendFormat(" <a asp-route-id=\"{0}\" asp-action=\"Details\" asp-controller=\"Blog\">Link to blog</a>", nof.BlogId);
+
+                        sb.Append("<span class=\"nofi_card_date\"> ");
+                        sb.Append(nof.Date);
+                        sb.AppendLine("</span>");  // Add newline for proper formatting
+
+                        sb.AppendLine("</p>");
+                        sb.AppendLine("</div>");
+                        break;
+                    default:
+                        break;
+                }
+            }
+            string finalHtml = sb.ToString();
+            return Json(new
+            {
+                message = "Not found user",
+                newHtml = finalHtml,
+            });
+        }
+        [HttpGet]
+        public async Task<IActionResult> AcceptFriendRequest(string userId, int nofId)
+        {
+            var friendShip = await _friendShipRepository.GetAllAsync();
+            var finded = friendShip.SingleOrDefault(p => p.FriendId == userId);
+            StringBuilder newHtml = new StringBuilder();
+            if (finded != null)
+            {
+                finded.IsConfirmed = true;
+                await _friendShipRepository.UpdateAsync(finded);
+
+                //< a onclick = "handleAccept(' @currentUser?.Id ', @nof.Id)" class="btn btn-outline-dark">Accept</a>
+                //<a class="btn btn-outline-dark">Deny</a>
+                newHtml.Append("<a class=\"disabled btn btn-outline-dark\">Accepted</a>");
+                return Json(new
+                {
+                    friendShip = friendShip.ToString(),
+                    message = "Accepted friendship successfully",
+                    newHtml = newHtml.ToString()
+                });
+            }
+            return Json(new
+            {
+                message = "Not found user"
+            });
+        }
         public async Task<IActionResult> Index(string id)
         {
             var user = await _userManager.GetUserAsync(User);
@@ -96,6 +258,7 @@ namespace Doan_Web_CK.Controllers
             ViewBag.GetBlogLikesCount = new Func<int, int>(GetBlogLikesCount);
             ViewBag.GetBlogCommentsCount = new Func<int, int>(GetBlogCommentsCount);
             ViewBag.IsRequested = new Func<string, string, bool>(IsRequested);
+            ViewBag.GetAllNofOfUser = new Func<string, IEnumerable<Nofitication>>(GetAllNofOfUser);
             return View();
         }
         public async Task<bool> IsRequestedAsync(string userId, string friendId)

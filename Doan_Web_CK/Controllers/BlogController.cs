@@ -42,6 +42,19 @@ namespace Doan_Web_CK.Controllers
             _likeRepository = likeRepository;
             _friendShipRepository = friendShipRepository;
         }
+
+        public async Task<IActionResult> Nofitications()
+        {
+            var currentUser = await _userManager.GetUserAsync(User);
+            var nofs = await GetAllNofOfUserAsync(currentUser.Id);
+            ViewBag.GetAllNofOfUser = new Func<string, IEnumerable<Nofitication>>(GetAllNofOfUser);
+            ViewBag.currentUser = currentUser;
+            ViewBag.GetUserName = new Func<string, string>(GetUserName);
+            ViewBag.IsRequested = new Func<string, string, bool>(IsRequested);
+            ViewBag.GetPhotoById = new Func<string, string>(GetPhotoById);
+            return View(nofs);
+        }
+
         [HttpPost]
         public async Task<IActionResult> Search(string blog_title, DateTime? blog_date, string blog_newest, string cate_filter)
         {
@@ -81,6 +94,8 @@ namespace Doan_Web_CK.Controllers
             ViewBag.GetBlogLikesCount = new Func<int, int>(GetBlogLikesCount);
             ViewBag.GetBlogCommentsCount = new Func<int, int>(GetBlogCommentsCount);
             ViewBag.IsRequested = new Func<string, string, bool>(IsRequested);
+            ViewBag.GetAllNofOfUser = new Func<string, IEnumerable<Nofitication>>(GetAllNofOfUser);
+            ViewBag.HasRelation = new Func<string, string, bool>(HasRelation);
             if (currentUser != null)
             {
                 ViewBag.MyBlogs = blogs.Where(p => p.AccountId == currentUser.Id);
@@ -185,11 +200,43 @@ namespace Doan_Web_CK.Controllers
             ViewBag.GetBlogLikesCount = new Func<int, int>(GetBlogLikesCount);
             ViewBag.GetBlogCommentsCount = new Func<int, int>(GetBlogCommentsCount);
             ViewBag.IsRequested = new Func<string, string, bool>(IsRequested);
+            ViewBag.GetAllNofOfUser = new Func<string, IEnumerable<Nofitication>>(GetAllNofOfUser);
+            ViewBag.HasRelation = new Func<string, string, bool>(HasRelation);
             if (currentUser != null)
             {
                 ViewBag.MyBlogs = blogList.Where(p => p.AccountId == currentUser.Id);
             }
             return View();
+        }
+        public async Task<bool> HasRelationAsync(string userId, string friendId)
+        {
+            var friendships = await _friendShipRepository.GetAllAsync();
+            var finded = friendships.SingleOrDefault(p => p.UserId == userId && p.FriendId == friendId);
+            if (finded != null)
+            {
+                return true;
+            }
+            return false;
+        }
+        public bool HasRelation(string userId, string friendId)
+        {
+            var task = HasRelationAsync(userId, friendId);
+            task.Wait();
+            return task.Result;
+        }
+        public async Task<IEnumerable<Nofitication>> GetAllNofOfUserAsync(string userId)
+        {
+            var user = await _accountRepository.GetByIdAsync(userId);
+
+            var nofitications = await _notifiticationRepository.GetAllNotifitions();
+            var filtered = nofitications.Where(p => p.RecieveAccountId == userId).ToList();
+            return filtered;
+        }
+        public IEnumerable<Nofitication> GetAllNofOfUser(string userId)
+        {
+            var task = GetAllNofOfUserAsync(userId);
+            task.Wait();
+            return task.Result;
         }
         public async Task<bool> IsRequestedAsync(string userId, string friendId)
         {
@@ -308,7 +355,7 @@ namespace Doan_Web_CK.Controllers
                 RecieveAccountId = authorBlog.AccountId,
                 Type = "Share",
                 Date = DateTime.Now,
-                Content = GetUserName(currentUser.Id) + " has shared your blog"
+                Content = "has shared your blog"
             };
 
             await _accountRepository.AddNofiticationAsync(author, nofitication);
@@ -348,7 +395,7 @@ namespace Doan_Web_CK.Controllers
                     RecieveAccountId = blog.AccountId,
                     Type = "Like",
                     Date = DateTime.Now,
-                    Content = GetUserName(like_accountId) + "has liked your blog"
+                    Content = "has liked your blog"
                 };
 
                 var author = await _accountRepository.GetByIdAsync(blog.AccountId);
@@ -455,7 +502,7 @@ namespace Doan_Web_CK.Controllers
                 RecieveAccountId = blog.AccountId,
                 Type = "Comment",
                 Date = DateTime.Now,
-                Content = GetUserName(comment_accountid) + "has commented your blog",
+                Content = "has commented your blog",
             };
             var author = await _accountRepository.GetByIdAsync(blog.AccountId);
             if (author.Nofitications == null)
@@ -512,8 +559,12 @@ namespace Doan_Web_CK.Controllers
 
             var categories = await _categoryRepository.GetAllAsync();
             ViewBag.Categories = new SelectList(categories, "Id", "Name");
-            var user = _userManager.GetUserAsync(User);
+            var user = await _userManager.GetUserAsync(User);
             ViewBag.User = user;
+            ViewBag.GetUserName = new Func<string, string>(GetUserName);
+            ViewBag.HasRelation = new Func<string, string, bool>(HasRelation);
+            ViewBag.IsRequested = new Func<string, string, bool>(IsRequested);
+            ViewBag.GetAllNofOfUser = new Func<string, IEnumerable<Nofitication>>(GetAllNofOfUser);
             return View(blog);
         }
 
@@ -597,7 +648,7 @@ namespace Doan_Web_CK.Controllers
                 RecieveAccountId = friend.Id,
                 Type = "Addfriend",
                 Date = DateTime.Now,
-                Content = GetUserName(user.Id) + " has sent a friend request"
+                Content = "has sent a friend request"
             };
 
             await _accountRepository.AddNofiticationAsync(friend, nofitication);
@@ -634,6 +685,7 @@ namespace Doan_Web_CK.Controllers
             }
 
             await _blogRepository.UpdateAsync(blog);
+
             return RedirectToAction("Index");
         }
         public int GetBlogCommentsCount(int blogId)
@@ -659,13 +711,15 @@ namespace Doan_Web_CK.Controllers
             var categories = await _categoryRepository.GetAllAsync();
             ViewBag.CurrentUser = await _userManager.GetUserAsync(User);
             ViewBag.Categories = new SelectList(categories, "Id", "Name");
-            ViewBag.GetUserName = new Func<string, string>(GetUserName);
             ViewBag.GetPhotoById = new Func<string, string>(GetPhotoById);
             ViewBag.GetAllBlogComments = new Func<int, IEnumerable<Comment>>(GetAllBlogComments);
             ViewBag.IsCurrentUserLiked = new Func<int, string, bool>(IsCurrentUserLiked);
             ViewBag.GetBlogLikesCount = new Func<int, int>(GetBlogLikesCount);
             ViewBag.GetBlogCommentsCount = new Func<int, int>(GetBlogCommentsCount);
+            ViewBag.GetUserName = new Func<string, string>(GetUserName);
+            ViewBag.HasRelation = new Func<string, string, bool>(HasRelation);
             ViewBag.IsRequested = new Func<string, string, bool>(IsRequested);
+            ViewBag.GetAllNofOfUser = new Func<string, IEnumerable<Nofitication>>(GetAllNofOfUser);
             if (blog == null)
             {
                 return NotFound();

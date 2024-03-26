@@ -4,7 +4,7 @@
 
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 @{
     var account = ViewBag.Account;
     var blogList = ViewBag.blogList;
@@ -233,9 +233,175 @@
         }
     </div>
 </div>
+@section NavContent {
+    <ul class="d-flex flex-column list-unstyled text-white gap-3 my-2 mx-2 navItems">
+        <div class="nav_item">
+            <div class="logo_container d-flex gap-2 w-100 justify-content-center">
+                <div class="logo_image_container">
+                    <img src="/images/logo_2.png" class="logo_image" />
+                </div>
+                <h2 style="font-family: fantasy" class="navTitle m-auto">WebCommun</h2>
+            </div>
+        </div>
+        <a asp-controller="Blog" asp-action="Index" class="nav_item">
+            <div class="navIcon text-center">
+                <i class="icon bi bi-house-door-fill"></i>
+            </div>
+            <div class="navTitle w-75 fs-4 text-start my-auto">
+                Blogs
+            </div>
+        </a>
+        @if (SignInManager.IsSignedIn(User))
+        {
+            <a asp-action="" id="navFriends" class="nav_item">
+                <div class="navIcon text-center">
+                    <i class="icon bi bi-people-fill"></i>
+                </div>
+                <div class="navTitle w-75 fs-4 text-start my-auto">
+                    Friends
+                </div>
+            </a>
 
+            <div class="position-relative">
+                <div id="nof_icon_container">
+                    <a asp-action="Nofitications" asp-controller="Blog" id="navNofitication" class="nof_icon text-center">
+                        <i class="navIcon icon bi bi-bell-fill"></i>
+                        <p class="navTitle w-75 fs-4 text-start my-auto">Nofitications</p>
+                    </a>
+                </div>
+                <div id="nav_item_nofitications" class="hidden nav_item_nofitications position-absolute">
+                    
+                    <div class="d-flex justify-content-between">
+                        <strong>Nofitication</strong>
+                        <a class="reload_icon" onclick="reloadAllNof('@currentUser?.Id')">
+                            <i class="bi bi-arrow-clockwise"></i>
+                        </a>
+                    </div>
+                    
+                    <div id="nav_item_nofitications_container" class="nav_item_nofitications_container">
+                        @if (ViewBag.GetAllNofOfUser(currentUser?.Id) != null)
+                        {
+                            @foreach (var nof in ViewBag.GetAllNofOfUser(currentUser?.Id))
+                            {
+                                switch ( nof.Type )
+                                {
+                                    case "Addfriend":
+                                        if (ViewBag.IsRequested(nof.SenderAccountId, nof.RecieveAccountId) == true )
+                                        {
+                                            <div class="nofi_card">
+                                                <p class="nofi_card_content">
+                                                    <a asp-action="Index" asp-controller="Profile" asp-route-id="@nof.SenderAccountId">@ViewBag.GetUserName(nof.SenderAccountId)</a> @nof.Content
+                                                    <span class="nofi_card_date">@nof.Date</span>
+                                                </p>
+                                                <div id="nofi_card_actions_@nof.Id" class="nofi_card_actions">
+                                                    <a onclick="handleAccept('@currentUser?.Id', @nof.Id)" class="btn btn-outline-dark">Accept</a>
+                                                    <a onclick="handleDeny('@currentUser?.Id', @nof.Id)" class="btn btn-outline-dark">Deny</a>
+                                                </div>
+                                            </div>
+                                        }
+                                    
+                                        break;
+                                    case "Comment" :
+                                        <div class="nofi_card">
+                                            <p class="nofi_card_content">
+                                                <a asp-action="Index" asp-controller="Profile" asp-route-id="@nof.SenderAccountId">@ViewBag.GetUserName(nof.SenderAccountId)</a> @nof.Content <a asp-route-id="@nof.BlogId" asp-action="Details" asp-controller="Blog">Link to blog</a>
+                                                <span class="nofi_card_date">@nof.Date</span>
+                                            </p>
+                                        </div>
+                                        break;
+                                    case "Like" :
+                                        <div class="nofi_card">
+                                            <p class="nofi_card_content">
+                                                <a asp-action="Index" asp-controller="Profile" asp-route-id="@nof.SenderAccountId">@ViewBag.GetUserName(nof.SenderAccountId)</a> @nof.Content <a asp-route-id="@nof.BlogId" asp-action="Details" asp-controller="Blog">Link to blog</a>
+                                                <span class="nofi_card_date">@nof.Date</span>
+                                            </p>
+                                        </div>
+                                        break;
+                                    default:
+                                
+                                        break;
+                                }
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+        }
+        <a asp-controller="Profile" asp-action="Index" class="nav_item">
+            @* <a asp-controller="Profile" asp-route-id="@UserManager.GetUserId(User)" asp-action="Index" class="nav_item"> *@
+            <div class="navIcon text-center">
+                <i class="icon bi bi-person-circle"></i>
+            </div>
+            <div class="navTitle w-75 fs-4 text-start my-auto">
+                Profile
+            </div>
+        </a>
+    </ul>
+}
 <script>
-    let isDisplayAllCmt = true
+    @* nof_icon_container *@
+    $(document).ready(function () {
+        var screenWidth = $(window).width();
+        var screenHeight = $(window).height();
+        console.log("Check width"+screenWidth)
+        // Kiểm tra kích thước màn hình
+        var ele = document.getElementById('nof_icon_container');
+       
+        if (screenWidth > 550) {
+            ele.innerHTML = `
+                <a onclick="handleToggleNofs()" id="navNofitication" class="nof_icon text-center">
+                    <i class="navIcon icon bi bi-bell-fill"></i>
+                    <p class="navTitle w-75 fs-4 text-start my-auto">Nofitications</p>
+                </a>
+            `
+        }
+    });
+  
+    function handleAccept(userId, nofId) {
+        fetch(`/Profile/AcceptFriendRequest?userId=${userId}&nofId=${nofId}`)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                // xử lý dữ liệu trả về
+                console.log(data.commentHtml);
+                // cập nhật giao diện người dùng với dữ liệu mới
+                var element = document.getElementById("nofi_card_actions_" + nofId);
+                if (element) {
+                    element.innerHTML = '';
+                    element.innerHTML = data.newHtml;
+                }
+            })
+            .catch(error => {
+                console.error('There was a problem with the fetch operation:', error);
+            });
+    }
+    function handleDeny(userId, nofId) {
+        fetch(`/Profile/DenyFriendRequest?userId=${userId}&nofId=${nofId}`)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                // xử lý dữ liệu trả về
+                console.log(data.commentHtml);
+                // cập nhật giao diện người dùng với dữ liệu mới
+                var element = document.getElementById("nofi_card_actions_" + nofId);
+                if (element) {
+                    element.innerHTML = '';
+                    element.innerHTML = data.newHtml;
+                }
+            })
+            .catch(error => {
+                console.error('There was a problem with the fetch operation:', error);
+            });
+    }
+    isDisplayAllCmt = true
     function handleLoadAllComments(blogId) {
         console.log("Typeof isDisplayAllCmt >>> ", typeof (isDisplayAllCmt))
         fetch(`/Blog/GetAllCommentsOfBlogs?blogId=${blogId}&isDisplayAllCmt=${isDisplayAllCmt}`)
@@ -530,8 +696,27 @@
             }
         }
     }
+    function reloadAllNof(userId) { 
+        fetch(`/Profile/GetReloadNofs?userId=${userId}`)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                // xử lý dữ liệu trả về
+                console.log(data.newHtml);
+                // cập nhật giao diện người dùng với dữ liệu mới
+                var element = document.getElementById("nav_item_nofitications_container")
+                if (element) {
+                    element.innerHTML = '';
+                    element.innerHTML = data.newHtml
+                }
+            })
+            .catch(error => {
+                console.error('There was a problem with the fetch operation:', error);
+            });
+    }
 </script>
 
-@functions {
-    
-}

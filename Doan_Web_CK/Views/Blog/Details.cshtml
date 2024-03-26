@@ -16,13 +16,45 @@
     <div class="blog_userInfo">
         <div class="blog_img_date">
             <div class="d-flex align-items-end">
-                <div style="width: 65px; height: 65px;">
-                    <img src="@(ViewBag.GetPhotoById(Model.AccountId))"
-                         class="w-100 h-100 photo_image_border"
-                         style="border-radius: 100%; object-fit: cover;"
-                         alt="user_profile image" />
+                <div oncontextmenu="handleRightClick(@Model.Id)" id="blog_card_author_img_@Model.Id" class="blog_card_author_img">
+                    <a asp-action="Index" asp-controller="Profile" asp-route-id="@Model.AccountId">
+                        <img src="@(ViewBag.GetPhotoById(Model.AccountId))"
+                             class="w-100 h-100 photo_image_border"
+                             style="border-radius: 100%; object-fit: cover;"
+                             alt="user_profile image" />
+                    </a>
+                    @if (SignInManager.IsSignedIn(User))
+                    {
+                        <div id="right_click_menu_@Model.Id" class="right_click_menu hidden">
+                            <div id="right_click_menu_container_@Model.Id" class="d-flex gap-2 flex-column">
+                                <a asp-action="Index" asp-controller="Profile" asp-route-id="@Model.AccountId" class="btn btn-dark">View Profile</a>
+                                @if (UserManager.GetUserId(User) != Model.AccountId)
+                                {
+                                    if (ViewBag.HasRelation(UserManager.GetUserId(User), Model.AccountId))
+                                    {
+                                        @if (ViewBag.IsRequested(UserManager.GetUserId(User), Model.AccountId) == true)
+                                        {
+                                            <a onclick=" handleAddFriend(' @Model.AccountId', @Model.Id) " class="btn btn-dark disabled">Requested</a>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <a onclick=" handleAddFriend(' @Model.AccountId', @Model.Id) " class="btn btn-dark">Add Friend</a>
+                                    }
+                                }
+                            </div>
+
+                            <form hidden id="form_add_friend_@Model.Id">
+                                <input value="@UserManager.GetUserId(User)" type="text" name="form_add_friend_userid" />
+                                <input value="@Model.AccountId" type="text" name="form_add_friend_friendid" />
+                            </form>
+                        </div>
+                    }
                 </div>
-                <p class="blog_username mb-0 fw-bold">@(ViewBag.GetUserName(Model.AccountId))</p>
+                <!-- End Section rightclick-->
+                <a class="text-decoration-none" asp-action="Index" asp-controller="Profile" asp-route-id="@Model.AccountId">
+                    <p class="blog_username mb-0 fw-bold">@(ViewBag.GetUserName(Model.AccountId))</p>
+                </a>
             </div>
             <p class="mt-2">
                 Publish at: @Model.PublishDate.ToShortDateString()
@@ -186,265 +218,102 @@
         }
     </div>
 </div>
-<script>
-    function handleShareBlog(id) {
-        event.preventDefault();
-        var formData = new FormData(document.getElementById("share_form_" + id));
-        var xhr = new XMLHttpRequest();
-        xhr.open("POST", "/Blog/ShareBlog", true);
-        xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest"); // Đảm bảo yêu cầu được nhận biết là AJAX
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState === XMLHttpRequest.DONE) {
-                if (xhr.status === 200) {
-                    var response = JSON.parse(xhr.responseText);
-                    if (response) {
-                        console.log("CHECK response >>> ", response)
+@section NavContent {
+    <ul class="d-flex flex-column list-unstyled text-white gap-3 my-2 mx-2 navItems">
+        <div class="nav_item">
+            <div class="logo_container d-flex gap-2 w-100 justify-content-center">
+                <div class="logo_image_container">
+                    <img src="/images/logo_2.png" class="logo_image" />
+                </div>
+                <h2 style="font-family: fantasy" class="navTitle m-auto">WebCommun</h2>
+            </div>
+        </div>
+        <a asp-controller="Blog" asp-action="Index" class="nav_item">
+            <div class="navIcon text-center">
+                <i class="icon bi bi-house-door-fill"></i>
+            </div>
+            <div class="navTitle w-75 fs-4 text-start my-auto">
+                Blogs
+            </div>
+        </a>
+        <a asp-action="" id="navFriends" class="nav_item">
+            <div class="navIcon text-center">
+                <i class="icon bi bi-people-fill"></i>
+            </div>
+            <div class="navTitle w-75 fs-4 text-start my-auto">
+                Friends
+            </div>
+        </a>
+
+        <div class="position-relative">
+            <a onclick="handleToggleNofs()" id="navNofitication" class="nof_icon text-center">
+                <i class="navIcon icon bi bi-bell-fill"></i>
+                <p class="navTitle w-75 fs-4 text-start my-auto">Nofitications</p>
+            </a>
+            <div id="nav_item_nofitications" class="nav_item_nofitications position-absolute hidden">
+                <div class="d-flex justify-content-between">
+                    <strong>Nofitication</strong>
+                    <a class="reload_icon" onclick="reloadAllNof('@currentUser?.Id')">
+                        <i class="bi bi-arrow-clockwise"></i>
+                    </a>
+                </div>
+                <div id="nav_item_nofitications_container" class="nav_item_nofitications_container">
+                    @if (ViewBag.GetAllNofOfUser(currentUser?.Id) != null)
+                    {
+                        @foreach (var nof in ViewBag.GetAllNofOfUser(currentUser?.Id))
+                        {
+                            switch (nof.Type)
+                            {
+                                case "Addfriend":
+                                    if (ViewBag.IsRequested(nof.SenderAccountId, nof.RecieveAccountId) == true)
+                                    {
+                                        <div class="nofi_card">
+                                            <p class="nofi_card_content">
+                                                <a asp-action="Index" asp-controller="Profile" asp-route-id="@nof.SenderAccountId">@ViewBag.GetUserName(nof.SenderAccountId)</a> @nof.Content
+                                                <span class="nofi_card_date">@nof.Date</span>
+                                            </p>
+                                            <div id="nofi_card_actions_@nof.Id" class="nofi_card_actions">
+                                                <a onclick="handleAccept('@currentUser?.Id', @nof.Id)" class="btn btn-outline-dark">Accept</a>
+                                                <a onclick="handleDeny('@currentUser?.Id', @nof.Id)" class="btn btn-outline-dark">Deny</a>
+                                            </div>
+                                        </div>
+                                    }
+
+                                    break;
+                                case "Comment":
+                                    <div class="nofi_card">
+                                        <p class="nofi_card_content">
+                                            <a asp-action="Index" asp-controller="Profile" asp-route-id="@nof.SenderAccountId">@ViewBag.GetUserName(nof.SenderAccountId)</a> @nof.Content <a asp-route-id="@nof.BlogId" asp-action="Details" asp-controller="Blog">Link to blog</a>
+                                            <span class="nofi_card_date">@nof.Date</span>
+                                        </p>
+                                    </div>
+                                    break;
+                                case "Like":
+                                    <div class="nofi_card">
+                                        <p class="nofi_card_content">
+                                            <a asp-action="Index" asp-controller="Profile" asp-route-id="@nof.SenderAccountId">@ViewBag.GetUserName(nof.SenderAccountId)</a> @nof.Content <a asp-route-id="@nof.BlogId" asp-action="Details" asp-controller="Blog">Link to blog</a>
+                                            <span class="nofi_card_date">@nof.Date</span>
+                                        </p>
+                                    </div>
+                                    break;
+                                default:
+
+                                    break;
+                            }
+                        }
                     }
-                } else {
-                    // Xử lý lỗi
-                }
-            }
-        };
-        xhr.send(formData);
-    }
-    function handleToggleShareActions(id) {
-        var element = document.getElementById("share_actions_" + id)
-        if (element.classList.contains("hidden")) {
-            element.classList.remove("hidden");
-        } else {
-            element.classList.add("hidden")
-        }
-    }
+                </div>
+            </div>
+        </div>
+        <a asp-controller="Profile" asp-action="Index" class="nav_item">
+            @* <a asp-controller="Profile" asp-route-id="@UserManager.GetUserId(User)" asp-action="Index" class="nav_item"> *@
+            <div class="navIcon text-center">
+                <i class="icon bi bi-person-circle"></i>
+            </div>
+            <div class="navTitle w-75 fs-4 text-start my-auto">
+                Profile
+            </div>
+        </a>
+    </ul>
+}
 
-    let isDisplayAllCmt = true
-    function handleLoadAllComments(blogId) {
-        console.log("Typeof isDisplayAllCmt >>> ", typeof (isDisplayAllCmt))
-        fetch(`/Blog/GetAllCommentsOfBlogs?blogId=${blogId}&isDisplayAllCmt=${isDisplayAllCmt}`)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return response.json();
-            })
-            .then(data => {
-                // xử lý dữ liệu trả về
-                console.log(data.commentHtml);
-                // cập nhật giao diện người dùng với dữ liệu mới
-                var commentContainer = document.getElementById("comment_container_lower_" + blogId);
-                if (commentContainer) {
-                    commentContainer.innerHTML = '';
-                    commentContainer.innerHTML = data.commentHtml;
-                    isDisplayAllCmt = !isDisplayAllCmt;
-                }
-            })
-            .catch(error => {
-                console.error('There was a problem with the fetch operation:', error);
-            });
-    }
-    function handleToggleLike(id) {
-        event.preventDefault();
-        var formData = new FormData(document.getElementById("like_form_" + id));
-        var xhr = new XMLHttpRequest();
-        xhr.open("POST", "/Blog/AddLike", true);
-        xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest"); // Đảm bảo yêu cầu được nhận biết là AJAX
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState === XMLHttpRequest.DONE) {
-                if (xhr.status === 200) {
-                    var response = JSON.parse(xhr.responseText);
-                    if (response) {
-                        console.log("CHECK response >>> ", response)
-                    }
-                } else {
-                    // Xử lý lỗi
-                }
-            }
-        };
-        xhr.send(formData);
-    }
-    function handleChangeIcon(id) {
-        var icon = document.getElementById("like_icon_" + id);
-        if (!icon.classList.contains("bi-heart-fill")) {
-            icon.classList.remove("bi-heart")
-            icon.classList.add("bi-heart-fill")
-        } else {
-            icon.classList.remove("bi-heart-fill")
-            icon.classList.add("bi-heart")
-        }
-    }
-    function handleToggleUnLike(id) {
-        event.preventDefault();
-        var formData = new FormData(document.getElementById("like_form_" + id));
-        var xhr = new XMLHttpRequest();
-        xhr.open("POST", "/Blog/UnLike", true);
-        xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest"); // Đảm bảo yêu cầu được nhận biết là AJAX
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState === XMLHttpRequest.DONE) {
-                if (xhr.status === 200) {
-                    var response = JSON.parse(xhr.responseText);
-                    if (response) {
-                        console.log("CHECK response >>> ", response)
-                    }
-                } else {
-                    // Xử lý lỗi
-                }
-            }
-        };
-        xhr.send(formData);
-    }
-    function handleUnLike(id) {
-        handleChangeIcon(id)
-
-        let element = document.getElementById("action_like_" + id)
-        console.log(element);
-        element.onclick = function () {
-            handleLike(id)
-        }
-        console.log(element);
-
-        handleToggleUnLike(id)
-    }
-    function handleLike(id) {
-        handleChangeIcon(id)
-
-        let element = document.getElementById("action_like_" + id)
-        console.log(element);
-        element.onclick = function () {
-            handleUnLike(id)
-        }
-        console.log(element);
-        handleToggleLike(id)
-    }
-
-    function handleEditToggleComment(id) {
-
-        var form = document.getElementById("comment_form_" + id)
-        var p = document.getElementById("p_content_" + id);
-        if (!p.classList.contains("hidden")) {
-            p.classList.add("hidden");
-            form.classList.remove("hidden");
-            form.focus();
-        } else {
-            p.classList.remove("hidden")
-            form.classList.add("hidden")
-        }
-    }
-    function toggleActionComment(id) {
-        var element = document.getElementById("comments_actions_" + id)
-        if (element.classList.contains("hidden")) {
-            element.classList.remove("hidden");
-        } else {
-            element.classList.add("hidden");
-        }
-    }
-    function handleSubmitAddCmt(id) {
-        event.preventDefault();
-        var formData = new FormData(document.getElementById("form_comment_" + id));
-        var xhr = new XMLHttpRequest();
-        xhr.open("POST", "/Blog/AddComment", true);
-        xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest"); // Đảm bảo yêu cầu được nhận biết là AJAX
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState === XMLHttpRequest.DONE) {
-                if (xhr.status === 200) {
-                    var response = JSON.parse(xhr.responseText);
-
-                    // Cập nhật nội dung của phần tử commentContainer
-                    document.getElementById("form_input_comment_" + id).value = ""
-                    var commentContainer = document.getElementById("comment_container_lower_" + id);
-                    if (commentContainer) {
-                        commentContainer.innerHTML = '';
-                        commentContainer.innerHTML = response.commentHtml;
-                    }
-                } else {
-                    // Xử lý lỗi
-                }
-            }
-        };
-        xhr.send(formData);
-    }
-    function handleToggleMore(id) {
-        console.log(id)
-        const element = document.getElementById("content_" + id);
-        const toggle_icon = document.getElementById("toggle_icon_" + id)
-        var parentElement = element.parentElement
-        if (element.classList.contains("temp_hidden")) {
-            console.log("Da xoa")
-            element.classList.remove("temp_hidden")
-            toggle_icon.classList.remove("bi-arrow-down-circle")
-            toggle_icon.classList.add("bi-arrow-up-circle")
-
-        } else {
-            console.log("Da them")
-            parentElement.scrollIntoView({ behavior: 'smooth' })
-            element.classList.add("temp_hidden")
-            // scroll execute
-            console.log("da chay scroll")
-            toggle_icon.classList.remove("bi-arrow-up-circle")
-            toggle_icon.classList.add("bi-arrow-down-circle")
-        }
-    }
-
-    function handleToggle(id) {
-        var element = document.getElementById(id);
-        if (element.classList.contains("hidden")) {
-            element.classList.remove("hidden");
-            element.classList.add("flex");
-        } else {
-            element.classList.add("hidden");
-            element.classList.remove("flex");
-        }
-    }
-    function handleSubmitEditCmt(id, cmtId) {
-        event.preventDefault();
-        console.log("Check cmtid >>> ", cmtId)
-        var formData = new FormData(document.getElementById("edit_form_cmt_" + cmtId));
-        var xhr = new XMLHttpRequest();
-        xhr.open("POST", "/Blog/UpdateComment", true);
-        xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest"); // Đảm bảo yêu cầu được nhận biết là AJAX
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState === XMLHttpRequest.DONE) {
-                if (xhr.status === 200) {
-                    var response = JSON.parse(xhr.responseText);
-
-                    var commentContainer = document.getElementById("comment_container_lower_" + id);
-                    if (commentContainer) {
-                        commentContainer.innerHTML = '';
-                        commentContainer.innerHTML = response.commentHtml;
-                    }
-                } else {
-                    // Xử lý lỗi
-                }
-            }
-        };
-        xhr.send(formData);
-    }
-    function handleKeyPressInputEditComment(event, id, commentId) {
-        if (event.key === 'Enter') {
-            handleSubmitEditCmt(id, commentId)
-
-            console.log("Check" + commentId);
-            handleEditToggleComment(commentId)
-        }
-    }
-
-    function handleKeyPress(event, id) {
-        // Kiểm tra xem phím được nhấn có phải là phím Enter không
-        if (event.key === "Enter") {
-            // Xử lý sự kiện tại đây, ví dụ: gọi một hàm JavaScript hoặc thực hiện một hành động khác
-            handleSubmitAddCmt(id)
-        }
-        return false;
-    }
-    function handleToggleFilter() {
-        console.log("Dang chay")
-        var element = document.getElementById("filter_modal");
-        if (element) {
-            if (element.classList.contains("hidden")) {
-                element.classList.remove("hidden");
-                element.classList.add("block");
-            } else {
-                element.classList.add("hidden");
-                element.classList.remove("block");
-            }
-        }
-    }
-</script>

@@ -1,4 +1,5 @@
 ﻿using Doan_Web_CK.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace Doan_Web_CK.Repository
 {
@@ -21,9 +22,9 @@ namespace Doan_Web_CK.Repository
             throw new NotImplementedException();
         }
 
-        public Task<IEnumerable<Nofitication>> GetAllNotifitions()
+        public async Task<IEnumerable<Nofitication>> GetAllNotifitions()
         {
-            throw new NotImplementedException();
+            return await _context.Nofitications.ToListAsync();
         }
 
         public Task<Nofitication> GetByIdAsync(int id)
