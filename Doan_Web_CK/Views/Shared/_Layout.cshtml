@@ -18,7 +18,7 @@
     <div class="d-flex flex-column h-100">
         <div class="nav_container h-100">
             <div class="navIcons col-md-3 bg-dark justify-content-between d-flex flex-column" style="border-right: 1px solid #ccc">
-                @RenderSection("NavContent", required: true)
+                @RenderSection("NavContent", required: false)
                 @if (!SignInManager.IsSignedIn(User))
                 {
                     <partial hidden name="_LoginPartial" />
@@ -115,8 +115,48 @@
                 console.error('There was a problem with the fetch operation:', error);
             });
     }
+    
+    function UpdateProfile() {
+        event.preventDefault();
+        var formData = new FormData(document.getElementById("update_profile_form"));
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "/Profile/UpdateProfile", true);
+        xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest"); // Đảm bảo yêu cầu được nhận biết là AJAX
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+                if (xhr.status === 200) {
+                    var response = JSON.parse(xhr.responseText);
+                    if (response) {
+                        console.log("CHECK response >>> ", response)
+                        if (response.message == 'success') {
+                            console.log("vao success")
+                            showElement("update_success");
+                        } else {
+                            console.log("vao failed")
+                            showElement("update_fail");
+                        }
+                    }
+                } else {
+                    // Xử lý lỗi
+                }
+            }
+        };
+        xhr.send(formData);
+    }
+    function showElement(elementId) {
+        // Lấy element
+        const element = document.getElementById(elementId);
+
+        // Hiển thị element
+        element.style.display = "block";
+
+        // Ẩn element sau 5 giây
+        setTimeout(() => {
+            element.style.display = "none";
+        }, 3000);
+    }
     function handleDeny(userId, nofId) {
-        fetch(`/Profile/DenyFriendRequest?userId=${userId}&nofId=${nofId}`)
+        fetch(`/Profile/DenyFriendRequest?userId=${userId}&nofId=${nofId}`,)
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Network response was not ok');

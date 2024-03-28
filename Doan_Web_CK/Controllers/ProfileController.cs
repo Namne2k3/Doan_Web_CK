@@ -38,6 +38,72 @@ namespace Doan_Web_CK.Controllers
             _friendShipRepository = friendShipRepository;
             _notifiticationRepository = noticeRepository;
         }
+
+        [HttpPost]
+        public async Task<IActionResult> UpdateProfile(string profile_email, string profile_cur_password, string profile_new_password, string profile_phone_num, string profile_confirm_password)
+        {
+            var currentUser = await _userManager.GetUserAsync(User);
+            if (currentUser.Email != null)
+                currentUser.Email = profile_email;
+
+            currentUser.PhoneNumber = profile_phone_num;
+            await _userManager.UpdateAsync(currentUser);
+
+            if (profile_cur_password != null && profile_new_password != null && profile_confirm_password != null)
+            {
+                if (await _userManager.CheckPasswordAsync(currentUser, profile_cur_password) == true)
+                {
+                    if (profile_new_password == profile_confirm_password)
+                    {
+                        await _userManager.ChangePasswordAsync(currentUser, profile_cur_password, profile_confirm_password);
+                    }
+                    else
+                    {
+                        return Json(new
+                        {
+                            message = "failed"
+                        });
+                    }
+                }
+                else
+                {
+                    return Json(new
+                    {
+                        message = "failed"
+                    });
+                }
+            }
+
+            return Json(new
+            {
+                message = "success"
+            });
+        }
+        public async Task<IActionResult> UpdateProfile(string id)
+        {
+            var currentUser = await _userManager.GetUserAsync(User);
+            if (currentUser != null)
+            {
+                if (currentUser.Id != id)
+                {
+                    return NotFound();
+                }
+            }
+
+            var account = await _accountRepository.GetByIdAsync(currentUser?.Id);
+
+            if (id != null)
+            {
+                account = await _accountRepository.GetByIdAsync(id);
+            }
+            ViewBag.currentUser = currentUser;
+            ViewBag.GetAllNofOfUser = new Func<string, IEnumerable<Nofitication>>(GetAllNofOfUser);
+            ViewBag.GetUserName = new Func<string, string>(GetUserName);
+            ViewBag.IsRequested = new Func<string, string, bool>(IsRequested);
+            ViewBag.GetPhotoById = new Func<string, string>(GetPhotoById);
+            ViewBag.Account = account;
+            return View();
+        }
         public bool IsCurrentUserLiked(int blogId, string userId)
         {
             var task = IsCurrentUserLikedAsync(blogId, userId);

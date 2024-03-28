@@ -363,11 +363,17 @@ body {
 img {
     object-fit: contain;
 }
+input {
+    background-color: #212529!important;
+    color: #fff!important;
+}
 .filter_modal {
     animation: fadeInAnimation ease 0.5s;
     margin-top: 14px;
 }
-
+.navIcons {
+    max-height: 100vh
+}
 .profile_username {
     font-size: 1.5rem;
 }
@@ -416,6 +422,11 @@ img {
 }
 .blog_card_author_img:hover {
     cursor: pointer;
+}
+.body_section {
+    max-height: 100vh;
+    overflow-y: scroll;
+    scrollbar-width: none;
 }
 .right_click_menu {
     width: 100px;
@@ -533,53 +544,53 @@ img {
         width: 200px;
     }
 }
-    @media (max-width: 300px) {
-        .icon {
-            font-size: 22px;
-        }
-        .nav_item_nofitications {
-            top: 100% !important;
-            left: -100px !important;
-            width: 200px;
-        }
-        .body_section {
-            margin-top: 75px;
-        }
+@media (max-width: 300px) {
+    .icon {
+        font-size: 22px;
+    }
+    .nav_item_nofitications {
+        top: 100% !important;
+        left: -100px !important;
+        width: 200px;
+    }
+    .body_section {
+        margin-top: 75px;
+    }
 
-        #newestBlogCb {
+    #newestBlogCb {
+        font-size: 12px;
+    }
+
+    .filter_modal {
+        margin-right: 26px;
+    }
+
+        .filter_modal h3 {
             font-size: 12px;
         }
 
-        .filter_modal {
-            margin-right: 26px;
+        .filter_modal button,
+        .filter_modal label {
+            font-size: 12px;
         }
 
-            .filter_modal h3 {
-                font-size: 12px;
-            }
-
-            .filter_modal button,
-            .filter_modal label {
-                font-size: 12px;
-            }
-
-            .filter_modal input {
-                font-size: 9px;
-            }
-
-        .input_add {
-            max-width: 180px;
+        .filter_modal input {
+            font-size: 9px;
         }
+
+    .input_add {
+        max-width: 180px;
+    }
+}
+
+@keyframes fadeInAnimation {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px)
     }
 
-    @keyframes fadeInAnimation {
-        0% {
-            opacity: 0;
-            transform: translateY(-20px)
-        }
-
-        100% {
-            opacity: 1;
-            transform: translateY(0px)
-        }
+    100% {
+        opacity: 1;
+        transform: translateY(0px)
     }
+}

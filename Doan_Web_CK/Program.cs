@@ -1,4 +1,4 @@
-﻿using Doan_Web_CK;
+using Doan_Web_CK;
 using Doan_Web_CK.Models;
 using Doan_Web_CK.Repository;
 using Microsoft.AspNetCore.Identity;
@@ -73,34 +73,34 @@ using (var scope = app.Services.CreateScope())
         }
     }
 }
-using (var scope = app.Services.CreateScope())
-{
-    var UserManager = scope.ServiceProvider.GetRequiredService<UserManager<ApplicationUser>>();
-    string email = "nhpn2003@gmail.com";
-    string email2 = "nguyennam11112003@gmail.com";
-    string password = "Namproplayer2003@";
-    if (await UserManager.FindByEmailAsync(email) == null)
-    {
-        // seeding
-        var admin = new ApplicationUser();
-        admin.UserName = email;
-        admin.Email = email;
-        admin.DateCreated = DateTime.Now;
-        admin.ImageUrl = "https://w7.pngwing.com/pngs/178/595/png-transparent-user-profile-computer-icons-login-user-avatars-thumbnail.png";
-        await UserManager.CreateAsync(admin, password);
-        await UserManager.AddToRoleAsync(admin, "Admin");
+//using (var scope = app.Services.CreateScope())
+//{
+//    var UserManager = scope.ServiceProvider.GetRequiredService<UserManager<ApplicationUser>>();
+//    string email = "nhpn2003@gmail.com";
+//    string email2 = "nguyennam11112003@gmail.com";
+//    string password = "Namproplayer2003@";
+//    if (await UserManager.FindByEmailAsync(email) == null)
+//    {
+//        // seeding
+//        var admin = new ApplicationUser();
+//        admin.UserName = email;
+//        admin.Email = email;
+//        admin.DateCreated = DateTime.Now;
+//        admin.ImageUrl = "https://w7.pngwing.com/pngs/178/595/png-transparent-user-profile-computer-icons-login-user-avatars-thumbnail.png";
+//        await UserManager.CreateAsync(admin, password);
+//        await UserManager.AddToRoleAsync(admin, "Admin");
 
-    }
-    if (await UserManager.FindByEmailAsync(email2) == null)
-    {
-        var member = new ApplicationUser();
-        member.UserName = email2;
-        member.Email = email2;
-        member.DateCreated = DateTime.Now;
-        member.ImageUrl = "https://w7.pngwing.com/pngs/178/595/png-transparent-user-profile-computer-icons-login-user-avatars-thumbnail.png";
-        await UserManager.CreateAsync(member, password);
-        await UserManager.AddToRoleAsync(member, "Member");
+//    }
+//    if (await UserManager.FindByEmailAsync(email2) == null)
+//    {
+//        var member = new ApplicationUser();
+//        member.UserName = email2;
+//        member.Email = email2;
+//        member.DateCreated = DateTime.Now;
+//        member.ImageUrl = "https://w7.pngwing.com/pngs/178/595/png-transparent-user-profile-computer-icons-login-user-avatars-thumbnail.png";
+//        await UserManager.CreateAsync(member, password);
+//        await UserManager.AddToRoleAsync(member, "Member");
 
-    }
-}
+//    }
+//}
 app.Run();

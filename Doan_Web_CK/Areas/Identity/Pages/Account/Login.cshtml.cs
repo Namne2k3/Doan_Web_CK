@@ -112,15 +112,16 @@ namespace Doan_Web_CK.Areas.Identity.Pages.Account
                 {
                     //_logger.LogInformation("User logged in.");
                     //return LocalRedirect(returnUrl);
-                    var user = await _userManager.FindByEmailAsync(Input.Email);
-                    if (await _userManager.IsInRoleAsync(user, "Admin"))
-                    {
-                        return RedirectToAction("Index", "Admin"); // Chuyển hướng đến trang admin
-                    }
-                    else
-                    {
-                        return RedirectToAction("Index", "Blog"); // Hoặc chuyển hướng đến trang chính
-                    }
+                    //var user = await _userManager.FindByEmailAsync(Input.Email);
+                    //if (await _userManager.IsInRoleAsync(user, "Admin"))
+                    //{
+                    //    return RedirectToAction("Index", "Admin"); // Chuyển hướng đến trang admin
+                    //}
+                    //else
+                    //{
+                    //    return RedirectToAction("Index", "Blog"); // Hoặc chuyển hướng đến trang chính
+                    //}
+                    return RedirectToAction("Index", "Blog"); // Hoặc chuyển hướng đến trang chính
                 }
                 if (result.RequiresTwoFactor)
                 {

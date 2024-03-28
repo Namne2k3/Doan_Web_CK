@@ -47,8 +47,8 @@ namespace Doan_Web_CK.Controllers
         {
             var currentUser = await _userManager.GetUserAsync(User);
             var nofs = await GetAllNofOfUserAsync(currentUser.Id);
-            ViewBag.GetAllNofOfUser = new Func<string, IEnumerable<Nofitication>>(GetAllNofOfUser);
             ViewBag.currentUser = currentUser;
+            ViewBag.GetAllNofOfUser = new Func<string, IEnumerable<Nofitication>>(GetAllNofOfUser);
             ViewBag.GetUserName = new Func<string, string>(GetUserName);
             ViewBag.IsRequested = new Func<string, string, bool>(IsRequested);
             ViewBag.GetPhotoById = new Func<string, string>(GetPhotoById);
@@ -729,7 +729,37 @@ namespace Doan_Web_CK.Controllers
         public async Task<IActionResult> Add()
         {
             var categories = await _categoryRepository.GetAllAsync();
+            var sdCats = new List<string>
+            {
+                "Personal Stories",
+                "Travel Adventures",
+                "Food and Cooking",
+                "Health and Wellness",
+                "Technology and Gadgets",
+                "Fashion and Beauty", // Thời trang và làm đẹp
+                "DIY and Crafts", // Tự làm và nghệ thuật thủ công
+                "Parenting and Family", // Việc nuôi dạy con cái và gia đình
+                "Career and Professional Development", // Sự nghiệp và phát triển chuyên môn
+                "Literature and Writing", // Văn học và viết lách
+                "Environment and Sustainability", // Môi trường và bền vững
+                "Sports and Fitness", // Thể thao và thể dục
+                "Photography and Art", // Nhiếp ảnh và nghệ thuật
+                "Education and Learning", // Giáo dục và học hỏi
+                "Finance and Money Management" // Tài chính và quản lý tiền bạc
+            };
+
+            foreach (var cat in sdCats)
+            {
+                if (categories.Contains(cat) == false)
+                {
+
+                }
+            }
+
             ViewBag.Categories = new SelectList(categories, "Id", "Name");
+
+
+
             return View();
         }
 

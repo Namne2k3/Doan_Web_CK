@@ -1,0 +1,191 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+@{
+    ViewData["Title"] = "Manage";
+    var currentUser = ViewBag.currentUser;
+    var account = ViewBag.Account;
+}
+
+<div class="body_container">
+    <h1>Manage Account</h1>
+    <div class="d-flex flex-column gap-4 p-3 profile_container">
+        <div class="d-flex profile_header gap-4 align-items-center">
+            <div class="profile_photo position-relative">
+                <div class="profile_img_container">
+                    <img style="border-radius: 100%;" id="profile_photo" class="w-100 photo_image_border" src="@account.ImageUrl" />
+                </div>
+            </div>
+
+            <div class="d-flex flex-column profile_info">
+                <div class="d-flex gap-4 align-items-center">
+                    <h1 id="user_name_h1" class="profile_username mw-100">
+                        @account.UserName
+                    </h1>
+                    <input type="text" oninput="syncInputs(this.value,'input2')" style="min-width: 100%; font-size: 1.4rem; background-color: #282b2d; margin-bottom: 8px;" value="@account.UserName" id="input_username_edit" class="hidden w-100 form-control text-white" />
+                    
+                </div>
+                <p class="profile_date fst-italic">Date created: @account.DateCreated.ToShortDateString()</p
+            </div>
+        </div>
+
+    </div>
+    <div>
+        <form id="update_profile_form" onsubmit="UpdateProfile()" class="d-flex flex-column gap-2">
+            <div class="form-group row">
+                <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
+                <div class="col-sm-10">
+                    <input name="profile_email" value="@currentUser.Email" type="email" class="form-control" placeholder="email@example.com">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="inputPassword" class="col-sm-2 col-form-label">Phone</label>
+                <div class="col-sm-10">
+                    <input name="profile_phone_num" value="@currentUser.PhoneNumber" class="form-control" placeholder="Phone Number">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="inputPassword" class="col-sm-2 col-form-label">Current Password</label>
+                <div class="col-sm-10">
+                    <input name="profile_cur_password" type="password" class="form-control"  placeholder="Current Password">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="inputPassword" class="col-sm-2 col-form-label">New Password</label>
+                <div class="col-sm-10">
+                    <input name="profile_new_password" type="password" class="form-control" placeholder="New Password">
+                </div>
+            </div>
+            
+            <div class="form-group row">
+                <label for="inputPassword" class="col-sm-2 col-form-label">Phone</label>
+                <div class="col-sm-10">
+                    <input name="profile_confirm_password" type="password" class="form-control"n placeholder="Confirmed Password">
+                </div>
+            </div>
+            <button type="submit" class="btn btn-outline-light" style="max-width: 100px">Save</button>
+        </form>
+    </div>
+
+    <div id="update_success" class="p-4 text-white text-success bg-success rounded-3" >
+        Update Success
+    </div>
+    
+    <div id="update_fail" class="p-4 text-white text-danger bg-danger rounded-3" >
+        Update Failed
+    </div>
+</div>
+<style>
+    #update_success {
+        display: none;
+    }
+    #update_fail {
+        display: none;
+    }
+</style>
+@section NavContent {
+    <ul class="d-flex flex-column list-unstyled text-white gap-3 my-2 mx-2 navItems">
+        <div class="nav_item">
+            <div class="logo_container d-flex gap-2 w-100 justify-content-center">
+                <div class="logo_image_container">
+                    <img src="/images/logo_2.png" class="logo_image" />
+                </div>
+                <h2 style="font-family: fantasy" class="navTitle m-auto">WebCommun</h2>
+            </div>
+        </div>
+        <a asp-controller="Blog" asp-action="Index" class="nav_item">
+            <div class="navIcon text-center">
+                <i class="icon bi bi-house-door-fill"></i>
+            </div>
+            <div class="navTitle w-75 fs-4 text-start my-auto">
+                Blogs
+            </div>
+        </a>
+        @if (SignInManager.IsSignedIn(User))
+        {
+            <a asp-action="" id="navFriends" class="nav_item">
+                <div class="navIcon text-center">
+                    <i class="icon bi bi-people-fill"></i>
+                </div>
+                <div class="navTitle w-75 fs-4 text-start my-auto">
+                    Friends
+                </div>
+            </a>
+
+            <div class="position-relative">
+                <div id="nof_icon_container">
+                    <a asp-action="Nofitications" asp-controller="Blog" id="navNofitication" class="nof_icon text-center">
+                        <i class="navIcon icon bi bi-bell-fill"></i>
+                        <p class="navTitle w-75 fs-4 text-start my-auto">Nofitications</p>
+                    </a>
+                </div>
+                <div id="nav_item_nofitications" class="hidden nav_item_nofitications position-absolute">
+
+                    <div class="d-flex justify-content-between">
+                        <strong>Nofitication</strong>
+                        <a class="reload_icon" onclick="reloadAllNof('@currentUser?.Id')">
+                            <i class="bi bi-arrow-clockwise"></i>
+                        </a>
+                    </div>
+
+                    <div id="nav_item_nofitications_container" class="nav_item_nofitications_container">
+                        @if (ViewBag.GetAllNofOfUser(currentUser?.Id) != null)
+                        {
+                            @foreach (var nof in ViewBag.GetAllNofOfUser(currentUser?.Id))
+                            {
+                                switch (nof.Type)
+                                {
+                                    case "Addfriend":
+                                        if (ViewBag.IsRequested(nof.SenderAccountId, nof.RecieveAccountId) == true)
+                                        {
+                                            <div class="nofi_card">
+                                                <p class="nofi_card_content">
+                                                    <a asp-action="Index" asp-controller="Profile" asp-route-id="@nof.SenderAccountId">@ViewBag.GetUserName(nof.SenderAccountId)</a> @nof.Content
+                                                    <span class="nofi_card_date">@nof.Date</span>
+                                                </p>
+                                                <div id="nofi_card_actions_@nof.Id" class="nofi_card_actions">
+                                                    <a onclick="handleAccept('@currentUser?.Id', @nof.Id)" class="btn btn-outline-dark">Accept</a>
+                                                    <a onclick="handleDeny('@currentUser?.Id', @nof.Id)" class="btn btn-outline-dark">Deny</a>
+                                                </div>
+                                            </div>
+                                        }
+
+                                        break;
+                                    case "Comment":
+                                        <div class="nofi_card">
+                                            <p class="nofi_card_content">
+                                                <a asp-action="Index" asp-controller="Profile" asp-route-id="@nof.SenderAccountId">@ViewBag.GetUserName(nof.SenderAccountId)</a> @nof.Content <a asp-route-id="@nof.BlogId" asp-action="Details" asp-controller="Blog">Link to blog</a>
+                                                <span class="nofi_card_date">@nof.Date</span>
+                                            </p>
+                                        </div>
+                                        break;
+                                    case "Like":
+                                        <div class="nofi_card">
+                                            <p class="nofi_card_content">
+                                                <a asp-action="Index" asp-controller="Profile" asp-route-id="@nof.SenderAccountId">@ViewBag.GetUserName(nof.SenderAccountId)</a> @nof.Content <a asp-route-id="@nof.BlogId" asp-action="Details" asp-controller="Blog">Link to blog</a>
+                                                <span class="nofi_card_date">@nof.Date</span>
+                                            </p>
+                                        </div>
+                                        break;
+                                    default:
+
+                                        break;
+                                }
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+        }
+        <a asp-controller="Profile" asp-action="Index" class="nav_item">
+            @* <a asp-controller="Profile" asp-route-id="@UserManager.GetUserId(User)" asp-action="Index" class="nav_item"> *@
+            <div class="navIcon text-center">
+                <i class="icon bi bi-person-circle"></i>
+            </div>
+            <div class="navTitle w-75 fs-4 text-start my-auto">
+                Profile
+            </div>
+        </a>
+    </ul>
+}
+

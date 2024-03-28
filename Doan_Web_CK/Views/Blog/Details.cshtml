@@ -236,16 +236,17 @@
                 Blogs
             </div>
         </a>
-        <a asp-action="" id="navFriends" class="nav_item">
-            <div class="navIcon text-center">
-                <i class="icon bi bi-people-fill"></i>
-            </div>
-            <div class="navTitle w-75 fs-4 text-start my-auto">
-                Friends
-            </div>
-        </a>
-
-        <div class="position-relative">
+        @if (SignInManager.IsSignedIn(User))
+        {
+            <a asp-action="" id="navFriends" class="nav_item">
+                <div class="navIcon text-center">
+                    <i class="icon bi bi-people-fill"></i>
+                </div>
+                <div class="navTitle w-75 fs-4 text-start my-auto">
+                    Friends
+                </div>
+            </a>
+            <div class="position-relative">
             <a onclick="handleToggleNofs()" id="navNofitication" class="nof_icon text-center">
                 <i class="navIcon icon bi bi-bell-fill"></i>
                 <p class="navTitle w-75 fs-4 text-start my-auto">Nofitications</p>
@@ -305,6 +306,7 @@
                 </div>
             </div>
         </div>
+        }
         <a asp-controller="Profile" asp-action="Index" class="nav_item">
             @* <a asp-controller="Profile" asp-route-id="@UserManager.GetUserId(User)" asp-action="Index" class="nav_item"> *@
             <div class="navIcon text-center">
