@@ -31,13 +31,14 @@ namespace Doan_Web_CK.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("AccountId")
+                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("BlogImageUrl")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("CategoryId")
+                    b.Property<int>("CategoryId")
                         .HasColumnType("int");
 
                     b.Property<string>("Content")
@@ -99,7 +100,7 @@ namespace Doan_Web_CK.Migrations
                     b.Property<string>("AccountId")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<int?>("BlogId")
+                    b.Property<int>("BlogId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CommentDate")
@@ -127,12 +128,14 @@ namespace Doan_Web_CK.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("FriendId")
+                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<bool>("IsConfirmed")
                         .HasColumnType("bit");
 
                     b.Property<string>("UserId")
+                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
@@ -155,7 +158,7 @@ namespace Doan_Web_CK.Migrations
                     b.Property<string>("ApplicationUserId")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<int?>("BlogId")
+                    b.Property<int>("BlogId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -431,11 +434,15 @@ namespace Doan_Web_CK.Migrations
                 {
                     b.HasOne("Doan_Web_CK.Models.ApplicationUser", "Account")
                         .WithMany("Blogs")
-                        .HasForeignKey("AccountId");
+                        .HasForeignKey("AccountId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("Doan_Web_CK.Models.Category", "Category")
                         .WithMany("Blogs")
-                        .HasForeignKey("CategoryId");
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Account");
 
@@ -450,7 +457,9 @@ namespace Doan_Web_CK.Migrations
 
                     b.HasOne("Doan_Web_CK.Models.Blog", "Blog")
                         .WithMany("Comments")
-                        .HasForeignKey("BlogId");
+                        .HasForeignKey("BlogId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Account");
 
@@ -462,12 +471,14 @@ namespace Doan_Web_CK.Migrations
                     b.HasOne("Doan_Web_CK.Models.ApplicationUser", "Friend")
                         .WithMany()
                         .HasForeignKey("FriendId")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
 
                     b.HasOne("Doan_Web_CK.Models.ApplicationUser", "User")
                         .WithMany("Friendships")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
 
                     b.Navigation("Friend");
 
@@ -482,7 +493,9 @@ namespace Doan_Web_CK.Migrations
 
                     b.HasOne("Doan_Web_CK.Models.Blog", "Blog")
                         .WithMany("Likes")
-                        .HasForeignKey("BlogId");
+                        .HasForeignKey("BlogId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("ApplicationUser");
 
@@ -493,7 +506,8 @@ namespace Doan_Web_CK.Migrations
                 {
                     b.HasOne("Doan_Web_CK.Models.Blog", "Blog")
                         .WithMany()
-                        .HasForeignKey("BlogId");
+                        .HasForeignKey("BlogId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("Doan_Web_CK.Models.ApplicationUser", "RecieveAccount")
                         .WithMany("Nofitications")

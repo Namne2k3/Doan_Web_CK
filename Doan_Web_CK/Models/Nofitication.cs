@@ -9,9 +9,9 @@ namespace Doan_Web_CK.Models
         public int? BlogId { get; set; }
         public Blog? Blog { get; set; } // Đổi tên thuộc tính 'blog' thành 'Blog'
 
-        public string? RecieveAccountId { get; set; }
+        public string RecieveAccountId { get; set; }
         public ApplicationUser? RecieveAccount { get; set; }
-        public string? SenderAccountId { get; set; }
+        public string SenderAccountId { get; set; }
         public ApplicationUser? SenderAccount { get; set; }
 
         [Required]

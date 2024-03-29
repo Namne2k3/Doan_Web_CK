@@ -19,6 +19,11 @@ namespace Doan_Web_CK
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Nofitication>()
+                .HasOne(n => n.Blog)
+                .WithMany()
+                .HasForeignKey(n => n.BlogId)
+                .OnDelete(DeleteBehavior.Cascade);
 
             // friendShip
             modelBuilder.Entity<Friendship>()

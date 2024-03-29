@@ -2,13 +2,15 @@ html {
     font-size: 14px;
     scroll-behavior: smooth;
 }
+#update_fail_blog,
+#update_success_blod {
+    display: none
+}
+#update_fail,
 #update_success {
     display: none;
 }
 
-#update_fail {
-    display: none;
-}
 @media (min-width: 768px) {
   html {
     font-size: 16px;
@@ -212,6 +214,7 @@ body {
 }
 .comments_actions a {
     font-size: 12px;
+    cursor: pointer;
 }
 
 .comments_actions {
@@ -248,6 +251,11 @@ body {
 .action_container i {
     margin-top: 2px;
 }
+
+.hidden_blog {
+    display: none;
+}
+
 .hidden {
     display: none !important;
 }
@@ -392,7 +400,8 @@ input {
     margin-top: 14px;
 }
 .navIcons {
-    max-height: 100vh
+    max-height: 100vh;
+    z-index: 100;
 }
 .profile_username {
     font-size: 1.5rem;

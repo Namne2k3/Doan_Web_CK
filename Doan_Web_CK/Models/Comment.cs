@@ -12,7 +12,7 @@ namespace Doan_Web_CK.Models
         public string? AccountId { get; set; }
         public ApplicationUser? Account { get; set; }
 
-        public int? BlogId { get; set; }
+        public int BlogId { get; set; }
         public Blog? Blog { get; set; }
 
         public DateTime CommentDate { get; set; }

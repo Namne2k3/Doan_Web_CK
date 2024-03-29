@@ -93,11 +93,21 @@
                 </div>
             </div>
         </div>
+
+
         <div class="blog_container">
             @if (blogList.Count != 0 )
             {
                 @foreach (var item in blogList)
                 {
+                    <div id="update_success_blod_@item.Id" class="p-4 text-white text-success bg-success rounded-3 hidden_blog">
+                        Delete Success
+                    </div>
+
+                    <div id="update_fail_blog_@item.Id" class="p-4 text-white text-danger bg-danger rounded-3 hidden_blog">
+                        Delete Failed
+                    </div>
+
                     <div class="blog_card">
                         <div class="blog_userInfo">
                             <div class="blog_img_date">
@@ -165,7 +175,7 @@
                                     </a>
                                     <div id="@item.Id" class="hidden actions_ud" style="top:-10px; right: 20px; position: absolute; background-color: #282b2d; padding: 16px; border-radius: 12px 12px 0 0;" aria-hidden="true">
                                         <a asp-controller="Blog" asp-route-id="@item.Id" asp-action="Edit" class="btn btn-outline-light">Edit</a>
-                                        <a class="btn btn-outline-light">Delete</a>
+                                        <a onclick="handleDeleteBlog(@item.Id)" class="btn btn-outline-light">Delete</a>
                                     </div>
                                 </div>
                             }
@@ -274,10 +284,10 @@
                                     </form>
                                 </div>
                             }
-                            @if (ViewBag.GetAllBlogComments(item.Id) != null )
+                            @if ( item.Comments != null )
                             {
                                 <div id="comment_container_lower_@item.Id" class="comment_container_lower">
-                                    @foreach (var comment in ViewBag.GetAllBlogComments(item.Id))
+                                    @foreach (var comment in item.Comments)
                                     {
                                         <div class="comment_card">
                                             <div class="comment_card_img_container">
@@ -304,11 +314,18 @@
 
                                                 <div id="comments_actions_@comment.Id" class="comments_actions hidden">
                                                     <a onclick="handleEditToggleComment(@comment.Id)" class="btn btn-outline-light">Edit</a>
-                                                    <a class="btn btn-outline-light">Delete</a>
+                                                    <a onclick="handleDeleteComment(@comment.Id,@item.Id)" class="btn btn-outline-light">Delete</a>
                                                 </div>
                                             </div>
                                         </div>
                                     } 
+                                </div>
+                                <div id="update_success" class="p-4 text-white text-success bg-success rounded-3">
+                                    Delete Success
+                                </div>
+
+                                <div id="update_fail" class="p-4 text-white text-danger bg-danger rounded-3">
+                                    Delete Failed
                                 </div>
                             }
                         </div>

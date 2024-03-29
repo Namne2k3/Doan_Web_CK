@@ -209,7 +209,7 @@
 
                             <div id="comments_actions_@comment.Id" class="comments_actions hidden">
                                 <a onclick="handleEditToggleComment(@comment.Id)" class="btn btn-outline-light">Edit</a>
-                                <a class="btn btn-outline-light">Delete</a>
+                                <a onclick="handleDeleteBlog(@Model.Id)" class="btn btn-outline-light">Delete</a>
                             </div>
                         </div>
                     </div>
@@ -246,66 +246,86 @@
                     Friends
                 </div>
             </a>
+
             <div class="position-relative">
-            <a onclick="handleToggleNofs()" id="navNofitication" class="nof_icon text-center">
-                <i class="navIcon icon bi bi-bell-fill"></i>
-                <p class="navTitle w-75 fs-4 text-start my-auto">Nofitications</p>
-            </a>
-            <div id="nav_item_nofitications" class="nav_item_nofitications position-absolute hidden">
-                <div class="d-flex justify-content-between">
-                    <strong>Nofitication</strong>
-                    <a class="reload_icon" onclick="reloadAllNof('@currentUser?.Id')">
-                        <i class="bi bi-arrow-clockwise"></i>
+                <div id="nof_icon_container">
+                    <a asp-action="Nofitications" asp-controller="Blog" id="navNofitication" class="nof_icon text-center">
+                        <i class="navIcon icon bi bi-bell-fill"></i>
+                        <p class="navTitle w-75 fs-4 text-start my-auto">Nofitications</p>
                     </a>
                 </div>
-                <div id="nav_item_nofitications_container" class="nav_item_nofitications_container">
-                    @if (ViewBag.GetAllNofOfUser(currentUser?.Id) != null)
-                    {
-                        @foreach (var nof in ViewBag.GetAllNofOfUser(currentUser?.Id))
+                <div id="nav_item_nofitications" class="hidden nav_item_nofitications position-absolute">
+
+                    <div class="d-flex justify-content-between">
+                        <strong>Nofitication</strong>
+                        <a class="reload_icon" onclick="reloadAllNof('@currentUser?.Id')">
+                            <i class="bi bi-arrow-clockwise"></i>
+                        </a>
+                    </div>
+
+                    <div id="nav_item_nofitications_container" class="nav_item_nofitications_container">
+                        @if (ViewBag.GetAllNofOfUser(currentUser?.Id) != null)
                         {
-                            switch (nof.Type)
+                            @foreach (var nof in ViewBag.GetAllNofOfUser(currentUser?.Id))
                             {
-                                case "Addfriend":
-                                    if (ViewBag.IsRequested(nof.SenderAccountId, nof.RecieveAccountId) == true)
-                                    {
+                                switch (nof.Type)
+                                {
+                                    case "Addfriend":
+                                        if (ViewBag.IsRequested(nof.SenderAccountId, nof.RecieveAccountId) == true)
+                                        {
+                                            <div class="nofi_card">
+                                                <p class="nofi_card_content">
+                                                    <a asp-action="Index" asp-controller="Profile" asp-route-id="@nof.SenderAccountId">@ViewBag.GetUserName(nof.SenderAccountId)</a> @nof.Content
+                                                    <span class="nofi_card_date">@nof.Date</span>
+                                                </p>
+                                                <div id="nofi_card_actions_@nof.Id" class="nofi_card_actions">
+                                                    <a onclick="handleAccept('@currentUser?.Id', @nof.Id)" class="btn btn-outline-dark">Accept</a>
+                                                    <a onclick="handleDeny('@currentUser?.Id', @nof.Id)" class="btn btn-outline-dark">Deny</a>
+                                                </div>
+                                                <div>
+                                                    <a onclick="handleDeleteNofitication(@nof.Id)">
+                                                        <i class="close_icon bi bi-x"></i>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        }
+
+                                        break;
+                                    case "Comment":
                                         <div class="nofi_card">
                                             <p class="nofi_card_content">
-                                                <a asp-action="Index" asp-controller="Profile" asp-route-id="@nof.SenderAccountId">@ViewBag.GetUserName(nof.SenderAccountId)</a> @nof.Content
+                                                <a asp-action="Index" asp-controller="Profile" asp-route-id="@nof.SenderAccountId">@ViewBag.GetUserName(nof.SenderAccountId)</a> @nof.Content <a asp-route-id="@nof.BlogId" asp-action="Details" asp-controller="Blog">Link to blog</a>
                                                 <span class="nofi_card_date">@nof.Date</span>
                                             </p>
-                                            <div id="nofi_card_actions_@nof.Id" class="nofi_card_actions">
-                                                <a onclick="handleAccept('@currentUser?.Id', @nof.Id)" class="btn btn-outline-dark">Accept</a>
-                                                <a onclick="handleDeny('@currentUser?.Id', @nof.Id)" class="btn btn-outline-dark">Deny</a>
+                                            <div>
+                                                <a onclick="handleDeleteNofitication(@nof.Id)">
+                                                    <i class="close_icon bi bi-x"></i>
+                                                </a>
                                             </div>
                                         </div>
-                                    }
+                                        break;
+                                    case "Like":
+                                        <div class="nofi_card">
+                                            <p class="nofi_card_content">
+                                                <a asp-action="Index" asp-controller="Profile" asp-route-id="@nof.SenderAccountId">@ViewBag.GetUserName(nof.SenderAccountId)</a> @nof.Content <a asp-route-id="@nof.BlogId" asp-action="Details" asp-controller="Blog">Link to blog</a>
+                                                <span class="nofi_card_date">@nof.Date</span>
+                                            </p>
+                                            <div>
+                                                <a onclick="handleDeleteNofitication(@nof.Id)">
+                                                    <i class="close_icon bi bi-x"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        break;
+                                    default:
 
-                                    break;
-                                case "Comment":
-                                    <div class="nofi_card">
-                                        <p class="nofi_card_content">
-                                            <a asp-action="Index" asp-controller="Profile" asp-route-id="@nof.SenderAccountId">@ViewBag.GetUserName(nof.SenderAccountId)</a> @nof.Content <a asp-route-id="@nof.BlogId" asp-action="Details" asp-controller="Blog">Link to blog</a>
-                                            <span class="nofi_card_date">@nof.Date</span>
-                                        </p>
-                                    </div>
-                                    break;
-                                case "Like":
-                                    <div class="nofi_card">
-                                        <p class="nofi_card_content">
-                                            <a asp-action="Index" asp-controller="Profile" asp-route-id="@nof.SenderAccountId">@ViewBag.GetUserName(nof.SenderAccountId)</a> @nof.Content <a asp-route-id="@nof.BlogId" asp-action="Details" asp-controller="Blog">Link to blog</a>
-                                            <span class="nofi_card_date">@nof.Date</span>
-                                        </p>
-                                    </div>
-                                    break;
-                                default:
-
-                                    break;
+                                        break;
+                                }
                             }
                         }
-                    }
+                    </div>
                 </div>
             </div>
-        </div>
         }
         <a asp-controller="Profile" asp-action="Index" class="nav_item">
             @* <a asp-controller="Profile" asp-route-id="@UserManager.GetUserId(User)" asp-action="Index" class="nav_item"> *@
@@ -318,4 +338,3 @@
         </a>
     </ul>
 }
-
