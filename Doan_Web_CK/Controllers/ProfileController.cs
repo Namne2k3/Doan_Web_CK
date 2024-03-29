@@ -223,6 +223,12 @@ namespace Doan_Web_CK.Controllers
                             sb.Append(")\" class=\"btn btn-outline-dark\">Deny</a>");
 
                             sb.AppendLine("</div>");
+
+                            sb.Append("<div>");
+                            sb.Append("<a onclick = \"handleDeleteNofitication(" + @nof.Id + ")\">");
+                            sb.Append("<i class=\"close_icon bi bi-x\"></i>");
+                            sb.Append("</a>");
+                            sb.Append("</div>");
                             sb.AppendLine("</div>");
                         }
                         break;
@@ -241,6 +247,12 @@ namespace Doan_Web_CK.Controllers
                         sb.AppendLine("</span>");  // Add newline for proper formatting
 
                         sb.AppendLine("</p>");
+
+                        sb.Append("<div>");
+                        sb.Append("<a onclick = \"handleDeleteNofitication(" + @nof.Id + ")\">");
+                        sb.Append("<i class=\"close_icon bi bi-x\"></i>");
+                        sb.Append("</a>");
+                        sb.Append("</div>");
                         sb.AppendLine("</div>");
 
                         break;
@@ -260,6 +272,12 @@ namespace Doan_Web_CK.Controllers
                         sb.AppendLine("</span>");  // Add newline for proper formatting
 
                         sb.AppendLine("</p>");
+
+                        sb.Append("<div>");
+                        sb.Append("<a onclick = \"handleDeleteNofitication(" + @nof.Id + ")\">");
+                        sb.Append("<i class=\"close_icon bi bi-x\"></i>");
+                        sb.Append("</a>");
+                        sb.Append("</div>");
                         sb.AppendLine("</div>");
                         break;
                     default:

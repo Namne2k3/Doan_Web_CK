@@ -20,18 +20,27 @@ namespace Doan_Web_CK.Repository
         public async Task DeleteAsync(int id)
         {
             var comment = await _context.Comments.FindAsync(id);
-            _context.Comments.Remove(comment);
-            await _context.SaveChangesAsync();
+            if (comment != null)
+            {
+                _context.Comments.Remove(comment);
+                await _context.SaveChangesAsync();
+            }
         }
 
         public async Task<IEnumerable<Comment>> GetAllComments()
         {
-            return await _context.Comments.ToListAsync();
+            return await _context.Comments
+                .Include(p => p.Account)
+                .Include(p => p.Blog)
+                .ToListAsync();
         }
 
         public async Task<Comment> GetByIdAsync(int id)
         {
-            return await _context.Comments.FindAsync(id);
+            return await _context.Comments
+                .Include(p => p.Account)
+                .Include(p => p.Blog)
+                .SingleOrDefaultAsync(p => p.Id == id);
         }
 
         public async Task UpdateAsync(Comment comment)

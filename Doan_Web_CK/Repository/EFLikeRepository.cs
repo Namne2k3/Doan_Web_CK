@@ -19,7 +19,10 @@ namespace Doan_Web_CK.Repository
 
         public async Task<IEnumerable<Like>> GetAllLikeAsync()
         {
-            return await _context.Likes.ToListAsync();
+            return await _context.Likes
+                .Include(p => p.ApplicationUser)
+                .Include(p => p.Blog)
+                .ToListAsync();
         }
 
         public async Task<Like> GetLikeByIdAsync(int id)

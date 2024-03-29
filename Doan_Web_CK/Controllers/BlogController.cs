@@ -186,6 +186,33 @@ namespace Doan_Web_CK.Controllers
             var categories = await _categoryRepository.GetAllAsync();
             var currentUser = await _userManager.GetUserAsync(User);
 
+            //var sdCats = new List<string>
+            //{
+            //    "Personal Stories",
+            //    "Travel Adventures",
+            //    "Food and Cooking",
+            //    "Health and Wellness",
+            //    "Technology and Gadgets",
+            //    "Fashion and Beauty", // Thời trang và làm đẹp
+            //    "DIY and Crafts", // Tự làm và nghệ thuật thủ công
+            //    "Parenting and Family", // Việc nuôi dạy con cái và gia đình
+            //    "Career and Professional Development", // Sự nghiệp và phát triển chuyên môn
+            //    "Literature and Writing", // Văn học và viết lách
+            //    "Environment and Sustainability", // Môi trường và bền vững
+            //    "Sports and Fitness", // Thể thao và thể dục
+            //    "Photography and Art", // Nhiếp ảnh và nghệ thuật
+            //    "Education and Learning", // Giáo dục và học hỏi
+            //    "Finance and Money Management" // Tài chính và quản lý tiền bạc
+            //};
+            //foreach (var item in sdCats)
+            //{
+            //    var cate = new Category
+            //    {
+            //        Name = item
+            //    };
+            //    await _categoryRepository.AddAsync(cate);
+            //}
+
             if (currentUser != null)
             {
                 ViewBag.CurrentUser = currentUser;
@@ -549,24 +576,7 @@ namespace Doan_Web_CK.Controllers
             string newCommentsHtmlString = newCommentsHtml.ToString();
             return Json(new { commentHtml = newCommentsHtmlString });
         }
-        public async Task<IActionResult> Edit(int id)
-        {
-            var blog = await _blogRepository.GetByIdAsync(id);
-            if (blog == null)
-            {
-                return NotFound();
-            }
 
-            var categories = await _categoryRepository.GetAllAsync();
-            ViewBag.Categories = new SelectList(categories, "Id", "Name");
-            var user = await _userManager.GetUserAsync(User);
-            ViewBag.User = user;
-            ViewBag.GetUserName = new Func<string, string>(GetUserName);
-            ViewBag.HasRelation = new Func<string, string, bool>(HasRelation);
-            ViewBag.IsRequested = new Func<string, string, bool>(IsRequested);
-            ViewBag.GetAllNofOfUser = new Func<string, IEnumerable<Nofitication>>(GetAllNofOfUser);
-            return View(blog);
-        }
 
         [HttpGet]
         public async Task<IActionResult> GetAllCommentsOfBlogs(int blogId, bool isDisplayAllCmt)
@@ -665,28 +675,168 @@ namespace Doan_Web_CK.Controllers
                 newHtml = newCommentsHtmlString
             });
         }
+        public async Task<IActionResult> Edit(int id)
+        {
+            var blog = await _blogRepository.GetByIdAsync(id);
+            if (blog == null)
+            {
+                return NotFound();
+            }
+
+            var categories = await _categoryRepository.GetAllAsync();
+            ViewBag.Categories = new SelectList(categories, "Id", "Name");
+            var user = await _userManager.GetUserAsync(User);
+            ViewBag.User = user;
+            ViewBag.GetUserName = new Func<string, string>(GetUserName);
+            ViewBag.HasRelation = new Func<string, string, bool>(HasRelation);
+            ViewBag.IsRequested = new Func<string, string, bool>(IsRequested);
+            ViewBag.GetAllNofOfUser = new Func<string, IEnumerable<Nofitication>>(GetAllNofOfUser);
+            return View(blog);
+        }
+
+        public async Task<IActionResult> DeleteNofitication(int nofId)
+        {
+
+            var finded = await _notifiticationRepository.GetByIdAsync(nofId);
+            var nofitications = await _notifiticationRepository.GetAllNotifitions();
+            var currentUser = await _userManager.GetUserAsync(User);
+            if (finded != null)
+            {
+                await _notifiticationRepository.DeleteAsync(nofId);
+            }
+            StringBuilder sb = new StringBuilder();
+            var filtered = nofitications.Where(p => p.RecieveAccountId == currentUser.Id).ToList();
+            foreach (var nof in filtered)
+            {
+                switch (nof.Type)
+                {
+                    case "Addfriend":
+                        if (IsRequested(nof.SenderAccountId, nof.RecieveAccountId) == true)
+                        {
+                            sb.Append("<div class=\"nofi_card\">");
+                            sb.Append("<p class=\"nofi_card_content\">");
+
+                            // Use string formatting for clarity and potential data validation
+                            sb.Append("<a href=\"/Profile/Index/" + nof.SenderAccountId + "\">" + GetUserName(nof.SenderAccountId) + "</a> " + nof.Content);
+                            sb.Append("<span class=\"nofi_card_date\"> ");
+                            sb.Append(nof.Date);
+                            sb.AppendLine("</span>");  // Add newline for proper formatting
+
+                            sb.Append("<div id=\"nofi_card_actions_");
+                            sb.Append(nof.Id);
+                            sb.Append("\" class=\"nofi_card_actions\">");
+
+                            sb.Append("<a onclick=\"handleAccept(");
+                            sb.Append(nof.SenderAccountId ?? "null");  // Handle null case for currentUser
+                            sb.Append(", ");
+                            sb.Append(nof.Id);
+                            sb.Append(")\" class=\"btn btn-outline-dark\">Accept</a>");
+
+                            sb.Append("<a onclick=\"handleDeny(");
+                            sb.Append(nof.SenderAccountId ?? "null");  // Handle null case for currentUser
+                            sb.Append(", ");
+                            sb.Append(nof.Id);
+                            sb.Append(")\" class=\"btn btn-outline-dark\">Deny</a>");
+
+                            sb.AppendLine("</div>");
+
+                            sb.Append("<div>");
+                            sb.Append("<a onclick = \"handleDeleteNofitication(" + @nof.Id + ")\">");
+                            sb.Append("<i class=\"close_icon bi bi-x\"></i>");
+                            sb.Append("</a>");
+                            sb.Append("</div>");
+                            sb.AppendLine("</div>");
+                        }
+                        break;
+                    case "Like":
+                        sb.Append("<div class=\"nofi_card\">");
+                        sb.Append("<p class=\"nofi_card_content\">");
+
+                        // Use string formatting for clarity and potential data validation
+                        sb.Append("<a href=\"/Profile/Index/" + nof.SenderAccountId + "\">" + GetUserName(nof.SenderAccountId) + "</a> " + nof.Content);
+
+                        // Append blog link with string formatting
+                        sb.AppendFormat(" <a asp-route-id=\"{0}\" asp-action=\"Details\" asp-controller=\"Blog\">Link to blog</a>", nof.BlogId);
+
+                        sb.Append("<span class=\"nofi_card_date\"> ");
+                        sb.Append(nof.Date);
+                        sb.AppendLine("</span>");  // Add newline for proper formatting
+
+                        sb.AppendLine("</p>");
+
+                        sb.Append("<div>");
+                        sb.Append("<a onclick = \"handleDeleteNofitication(" + @nof.Id + ")\">");
+                        sb.Append("<i class=\"close_icon bi bi-x\"></i>");
+                        sb.Append("</a>");
+                        sb.Append("</div>");
+                        sb.AppendLine("</div>");
+                        break;
+                    case "Comment":
+                        sb.Append("<div class=\"nofi_card\">");
+                        sb.Append("<p class=\"nofi_card_content\">");
+
+                        // Use string formatting for clarity and potential data validation
+
+                        sb.Append("<a href=\"/Profile/Index/" + nof.SenderAccountId + "\">" + GetUserName(nof.SenderAccountId) + "</a> " + nof.Content);
+
+                        // Append blog link with string formatting
+                        sb.AppendFormat(" <a asp-route-id=\"{0}\" asp-action=\"Details\" asp-controller=\"Blog\">Link to blog</a>", nof.BlogId);
+
+                        sb.Append("<span class=\"nofi_card_date\"> ");
+                        sb.Append(nof.Date);
+                        sb.AppendLine("</span>");  // Add newline for proper formatting
+
+                        sb.AppendLine("</p>");
+
+                        sb.Append("<div>");
+                        sb.Append("<a onclick = \"handleDeleteNofitication(" + @nof.Id + ")\">");
+                        sb.Append("<i class=\"close_icon bi bi-x\"></i>");
+                        sb.Append("</a>");
+                        sb.Append("</div>");
+                        sb.AppendLine("</div>");
+                        break;
+                    default:
+                        break;
+                }
+            }
+            string finalHtml = sb.ToString();
+            return Json(new
+            {
+                message = "success",
+                newHtml = finalHtml,
+            });
+        }
 
         [HttpPost]
         public async Task<IActionResult> Edit(Blog blog, IFormFile BlogImageUrl)
         {
+            var update = await _blogRepository.GetByIdAsync(blog.Id);
             if (BlogImageUrl == null)
             {
                 var categories = await _categoryRepository.GetAllAsync();
                 ViewBag.Categories = new SelectList(categories, "Id", "Name");
-                return View(blog);
+                return Json(new
+                {
+                    message = "failed"
+                });
             }
             else
             {
                 var user = await _userManager.GetUserAsync(User);
-                blog.IsAccepted = true;
-                blog.AccountId = user.Id;
-                blog.BlogImageUrl = await SaveImage(BlogImageUrl);
-                blog.PublishDate = DateTime.Now;
+                update.Title = blog.Title;
+                update.Content = blog.Content;
+                update.IsAccepted = true;
+                update.AccountId = user.Id;
+                update.BlogImageUrl = await SaveImage(BlogImageUrl);
+                update.PublishDate = DateTime.Now;
             }
 
-            await _blogRepository.UpdateAsync(blog);
+            await _blogRepository.UpdateAsync(update);
 
-            return RedirectToAction("Index");
+            return Json(new
+            {
+                message = "success"
+            });
         }
         public int GetBlogCommentsCount(int blogId)
         {
@@ -729,33 +879,6 @@ namespace Doan_Web_CK.Controllers
         public async Task<IActionResult> Add()
         {
             var categories = await _categoryRepository.GetAllAsync();
-            var sdCats = new List<string>
-            {
-                "Personal Stories",
-                "Travel Adventures",
-                "Food and Cooking",
-                "Health and Wellness",
-                "Technology and Gadgets",
-                "Fashion and Beauty", // Thời trang và làm đẹp
-                "DIY and Crafts", // Tự làm và nghệ thuật thủ công
-                "Parenting and Family", // Việc nuôi dạy con cái và gia đình
-                "Career and Professional Development", // Sự nghiệp và phát triển chuyên môn
-                "Literature and Writing", // Văn học và viết lách
-                "Environment and Sustainability", // Môi trường và bền vững
-                "Sports and Fitness", // Thể thao và thể dục
-                "Photography and Art", // Nhiếp ảnh và nghệ thuật
-                "Education and Learning", // Giáo dục và học hỏi
-                "Finance and Money Management" // Tài chính và quản lý tiền bạc
-            };
-
-            foreach (var cat in sdCats)
-            {
-                if (categories.Contains(cat) == false)
-                {
-
-                }
-            }
-
             ViewBag.Categories = new SelectList(categories, "Id", "Name");
 
 

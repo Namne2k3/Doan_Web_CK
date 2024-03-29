@@ -49,12 +49,20 @@ namespace Doan_Web_CK.Repository
 
         public async Task<IEnumerable<ApplicationUser>> GetAllAsync()
         {
-            return await _context.ApplicationUsers.ToListAsync();
+            return await _context.ApplicationUsers
+                .Include(x => x.Blogs)
+                .Include(x => x.Friendships)
+                .Include(x => x.Nofitications)
+                .ToListAsync();
         }
 
         public async Task<ApplicationUser> GetByIdAsync(string id)
         {
-            return await _context.ApplicationUsers.FindAsync(id);
+            return await _context.ApplicationUsers
+                .Include(x => x.Blogs)
+                .Include(x => x.Friendships)
+                .Include(x => x.Nofitications)
+                .SingleOrDefaultAsync(x => x.Id == id);
         }
 
         public async Task UpdateAsync(ApplicationUser account)

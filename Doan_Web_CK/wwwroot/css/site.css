@@ -2,7 +2,13 @@ html {
     font-size: 14px;
     scroll-behavior: smooth;
 }
+#update_success {
+    display: none;
+}
 
+#update_fail {
+    display: none;
+}
 @media (min-width: 768px) {
   html {
     font-size: 16px;
@@ -12,11 +18,19 @@ html {
     display: flex;
     padding: 8px;
     gap: 6px;
-    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     color: #fff;
     background-color: #535353;
     border-radius: 12px;
     margin-top: 8px;
+}
+.nofi_card .close_icon {
+    font-size: 24px;
+}
+.close_icon:hover {
+    cursor: pointer;
+    color: #ccc;
 }
 .nofi_card p {
     margin: 0;
@@ -326,6 +340,11 @@ body {
     color: #ccc;
     font-style: italic;
 }
+.BlogCard_Img {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 .blog_card {
     display: flex;
     flex-direction: column;
@@ -358,6 +377,7 @@ body {
     width: 25%;
 }
 .nav_container {
+    max-height: 100vh;
     display: flex;
 }
 img {

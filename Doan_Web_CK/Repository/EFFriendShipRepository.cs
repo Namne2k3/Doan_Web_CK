@@ -16,7 +16,10 @@ namespace Doan_Web_CK.Repository
 
         public async Task<IEnumerable<Friendship>> GetAllAsync()
         {
-            return await _context.Friendships.ToListAsync();
+            return await _context.Friendships
+                .Include(p => p.User)
+                .Include(p => p.Friend)
+                .ToListAsync();
         }
 
         public async Task UpdateAsync(Friendship friendship)

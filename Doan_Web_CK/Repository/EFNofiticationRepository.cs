@@ -17,19 +17,37 @@ namespace Doan_Web_CK.Repository
             await _context.SaveChangesAsync();
         }
 
-        public Task DeleteAsync(int id)
+        public async Task DeleteAsync(int id)
         {
-            throw new NotImplementedException();
+            var nof = await _context.Nofitications
+                .Include(p => p.Blog)
+                .Include(p => p.SenderAccount)
+                .Include(p => p.RecieveAccount)
+                .SingleOrDefaultAsync(p => p.Id == id);
+
+            if (nof != null)
+            {
+                _context.Nofitications.Remove(nof);
+                await _context.SaveChangesAsync();
+            }
         }
 
         public async Task<IEnumerable<Nofitication>> GetAllNotifitions()
         {
-            return await _context.Nofitications.ToListAsync();
+            return await _context.Nofitications
+                .Include(p => p.Blog)
+                .Include(p => p.SenderAccount)
+                .Include(p => p.RecieveAccount)
+                .ToListAsync();
         }
 
-        public Task<Nofitication> GetByIdAsync(int id)
+        public async Task<Nofitication> GetByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            return await _context.Nofitications
+                .Include(p => p.Blog)
+                .Include(p => p.SenderAccount)
+                .Include(p => p.RecieveAccount)
+                .SingleOrDefaultAsync(p => p.Id == id);
         }
 
         public Task UpdateAsync(Nofitication nofitication)

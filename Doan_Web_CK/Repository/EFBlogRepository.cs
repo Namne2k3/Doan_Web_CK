@@ -18,7 +18,7 @@ namespace Doan_Web_CK.Repository
         }
         public async Task AddLikeAsync(Blog blog, Like like)
         {
-            blog.Likes.Add(like);
+            blog?.Likes?.Add(like);
             await _context.SaveChangesAsync();
         }
 
@@ -30,7 +30,12 @@ namespace Doan_Web_CK.Repository
         }
         public async Task<IEnumerable<Blog>> GetAllAsync()
         {
-            return await _context.Blogs.ToListAsync();
+            return await _context.Blogs
+                .Include(x => x.Likes)
+                .Include(x => x.Comments)
+                .Include(x => x.Account)
+                .Include(x => x.Category)
+                .ToListAsync();
         }
         public Task DeleteCommentsAsync()
         {
@@ -39,7 +44,7 @@ namespace Doan_Web_CK.Repository
 
         public async Task DeleteLikeAsync(Blog blog, Like like)
         {
-            blog.Likes.Remove(like);
+            blog?.Likes?.Remove(like);
             await _context.SaveChangesAsync();
         }
         public async Task UpdateAsync(Blog blog)
@@ -54,12 +59,17 @@ namespace Doan_Web_CK.Repository
         }
         public async Task<Blog> GetByIdAsync(int? blogId)
         {
-            return await _context.Blogs.FindAsync(blogId);
+            return await _context.Blogs
+                .Include(x => x.Likes)
+                .Include(x => x.Comments)
+                .Include(x => x.Account)
+                .Include(x => x.Category)
+                .SingleOrDefaultAsync(x => x.Id == blogId);
         }
 
         public async Task AddCommentAsync(Blog blog, Comment comment)
         {
-            blog.Comments.Add(comment);
+            blog?.Comments?.Add(comment);
             await _context.SaveChangesAsync();
         }
     }

@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
 <body>
-    <div class="d-flex flex-column h-100">
+    <div class="d-flex flex-column vh-100">
         <div class="nav_container h-100">
             <div class="navIcons col-md-3 bg-dark justify-content-between d-flex flex-column" style="border-right: 1px solid #ccc">
                 @RenderSection("NavContent", required: false)
@@ -30,12 +30,12 @@
                 </main>
             </div>
         </div>
-        <footer class="border-top footer text-muted bg-dark">
-            <div class="container">
-                &copy; 2024 - Doan_Web_CK - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-            </div>
-        </footer>
     </div>
+    <footer class="border-top footer text-muted bg-dark">
+        <div class="container">
+            &copy; 2024 - Doan_Web_CK - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
@@ -61,6 +61,28 @@
             `
         }
     });
+
+    function handleDeleteNofitication(nofId) {
+        fetch(`/Blog/DeleteNofitication?nofId=${nofId}`)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                // xử lý dữ liệu trả về
+                console.log(data);
+                var element = document.getElementById("nav_item_nofitications_container")
+                if (element) {
+                    element.innerHTML = ''
+                    element.innerHTML = data.newHtml
+                }
+            })
+            .catch(error => {
+                console.error('There was a problem with the fetch operation:', error);
+            });
+    }
 
     function reloadAllNof(userId) {
         fetch(`/Profile/GetReloadNofs?userId=${userId}`)
@@ -93,6 +115,40 @@
             element.classList.add("hidden");
         }
     }
+
+    function editblog() {
+        event.preventDefault();
+        var formData = new FormData(document.getElementById("edit_form"));
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "/Blog/Edit", true);
+        xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest"); // Đảm bảo yêu cầu được nhận biết là AJAX
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+                if (xhr.status === 200) {
+                    var response = JSON.parse(xhr.responseText);
+                    if (response) {
+                        console.log("CHECK response >>> ", response)
+                        if (response.message == 'failed') {
+                           
+                            showElement("update_fail");
+                        } else {
+                            
+                            showElement("update_success");
+                            // Lấy thông tin về cổng của localhost hiện tại
+                            var port = window.location.port;
+
+                            // Chuyển hướng trang đến localhost với cổng hiện tại
+                            window.location.href = "https://localhost:" + port;
+                        }
+                    }
+                } else {
+                    // Xử lý lỗi
+                }
+            }
+        };
+        xhr.send(formData);
+    }
+
     function handleAccept(userId, nofId) {
         fetch(`/Profile/AcceptFriendRequest?userId=${userId}&nofId=${nofId}`)
             .then(response => {

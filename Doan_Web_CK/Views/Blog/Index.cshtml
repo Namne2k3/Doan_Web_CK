@@ -401,6 +401,11 @@
                                                     <a onclick="handleAccept('@currentUser?.Id', @nof.Id)" class="btn btn-outline-dark">Accept</a>
                                                     <a onclick="handleDeny('@currentUser?.Id', @nof.Id)" class="btn btn-outline-dark">Deny</a>
                                                 </div>
+                                                <div>
+                                                    <a onclick="handleDeleteNofitication(@nof.Id)">
+                                                        <i class="close_icon bi bi-x"></i>
+                                                    </a>
+                                                </div>
                                             </div>
                                         }
                                     
@@ -411,6 +416,11 @@
                                                 <a asp-action="Index" asp-controller="Profile" asp-route-id="@nof.SenderAccountId">@ViewBag.GetUserName(nof.SenderAccountId)</a> @nof.Content <a asp-route-id="@nof.BlogId" asp-action="Details" asp-controller="Blog">Link to blog</a>
                                                 <span class="nofi_card_date">@nof.Date</span>
                                             </p>
+                                            <div>
+                                                <a onclick="handleDeleteNofitication(@nof.Id)">
+                                                    <i class="close_icon bi bi-x"></i>
+                                                </a>
+                                            </div>
                                         </div>
                                         break;
                                     case "Like" :
@@ -419,6 +429,11 @@
                                                 <a asp-action="Index" asp-controller="Profile" asp-route-id="@nof.SenderAccountId">@ViewBag.GetUserName(nof.SenderAccountId)</a> @nof.Content <a asp-route-id="@nof.BlogId" asp-action="Details" asp-controller="Blog">Link to blog</a>
                                                 <span class="nofi_card_date">@nof.Date</span>
                                             </p>
+                                            <div>
+                                                <a onclick="handleDeleteNofitication(@nof.Id)">
+                                                    <i class="close_icon bi bi-x"></i>
+                                                </a>
+                                            </div>
                                         </div>
                                         break;
                                     default:
