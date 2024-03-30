@@ -708,15 +708,6 @@ namespace Doan_Web_CK.Controllers
             var user = await _accountRepository.GetByIdAsync(form_add_friend_userid);
             var friend = await _accountRepository.GetByIdAsync(form_add_friend_friendid);
             StringBuilder newHtml = new StringBuilder();
-            if (user.Friendships == null)
-            {
-                user.Friendships = new List<Friendship>();
-            }
-            if (friend.Friendships == null)
-            {
-                friend.Friendships = new List<Friendship>();
-            }
-
             var newFriendShip = new Friendship
             {
                 IsConfirmed = false,
@@ -788,14 +779,13 @@ namespace Doan_Web_CK.Controllers
                         if (IsRequested(nof.SenderAccountId, nof.RecieveAccountId) == true)
                         {
                             sb.Append("<div class=\"nofi_card\">");
-                            sb.Append("<p class=\"nofi_card_content\">");
+                            sb.Append("<div class=\"nofi_card_content\">");
 
                             // Use string formatting for clarity and potential data validation
                             sb.Append("<a href=\"/Profile/Index/" + nof.SenderAccountId + "\">" + GetUserName(nof.SenderAccountId) + "</a> " + nof.Content);
                             sb.Append("<span class=\"nofi_card_date\"> ");
                             sb.Append(nof.Date);
                             sb.AppendLine("</span>");  // Add newline for proper formatting
-
                             sb.Append("<div id=\"nofi_card_actions_");
                             sb.Append(nof.Id);
                             sb.Append("\" class=\"nofi_card_actions\">");
@@ -812,6 +802,7 @@ namespace Doan_Web_CK.Controllers
                             sb.Append(nof.Id);
                             sb.Append(")\" class=\"btn btn-outline-dark\">Deny</a>");
 
+                            sb.AppendLine("</div>");
                             sb.AppendLine("</div>");
 
                             sb.Append("<div>");

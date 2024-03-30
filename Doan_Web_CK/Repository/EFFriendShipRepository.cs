@@ -8,6 +8,7 @@ namespace Doan_Web_CK.Repository
         private readonly ApplicationDbContext _context;
         public EFFriendShipRepository(ApplicationDbContext context) { _context = context; }
 
+
         public async Task DeleteAsync(Friendship friendship)
         {
             _context.Friendships.Remove(friendship);
@@ -20,6 +21,14 @@ namespace Doan_Web_CK.Repository
                 .Include(p => p.User)
                 .Include(p => p.Friend)
                 .ToListAsync();
+        }
+
+        public async Task<Friendship> GetByIdAsync(int id)
+        {
+            return await _context.Friendships
+                                        .Include(p => p.User)
+                                        .Include(p => p.Friend)
+                                        .SingleOrDefaultAsync(p => p.Id == id);
         }
 
         public async Task UpdateAsync(Friendship friendship)

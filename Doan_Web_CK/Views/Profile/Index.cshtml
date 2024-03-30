@@ -1,7 +1,7 @@
-﻿@using Microsoft.AspNetCore.Identity
-@using Microsoft.AspNetCore.Mvc;
+﻿@using Microsoft.AspNetCore.Mvc;
 @using Microsoft.AspNetCore.Mvc.Rendering;
 
+@using Microsoft.AspNetCore.Identity
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
@@ -43,7 +43,32 @@
                         </a>
                     }
                 </div>
-                <p class="profile_date fst-italic">Date created: @account.DateCreated.ToShortDateString()</p
+                <p class="profile_date fst-italic">Date created: @account.DateCreated.ToShortDateString()</p>
+                <div id="profile_request_friend">
+                    @if ( currentUser.Id != account.Id )
+                    {
+                        if ( ViewBag.IsRequested(currentUser.Id, account.Id) == false )
+                        {
+                            if (ViewBag.IsFriend(currentUser.Id, account.Id) == true)
+                            {
+                                <div>
+                                    <a onclick="handleUnFriend('@currentUser.Id', '@account.Id')" class="btn btn-outline-light">Unfriend</a>
+                                </div>
+                            } else
+                            {
+                                
+                                <div>
+                                    <a onclick="handleAddFriendProfile('@currentUser.Id', '@account.Id')" class="btn btn-outline-light">Add friend</a>
+                                </div>
+                            }
+                        } else
+                        {
+                            <div>
+                                <a class="btn btn-outline-light disabled">Requested</a>
+                            </div>   
+                        }
+                    }
+                </div>
             </div>
         </div>
     </div>
@@ -62,14 +87,14 @@
             <partial name="_LoginPartial" />
         </div>
     } 
-    @if ( currentUser.Id == account.Id )
-    {
-        <h1>My Blogs</h1>
-    } else
-    {
-        <h1>Blogs</h1>
-    }
     <div class="blog_container">
+        @if ( currentUser.Id == account.Id )
+        {
+            <h1>My Blogs</h1>
+        } else
+        {
+            <h1>Blogs</h1>
+        }
         @if (blogList.Count != 0 )
         {
             @foreach (var item in blogList)
@@ -215,7 +240,7 @@
 
                                                 <div id="comments_actions_@comment.Id" class="comments_actions hidden">
                                                     <a onclick="handleEditToggleComment(@comment.Id)" class="btn btn-outline-light">Edit</a>
-                                                    <a class="btn btn-outline-light">Delete</a>
+                                                    <a onclick="handleDeleteBlog(@item.Id)" class="btn btn-outline-light">Delete</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -253,7 +278,7 @@
         </a>
         @if (SignInManager.IsSignedIn(User))
         {
-            <a asp-action="" id="navFriends" class="nav_item">
+            <a asp-action="Index" asp-controller="Friend" id="navFriends" class="nav_item">
                 <div class="navIcon text-center">
                     <i class="icon bi bi-people-fill"></i>
                 </div>
@@ -289,13 +314,13 @@
                                         if (ViewBag.IsRequested(nof.SenderAccountId, nof.RecieveAccountId) == true )
                                         {
                                             <div class="nofi_card">
-                                                <p class="nofi_card_content">
+                                                <div class="nofi_card_content">
                                                     <a asp-action="Index" asp-controller="Profile" asp-route-id="@nof.SenderAccountId">@ViewBag.GetUserName(nof.SenderAccountId)</a> @nof.Content
                                                     <span class="nofi_card_date">@nof.Date</span>
-                                                </p>
-                                                <div id="nofi_card_actions_@nof.Id" class="nofi_card_actions">
-                                                    <a onclick="handleAccept('@currentUser?.Id', @nof.Id)" class="btn btn-outline-dark">Accept</a>
-                                                    <a onclick="handleDeny('@currentUser?.Id', @nof.Id)" class="btn btn-outline-dark">Deny</a>
+                                                    <div id="nofi_card_actions_@nof.Id" class="nofi_card_actions">
+                                                        <a onclick="handleAccept('@currentUser?.Id', @nof.Id)" class="btn btn-outline-dark">Accept</a>
+                                                        <a onclick="handleDeny('@currentUser?.Id', @nof.Id)" class="btn btn-outline-dark">Deny</a>
+                                                    </div>
                                                 </div>
                                                 <div>
                                                     <a onclick="handleDeleteNofitication(@nof.Id)">
@@ -371,7 +396,51 @@
             `
         }
     });
-  
+
+    function handleAddFriendProfile(userId, friendId) {
+        
+        fetch(`/Profile/AddFriend?form_add_friend_userid=${userId}&form_add_friend_friendid=${friendId}`)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                // xử lý dữ liệu trả về
+                console.log(data);
+                var element = document.getElementById("profile_request_friend")
+                if (element) {
+                    element.innerHTML = ''
+                    element.innerHTML = data.newHtml
+                }
+            })
+            .catch(error => {
+                console.error('There was a problem with the fetch operation:', error);
+            });
+    }
+  function handleDeleteBlog(blogId) {
+        fetch(`/Blog/Delete?blogId=${blogId}`)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                // xử lý dữ liệu trả về
+                console.log(data);
+                var port = window.location.port;
+                if (window.location.href.indexOf("Profile") !== -1) { // Sử dụng indexOf() để kiểm tra chuỗi con
+                    window.location.href = "https://localhost:" + port + "/Profile";
+                } else {
+                    window.location.href = "https://localhost:" + port;
+                }
+            })
+            .catch(error => {
+                console.error('There was a problem with the fetch operation:', error);
+            });
+    }
     function handleAccept(userId, nofId) {
         fetch(`/Profile/AcceptFriendRequest?userId=${userId}&nofId=${nofId}`)
             .then(response => {

@@ -374,7 +374,7 @@
         </a>
         @if (SignInManager.IsSignedIn(User))
         {
-            <a asp-action="" id="navFriends" class="nav_item">
+            <a asp-action="Index" asp-controller="Friend" id="navFriends" class="nav_item">
                 <div class="navIcon text-center">
                     <i class="icon bi bi-people-fill"></i>
                 </div>
@@ -410,13 +410,13 @@
                                         if (ViewBag.IsRequested(nof.SenderAccountId, nof.RecieveAccountId) == true )
                                         {
                                             <div class="nofi_card">
-                                                <p class="nofi_card_content">
+                                                <div class="nofi_card_content">
                                                     <a asp-action="Index" asp-controller="Profile" asp-route-id="@nof.SenderAccountId">@ViewBag.GetUserName(nof.SenderAccountId)</a> @nof.Content
                                                     <span class="nofi_card_date">@nof.Date</span>
-                                                </p>
-                                                <div id="nofi_card_actions_@nof.Id" class="nofi_card_actions">
-                                                    <a onclick="handleAccept('@currentUser?.Id', @nof.Id)" class="btn btn-outline-dark">Accept</a>
-                                                    <a onclick="handleDeny('@currentUser?.Id', @nof.Id)" class="btn btn-outline-dark">Deny</a>
+                                                    <div id="nofi_card_actions_@nof.Id" class="nofi_card_actions">
+                                                        <a onclick="handleAccept('@currentUser?.Id', @nof.Id)" class="btn btn-outline-dark">Accept</a>
+                                                        <a onclick="handleDeny('@currentUser?.Id', @nof.Id)" class="btn btn-outline-dark">Deny</a>
+                                                    </div>
                                                 </div>
                                                 <div>
                                                     <a onclick="handleDeleteNofitication(@nof.Id)">

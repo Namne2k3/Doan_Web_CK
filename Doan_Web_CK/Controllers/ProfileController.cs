@@ -198,30 +198,30 @@ namespace Doan_Web_CK.Controllers
                         if (IsRequested(nof.SenderAccountId, nof.RecieveAccountId) == true)
                         {
                             sb.Append("<div class=\"nofi_card\">");
-                            sb.Append("<p class=\"nofi_card_content\">");
+                            sb.Append("<div class=\"nofi_card_content\">");
 
                             // Use string formatting for clarity and potential data validation
                             sb.Append("<a href=\"/Profile/Index/" + nof.SenderAccountId + "\">" + GetUserName(nof.SenderAccountId) + "</a> " + nof.Content);
                             sb.Append("<span class=\"nofi_card_date\"> ");
                             sb.Append(nof.Date);
                             sb.AppendLine("</span>");  // Add newline for proper formatting
-
                             sb.Append("<div id=\"nofi_card_actions_");
                             sb.Append(nof.Id);
                             sb.Append("\" class=\"nofi_card_actions\">");
 
                             sb.Append("<a onclick=\"handleAccept(");
-                            sb.Append(user?.Id ?? "null");  // Handle null case for currentUser
+                            sb.Append(nof.SenderAccountId ?? "null");  // Handle null case for currentUser
                             sb.Append(", ");
                             sb.Append(nof.Id);
                             sb.Append(")\" class=\"btn btn-outline-dark\">Accept</a>");
 
                             sb.Append("<a onclick=\"handleDeny(");
-                            sb.Append(user?.Id ?? "null");  // Handle null case for currentUser
+                            sb.Append(nof.SenderAccountId ?? "null");  // Handle null case for currentUser
                             sb.Append(", ");
                             sb.Append(nof.Id);
                             sb.Append(")\" class=\"btn btn-outline-dark\">Deny</a>");
 
+                            sb.AppendLine("</div>");
                             sb.AppendLine("</div>");
 
                             sb.Append("<div>");
@@ -291,6 +291,63 @@ namespace Doan_Web_CK.Controllers
                 newHtml = finalHtml,
             });
         }
+        public async Task<bool> IsFriendAsync(string userId, string friendId)
+        {
+            var friendship = await _friendShipRepository.GetAllAsync();
+            var finded = friendship.SingleOrDefault(p => p.UserId == userId || p.FriendId == userId && p.UserId == friendId || p.FriendId == friendId);
+            if (finded != null && finded.IsConfirmed == true)
+            {
+                return true;
+            }
+            return false;
+        }
+        public bool IsFriend(string userId, string friendId)
+        {
+            var task = IsFriendAsync(userId, friendId);
+            task.Wait();
+            return task.Result;
+        }
+        public async Task<IActionResult> AddFriend(string form_add_friend_userid, string form_add_friend_friendid)
+        {
+            var user = await _accountRepository.GetByIdAsync(form_add_friend_userid);
+            var friend = await _accountRepository.GetByIdAsync(form_add_friend_friendid);
+            StringBuilder newHtml = new StringBuilder();
+            var newFriendShip = new Friendship
+            {
+                IsConfirmed = false,
+                UserId = user.Id,
+                FriendId = friend.Id,
+            };
+            await _accountRepository.AddFriendShipAsync(user, newFriendShip);
+            //await _accountRepository.AddFriendShipAsync(friend, newFriendShip);
+
+            var nofitication = new Nofitication
+            {
+                SenderAccountId = user.Id,
+                RecieveAccountId = friend.Id,
+                Type = "Addfriend",
+                Date = DateTime.Now,
+                Content = "has sent a friend request"
+            };
+
+            await _accountRepository.AddNofiticationAsync(friend, nofitication);
+
+            //< div >
+            //    < a class="btn btn-outline-light disabled">Requested</a>
+            //</div>
+
+            newHtml.Append("<div>");
+            newHtml.Append("<a class=\"btn btn-outline-light disabled\">Requested</a>");
+            newHtml.Append("</div>");
+
+            string newCommentsHtmlString = newHtml.ToString();
+            return Json(new
+            {
+                newFriendShip = newFriendShip.ToString(),
+                newHtml = newCommentsHtmlString
+            });
+        }
+
         [HttpGet]
         public async Task<IActionResult> AcceptFriendRequest(string userId, int nofId)
         {
@@ -318,6 +375,7 @@ namespace Doan_Web_CK.Controllers
             });
         }
         public async Task<IActionResult> Index(string id)
+
         {
             var user = await _userManager.GetUserAsync(User);
             var account = await _accountRepository.GetByIdAsync(user.Id);
@@ -343,6 +401,7 @@ namespace Doan_Web_CK.Controllers
             ViewBag.GetBlogCommentsCount = new Func<int, int>(GetBlogCommentsCount);
             ViewBag.IsRequested = new Func<string, string, bool>(IsRequested);
             ViewBag.GetAllNofOfUser = new Func<string, IEnumerable<Nofitication>>(GetAllNofOfUser);
+            ViewBag.IsFriend = new Func<string, string, bool>(IsFriend);
             return View();
         }
         public async Task<bool> IsRequestedAsync(string userId, string friendId)
