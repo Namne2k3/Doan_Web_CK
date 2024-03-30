@@ -25,7 +25,7 @@
                 }
             </div>
             <div class="body_section col-md-9 text-white" style="background-color: #212529">
-                <main role="main" class="pb-3 m-4">
+                <main role="main" class="pb-3">
                     @RenderBody()
                 </main>
             </div>
@@ -283,6 +283,42 @@
                 console.error('There was a problem with the fetch operation:', error);
             });
     }
+
+    function handleUnFriend(userId, friendId, itemId) {
+        fetch(`/Friend/UnFriend?userId=${userId}&friendId=${friendId}`,)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                // xử lý dữ liệu trả về
+                console.log(data);
+                var elementFriendIndex = document.getElementById("friend_card_actions_"+itemId)
+                var elementProfileIndex = document.getElementById("profile_request_friend")
+                var elementBLogIndex = document.getElementById("right_click_menu_container_"+itemId)
+                if (elementBLogIndex) {
+                    elementBLogIndex.innerHTML = ''
+                    elementBLogIndex.innerHTML = data.sbBlogIndex
+                }
+                if (elementProfileIndex) {
+                    elementProfileIndex.innerHTML = ''
+                    elementProfileIndex.innerHTML = data.sbProfile
+                }
+                if (elementFriendIndex) {
+                    elementFriendIndex.innerHTML = ''
+                    elementFriendIndex.innerHTML = data.sbFriendIndex
+                    showElement("friend_card_status_"+itemId)
+                }
+
+
+            })
+            .catch(error => {
+                console.error('There was a problem with the fetch operation:', error);
+            });
+    }
+
     function handleAddFriend(userId, blogId) {
         console.log(userId.trim());
         console.log(blogId);
@@ -318,7 +354,6 @@
         } else {
             element.classList.add("hidden")
         }
-
     }
     function handleShareBlog(id) {
         event.preventDefault();

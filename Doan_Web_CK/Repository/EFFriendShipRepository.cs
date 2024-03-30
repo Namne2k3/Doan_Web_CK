@@ -9,8 +9,9 @@ namespace Doan_Web_CK.Repository
         public EFFriendShipRepository(ApplicationDbContext context) { _context = context; }
 
 
-        public async Task DeleteAsync(Friendship friendship)
+        public async Task DeleteAsync(int id)
         {
+            var friendship = await _context.Friendships.SingleOrDefaultAsync(p => p.Id == id);
             _context.Friendships.Remove(friendship);
             await _context.SaveChangesAsync();
         }

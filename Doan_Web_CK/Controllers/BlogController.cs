@@ -229,6 +229,7 @@ namespace Doan_Web_CK.Controllers
             ViewBag.IsRequested = new Func<string, string, bool>(IsRequested);
             ViewBag.GetAllNofOfUser = new Func<string, IEnumerable<Nofitication>>(GetAllNofOfUser);
             ViewBag.HasRelation = new Func<string, string, bool>(HasRelation);
+            ViewBag.IsFriend = new Func<string, string, bool>(IsFriend);
             if (currentUser != null)
             {
                 ViewBag.MyBlogs = blogList.Where(p => p.AccountId == currentUser.Id);
@@ -790,17 +791,11 @@ namespace Doan_Web_CK.Controllers
                             sb.Append(nof.Id);
                             sb.Append("\" class=\"nofi_card_actions\">");
 
-                            sb.Append("<a onclick=\"handleAccept(");
-                            sb.Append(nof.SenderAccountId ?? "null");  // Handle null case for currentUser
-                            sb.Append(", ");
-                            sb.Append(nof.Id);
-                            sb.Append(")\" class=\"btn btn-outline-dark\">Accept</a>");
+                            //<a onclick = "handleAccept('@currentUser?.Id', @nof.Id)" class="btn btn-outline-dark">Accept</a>
+                            //<a onclick = "handleDeny('@currentUser?.Id', @nof.Id)" class="btn btn-outline-dark">Deny</a>
+                            sb.Append("<a onclick=\"handleAccept('" + nof.SenderAccountId + "'," + nof.Id + ")\" class=\"btn btn-outline-dark\">Accept</a>");
+                            sb.Append("<a onclick=\"handleDeny('" + nof.SenderAccountId + "'," + nof.Id + ")\" class=\"btn btn-outline-dark\">Deny</a>");
 
-                            sb.Append("<a onclick=\"handleDeny(");
-                            sb.Append(nof.SenderAccountId ?? "null");  // Handle null case for currentUser
-                            sb.Append(", ");
-                            sb.Append(nof.Id);
-                            sb.Append(")\" class=\"btn btn-outline-dark\">Deny</a>");
 
                             sb.AppendLine("</div>");
                             sb.AppendLine("</div>");
@@ -871,7 +866,22 @@ namespace Doan_Web_CK.Controllers
                 newHtml = finalHtml,
             });
         }
-
+        public async Task<bool> IsFriendAsync(string userId, string friendId)
+        {
+            var friendship = await _friendShipRepository.GetAllAsync();
+            var finded = friendship.SingleOrDefault(p => p.UserId == userId || p.FriendId == userId && p.UserId == friendId || p.FriendId == friendId);
+            if (finded != null && finded.IsConfirmed == true)
+            {
+                return true;
+            }
+            return false;
+        }
+        public bool IsFriend(string userId, string friendId)
+        {
+            var task = IsFriendAsync(userId, friendId);
+            task.Wait();
+            return task.Result;
+        }
         [HttpPost]
         public async Task<IActionResult> Edit(Blog blog, IFormFile BlogImageUrl)
         {

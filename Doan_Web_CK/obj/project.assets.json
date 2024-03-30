@@ -8573,11 +8573,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK_backup\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK.csproj",
+      "projectUniqueName": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK.csproj",
       "projectName": "Doan_Web_CK",
-      "projectPath": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK_backup\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK.csproj",
+      "projectPath": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK.csproj",
       "packagesPath": "C:\\Users\\nhpn2\\.nuget\\packages\\",
-      "outputPath": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK_backup\\Doan_Web_CK\\Doan_Web_CK\\obj\\",
+      "outputPath": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "D:\\Microsoft Visual Studio\\2022\\Shared\\NuGetPackages"

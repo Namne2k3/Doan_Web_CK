@@ -2,6 +2,7 @@
 using Doan_Web_CK.Repository;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System.Text;
 
 namespace Doan_Web_CK.Controllers
 {
@@ -19,6 +20,62 @@ namespace Doan_Web_CK.Controllers
             _userManager = userManager;
             _notificationRepository = notificationRepository;
         }
+
+        public async Task<IActionResult> UnFriend(string userId, string friendId)
+        {
+            var currnentUser = await _userManager.GetUserAsync(User);
+            var friendShips = await _friendShipRepository.GetAllAsync();
+            var finded = friendShips.SingleOrDefault(p => p.UserId == userId || p.UserId == friendId && p.FriendId == userId || p.FriendId == friendId);
+            StringBuilder sbProfile = new StringBuilder();
+            StringBuilder sbBlogIndex = new StringBuilder();
+
+            StringBuilder sbFriendIndex = new StringBuilder();
+            if (finded != null && finded.IsConfirmed == true)
+            {
+                await _friendShipRepository.DeleteAsync(finded.Id);
+                //friendShips = await _friendShipRepository.GetAllAsync();
+                foreach (var f in friendShips)
+                {
+                    if (currnentUser.Id == userId)
+                    {
+                        sbFriendIndex.Append("<a class=\"btn btn-outline-light\" href=\"/Profile/Index/" + friendId + "\" >View Profile</a>");
+                    }
+                    else
+                    {
+                        sbFriendIndex.Append("<a class=\"btn btn-dark\" href=\"/Profile/Index/" + userId + "\" >View Profile</a>");
+                    }
+                    sbFriendIndex.Append("<a class=\"btn btn-outline-light disabled\">Add friend</a>");
+                }
+
+                //<a asp - action = "Index" asp - controller = "Profile" asp - route - id = "@item.AccountId" class="btn btn-dark">View Profile</a>
+                //<a onclick = "handleAddFriend('@currentUser.Id', '@item.Id')" class="btn btn-dark">Add Friend</a>
+                sbBlogIndex.Append("<a class=\"btn btn-dark\" href=\"/Profile/Index/" + friendId + "\" >View Profile</a>");
+                sbBlogIndex.Append("<a class=\"btn btn-dark disabled\">Add friend</a>");
+
+                sbProfile.Append("<div>");
+                sbProfile.Append("<a class=\"btn btn-outline-light disabled\">Add friend</a>");
+                sbProfile.Append("</div>");
+
+
+
+
+                return Json(new
+                {
+                    message = "success",
+                    sbProfile = sbProfile.ToString(),
+                    sbBlogIndex = sbBlogIndex.ToString(),
+                    sbFriendIndex = sbFriendIndex.ToString()
+                });
+            }
+            else
+            {
+                return Json(new
+                {
+                    message = "failed"
+                });
+            }
+        }
+
         public async Task<IActionResult> Index()
         {
             var currentUser = await _userManager.GetUserAsync(User);

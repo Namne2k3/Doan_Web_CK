@@ -39,7 +39,7 @@
                                     <input name="blog_newest" class="form-check-input" type="checkbox" id="newestBlogCb">
                                     <label class="form-check-label" for="newestBlogCb">Newest Blog</label>
                                 </div>
-                                <button class="btn btn-outline-light">Search</button>
+                                <button class="btn_search btn btn-outline-light">Search</button>
                             </div>
                         </form>
                     </div>
@@ -128,18 +128,22 @@
                                                         <a asp-action="Index" asp-controller="Profile" asp-route-id="@item.AccountId" class="btn btn-dark">View Profile</a>
                                                         @if ( UserManager.GetUserId(User) != item.AccountId)
                                                         {
-                                                            if (ViewBag.HasRelation(UserManager.GetUserId(User), item.AccountId))
+                                                            @if (ViewBag.IsRequested(UserManager.GetUserId(User), item.AccountId) == false)
                                                             {
-                                                                @if (ViewBag.IsRequested(UserManager.GetUserId(User), item.AccountId) == true)
+                                                                @if (ViewBag.IsFriend(UserManager.GetUserId(User), item.AccountId) == true)
                                                                 {
-                                                                    <a onclick=" handleAddFriend(' @item.AccountId', @item.Id) " class="btn btn-dark disabled">Requested</a>
+                                                                    <a onclick="handleUnFriend('@currentUser.Id', '@item.AccountId', @item.Id)" class="btn btn-dark">Unfriend</a>
+                                                                }
+                                                                else
+                                                                {
+                                                                    <a onclick="handleAddFriend('@currentUser.Id', '@item.Id')" class="btn btn-dark">Add Friend</a>
                                                                 }
                                                             }
                                                             else
                                                             {
-                                                                <a onclick=" handleAddFriend(' @item.AccountId', @item.Id) " class="btn btn-dark">Add Friend</a>
+                                                                <a class="btn btn-dark disabled">Requested</a>
                                                             }
-                                                        }    
+                                                        }
                                                     </div>
 
                                                     <form hidden id="form_add_friend_@item.Id">

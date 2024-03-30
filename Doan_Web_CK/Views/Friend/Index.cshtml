@@ -11,37 +11,60 @@
 
 <h1>Friends</h1>
 <div class="body_container">
-    <div class="friends_contailer">
+    <div class="friends_container">
         @if (currentUser != null )
         {
             if (currentUser.Friendships != null || currentUser.Friendships.Count != 0 )
             {
                 foreach (var f in Model)
                 {
-                    <div class="friend_card">
-                        <div class="friend_card_img_container">
-                            @if ( f.UserId == currentUser.Id )
-                            {
-                                <img class="friend_card_img" src="@f.Friend?.ImageUrl" />
-                            } else
-                            {
-                                <img class="friend_card_img" src="@f.User?.ImageUrl" />
-                            }
-                        </div>
+                    if ( f.IsConfirmed == true )
+                    {
+                        <div class="friend_card">
+                            <div class="friend_card_img_container">
+                                @if ( f.UserId == currentUser.Id )
+                                {
+                                    <img class="friend_card_img" src="@f.Friend?.ImageUrl" />
+                                } else
+                                {
+                                    <img class="friend_card_img" src="@f.User?.ImageUrl" />
+                                }
+                            </div>
 
-                        <div class="friend_card_info_container">
-                            @if (f.UserId == currentUser.Id)
-                            {
-                                <a class="friend_card_name" asp-action="Index" asp-controller="Profile" asp-route-id="@f.Friend.Id">@f.Friend.UserName</a>
-                                <p class="friend_card_date">Date created: @f.Friend.DateCreated</p>
-                            }
-                            else
-                            {
-                                <a class="friend_card_name" asp-action="Index" asp-controller="Profile" asp-route-id="@f.User?.Id">@f.User?.UserName</a>
-                                <p class="friend_card_date">Date created: @f.User?.DateCreated</p>
-                            }
+                            <div class="friend_card_info_container">
+                                @if (f.UserId == currentUser.Id)
+                                {
+                                    <a class="friend_card_name" asp-action="Index" asp-controller="Profile" asp-route-id="@f.Friend.Id">@f.Friend.UserName</a>
+                                    <p class="friend_card_date">Date created: @f.Friend.DateCreated</p>
+                                }
+                                else
+                                {
+                                    <a class="friend_card_name" asp-action="Index" asp-controller="Profile" asp-route-id="@f.User?.Id">@f.User?.UserName</a>
+                                    <p class="friend_card_date">Date created: @f.User?.DateCreated</p>
+                                }
+                                <div id="friend_card_actions_@f.Id" class="friend_card_actions">
+                                    @if (f.UserId == currentUser.Id)
+                                    {
+                                        <a class="btn btn-outline-light" asp-action="Index" asp-controller="Profile" asp-route-id="@f.Friend.Id">View Profile</a>
+                                        <a onclick="handleUnFriend('@f.UserId','@f.FriendId', @f.Id)" class="btn btn-outline-light">Unfriend</a>
+                                    }
+                                    else
+                                    {
+                                        <a class="btn btn-outline-light" asp-action="Index" asp-controller="Profile" asp-route-id="@f.User.Id">View Profile</a>
+                                        <a onclick="handleUnFriend('@f.UserId','@f.FriendId', @f.Id)" class="btn btn-outline-light">Unfriend</a>
+                                    }
+                                </div>
+                            </div>
                         </div>
-                    </div>
+                        <div id="friend_card_status_@f.Id" class="hidden friend_card_status">
+                            <div class="friend_card_status_success bg-success">
+                                You have Unfrieneded
+                            </div>
+                            <div class="friend_card_status_failed bg-danger">
+                                Something went wrong
+                            </div>
+                        </div>
+                    }
                 }
             }
         }

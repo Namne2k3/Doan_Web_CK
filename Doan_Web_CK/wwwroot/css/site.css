@@ -2,6 +2,9 @@ html {
     font-size: 14px;
     scroll-behavior: smooth;
 }
+main {
+    margin: 1.5rem;
+}
 #update_fail_blog,
 #update_success_blod {
     display: none
@@ -10,19 +13,29 @@ html {
 #update_success {
     display: none;
 }
-.friends_contailer {
+.friend_card_status_success {
+    padding: 12px;
+    border-radius: 12px;
+}
+.friend_card_status_failed {
+    padding: 12px;
+    border-radius: 12px;
+}
+.friends_container {
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
     gap: 12px;
     max-height: 100vh;
     overflow-y: scroll;
     scrollbar-width: none;
-    padding: 16px;
+    margin-top: 12px;
 }
 .friend_card {
+    flex: 1;
     display: flex;
     gap: 16px;
     padding: 12px;
+    border: 1px solid #ccc;
     border-radius: 12px;
 }
 .friend_card_img_container {
@@ -40,6 +53,7 @@ html {
 .friend_card_info_container {
     display: flex;
     flex-direction: column;
+    justify-content: space-around;
 }
 .friend_card_name {
     color: white;
@@ -55,6 +69,11 @@ html {
 .friend_card_date {
     font-style: italic;
     color: #ccc;
+}
+.friend_card_actions {
+    display: flex;
+    gap: 16px;
+    align-items: center;
 }
 @media (min-width: 768px) {
     html {
@@ -292,7 +311,6 @@ body {
     display: flex;
     gap: 8px;
 }
-
 .action_container i {
     margin-top: 2px;
 }
@@ -516,10 +534,10 @@ input {
 }
 .right_click_menu a {
     font-size: 12px;
-
 }
-    @media (max-width: 1065px) {
-        .recently_post_container {
+
+@media (max-width: 1065px) {
+    .recently_post_container {
         display: none!important;
     }
     .body_container {
@@ -553,10 +571,29 @@ input {
     }
 }
 @media (max-width: 550px) {
+    .form-select {
+        font-size: 10px;
+    }
+    .bi-filter {
+        font-size: 20px!important;
+    }
+    .input-group label {
+        font-size: 10px;
+    }
+    .form-check-label {
+        font-size: 9px!important;
+    }
+    .btn_search {
+        font-size: 9px!important;
+    }
+    .blog_card_author_img {
+        width: 45px;
+        height: 45px;
+    }
     .actions_ud {
-        padding: 0!important;
-        right: -10px!important;
-        bottom: 55px!important;
+        padding: 0 !important;
+        right: -10px !important;
+        bottom: 55px !important;
         top: -40px !important;
     }
     .nav_item_nofitications {
@@ -565,8 +602,8 @@ input {
         width: 200px;
     }
     .user_photo_comment_container {
-        min-width: 45px;
-        min-height: 45px;
+        width: 45px;
+        height: 45px;
     }
     .profile_header {
         flex-direction: column;
@@ -610,6 +647,33 @@ input {
         width: 75px;
         height: 75px;
     }
+    .friends_container {
+        padding: 0;
+    }
+    .friend_card {
+        padding: 12px;
+    }
+    .friend_card_img_container {
+        width: 75px;
+        height: 75px;
+    }
+    .friend_card_name {
+        font-size: 16px;
+    }
+    .friend_card_date {
+        font-size: 12px;
+    }
+    .friend_card_actions a {
+        font-size: 12px;
+    }
+}
+@media (max-width: 400px) {
+    .action_container a p {
+        display: none;
+    }
+    .action_container label p:first-child {
+        display: none;
+    }
 }
 @media (max-width: 390px) {
     .nav_item_nofitications {
@@ -617,10 +681,37 @@ input {
         left: -50px !important;
         width: 200px;
     }
+    .friend_card_img_container {
+        width: 35px;
+        height: 35px;
+    }
+    .blog_card_img_container {
+        width: 40px!important;
+        height: 40px!important;
+    }
+    .actions_ud a {
+        font-size: 12px;
+    }
+    .actions_ud {
+        margin-right: 16px;
+    }
 }
 @media (max-width: 300px) {
+    main {
+        margin: 12px !important;
+    }
     .icon {
         font-size: 22px;
+    }
+    .blog_card {
+        padding: 8px !important;
+    }
+    .comment_container input {
+        font-size: 10px !important;
+    }
+    .user_photo_comment_container {
+        width: 30px;
+        height: 30px;
     }
     .nav_item_nofitications {
         top: 100% !important;

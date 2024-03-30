@@ -165,7 +165,7 @@ namespace Doan_Web_CK.Controllers
             StringBuilder newHtml = new StringBuilder();
             if (finded != null)
             {
-                await _friendShipRepository.DeleteAsync(finded);
+                await _friendShipRepository.DeleteAsync(finded.Id);
                 //< a onclick = "handleAccept(' @currentUser?.Id ', @nof.Id)" class="btn btn-outline-dark">Accept</a>
                 //<a class="btn btn-outline-dark">Deny</a>
                 newHtml.Append("<a class=\"disabled btn btn-outline-dark\">Denied</a>");
@@ -209,17 +209,8 @@ namespace Doan_Web_CK.Controllers
                             sb.Append(nof.Id);
                             sb.Append("\" class=\"nofi_card_actions\">");
 
-                            sb.Append("<a onclick=\"handleAccept(");
-                            sb.Append(nof.SenderAccountId ?? "null");  // Handle null case for currentUser
-                            sb.Append(", ");
-                            sb.Append(nof.Id);
-                            sb.Append(")\" class=\"btn btn-outline-dark\">Accept</a>");
-
-                            sb.Append("<a onclick=\"handleDeny(");
-                            sb.Append(nof.SenderAccountId ?? "null");  // Handle null case for currentUser
-                            sb.Append(", ");
-                            sb.Append(nof.Id);
-                            sb.Append(")\" class=\"btn btn-outline-dark\">Deny</a>");
+                            sb.Append("<a onclick=\"handleAccept('" + nof.SenderAccountId + "'," + nof.Id + ")\" class=\"btn btn-outline-dark\">Accept</a>");
+                            sb.Append("<a onclick=\"handleDeny('" + nof.SenderAccountId + "'," + nof.Id + ")\" class=\"btn btn-outline-dark\">Deny</a>");
 
                             sb.AppendLine("</div>");
                             sb.AppendLine("</div>");
