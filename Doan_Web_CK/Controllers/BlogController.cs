@@ -376,6 +376,7 @@ namespace Doan_Web_CK.Controllers
             {
                 author.Nofitications = new List<Nofitication>();
             }
+
             var nofitication = new Nofitication
             {
                 BlogId = authorBlog.Id,
@@ -762,16 +763,12 @@ namespace Doan_Web_CK.Controllers
 
         public async Task<IActionResult> DeleteNofitication(int nofId)
         {
-
-            var finded = await _notifiticationRepository.GetByIdAsync(nofId);
-            var nofitications = await _notifiticationRepository.GetAllNotifitions();
             var currentUser = await _userManager.GetUserAsync(User);
-            if (finded != null)
-            {
-                await _notifiticationRepository.DeleteAsync(nofId);
-            }
+            await _notifiticationRepository.DeleteAsync(nofId);
+
             StringBuilder sb = new StringBuilder();
-            var filtered = nofitications.Where(p => p.RecieveAccountId == currentUser.Id).ToList();
+            var nofitications = await _notifiticationRepository.GetAllNotifitions();
+            var filtered = nofitications.Where(p => p.RecieveAccountId == currentUser.Id).OrderByDescending(p => p.Date).ToList();
             foreach (var nof in filtered)
             {
                 switch (nof.Type)
@@ -793,8 +790,8 @@ namespace Doan_Web_CK.Controllers
 
                             //<a onclick = "handleAccept('@currentUser?.Id', @nof.Id)" class="btn btn-outline-dark">Accept</a>
                             //<a onclick = "handleDeny('@currentUser?.Id', @nof.Id)" class="btn btn-outline-dark">Deny</a>
-                            sb.Append("<a onclick=\"handleAccept('" + nof.SenderAccountId + "'," + nof.Id + ")\" class=\"btn btn-outline-dark\">Accept</a>");
-                            sb.Append("<a onclick=\"handleDeny('" + nof.SenderAccountId + "'," + nof.Id + ")\" class=\"btn btn-outline-dark\">Deny</a>");
+                            sb.Append("<a onclick=\"handleAccept('" + currentUser.Id + "'," + nof.Id + ")\" class=\"btn btn-outline-dark\">Accept</a>");
+                            sb.Append("<a onclick=\"handleDeny('" + currentUser.Id + "'," + nof.Id + ")\" class=\"btn btn-outline-dark\">Deny</a>");
 
 
                             sb.AppendLine("</div>");
@@ -816,7 +813,7 @@ namespace Doan_Web_CK.Controllers
                         sb.Append("<a href=\"/Profile/Index/" + nof.SenderAccountId + "\">" + GetUserName(nof.SenderAccountId) + "</a> " + nof.Content);
 
                         // Append blog link with string formatting
-                        sb.AppendFormat(" <a asp-route-id=\"{0}\" asp-action=\"Details\" asp-controller=\"Blog\">Link to blog</a>", nof.BlogId);
+                        sb.AppendFormat(" <a href=\"/Blog/Details/{0}\">Link to blog</a>", nof.BlogId);
 
                         sb.Append("<span class=\"nofi_card_date\"> ");
                         sb.Append(nof.Date);
@@ -840,7 +837,30 @@ namespace Doan_Web_CK.Controllers
                         sb.Append("<a href=\"/Profile/Index/" + nof.SenderAccountId + "\">" + GetUserName(nof.SenderAccountId) + "</a> " + nof.Content);
 
                         // Append blog link with string formatting
-                        sb.AppendFormat(" <a asp-route-id=\"{0}\" asp-action=\"Details\" asp-controller=\"Blog\">Link to blog</a>", nof.BlogId);
+                        sb.AppendFormat(" <a href=\"/Blog/Details/{0}\">Link to blog</a>", nof.BlogId);
+
+                        sb.Append("<span class=\"nofi_card_date\"> ");
+                        sb.Append(nof.Date);
+                        sb.AppendLine("</span>");  // Add newline for proper formatting
+
+                        sb.AppendLine("</p>");
+
+                        sb.Append("<div>");
+                        sb.Append("<a onclick = \"handleDeleteNofitication(" + @nof.Id + ")\">");
+                        sb.Append("<i class=\"close_icon bi bi-x\"></i>");
+                        sb.Append("</a>");
+                        sb.Append("</div>");
+                        sb.AppendLine("</div>");
+                        break;
+                    case "Share":
+                        sb.Append("<div class=\"nofi_card\">");
+                        sb.Append("<p class=\"nofi_card_content\">");
+
+                        // Use string formatting for clarity and potential data validation
+                        sb.Append("<a href=\"/Profile/Index/" + nof.SenderAccountId + "\">" + GetUserName(nof.SenderAccountId) + "</a> " + nof.Content);
+
+                        // Append blog link with string formatting
+                        sb.AppendFormat(" <a href=\"/Blog/Details/{0}\">Link to blog</a>", nof.BlogId);
 
                         sb.Append("<span class=\"nofi_card_date\"> ");
                         sb.Append(nof.Date);

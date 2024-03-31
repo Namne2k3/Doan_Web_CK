@@ -17,12 +17,24 @@
       "PackagePath": "staticwebassets\\images\\10-VHTT-1009463.jpg"
     },
     {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\images\\2024-cdc-issued-alert-u-791532-5624-8782-1711775510.png",
+      "PackagePath": "staticwebassets\\images\\2024-cdc-issued-alert-u-791532-5624-8782-1711775510.png"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\images\\20240326-21-1375991-l-jpeg-171-3190-7304-1711771395.jpg",
+      "PackagePath": "staticwebassets\\images\\20240326-21-1375991-l-jpeg-171-3190-7304-1711771395.jpg"
+    },
+    {
       "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\images\\E4NXNZtVkAUQTP1.jpg",
       "PackagePath": "staticwebassets\\images\\E4NXNZtVkAUQTP1.jpg"
     },
     {
       "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\images\\MSI-Bravo-15-Ryzen-5-5600H-RX-5500M-02.jpg",
       "PackagePath": "staticwebassets\\images\\MSI-Bravo-15-Ryzen-5-5600H-RX-5500M-02.jpg"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\images\\ND-02-VISITA-ENDRICK-PRESIDENT-6864-8406-1711703356.jpg",
+      "PackagePath": "staticwebassets\\images\\ND-02-VISITA-ENDRICK-PRESIDENT-6864-8406-1711703356.jpg"
     },
     {
       "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\images\\PhieuDangKyDeTai_2.jpg",
@@ -37,8 +49,16 @@
       "PackagePath": "staticwebassets\\images\\Screenshot-2024-03-21-at-22-07-8483-2995-1711033946.png"
     },
     {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\images\\Wb8pUe4iWjBf2Gx8ky5rLA-1200-80-1846-2148-1711726599.jpg",
+      "PackagePath": "staticwebassets\\images\\Wb8pUe4iWjBf2Gx8ky5rLA-1200-80-1846-2148-1711726599.jpg"
+    },
+    {
       "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\images\\ai-coding-1710410299-6906-1710410348.jpg",
       "PackagePath": "staticwebassets\\images\\ai-coding-1710410299-6906-1710410348.jpg"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\images\\cau-chuyen-y-nghia-1.jpg",
+      "PackagePath": "staticwebassets\\images\\cau-chuyen-y-nghia-1.jpg"
     },
     {
       "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\images\\cdn-vox-cdn-7896-1710813178.png",
@@ -69,6 +89,14 @@
       "PackagePath": "staticwebassets\\images\\m1-vs-m2-air-feature-toned-dow-5823-4792-1711124712.jpg"
     },
     {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\images\\nu-dieu-duong-ep-tim-cuu-du-khach-nga-guc-o-da-nang-1711517649.jpg",
+      "PackagePath": "staticwebassets\\images\\nu-dieu-duong-ep-tim-cuu-du-khach-nga-guc-o-da-nang-1711517649.jpg"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\images\\openai-website-7159-1711777550.png",
+      "PackagePath": "staticwebassets\\images\\openai-website-7159-1711777550.png"
+    },
+    {
       "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\images\\terminator-style-robot-7003-1710840287.png",
       "PackagePath": "staticwebassets\\images\\terminator-style-robot-7003-1710840287.png"
     },
@@ -87,6 +115,10 @@
     {
       "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\images\\user_profile.png",
       "PackagePath": "staticwebassets\\images\\user_profile.png"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\images\\viet-nam-indonesia-vong-loai-h-5869-6385-1711788575.jpg",
+      "PackagePath": "staticwebassets\\images\\viet-nam-indonesia-vong-loai-h-5869-6385-1711788575.jpg"
     },
     {
       "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\images\\windows-11-stock-orange-abstract-dark-background-3840x2400-8960.png",
@@ -339,6 +371,1670 @@
     {
       "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\Azure.Core.dll",
+      "PackagePath": "staticwebassets\\webcommun\\Azure.Core.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\Azure.Identity.dll",
+      "PackagePath": "staticwebassets\\webcommun\\Azure.Identity.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\Doan_Web_CK.deps.json",
+      "PackagePath": "staticwebassets\\webcommun\\Doan_Web_CK.deps.json"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\Doan_Web_CK.dll",
+      "PackagePath": "staticwebassets\\webcommun\\Doan_Web_CK.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\Doan_Web_CK.exe",
+      "PackagePath": "staticwebassets\\webcommun\\Doan_Web_CK.exe"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\Doan_Web_CK.pdb",
+      "PackagePath": "staticwebassets\\webcommun\\Doan_Web_CK.pdb"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\Doan_Web_CK.runtimeconfig.json",
+      "PackagePath": "staticwebassets\\webcommun\\Doan_Web_CK.runtimeconfig.json"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\EFSQLScripts\\Doan_Web_CK.ApplicationDbContext.sql",
+      "PackagePath": "staticwebassets\\webcommun\\EFSQLScripts\\Doan_Web_CK.ApplicationDbContext.sql"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\Humanizer.dll",
+      "PackagePath": "staticwebassets\\webcommun\\Humanizer.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\Microsoft.AspNetCore.Cryptography.Internal.dll",
+      "PackagePath": "staticwebassets\\webcommun\\Microsoft.AspNetCore.Cryptography.Internal.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll",
+      "PackagePath": "staticwebassets\\webcommun\\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll",
+      "PackagePath": "staticwebassets\\webcommun\\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\Microsoft.AspNetCore.Identity.UI.dll",
+      "PackagePath": "staticwebassets\\webcommun\\Microsoft.AspNetCore.Identity.UI.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\Microsoft.AspNetCore.Razor.Language.dll",
+      "PackagePath": "staticwebassets\\webcommun\\Microsoft.AspNetCore.Razor.Language.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\Microsoft.Bcl.AsyncInterfaces.dll",
+      "PackagePath": "staticwebassets\\webcommun\\Microsoft.Bcl.AsyncInterfaces.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\Microsoft.Build.Framework.dll",
+      "PackagePath": "staticwebassets\\webcommun\\Microsoft.Build.Framework.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\Microsoft.Build.dll",
+      "PackagePath": "staticwebassets\\webcommun\\Microsoft.Build.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\Microsoft.CodeAnalysis.AnalyzerUtilities.dll",
+      "PackagePath": "staticwebassets\\webcommun\\Microsoft.CodeAnalysis.AnalyzerUtilities.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\Microsoft.CodeAnalysis.CSharp.Features.dll",
+      "PackagePath": "staticwebassets\\webcommun\\Microsoft.CodeAnalysis.CSharp.Features.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\Microsoft.CodeAnalysis.CSharp.Workspaces.dll",
+      "PackagePath": "staticwebassets\\webcommun\\Microsoft.CodeAnalysis.CSharp.Workspaces.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\Microsoft.CodeAnalysis.CSharp.dll",
+      "PackagePath": "staticwebassets\\webcommun\\Microsoft.CodeAnalysis.CSharp.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\Microsoft.CodeAnalysis.Elfie.dll",
+      "PackagePath": "staticwebassets\\webcommun\\Microsoft.CodeAnalysis.Elfie.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\Microsoft.CodeAnalysis.Features.dll",
+      "PackagePath": "staticwebassets\\webcommun\\Microsoft.CodeAnalysis.Features.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\Microsoft.CodeAnalysis.Razor.dll",
+      "PackagePath": "staticwebassets\\webcommun\\Microsoft.CodeAnalysis.Razor.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\Microsoft.CodeAnalysis.Scripting.dll",
+      "PackagePath": "staticwebassets\\webcommun\\Microsoft.CodeAnalysis.Scripting.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\Microsoft.CodeAnalysis.Workspaces.dll",
+      "PackagePath": "staticwebassets\\webcommun\\Microsoft.CodeAnalysis.Workspaces.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\Microsoft.CodeAnalysis.dll",
+      "PackagePath": "staticwebassets\\webcommun\\Microsoft.CodeAnalysis.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\Microsoft.Data.SqlClient.dll",
+      "PackagePath": "staticwebassets\\webcommun\\Microsoft.Data.SqlClient.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\Microsoft.Data.Sqlite.dll",
+      "PackagePath": "staticwebassets\\webcommun\\Microsoft.Data.Sqlite.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\Microsoft.DiaSymReader.dll",
+      "PackagePath": "staticwebassets\\webcommun\\Microsoft.DiaSymReader.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\Microsoft.DotNet.Scaffolding.Shared.dll",
+      "PackagePath": "staticwebassets\\webcommun\\Microsoft.DotNet.Scaffolding.Shared.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\Microsoft.EntityFrameworkCore.Abstractions.dll",
+      "PackagePath": "staticwebassets\\webcommun\\Microsoft.EntityFrameworkCore.Abstractions.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\Microsoft.EntityFrameworkCore.Relational.dll",
+      "PackagePath": "staticwebassets\\webcommun\\Microsoft.EntityFrameworkCore.Relational.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\Microsoft.EntityFrameworkCore.SqlServer.dll",
+      "PackagePath": "staticwebassets\\webcommun\\Microsoft.EntityFrameworkCore.SqlServer.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\Microsoft.EntityFrameworkCore.Sqlite.dll",
+      "PackagePath": "staticwebassets\\webcommun\\Microsoft.EntityFrameworkCore.Sqlite.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\Microsoft.EntityFrameworkCore.dll",
+      "PackagePath": "staticwebassets\\webcommun\\Microsoft.EntityFrameworkCore.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\Microsoft.Extensions.DependencyModel.dll",
+      "PackagePath": "staticwebassets\\webcommun\\Microsoft.Extensions.DependencyModel.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\Microsoft.Extensions.FileProviders.Embedded.dll",
+      "PackagePath": "staticwebassets\\webcommun\\Microsoft.Extensions.FileProviders.Embedded.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\Microsoft.Extensions.Identity.Core.dll",
+      "PackagePath": "staticwebassets\\webcommun\\Microsoft.Extensions.Identity.Core.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\Microsoft.Extensions.Identity.Stores.dll",
+      "PackagePath": "staticwebassets\\webcommun\\Microsoft.Extensions.Identity.Stores.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\Microsoft.Extensions.Options.dll",
+      "PackagePath": "staticwebassets\\webcommun\\Microsoft.Extensions.Options.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\Microsoft.Identity.Client.Extensions.Msal.dll",
+      "PackagePath": "staticwebassets\\webcommun\\Microsoft.Identity.Client.Extensions.Msal.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\Microsoft.Identity.Client.dll",
+      "PackagePath": "staticwebassets\\webcommun\\Microsoft.Identity.Client.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\Microsoft.IdentityModel.Abstractions.dll",
+      "PackagePath": "staticwebassets\\webcommun\\Microsoft.IdentityModel.Abstractions.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\Microsoft.IdentityModel.JsonWebTokens.dll",
+      "PackagePath": "staticwebassets\\webcommun\\Microsoft.IdentityModel.JsonWebTokens.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\Microsoft.IdentityModel.Logging.dll",
+      "PackagePath": "staticwebassets\\webcommun\\Microsoft.IdentityModel.Logging.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll",
+      "PackagePath": "staticwebassets\\webcommun\\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\Microsoft.IdentityModel.Protocols.dll",
+      "PackagePath": "staticwebassets\\webcommun\\Microsoft.IdentityModel.Protocols.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\Microsoft.IdentityModel.Tokens.dll",
+      "PackagePath": "staticwebassets\\webcommun\\Microsoft.IdentityModel.Tokens.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\Microsoft.NET.StringTools.dll",
+      "PackagePath": "staticwebassets\\webcommun\\Microsoft.NET.StringTools.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\Microsoft.SqlServer.Server.dll",
+      "PackagePath": "staticwebassets\\webcommun\\Microsoft.SqlServer.Server.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\Microsoft.VisualStudio.Web.CodeGeneration.Core.dll",
+      "PackagePath": "staticwebassets\\webcommun\\Microsoft.VisualStudio.Web.CodeGeneration.Core.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\Microsoft.VisualStudio.Web.CodeGeneration.EntityFrameworkCore.dll",
+      "PackagePath": "staticwebassets\\webcommun\\Microsoft.VisualStudio.Web.CodeGeneration.EntityFrameworkCore.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\Microsoft.VisualStudio.Web.CodeGeneration.Templating.dll",
+      "PackagePath": "staticwebassets\\webcommun\\Microsoft.VisualStudio.Web.CodeGeneration.Templating.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\Microsoft.VisualStudio.Web.CodeGeneration.Utils.dll",
+      "PackagePath": "staticwebassets\\webcommun\\Microsoft.VisualStudio.Web.CodeGeneration.Utils.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\Microsoft.VisualStudio.Web.CodeGeneration.dll",
+      "PackagePath": "staticwebassets\\webcommun\\Microsoft.VisualStudio.Web.CodeGeneration.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\Microsoft.VisualStudio.Web.CodeGenerators.Mvc.dll",
+      "PackagePath": "staticwebassets\\webcommun\\Microsoft.VisualStudio.Web.CodeGenerators.Mvc.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\Microsoft.Win32.SystemEvents.dll",
+      "PackagePath": "staticwebassets\\webcommun\\Microsoft.Win32.SystemEvents.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\Mono.TextTemplating.dll",
+      "PackagePath": "staticwebassets\\webcommun\\Mono.TextTemplating.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\Newtonsoft.Json.dll",
+      "PackagePath": "staticwebassets\\webcommun\\Newtonsoft.Json.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\NuGet.Common.dll",
+      "PackagePath": "staticwebassets\\webcommun\\NuGet.Common.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\NuGet.Configuration.dll",
+      "PackagePath": "staticwebassets\\webcommun\\NuGet.Configuration.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\NuGet.DependencyResolver.Core.dll",
+      "PackagePath": "staticwebassets\\webcommun\\NuGet.DependencyResolver.Core.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\NuGet.Frameworks.dll",
+      "PackagePath": "staticwebassets\\webcommun\\NuGet.Frameworks.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\NuGet.LibraryModel.dll",
+      "PackagePath": "staticwebassets\\webcommun\\NuGet.LibraryModel.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\NuGet.Packaging.dll",
+      "PackagePath": "staticwebassets\\webcommun\\NuGet.Packaging.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\NuGet.ProjectModel.dll",
+      "PackagePath": "staticwebassets\\webcommun\\NuGet.ProjectModel.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\NuGet.Protocol.dll",
+      "PackagePath": "staticwebassets\\webcommun\\NuGet.Protocol.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\NuGet.Versioning.dll",
+      "PackagePath": "staticwebassets\\webcommun\\NuGet.Versioning.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\SQLitePCLRaw.batteries_v2.dll",
+      "PackagePath": "staticwebassets\\webcommun\\SQLitePCLRaw.batteries_v2.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\SQLitePCLRaw.core.dll",
+      "PackagePath": "staticwebassets\\webcommun\\SQLitePCLRaw.core.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\SQLitePCLRaw.provider.e_sqlite3.dll",
+      "PackagePath": "staticwebassets\\webcommun\\SQLitePCLRaw.provider.e_sqlite3.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\System.CodeDom.dll",
+      "PackagePath": "staticwebassets\\webcommun\\System.CodeDom.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\System.Composition.AttributedModel.dll",
+      "PackagePath": "staticwebassets\\webcommun\\System.Composition.AttributedModel.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\System.Composition.Convention.dll",
+      "PackagePath": "staticwebassets\\webcommun\\System.Composition.Convention.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\System.Composition.Hosting.dll",
+      "PackagePath": "staticwebassets\\webcommun\\System.Composition.Hosting.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\System.Composition.Runtime.dll",
+      "PackagePath": "staticwebassets\\webcommun\\System.Composition.Runtime.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\System.Composition.TypedParts.dll",
+      "PackagePath": "staticwebassets\\webcommun\\System.Composition.TypedParts.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\System.Configuration.ConfigurationManager.dll",
+      "PackagePath": "staticwebassets\\webcommun\\System.Configuration.ConfigurationManager.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\System.Drawing.Common.dll",
+      "PackagePath": "staticwebassets\\webcommun\\System.Drawing.Common.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\System.IdentityModel.Tokens.Jwt.dll",
+      "PackagePath": "staticwebassets\\webcommun\\System.IdentityModel.Tokens.Jwt.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\System.Memory.Data.dll",
+      "PackagePath": "staticwebassets\\webcommun\\System.Memory.Data.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\System.Reflection.MetadataLoadContext.dll",
+      "PackagePath": "staticwebassets\\webcommun\\System.Reflection.MetadataLoadContext.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\System.Runtime.Caching.dll",
+      "PackagePath": "staticwebassets\\webcommun\\System.Runtime.Caching.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\System.Security.Cryptography.ProtectedData.dll",
+      "PackagePath": "staticwebassets\\webcommun\\System.Security.Cryptography.ProtectedData.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\System.Security.Permissions.dll",
+      "PackagePath": "staticwebassets\\webcommun\\System.Security.Permissions.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\System.Windows.Extensions.dll",
+      "PackagePath": "staticwebassets\\webcommun\\System.Windows.Extensions.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\af\\Humanizer.resources.dll",
+      "PackagePath": "staticwebassets\\webcommun\\af\\Humanizer.resources.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\appsettings.Development.json",
+      "PackagePath": "staticwebassets\\webcommun\\appsettings.Development.json"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\appsettings.json",
+      "PackagePath": "staticwebassets\\webcommun\\appsettings.json"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\appsettings.production.json",
+      "PackagePath": "staticwebassets\\webcommun\\appsettings.production.json"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\ar\\Humanizer.resources.dll",
+      "PackagePath": "staticwebassets\\webcommun\\ar\\Humanizer.resources.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\az\\Humanizer.resources.dll",
+      "PackagePath": "staticwebassets\\webcommun\\az\\Humanizer.resources.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\bg\\Humanizer.resources.dll",
+      "PackagePath": "staticwebassets\\webcommun\\bg\\Humanizer.resources.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\bn-BD\\Humanizer.resources.dll",
+      "PackagePath": "staticwebassets\\webcommun\\bn-BD\\Humanizer.resources.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\cs\\Humanizer.resources.dll",
+      "PackagePath": "staticwebassets\\webcommun\\cs\\Humanizer.resources.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\cs\\Microsoft.CodeAnalysis.CSharp.Features.resources.dll",
+      "PackagePath": "staticwebassets\\webcommun\\cs\\Microsoft.CodeAnalysis.CSharp.Features.resources.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\cs\\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll",
+      "PackagePath": "staticwebassets\\webcommun\\cs\\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\cs\\Microsoft.CodeAnalysis.CSharp.resources.dll",
+      "PackagePath": "staticwebassets\\webcommun\\cs\\Microsoft.CodeAnalysis.CSharp.resources.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\cs\\Microsoft.CodeAnalysis.Features.resources.dll",
+      "PackagePath": "staticwebassets\\webcommun\\cs\\Microsoft.CodeAnalysis.Features.resources.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\cs\\Microsoft.CodeAnalysis.Scripting.resources.dll",
+      "PackagePath": "staticwebassets\\webcommun\\cs\\Microsoft.CodeAnalysis.Scripting.resources.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\cs\\Microsoft.CodeAnalysis.Workspaces.resources.dll",
+      "PackagePath": "staticwebassets\\webcommun\\cs\\Microsoft.CodeAnalysis.Workspaces.resources.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\cs\\Microsoft.CodeAnalysis.resources.dll",
+      "PackagePath": "staticwebassets\\webcommun\\cs\\Microsoft.CodeAnalysis.resources.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\da\\Humanizer.resources.dll",
+      "PackagePath": "staticwebassets\\webcommun\\da\\Humanizer.resources.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\de\\Humanizer.resources.dll",
+      "PackagePath": "staticwebassets\\webcommun\\de\\Humanizer.resources.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\de\\Microsoft.CodeAnalysis.CSharp.Features.resources.dll",
+      "PackagePath": "staticwebassets\\webcommun\\de\\Microsoft.CodeAnalysis.CSharp.Features.resources.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\de\\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll",
+      "PackagePath": "staticwebassets\\webcommun\\de\\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\de\\Microsoft.CodeAnalysis.CSharp.resources.dll",
+      "PackagePath": "staticwebassets\\webcommun\\de\\Microsoft.CodeAnalysis.CSharp.resources.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\de\\Microsoft.CodeAnalysis.Features.resources.dll",
+      "PackagePath": "staticwebassets\\webcommun\\de\\Microsoft.CodeAnalysis.Features.resources.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\de\\Microsoft.CodeAnalysis.Scripting.resources.dll",
+      "PackagePath": "staticwebassets\\webcommun\\de\\Microsoft.CodeAnalysis.Scripting.resources.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\de\\Microsoft.CodeAnalysis.Workspaces.resources.dll",
+      "PackagePath": "staticwebassets\\webcommun\\de\\Microsoft.CodeAnalysis.Workspaces.resources.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\de\\Microsoft.CodeAnalysis.resources.dll",
+      "PackagePath": "staticwebassets\\webcommun\\de\\Microsoft.CodeAnalysis.resources.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\dotnet-aspnet-codegenerator-design.dll",
+      "PackagePath": "staticwebassets\\webcommun\\dotnet-aspnet-codegenerator-design.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\el\\Humanizer.resources.dll",
+      "PackagePath": "staticwebassets\\webcommun\\el\\Humanizer.resources.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\es\\Humanizer.resources.dll",
+      "PackagePath": "staticwebassets\\webcommun\\es\\Humanizer.resources.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\es\\Microsoft.CodeAnalysis.CSharp.Features.resources.dll",
+      "PackagePath": "staticwebassets\\webcommun\\es\\Microsoft.CodeAnalysis.CSharp.Features.resources.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\es\\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll",
+      "PackagePath": "staticwebassets\\webcommun\\es\\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\es\\Microsoft.CodeAnalysis.CSharp.resources.dll",
+      "PackagePath": "staticwebassets\\webcommun\\es\\Microsoft.CodeAnalysis.CSharp.resources.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\es\\Microsoft.CodeAnalysis.Features.resources.dll",
+      "PackagePath": "staticwebassets\\webcommun\\es\\Microsoft.CodeAnalysis.Features.resources.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\es\\Microsoft.CodeAnalysis.Scripting.resources.dll",
+      "PackagePath": "staticwebassets\\webcommun\\es\\Microsoft.CodeAnalysis.Scripting.resources.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\es\\Microsoft.CodeAnalysis.Workspaces.resources.dll",
+      "PackagePath": "staticwebassets\\webcommun\\es\\Microsoft.CodeAnalysis.Workspaces.resources.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\es\\Microsoft.CodeAnalysis.resources.dll",
+      "PackagePath": "staticwebassets\\webcommun\\es\\Microsoft.CodeAnalysis.resources.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\fa\\Humanizer.resources.dll",
+      "PackagePath": "staticwebassets\\webcommun\\fa\\Humanizer.resources.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\fi-FI\\Humanizer.resources.dll",
+      "PackagePath": "staticwebassets\\webcommun\\fi-FI\\Humanizer.resources.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\fr-BE\\Humanizer.resources.dll",
+      "PackagePath": "staticwebassets\\webcommun\\fr-BE\\Humanizer.resources.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\fr\\Humanizer.resources.dll",
+      "PackagePath": "staticwebassets\\webcommun\\fr\\Humanizer.resources.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\fr\\Microsoft.CodeAnalysis.CSharp.Features.resources.dll",
+      "PackagePath": "staticwebassets\\webcommun\\fr\\Microsoft.CodeAnalysis.CSharp.Features.resources.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\fr\\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll",
+      "PackagePath": "staticwebassets\\webcommun\\fr\\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\fr\\Microsoft.CodeAnalysis.CSharp.resources.dll",
+      "PackagePath": "staticwebassets\\webcommun\\fr\\Microsoft.CodeAnalysis.CSharp.resources.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\fr\\Microsoft.CodeAnalysis.Features.resources.dll",
+      "PackagePath": "staticwebassets\\webcommun\\fr\\Microsoft.CodeAnalysis.Features.resources.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\fr\\Microsoft.CodeAnalysis.Scripting.resources.dll",
+      "PackagePath": "staticwebassets\\webcommun\\fr\\Microsoft.CodeAnalysis.Scripting.resources.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\fr\\Microsoft.CodeAnalysis.Workspaces.resources.dll",
+      "PackagePath": "staticwebassets\\webcommun\\fr\\Microsoft.CodeAnalysis.Workspaces.resources.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\fr\\Microsoft.CodeAnalysis.resources.dll",
+      "PackagePath": "staticwebassets\\webcommun\\fr\\Microsoft.CodeAnalysis.resources.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\he\\Humanizer.resources.dll",
+      "PackagePath": "staticwebassets\\webcommun\\he\\Humanizer.resources.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\hr\\Humanizer.resources.dll",
+      "PackagePath": "staticwebassets\\webcommun\\hr\\Humanizer.resources.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\hu\\Humanizer.resources.dll",
+      "PackagePath": "staticwebassets\\webcommun\\hu\\Humanizer.resources.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\hy\\Humanizer.resources.dll",
+      "PackagePath": "staticwebassets\\webcommun\\hy\\Humanizer.resources.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\id\\Humanizer.resources.dll",
+      "PackagePath": "staticwebassets\\webcommun\\id\\Humanizer.resources.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\is\\Humanizer.resources.dll",
+      "PackagePath": "staticwebassets\\webcommun\\is\\Humanizer.resources.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\it\\Humanizer.resources.dll",
+      "PackagePath": "staticwebassets\\webcommun\\it\\Humanizer.resources.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\it\\Microsoft.CodeAnalysis.CSharp.Features.resources.dll",
+      "PackagePath": "staticwebassets\\webcommun\\it\\Microsoft.CodeAnalysis.CSharp.Features.resources.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\it\\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll",
+      "PackagePath": "staticwebassets\\webcommun\\it\\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\it\\Microsoft.CodeAnalysis.CSharp.resources.dll",
+      "PackagePath": "staticwebassets\\webcommun\\it\\Microsoft.CodeAnalysis.CSharp.resources.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\it\\Microsoft.CodeAnalysis.Features.resources.dll",
+      "PackagePath": "staticwebassets\\webcommun\\it\\Microsoft.CodeAnalysis.Features.resources.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\it\\Microsoft.CodeAnalysis.Scripting.resources.dll",
+      "PackagePath": "staticwebassets\\webcommun\\it\\Microsoft.CodeAnalysis.Scripting.resources.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\it\\Microsoft.CodeAnalysis.Workspaces.resources.dll",
+      "PackagePath": "staticwebassets\\webcommun\\it\\Microsoft.CodeAnalysis.Workspaces.resources.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\it\\Microsoft.CodeAnalysis.resources.dll",
+      "PackagePath": "staticwebassets\\webcommun\\it\\Microsoft.CodeAnalysis.resources.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\ja\\Humanizer.resources.dll",
+      "PackagePath": "staticwebassets\\webcommun\\ja\\Humanizer.resources.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\ja\\Microsoft.CodeAnalysis.CSharp.Features.resources.dll",
+      "PackagePath": "staticwebassets\\webcommun\\ja\\Microsoft.CodeAnalysis.CSharp.Features.resources.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\ja\\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll",
+      "PackagePath": "staticwebassets\\webcommun\\ja\\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\ja\\Microsoft.CodeAnalysis.CSharp.resources.dll",
+      "PackagePath": "staticwebassets\\webcommun\\ja\\Microsoft.CodeAnalysis.CSharp.resources.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\ja\\Microsoft.CodeAnalysis.Features.resources.dll",
+      "PackagePath": "staticwebassets\\webcommun\\ja\\Microsoft.CodeAnalysis.Features.resources.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\ja\\Microsoft.CodeAnalysis.Scripting.resources.dll",
+      "PackagePath": "staticwebassets\\webcommun\\ja\\Microsoft.CodeAnalysis.Scripting.resources.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\ja\\Microsoft.CodeAnalysis.Workspaces.resources.dll",
+      "PackagePath": "staticwebassets\\webcommun\\ja\\Microsoft.CodeAnalysis.Workspaces.resources.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\ja\\Microsoft.CodeAnalysis.resources.dll",
+      "PackagePath": "staticwebassets\\webcommun\\ja\\Microsoft.CodeAnalysis.resources.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\ko-KR\\Humanizer.resources.dll",
+      "PackagePath": "staticwebassets\\webcommun\\ko-KR\\Humanizer.resources.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\ko\\Microsoft.CodeAnalysis.CSharp.Features.resources.dll",
+      "PackagePath": "staticwebassets\\webcommun\\ko\\Microsoft.CodeAnalysis.CSharp.Features.resources.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\ko\\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll",
+      "PackagePath": "staticwebassets\\webcommun\\ko\\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\ko\\Microsoft.CodeAnalysis.CSharp.resources.dll",
+      "PackagePath": "staticwebassets\\webcommun\\ko\\Microsoft.CodeAnalysis.CSharp.resources.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\ko\\Microsoft.CodeAnalysis.Features.resources.dll",
+      "PackagePath": "staticwebassets\\webcommun\\ko\\Microsoft.CodeAnalysis.Features.resources.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\ko\\Microsoft.CodeAnalysis.Scripting.resources.dll",
+      "PackagePath": "staticwebassets\\webcommun\\ko\\Microsoft.CodeAnalysis.Scripting.resources.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\ko\\Microsoft.CodeAnalysis.Workspaces.resources.dll",
+      "PackagePath": "staticwebassets\\webcommun\\ko\\Microsoft.CodeAnalysis.Workspaces.resources.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\ko\\Microsoft.CodeAnalysis.resources.dll",
+      "PackagePath": "staticwebassets\\webcommun\\ko\\Microsoft.CodeAnalysis.resources.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\ku\\Humanizer.resources.dll",
+      "PackagePath": "staticwebassets\\webcommun\\ku\\Humanizer.resources.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\lv\\Humanizer.resources.dll",
+      "PackagePath": "staticwebassets\\webcommun\\lv\\Humanizer.resources.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\ms-MY\\Humanizer.resources.dll",
+      "PackagePath": "staticwebassets\\webcommun\\ms-MY\\Humanizer.resources.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\mt\\Humanizer.resources.dll",
+      "PackagePath": "staticwebassets\\webcommun\\mt\\Humanizer.resources.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\nb-NO\\Humanizer.resources.dll",
+      "PackagePath": "staticwebassets\\webcommun\\nb-NO\\Humanizer.resources.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\nb\\Humanizer.resources.dll",
+      "PackagePath": "staticwebassets\\webcommun\\nb\\Humanizer.resources.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\nl\\Humanizer.resources.dll",
+      "PackagePath": "staticwebassets\\webcommun\\nl\\Humanizer.resources.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\pl\\Humanizer.resources.dll",
+      "PackagePath": "staticwebassets\\webcommun\\pl\\Humanizer.resources.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\pl\\Microsoft.CodeAnalysis.CSharp.Features.resources.dll",
+      "PackagePath": "staticwebassets\\webcommun\\pl\\Microsoft.CodeAnalysis.CSharp.Features.resources.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\pl\\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll",
+      "PackagePath": "staticwebassets\\webcommun\\pl\\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\pl\\Microsoft.CodeAnalysis.CSharp.resources.dll",
+      "PackagePath": "staticwebassets\\webcommun\\pl\\Microsoft.CodeAnalysis.CSharp.resources.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\pl\\Microsoft.CodeAnalysis.Features.resources.dll",
+      "PackagePath": "staticwebassets\\webcommun\\pl\\Microsoft.CodeAnalysis.Features.resources.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\pl\\Microsoft.CodeAnalysis.Scripting.resources.dll",
+      "PackagePath": "staticwebassets\\webcommun\\pl\\Microsoft.CodeAnalysis.Scripting.resources.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\pl\\Microsoft.CodeAnalysis.Workspaces.resources.dll",
+      "PackagePath": "staticwebassets\\webcommun\\pl\\Microsoft.CodeAnalysis.Workspaces.resources.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\pl\\Microsoft.CodeAnalysis.resources.dll",
+      "PackagePath": "staticwebassets\\webcommun\\pl\\Microsoft.CodeAnalysis.resources.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\pt-BR\\Microsoft.CodeAnalysis.CSharp.Features.resources.dll",
+      "PackagePath": "staticwebassets\\webcommun\\pt-BR\\Microsoft.CodeAnalysis.CSharp.Features.resources.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\pt-BR\\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll",
+      "PackagePath": "staticwebassets\\webcommun\\pt-BR\\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\pt-BR\\Microsoft.CodeAnalysis.CSharp.resources.dll",
+      "PackagePath": "staticwebassets\\webcommun\\pt-BR\\Microsoft.CodeAnalysis.CSharp.resources.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\pt-BR\\Microsoft.CodeAnalysis.Features.resources.dll",
+      "PackagePath": "staticwebassets\\webcommun\\pt-BR\\Microsoft.CodeAnalysis.Features.resources.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\pt-BR\\Microsoft.CodeAnalysis.Scripting.resources.dll",
+      "PackagePath": "staticwebassets\\webcommun\\pt-BR\\Microsoft.CodeAnalysis.Scripting.resources.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\pt-BR\\Microsoft.CodeAnalysis.Workspaces.resources.dll",
+      "PackagePath": "staticwebassets\\webcommun\\pt-BR\\Microsoft.CodeAnalysis.Workspaces.resources.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\pt-BR\\Microsoft.CodeAnalysis.resources.dll",
+      "PackagePath": "staticwebassets\\webcommun\\pt-BR\\Microsoft.CodeAnalysis.resources.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\pt\\Humanizer.resources.dll",
+      "PackagePath": "staticwebassets\\webcommun\\pt\\Humanizer.resources.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\ro\\Humanizer.resources.dll",
+      "PackagePath": "staticwebassets\\webcommun\\ro\\Humanizer.resources.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\ru\\Humanizer.resources.dll",
+      "PackagePath": "staticwebassets\\webcommun\\ru\\Humanizer.resources.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\ru\\Microsoft.CodeAnalysis.CSharp.Features.resources.dll",
+      "PackagePath": "staticwebassets\\webcommun\\ru\\Microsoft.CodeAnalysis.CSharp.Features.resources.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\ru\\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll",
+      "PackagePath": "staticwebassets\\webcommun\\ru\\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\ru\\Microsoft.CodeAnalysis.CSharp.resources.dll",
+      "PackagePath": "staticwebassets\\webcommun\\ru\\Microsoft.CodeAnalysis.CSharp.resources.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\ru\\Microsoft.CodeAnalysis.Features.resources.dll",
+      "PackagePath": "staticwebassets\\webcommun\\ru\\Microsoft.CodeAnalysis.Features.resources.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\ru\\Microsoft.CodeAnalysis.Scripting.resources.dll",
+      "PackagePath": "staticwebassets\\webcommun\\ru\\Microsoft.CodeAnalysis.Scripting.resources.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\ru\\Microsoft.CodeAnalysis.Workspaces.resources.dll",
+      "PackagePath": "staticwebassets\\webcommun\\ru\\Microsoft.CodeAnalysis.Workspaces.resources.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\ru\\Microsoft.CodeAnalysis.resources.dll",
+      "PackagePath": "staticwebassets\\webcommun\\ru\\Microsoft.CodeAnalysis.resources.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\runtimes\\browser-wasm\\nativeassets\\net8.0\\e_sqlite3.a",
+      "PackagePath": "staticwebassets\\webcommun\\runtimes\\browser-wasm\\nativeassets\\net8.0\\e_sqlite3.a"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\runtimes\\linux-arm64\\native\\libe_sqlite3.so",
+      "PackagePath": "staticwebassets\\webcommun\\runtimes\\linux-arm64\\native\\libe_sqlite3.so"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\runtimes\\linux-arm\\native\\libe_sqlite3.so",
+      "PackagePath": "staticwebassets\\webcommun\\runtimes\\linux-arm\\native\\libe_sqlite3.so"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\runtimes\\linux-armel\\native\\libe_sqlite3.so",
+      "PackagePath": "staticwebassets\\webcommun\\runtimes\\linux-armel\\native\\libe_sqlite3.so"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\runtimes\\linux-mips64\\native\\libe_sqlite3.so",
+      "PackagePath": "staticwebassets\\webcommun\\runtimes\\linux-mips64\\native\\libe_sqlite3.so"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\runtimes\\linux-musl-arm64\\native\\libe_sqlite3.so",
+      "PackagePath": "staticwebassets\\webcommun\\runtimes\\linux-musl-arm64\\native\\libe_sqlite3.so"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\runtimes\\linux-musl-arm\\native\\libe_sqlite3.so",
+      "PackagePath": "staticwebassets\\webcommun\\runtimes\\linux-musl-arm\\native\\libe_sqlite3.so"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\runtimes\\linux-musl-x64\\native\\libe_sqlite3.so",
+      "PackagePath": "staticwebassets\\webcommun\\runtimes\\linux-musl-x64\\native\\libe_sqlite3.so"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\runtimes\\linux-ppc64le\\native\\libe_sqlite3.so",
+      "PackagePath": "staticwebassets\\webcommun\\runtimes\\linux-ppc64le\\native\\libe_sqlite3.so"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\runtimes\\linux-s390x\\native\\libe_sqlite3.so",
+      "PackagePath": "staticwebassets\\webcommun\\runtimes\\linux-s390x\\native\\libe_sqlite3.so"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\runtimes\\linux-x64\\native\\libe_sqlite3.so",
+      "PackagePath": "staticwebassets\\webcommun\\runtimes\\linux-x64\\native\\libe_sqlite3.so"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\runtimes\\linux-x86\\native\\libe_sqlite3.so",
+      "PackagePath": "staticwebassets\\webcommun\\runtimes\\linux-x86\\native\\libe_sqlite3.so"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\runtimes\\maccatalyst-arm64\\native\\libe_sqlite3.dylib",
+      "PackagePath": "staticwebassets\\webcommun\\runtimes\\maccatalyst-arm64\\native\\libe_sqlite3.dylib"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\runtimes\\maccatalyst-x64\\native\\libe_sqlite3.dylib",
+      "PackagePath": "staticwebassets\\webcommun\\runtimes\\maccatalyst-x64\\native\\libe_sqlite3.dylib"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\runtimes\\osx-arm64\\native\\libe_sqlite3.dylib",
+      "PackagePath": "staticwebassets\\webcommun\\runtimes\\osx-arm64\\native\\libe_sqlite3.dylib"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\runtimes\\osx-x64\\native\\libe_sqlite3.dylib",
+      "PackagePath": "staticwebassets\\webcommun\\runtimes\\osx-x64\\native\\libe_sqlite3.dylib"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\runtimes\\unix\\lib\\net6.0\\Microsoft.Data.SqlClient.dll",
+      "PackagePath": "staticwebassets\\webcommun\\runtimes\\unix\\lib\\net6.0\\Microsoft.Data.SqlClient.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\runtimes\\win-arm64\\native\\Microsoft.Data.SqlClient.SNI.dll",
+      "PackagePath": "staticwebassets\\webcommun\\runtimes\\win-arm64\\native\\Microsoft.Data.SqlClient.SNI.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\runtimes\\win-arm64\\native\\e_sqlite3.dll",
+      "PackagePath": "staticwebassets\\webcommun\\runtimes\\win-arm64\\native\\e_sqlite3.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\runtimes\\win-arm\\native\\Microsoft.Data.SqlClient.SNI.dll",
+      "PackagePath": "staticwebassets\\webcommun\\runtimes\\win-arm\\native\\Microsoft.Data.SqlClient.SNI.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\runtimes\\win-arm\\native\\e_sqlite3.dll",
+      "PackagePath": "staticwebassets\\webcommun\\runtimes\\win-arm\\native\\e_sqlite3.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\runtimes\\win-x64\\native\\Microsoft.Data.SqlClient.SNI.dll",
+      "PackagePath": "staticwebassets\\webcommun\\runtimes\\win-x64\\native\\Microsoft.Data.SqlClient.SNI.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\runtimes\\win-x64\\native\\e_sqlite3.dll",
+      "PackagePath": "staticwebassets\\webcommun\\runtimes\\win-x64\\native\\e_sqlite3.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\runtimes\\win-x86\\native\\Microsoft.Data.SqlClient.SNI.dll",
+      "PackagePath": "staticwebassets\\webcommun\\runtimes\\win-x86\\native\\Microsoft.Data.SqlClient.SNI.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\runtimes\\win-x86\\native\\e_sqlite3.dll",
+      "PackagePath": "staticwebassets\\webcommun\\runtimes\\win-x86\\native\\e_sqlite3.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\runtimes\\win\\lib\\net6.0\\Microsoft.Data.SqlClient.dll",
+      "PackagePath": "staticwebassets\\webcommun\\runtimes\\win\\lib\\net6.0\\Microsoft.Data.SqlClient.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\runtimes\\win\\lib\\net6.0\\System.Runtime.Caching.dll",
+      "PackagePath": "staticwebassets\\webcommun\\runtimes\\win\\lib\\net6.0\\System.Runtime.Caching.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\runtimes\\win\\lib\\net7.0\\Microsoft.Win32.SystemEvents.dll",
+      "PackagePath": "staticwebassets\\webcommun\\runtimes\\win\\lib\\net7.0\\Microsoft.Win32.SystemEvents.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\runtimes\\win\\lib\\net7.0\\System.Drawing.Common.dll",
+      "PackagePath": "staticwebassets\\webcommun\\runtimes\\win\\lib\\net7.0\\System.Drawing.Common.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\runtimes\\win\\lib\\net7.0\\System.Security.Cryptography.ProtectedData.dll",
+      "PackagePath": "staticwebassets\\webcommun\\runtimes\\win\\lib\\net7.0\\System.Security.Cryptography.ProtectedData.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\runtimes\\win\\lib\\net7.0\\System.Windows.Extensions.dll",
+      "PackagePath": "staticwebassets\\webcommun\\runtimes\\win\\lib\\net7.0\\System.Windows.Extensions.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\sk\\Humanizer.resources.dll",
+      "PackagePath": "staticwebassets\\webcommun\\sk\\Humanizer.resources.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\sl\\Humanizer.resources.dll",
+      "PackagePath": "staticwebassets\\webcommun\\sl\\Humanizer.resources.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\sr-Latn\\Humanizer.resources.dll",
+      "PackagePath": "staticwebassets\\webcommun\\sr-Latn\\Humanizer.resources.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\sr\\Humanizer.resources.dll",
+      "PackagePath": "staticwebassets\\webcommun\\sr\\Humanizer.resources.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\sv\\Humanizer.resources.dll",
+      "PackagePath": "staticwebassets\\webcommun\\sv\\Humanizer.resources.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\th-TH\\Humanizer.resources.dll",
+      "PackagePath": "staticwebassets\\webcommun\\th-TH\\Humanizer.resources.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\tr\\Humanizer.resources.dll",
+      "PackagePath": "staticwebassets\\webcommun\\tr\\Humanizer.resources.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\tr\\Microsoft.CodeAnalysis.CSharp.Features.resources.dll",
+      "PackagePath": "staticwebassets\\webcommun\\tr\\Microsoft.CodeAnalysis.CSharp.Features.resources.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\tr\\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll",
+      "PackagePath": "staticwebassets\\webcommun\\tr\\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\tr\\Microsoft.CodeAnalysis.CSharp.resources.dll",
+      "PackagePath": "staticwebassets\\webcommun\\tr\\Microsoft.CodeAnalysis.CSharp.resources.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\tr\\Microsoft.CodeAnalysis.Features.resources.dll",
+      "PackagePath": "staticwebassets\\webcommun\\tr\\Microsoft.CodeAnalysis.Features.resources.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\tr\\Microsoft.CodeAnalysis.Scripting.resources.dll",
+      "PackagePath": "staticwebassets\\webcommun\\tr\\Microsoft.CodeAnalysis.Scripting.resources.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\tr\\Microsoft.CodeAnalysis.Workspaces.resources.dll",
+      "PackagePath": "staticwebassets\\webcommun\\tr\\Microsoft.CodeAnalysis.Workspaces.resources.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\tr\\Microsoft.CodeAnalysis.resources.dll",
+      "PackagePath": "staticwebassets\\webcommun\\tr\\Microsoft.CodeAnalysis.resources.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\uk\\Humanizer.resources.dll",
+      "PackagePath": "staticwebassets\\webcommun\\uk\\Humanizer.resources.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\uz-Cyrl-UZ\\Humanizer.resources.dll",
+      "PackagePath": "staticwebassets\\webcommun\\uz-Cyrl-UZ\\Humanizer.resources.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\uz-Latn-UZ\\Humanizer.resources.dll",
+      "PackagePath": "staticwebassets\\webcommun\\uz-Latn-UZ\\Humanizer.resources.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\vi\\Humanizer.resources.dll",
+      "PackagePath": "staticwebassets\\webcommun\\vi\\Humanizer.resources.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\web.config",
+      "PackagePath": "staticwebassets\\webcommun\\web.config"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\wwwroot\\Doan_Web_CK.styles.css",
+      "PackagePath": "staticwebassets\\webcommun\\wwwroot\\Doan_Web_CK.styles.css"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\wwwroot\\Identity\\css\\site.css",
+      "PackagePath": "staticwebassets\\webcommun\\wwwroot\\Identity\\css\\site.css"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\wwwroot\\Identity\\favicon.ico",
+      "PackagePath": "staticwebassets\\webcommun\\wwwroot\\Identity\\favicon.ico"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\wwwroot\\Identity\\js\\site.js",
+      "PackagePath": "staticwebassets\\webcommun\\wwwroot\\Identity\\js\\site.js"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\wwwroot\\Identity\\lib\\bootstrap\\LICENSE",
+      "PackagePath": "staticwebassets\\webcommun\\wwwroot\\Identity\\lib\\bootstrap"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\wwwroot\\Identity\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css",
+      "PackagePath": "staticwebassets\\webcommun\\wwwroot\\Identity\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\wwwroot\\Identity\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map",
+      "PackagePath": "staticwebassets\\webcommun\\wwwroot\\Identity\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\wwwroot\\Identity\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css",
+      "PackagePath": "staticwebassets\\webcommun\\wwwroot\\Identity\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\wwwroot\\Identity\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map",
+      "PackagePath": "staticwebassets\\webcommun\\wwwroot\\Identity\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\wwwroot\\Identity\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css",
+      "PackagePath": "staticwebassets\\webcommun\\wwwroot\\Identity\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\wwwroot\\Identity\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map",
+      "PackagePath": "staticwebassets\\webcommun\\wwwroot\\Identity\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\wwwroot\\Identity\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css",
+      "PackagePath": "staticwebassets\\webcommun\\wwwroot\\Identity\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\wwwroot\\Identity\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\webcommun\\wwwroot\\Identity\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\wwwroot\\Identity\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css",
+      "PackagePath": "staticwebassets\\webcommun\\wwwroot\\Identity\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\wwwroot\\Identity\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map",
+      "PackagePath": "staticwebassets\\webcommun\\wwwroot\\Identity\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\wwwroot\\Identity\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css",
+      "PackagePath": "staticwebassets\\webcommun\\wwwroot\\Identity\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\wwwroot\\Identity\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map",
+      "PackagePath": "staticwebassets\\webcommun\\wwwroot\\Identity\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\wwwroot\\Identity\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css",
+      "PackagePath": "staticwebassets\\webcommun\\wwwroot\\Identity\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\wwwroot\\Identity\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map",
+      "PackagePath": "staticwebassets\\webcommun\\wwwroot\\Identity\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\wwwroot\\Identity\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css",
+      "PackagePath": "staticwebassets\\webcommun\\wwwroot\\Identity\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\wwwroot\\Identity\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\webcommun\\wwwroot\\Identity\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\wwwroot\\Identity\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css",
+      "PackagePath": "staticwebassets\\webcommun\\wwwroot\\Identity\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\wwwroot\\Identity\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map",
+      "PackagePath": "staticwebassets\\webcommun\\wwwroot\\Identity\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\wwwroot\\Identity\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css",
+      "PackagePath": "staticwebassets\\webcommun\\wwwroot\\Identity\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\wwwroot\\Identity\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map",
+      "PackagePath": "staticwebassets\\webcommun\\wwwroot\\Identity\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\wwwroot\\Identity\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css",
+      "PackagePath": "staticwebassets\\webcommun\\wwwroot\\Identity\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\wwwroot\\Identity\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map",
+      "PackagePath": "staticwebassets\\webcommun\\wwwroot\\Identity\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\wwwroot\\Identity\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css",
+      "PackagePath": "staticwebassets\\webcommun\\wwwroot\\Identity\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\wwwroot\\Identity\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\webcommun\\wwwroot\\Identity\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\wwwroot\\Identity\\lib\\bootstrap\\dist\\css\\bootstrap.css",
+      "PackagePath": "staticwebassets\\webcommun\\wwwroot\\Identity\\lib\\bootstrap\\dist\\css\\bootstrap.css"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\wwwroot\\Identity\\lib\\bootstrap\\dist\\css\\bootstrap.css.map",
+      "PackagePath": "staticwebassets\\webcommun\\wwwroot\\Identity\\lib\\bootstrap\\dist\\css\\bootstrap.css.map"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\wwwroot\\Identity\\lib\\bootstrap\\dist\\css\\bootstrap.min.css",
+      "PackagePath": "staticwebassets\\webcommun\\wwwroot\\Identity\\lib\\bootstrap\\dist\\css\\bootstrap.min.css"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\wwwroot\\Identity\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map",
+      "PackagePath": "staticwebassets\\webcommun\\wwwroot\\Identity\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\wwwroot\\Identity\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css",
+      "PackagePath": "staticwebassets\\webcommun\\wwwroot\\Identity\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\wwwroot\\Identity\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map",
+      "PackagePath": "staticwebassets\\webcommun\\wwwroot\\Identity\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\wwwroot\\Identity\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css",
+      "PackagePath": "staticwebassets\\webcommun\\wwwroot\\Identity\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\wwwroot\\Identity\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\webcommun\\wwwroot\\Identity\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\wwwroot\\Identity\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js",
+      "PackagePath": "staticwebassets\\webcommun\\wwwroot\\Identity\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\wwwroot\\Identity\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map",
+      "PackagePath": "staticwebassets\\webcommun\\wwwroot\\Identity\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\wwwroot\\Identity\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js",
+      "PackagePath": "staticwebassets\\webcommun\\wwwroot\\Identity\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\wwwroot\\Identity\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map",
+      "PackagePath": "staticwebassets\\webcommun\\wwwroot\\Identity\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\wwwroot\\Identity\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js",
+      "PackagePath": "staticwebassets\\webcommun\\wwwroot\\Identity\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\wwwroot\\Identity\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map",
+      "PackagePath": "staticwebassets\\webcommun\\wwwroot\\Identity\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\wwwroot\\Identity\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js",
+      "PackagePath": "staticwebassets\\webcommun\\wwwroot\\Identity\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\wwwroot\\Identity\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map",
+      "PackagePath": "staticwebassets\\webcommun\\wwwroot\\Identity\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\wwwroot\\Identity\\lib\\bootstrap\\dist\\js\\bootstrap.js",
+      "PackagePath": "staticwebassets\\webcommun\\wwwroot\\Identity\\lib\\bootstrap\\dist\\js\\bootstrap.js"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\wwwroot\\Identity\\lib\\bootstrap\\dist\\js\\bootstrap.js.map",
+      "PackagePath": "staticwebassets\\webcommun\\wwwroot\\Identity\\lib\\bootstrap\\dist\\js\\bootstrap.js.map"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\wwwroot\\Identity\\lib\\bootstrap\\dist\\js\\bootstrap.min.js",
+      "PackagePath": "staticwebassets\\webcommun\\wwwroot\\Identity\\lib\\bootstrap\\dist\\js\\bootstrap.min.js"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\wwwroot\\Identity\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map",
+      "PackagePath": "staticwebassets\\webcommun\\wwwroot\\Identity\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\wwwroot\\Identity\\lib\\jquery-validation-unobtrusive\\LICENSE.txt",
+      "PackagePath": "staticwebassets\\webcommun\\wwwroot\\Identity\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\wwwroot\\Identity\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js",
+      "PackagePath": "staticwebassets\\webcommun\\wwwroot\\Identity\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\wwwroot\\Identity\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js",
+      "PackagePath": "staticwebassets\\webcommun\\wwwroot\\Identity\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\wwwroot\\Identity\\lib\\jquery-validation\\LICENSE.md",
+      "PackagePath": "staticwebassets\\webcommun\\wwwroot\\Identity\\lib\\jquery-validation\\LICENSE.md"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\wwwroot\\Identity\\lib\\jquery-validation\\dist\\additional-methods.js",
+      "PackagePath": "staticwebassets\\webcommun\\wwwroot\\Identity\\lib\\jquery-validation\\dist\\additional-methods.js"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\wwwroot\\Identity\\lib\\jquery-validation\\dist\\additional-methods.min.js",
+      "PackagePath": "staticwebassets\\webcommun\\wwwroot\\Identity\\lib\\jquery-validation\\dist\\additional-methods.min.js"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\wwwroot\\Identity\\lib\\jquery-validation\\dist\\jquery.validate.js",
+      "PackagePath": "staticwebassets\\webcommun\\wwwroot\\Identity\\lib\\jquery-validation\\dist\\jquery.validate.js"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\wwwroot\\Identity\\lib\\jquery-validation\\dist\\jquery.validate.min.js",
+      "PackagePath": "staticwebassets\\webcommun\\wwwroot\\Identity\\lib\\jquery-validation\\dist\\jquery.validate.min.js"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\wwwroot\\Identity\\lib\\jquery\\LICENSE.txt",
+      "PackagePath": "staticwebassets\\webcommun\\wwwroot\\Identity\\lib\\jquery\\LICENSE.txt"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\wwwroot\\Identity\\lib\\jquery\\dist\\jquery.js",
+      "PackagePath": "staticwebassets\\webcommun\\wwwroot\\Identity\\lib\\jquery\\dist\\jquery.js"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\wwwroot\\Identity\\lib\\jquery\\dist\\jquery.min.js",
+      "PackagePath": "staticwebassets\\webcommun\\wwwroot\\Identity\\lib\\jquery\\dist\\jquery.min.js"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\wwwroot\\Identity\\lib\\jquery\\dist\\jquery.min.map",
+      "PackagePath": "staticwebassets\\webcommun\\wwwroot\\Identity\\lib\\jquery\\dist\\jquery.min.map"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\wwwroot\\css\\site.css",
+      "PackagePath": "staticwebassets\\webcommun\\wwwroot\\css\\site.css"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\wwwroot\\favicon.ico",
+      "PackagePath": "staticwebassets\\webcommun\\wwwroot\\favicon.ico"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\wwwroot\\images\\10-VHTT-1009463.jpg",
+      "PackagePath": "staticwebassets\\webcommun\\wwwroot\\images\\10-VHTT-1009463.jpg"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\wwwroot\\images\\2024-cdc-issued-alert-u-791532-5624-8782-1711775510.png",
+      "PackagePath": "staticwebassets\\webcommun\\wwwroot\\images\\2024-cdc-issued-alert-u-791532-5624-8782-1711775510.png"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\wwwroot\\images\\20240326-21-1375991-l-jpeg-171-3190-7304-1711771395.jpg",
+      "PackagePath": "staticwebassets\\webcommun\\wwwroot\\images\\20240326-21-1375991-l-jpeg-171-3190-7304-1711771395.jpg"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\wwwroot\\images\\E4NXNZtVkAUQTP1.jpg",
+      "PackagePath": "staticwebassets\\webcommun\\wwwroot\\images\\E4NXNZtVkAUQTP1.jpg"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\wwwroot\\images\\MSI-Bravo-15-Ryzen-5-5600H-RX-5500M-02.jpg",
+      "PackagePath": "staticwebassets\\webcommun\\wwwroot\\images\\MSI-Bravo-15-Ryzen-5-5600H-RX-5500M-02.jpg"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\wwwroot\\images\\ND-02-VISITA-ENDRICK-PRESIDENT-6864-8406-1711703356.jpg",
+      "PackagePath": "staticwebassets\\webcommun\\wwwroot\\images\\ND-02-VISITA-ENDRICK-PRESIDENT-6864-8406-1711703356.jpg"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\wwwroot\\images\\PhieuDangKyDeTai_2.jpg",
+      "PackagePath": "staticwebassets\\webcommun\\wwwroot\\images\\PhieuDangKyDeTai_2.jpg"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\wwwroot\\images\\Screen-Shot-2020-04-15-at-15-1-3148-5252-1710404281.png",
+      "PackagePath": "staticwebassets\\webcommun\\wwwroot\\images\\Screen-Shot-2020-04-15-at-15-1-3148-5252-1710404281.png"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\wwwroot\\images\\Screenshot-2024-03-21-at-22-07-8483-2995-1711033946.png",
+      "PackagePath": "staticwebassets\\webcommun\\wwwroot\\images\\Screenshot-2024-03-21-at-22-07-8483-2995-1711033946.png"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\wwwroot\\images\\Untitled design.png",
+      "PackagePath": "staticwebassets\\webcommun\\wwwroot\\images\\Untitled design.png"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\wwwroot\\images\\Wb8pUe4iWjBf2Gx8ky5rLA-1200-80-1846-2148-1711726599.jpg",
+      "PackagePath": "staticwebassets\\webcommun\\wwwroot\\images\\Wb8pUe4iWjBf2Gx8ky5rLA-1200-80-1846-2148-1711726599.jpg"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\wwwroot\\images\\ai-coding-1710410299-6906-1710410348.jpg",
+      "PackagePath": "staticwebassets\\webcommun\\wwwroot\\images\\ai-coding-1710410299-6906-1710410348.jpg"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\wwwroot\\images\\cau-chuyen-y-nghia-1.jpg",
+      "PackagePath": "staticwebassets\\webcommun\\wwwroot\\images\\cau-chuyen-y-nghia-1.jpg"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\wwwroot\\images\\cdn-vox-cdn-7896-1710813178.png",
+      "PackagePath": "staticwebassets\\webcommun\\wwwroot\\images\\cdn-vox-cdn-7896-1710813178.png"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\wwwroot\\images\\huang-8025-1711281340.jpg",
+      "PackagePath": "staticwebassets\\webcommun\\wwwroot\\images\\huang-8025-1711281340.jpg"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\wwwroot\\images\\jim-5002-1711350034.jpg",
+      "PackagePath": "staticwebassets\\webcommun\\wwwroot\\images\\jim-5002-1711350034.jpg"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\wwwroot\\images\\logo.png",
+      "PackagePath": "staticwebassets\\webcommun\\wwwroot\\images\\logo.png"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\wwwroot\\images\\logo_2.png",
+      "PackagePath": "staticwebassets\\webcommun\\wwwroot\\images\\logo_2.png"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\wwwroot\\images\\logo_noneBG.png",
+      "PackagePath": "staticwebassets\\webcommun\\wwwroot\\images\\logo_noneBG.png"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\wwwroot\\images\\m1-vs-m2-air-feature-toned-dow-5823-4792-1711124712.jpg",
+      "PackagePath": "staticwebassets\\webcommun\\wwwroot\\images\\m1-vs-m2-air-feature-toned-dow-5823-4792-1711124712.jpg"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\wwwroot\\images\\nu-dieu-duong-ep-tim-cuu-du-khach-nga-guc-o-da-nang-1711517649.jpg",
+      "PackagePath": "staticwebassets\\webcommun\\wwwroot\\images\\nu-dieu-duong-ep-tim-cuu-du-khach-nga-guc-o-da-nang-1711517649.jpg"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\wwwroot\\images\\openai-website-7159-1711777550.png",
+      "PackagePath": "staticwebassets\\webcommun\\wwwroot\\images\\openai-website-7159-1711777550.png"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\wwwroot\\images\\terminator-style-robot-7003-1710840287.png",
+      "PackagePath": "staticwebassets\\webcommun\\wwwroot\\images\\terminator-style-robot-7003-1710840287.png"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\wwwroot\\images\\tiktok-10-9960-1646278205-3630-1710600720.png",
+      "PackagePath": "staticwebassets\\webcommun\\wwwroot\\images\\tiktok-10-9960-1646278205-3630-1710600720.png"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\wwwroot\\images\\top1-8768-1710951272.jpg",
+      "PackagePath": "staticwebassets\\webcommun\\wwwroot\\images\\top1-8768-1710951272.jpg"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\wwwroot\\images\\troussier-viet-nam-jpeg-171160-7699-6182-1711603194.jpg",
+      "PackagePath": "staticwebassets\\webcommun\\wwwroot\\images\\troussier-viet-nam-jpeg-171160-7699-6182-1711603194.jpg"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\wwwroot\\images\\user_profile.png",
+      "PackagePath": "staticwebassets\\webcommun\\wwwroot\\images\\user_profile.png"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\wwwroot\\images\\viet-nam-indonesia-vong-loai-h-5869-6385-1711788575.jpg",
+      "PackagePath": "staticwebassets\\webcommun\\wwwroot\\images\\viet-nam-indonesia-vong-loai-h-5869-6385-1711788575.jpg"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\wwwroot\\images\\windows-11-stock-orange-abstract-dark-background-3840x2400-8960.png",
+      "PackagePath": "staticwebassets\\webcommun\\wwwroot\\images\\windows-11-stock-orange-abstract-dark-background-3840x2400-8960.png"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\wwwroot\\images\\z5111718551586_c6cdb6f81d00f3a0136609fdc4021eaf.jpg",
+      "PackagePath": "staticwebassets\\webcommun\\wwwroot\\images\\z5111718551586_c6cdb6f81d00f3a0136609fdc4021eaf.jpg"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\wwwroot\\images\\z5178780316377-54425f52b2bc47f-9277-1115-1710612305.jpg",
+      "PackagePath": "staticwebassets\\webcommun\\wwwroot\\images\\z5178780316377-54425f52b2bc47f-9277-1115-1710612305.jpg"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\wwwroot\\images\\z5280418533623-cc40cbdf0af8195-7614-8673-1711285089.jpg",
+      "PackagePath": "staticwebassets\\webcommun\\wwwroot\\images\\z5280418533623-cc40cbdf0af8195-7614-8673-1711285089.jpg"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\wwwroot\\images\\z5282321523365-ecbe0f3620d4955-3599-2882-1711342559.jpg",
+      "PackagePath": "staticwebassets\\webcommun\\wwwroot\\images\\z5282321523365-ecbe0f3620d4955-3599-2882-1711342559.jpg"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\wwwroot\\js\\site.js",
+      "PackagePath": "staticwebassets\\webcommun\\wwwroot\\js\\site.js"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\wwwroot\\lib\\bootstrap\\LICENSE",
+      "PackagePath": "staticwebassets\\webcommun\\wwwroot\\lib\\bootstrap"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css",
+      "PackagePath": "staticwebassets\\webcommun\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map",
+      "PackagePath": "staticwebassets\\webcommun\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css",
+      "PackagePath": "staticwebassets\\webcommun\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map",
+      "PackagePath": "staticwebassets\\webcommun\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css",
+      "PackagePath": "staticwebassets\\webcommun\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map",
+      "PackagePath": "staticwebassets\\webcommun\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css",
+      "PackagePath": "staticwebassets\\webcommun\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\webcommun\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css",
+      "PackagePath": "staticwebassets\\webcommun\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map",
+      "PackagePath": "staticwebassets\\webcommun\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css",
+      "PackagePath": "staticwebassets\\webcommun\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map",
+      "PackagePath": "staticwebassets\\webcommun\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css",
+      "PackagePath": "staticwebassets\\webcommun\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map",
+      "PackagePath": "staticwebassets\\webcommun\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css",
+      "PackagePath": "staticwebassets\\webcommun\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\webcommun\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css",
+      "PackagePath": "staticwebassets\\webcommun\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map",
+      "PackagePath": "staticwebassets\\webcommun\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css",
+      "PackagePath": "staticwebassets\\webcommun\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map",
+      "PackagePath": "staticwebassets\\webcommun\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css",
+      "PackagePath": "staticwebassets\\webcommun\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map",
+      "PackagePath": "staticwebassets\\webcommun\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css",
+      "PackagePath": "staticwebassets\\webcommun\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\webcommun\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",
+      "PackagePath": "staticwebassets\\webcommun\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css.map",
+      "PackagePath": "staticwebassets\\webcommun\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css.map"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css",
+      "PackagePath": "staticwebassets\\webcommun\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map",
+      "PackagePath": "staticwebassets\\webcommun\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css",
+      "PackagePath": "staticwebassets\\webcommun\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map",
+      "PackagePath": "staticwebassets\\webcommun\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css",
+      "PackagePath": "staticwebassets\\webcommun\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\webcommun\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js",
+      "PackagePath": "staticwebassets\\webcommun\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map",
+      "PackagePath": "staticwebassets\\webcommun\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js",
+      "PackagePath": "staticwebassets\\webcommun\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map",
+      "PackagePath": "staticwebassets\\webcommun\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js",
+      "PackagePath": "staticwebassets\\webcommun\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map",
+      "PackagePath": "staticwebassets\\webcommun\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js",
+      "PackagePath": "staticwebassets\\webcommun\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map",
+      "PackagePath": "staticwebassets\\webcommun\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js",
+      "PackagePath": "staticwebassets\\webcommun\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js.map",
+      "PackagePath": "staticwebassets\\webcommun\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js.map"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js",
+      "PackagePath": "staticwebassets\\webcommun\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map",
+      "PackagePath": "staticwebassets\\webcommun\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt",
+      "PackagePath": "staticwebassets\\webcommun\\wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js",
+      "PackagePath": "staticwebassets\\webcommun\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js",
+      "PackagePath": "staticwebassets\\webcommun\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\wwwroot\\lib\\jquery-validation\\LICENSE.md",
+      "PackagePath": "staticwebassets\\webcommun\\wwwroot\\lib\\jquery-validation\\LICENSE.md"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js",
+      "PackagePath": "staticwebassets\\webcommun\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.min.js",
+      "PackagePath": "staticwebassets\\webcommun\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.min.js"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.js",
+      "PackagePath": "staticwebassets\\webcommun\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.js"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.min.js",
+      "PackagePath": "staticwebassets\\webcommun\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.min.js"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\wwwroot\\lib\\jquery\\LICENSE.txt",
+      "PackagePath": "staticwebassets\\webcommun\\wwwroot\\lib\\jquery\\LICENSE.txt"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\wwwroot\\lib\\jquery\\dist\\jquery.js",
+      "PackagePath": "staticwebassets\\webcommun\\wwwroot\\lib\\jquery\\dist\\jquery.js"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\wwwroot\\lib\\jquery\\dist\\jquery.min.js",
+      "PackagePath": "staticwebassets\\webcommun\\wwwroot\\lib\\jquery\\dist\\jquery.min.js"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
+      "PackagePath": "staticwebassets\\webcommun\\wwwroot\\lib\\jquery\\dist\\jquery.min.map"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\zh-CN\\Humanizer.resources.dll",
+      "PackagePath": "staticwebassets\\webcommun\\zh-CN\\Humanizer.resources.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\zh-Hans\\Humanizer.resources.dll",
+      "PackagePath": "staticwebassets\\webcommun\\zh-Hans\\Humanizer.resources.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\zh-Hans\\Microsoft.CodeAnalysis.CSharp.Features.resources.dll",
+      "PackagePath": "staticwebassets\\webcommun\\zh-Hans\\Microsoft.CodeAnalysis.CSharp.Features.resources.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\zh-Hans\\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll",
+      "PackagePath": "staticwebassets\\webcommun\\zh-Hans\\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\zh-Hans\\Microsoft.CodeAnalysis.CSharp.resources.dll",
+      "PackagePath": "staticwebassets\\webcommun\\zh-Hans\\Microsoft.CodeAnalysis.CSharp.resources.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\zh-Hans\\Microsoft.CodeAnalysis.Features.resources.dll",
+      "PackagePath": "staticwebassets\\webcommun\\zh-Hans\\Microsoft.CodeAnalysis.Features.resources.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\zh-Hans\\Microsoft.CodeAnalysis.Scripting.resources.dll",
+      "PackagePath": "staticwebassets\\webcommun\\zh-Hans\\Microsoft.CodeAnalysis.Scripting.resources.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\zh-Hans\\Microsoft.CodeAnalysis.Workspaces.resources.dll",
+      "PackagePath": "staticwebassets\\webcommun\\zh-Hans\\Microsoft.CodeAnalysis.Workspaces.resources.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\zh-Hans\\Microsoft.CodeAnalysis.resources.dll",
+      "PackagePath": "staticwebassets\\webcommun\\zh-Hans\\Microsoft.CodeAnalysis.resources.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\zh-Hant\\Humanizer.resources.dll",
+      "PackagePath": "staticwebassets\\webcommun\\zh-Hant\\Humanizer.resources.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\zh-Hant\\Microsoft.CodeAnalysis.CSharp.Features.resources.dll",
+      "PackagePath": "staticwebassets\\webcommun\\zh-Hant\\Microsoft.CodeAnalysis.CSharp.Features.resources.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\zh-Hant\\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll",
+      "PackagePath": "staticwebassets\\webcommun\\zh-Hant\\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\zh-Hant\\Microsoft.CodeAnalysis.CSharp.resources.dll",
+      "PackagePath": "staticwebassets\\webcommun\\zh-Hant\\Microsoft.CodeAnalysis.CSharp.resources.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\zh-Hant\\Microsoft.CodeAnalysis.Features.resources.dll",
+      "PackagePath": "staticwebassets\\webcommun\\zh-Hant\\Microsoft.CodeAnalysis.Features.resources.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\zh-Hant\\Microsoft.CodeAnalysis.Scripting.resources.dll",
+      "PackagePath": "staticwebassets\\webcommun\\zh-Hant\\Microsoft.CodeAnalysis.Scripting.resources.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\zh-Hant\\Microsoft.CodeAnalysis.Workspaces.resources.dll",
+      "PackagePath": "staticwebassets\\webcommun\\zh-Hant\\Microsoft.CodeAnalysis.Workspaces.resources.dll"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\webcommun\\zh-Hant\\Microsoft.CodeAnalysis.resources.dll",
+      "PackagePath": "staticwebassets\\webcommun\\zh-Hant\\Microsoft.CodeAnalysis.resources.dll"
     },
     {
       "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.Doan_Web_CK.Microsoft.AspNetCore.StaticWebAssets.props",

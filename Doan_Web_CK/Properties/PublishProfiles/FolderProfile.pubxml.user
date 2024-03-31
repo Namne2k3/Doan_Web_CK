@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+https://go.microsoft.com/fwlink/?LinkID=208121.
+-->
+<Project>
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <_PublishTargetUrl>D:\File\Code\ASP .NET Core\Doan_Web_CK\Doan_Web_CK\Doan_Web_CK\wwwroot\webcommun</_PublishTargetUrl>
+    <History>True|2024-03-30T14:30:17.5126145Z;True|2024-03-30T21:24:37.1418015+07:00;True|2024-03-30T21:10:32.3263429+07:00;True|2024-03-30T20:57:05.1446424+07:00;</History>
+    <LastFailureDetails />
+  </PropertyGroup>
+  <ItemGroup>
+    <DestinationConnectionStrings Include="DefaultConnection">
+      <Value>Server=DESKTOP-IVV1PFC\SQLEXPRESS%3bDatabase=Doan_Web_CK%3bTrusted_Connection=True%3bMultipleActiveResultSets=True%3bTrustServerCertificate=True</Value>
+    </DestinationConnectionStrings>
+  </ItemGroup>
+  <ItemGroup>
+    <EFMigrations Include="Doan_Web_CK.ApplicationDbContext">
+      <Value>Server=DESKTOP-IVV1PFC\SQLEXPRESS%3bDatabase=Doan_Web_CK%3bTrusted_Connection=True%3bMultipleActiveResultSets=True%3bTrustServerCertificate=True</Value>
+    </EFMigrations>
+  </ItemGroup>
+</Project>

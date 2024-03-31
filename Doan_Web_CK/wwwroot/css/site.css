@@ -9,6 +9,21 @@ main {
 #update_success_blod {
     display: none
 }
+.share_status_failed, 
+.share_status_success {
+    display: none;
+    text-align: center;
+    padding: 8px;
+    border-radius: 12px;
+}
+.share_status_failed p {
+    font-weight: bold;
+    margin: 0;
+}
+.share_status_success p {
+    font-weight: bold;
+    margin: 0;
+}
 #update_fail,
 #update_success {
     display: none;
@@ -193,8 +208,8 @@ body {
         gap: 6px;
     }
 .comment_card_img_container {
-    width: 40px;
-    height: 40px;
+    max-width: 40px;
+    max-height: 40px;
 }
 
 .comment_card_img {
@@ -293,8 +308,8 @@ body {
     gap: 4px;
 }
 .user_photo_comment_container {
-    width: 45px;
-    height: 45px;
+    max-width: 45px;
+    max-height: 45px;
 }
 
 .user_photo_comment {
@@ -571,6 +586,10 @@ input {
     }
 }
 @media (max-width: 550px) {
+    .comments_actions {
+        left: -45px;
+        bottom: 70px;
+    }
     .form-select {
         font-size: 10px;
     }
@@ -602,8 +621,8 @@ input {
         width: 200px;
     }
     .user_photo_comment_container {
-        width: 45px;
-        height: 45px;
+        max-width: 45px;
+        max-height: 45px;
     }
     .profile_header {
         flex-direction: column;
@@ -703,6 +722,20 @@ input {
     .icon {
         font-size: 22px;
     }
+    .comment_card_img_container {
+        max-width: 30px;
+        max-height: 30px;
+    }
+    .comment_card_content {
+        margin: 0;
+    }
+    .comment_card_content span,
+    .comment_card_content p {
+        font-size: 12px;
+    }
+    .comment_card_actions i {
+        font-size: 16px;
+    }
     .blog_card {
         padding: 8px !important;
     }
@@ -710,8 +743,8 @@ input {
         font-size: 10px !important;
     }
     .user_photo_comment_container {
-        width: 30px;
-        height: 30px;
+        max-width: 30px;
+        max-height: 30px;
     }
     .nav_item_nofitications {
         top: 100% !important;

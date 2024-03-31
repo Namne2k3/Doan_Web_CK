@@ -367,6 +367,9 @@
                     var response = JSON.parse(xhr.responseText);
                     if (response) {
                         console.log("CHECK response >>> ", response)
+                        showElement("share_status_success");
+                    } else {
+                        showElement("share_status_failed")
                     }
                 } else {
                     // Xử lý lỗi
@@ -587,14 +590,14 @@
         const toggle_icon = document.getElementById("toggle_icon_"+id)
         var parentElement = element.parentElement
         if (element.classList.contains("temp_hidden")) {
-            console.log("Da xoa")
+            
             element.classList.remove("temp_hidden")
             toggle_icon.classList.remove("bi-arrow-down-circle")
             toggle_icon.classList.add("bi-arrow-up-circle")
 
         } else {
-            console.log("Da them")
-            parentElement.scrollIntoView({ behavior: 'smooth' })
+            
+            parentElement.scrollIntoView({ behavior: 'smooth' , block: "start" })
             element.classList.add("temp_hidden")
             // scroll execute
             console.log("da chay scroll")

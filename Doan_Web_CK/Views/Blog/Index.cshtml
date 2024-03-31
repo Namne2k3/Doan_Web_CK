@@ -170,7 +170,6 @@
                                     </p>
                                 }
                             </div>
-
                             @if (currentUser?.Id == item.AccountId)
                             {
                                 <div style="position: relative;">
@@ -266,6 +265,12 @@
                                 }
                                 <!-- End Section share action-->
                             </div>
+                            <div class="share_status_success bg-success" id="share_status_success">
+                                <p>You shared this blog</p>
+                            </div>
+                            <div class="share_status_failed bg-danger" id="share_status_failed">
+                                <p>You haven't shared this blog</p>
+                            </div>
                         </div>
 
                         <div>
@@ -291,7 +296,7 @@
                             @if ( item.Comments != null )
                             {
                                 <div id="comment_container_lower_@item.Id" class="comment_container_lower">
-                                    @foreach (var comment in item.Comments)
+                                    @foreach (var comment in ViewBag.GetAllBlogComments(item.Id))
                                     {
                                         <div class="comment_card">
                                             <div class="comment_card_img_container">

@@ -166,6 +166,7 @@ namespace Doan_Web_CK.Controllers
             if (finded != null)
             {
                 await _friendShipRepository.DeleteAsync(finded.Id);
+                await _notifiticationRepository.DeleteAsync(nofId);
                 //< a onclick = "handleAccept(' @currentUser?.Id ', @nof.Id)" class="btn btn-outline-dark">Accept</a>
                 //<a class="btn btn-outline-dark">Deny</a>
                 newHtml.Append("<a class=\"disabled btn btn-outline-dark\">Denied</a>");
@@ -209,8 +210,8 @@ namespace Doan_Web_CK.Controllers
                             sb.Append(nof.Id);
                             sb.Append("\" class=\"nofi_card_actions\">");
 
-                            sb.Append("<a onclick=\"handleAccept('" + nof.SenderAccountId + "'," + nof.Id + ")\" class=\"btn btn-outline-dark\">Accept</a>");
-                            sb.Append("<a onclick=\"handleDeny('" + nof.SenderAccountId + "'," + nof.Id + ")\" class=\"btn btn-outline-dark\">Deny</a>");
+                            sb.Append("<a onclick=\"handleAccept('" + user.Id + "'," + nof.Id + ")\" class=\"btn btn-outline-dark\">Accept</a>");
+                            sb.Append("<a onclick=\"handleDeny('" + user.Id + "'," + nof.Id + ")\" class=\"btn btn-outline-dark\">Deny</a>");
 
                             sb.AppendLine("</div>");
                             sb.AppendLine("</div>");
@@ -231,7 +232,7 @@ namespace Doan_Web_CK.Controllers
                         sb.Append("<a href=\"/Profile/Index/" + nof.SenderAccountId + "\">" + GetUserName(nof.SenderAccountId) + "</a> " + nof.Content);
 
                         // Append blog link with string formatting
-                        sb.AppendFormat(" <a asp-route-id=\"{0}\" asp-action=\"Details\" asp-controller=\"Blog\">Link to blog</a>", nof.BlogId);
+                        sb.AppendFormat(" <a href=\"/Blog/Details/" + nof.BlogId + "\"> Link to blog</a>", nof.BlogId);
 
                         sb.Append("<span class=\"nofi_card_date\"> ");
                         sb.Append(nof.Date);
@@ -256,7 +257,30 @@ namespace Doan_Web_CK.Controllers
                         sb.Append("<a href=\"/Profile/Index/" + nof.SenderAccountId + "\">" + GetUserName(nof.SenderAccountId) + "</a> " + nof.Content);
 
                         // Append blog link with string formatting
-                        sb.AppendFormat(" <a asp-route-id=\"{0}\" asp-action=\"Details\" asp-controller=\"Blog\">Link to blog</a>", nof.BlogId);
+                        sb.AppendFormat("<a href=\"/Blog/Details/" + nof.BlogId + "\" > Link to blog</a>", nof.BlogId);
+
+                        sb.Append("<span class=\"nofi_card_date\"> ");
+                        sb.Append(nof.Date);
+                        sb.AppendLine("</span>");  // Add newline for proper formatting
+
+                        sb.AppendLine("</p>");
+
+                        sb.Append("<div>");
+                        sb.Append("<a onclick = \"handleDeleteNofitication(" + @nof.Id + ")\">");
+                        sb.Append("<i class=\"close_icon bi bi-x\"></i>");
+                        sb.Append("</a>");
+                        sb.Append("</div>");
+                        sb.AppendLine("</div>");
+                        break;
+                    case "Share":
+                        sb.Append("<div class=\"nofi_card\">");
+                        sb.Append("<p class=\"nofi_card_content\">");
+
+                        // Use string formatting for clarity and potential data validation
+                        sb.Append("<a href=\"/Profile/Index/" + nof.SenderAccountId + "\">" + GetUserName(nof.SenderAccountId) + "</a> " + nof.Content);
+
+                        // Append blog link with string formatting
+                        sb.AppendFormat(" <a href=\"/Blog/Details/{0}\">Link to blog</a>", nof.BlogId);
 
                         sb.Append("<span class=\"nofi_card_date\"> ");
                         sb.Append(nof.Date);
@@ -349,7 +373,7 @@ namespace Doan_Web_CK.Controllers
             {
                 finded.IsConfirmed = true;
                 await _friendShipRepository.UpdateAsync(finded);
-
+                await _notifiticationRepository.DeleteAsync(nofId);
                 //< a onclick = "handleAccept(' @currentUser?.Id ', @nof.Id)" class="btn btn-outline-dark">Accept</a>
                 //<a class="btn btn-outline-dark">Deny</a>
                 newHtml.Append("<a class=\"disabled btn btn-outline-dark\">Accepted</a>");
