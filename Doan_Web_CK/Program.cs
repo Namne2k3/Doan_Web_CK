@@ -15,6 +15,9 @@ builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddRoles<IdentityRole>();
 
+
+builder.Services.AddEndpointsApiExplorer();
+
 builder.Services.AddRazorPages();
 
 builder.Services.AddScoped<IBlogRepository, EFBlogRepository>();
@@ -26,6 +29,8 @@ builder.Services.AddScoped<ILikeRepository, EFLikeRepository>();
 builder.Services.AddScoped<IFriendShipRepository, EFFriendShipRepository>();
 
 builder.Services.AddLogging(builder => builder.AddConsole());
+
+
 
 var app = builder.Build();
 
@@ -45,6 +50,7 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapRazorPages();
+
 app.UseEndpoints(endpoints =>
 {
     endpoints.MapAreaControllerRoute(
@@ -100,7 +106,6 @@ using (var scope = app.Services.CreateScope())
         member.ImageUrl = "https://w7.pngwing.com/pngs/178/595/png-transparent-user-profile-computer-icons-login-user-avatars-thumbnail.png";
         await UserManager.CreateAsync(member, password);
         await UserManager.AddToRoleAsync(member, "Member");
-
     }
 }
 app.Run();

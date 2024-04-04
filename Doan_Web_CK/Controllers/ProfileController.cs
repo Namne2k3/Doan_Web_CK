@@ -55,7 +55,21 @@ namespace Doan_Web_CK.Controllers
                 {
                     if (profile_new_password == profile_confirm_password)
                     {
-                        await _userManager.ChangePasswordAsync(currentUser, profile_cur_password, profile_confirm_password);
+                        var changePasswordResult = await _userManager.ChangePasswordAsync(currentUser, profile_cur_password, profile_confirm_password);
+                        if (!changePasswordResult.Succeeded)
+                        {
+                            return Json(new
+                            {
+                                message = "failed"
+                            });
+                        }
+                        else
+                        {
+                            return Json(new
+                            {
+                                message = "success"
+                            });
+                        }
                     }
                     else
                     {
@@ -309,7 +323,7 @@ namespace Doan_Web_CK.Controllers
         public async Task<bool> IsFriendAsync(string userId, string friendId)
         {
             var friendship = await _friendShipRepository.GetAllAsync();
-            var finded = friendship.SingleOrDefault(p => p.UserId == userId || p.FriendId == userId && p.UserId == friendId || p.FriendId == friendId);
+            var finded = friendship.SingleOrDefault(p => p.UserId == userId && p.FriendId == friendId || p.UserId == friendId && p.FriendId == userId);
             if (finded != null && finded.IsConfirmed == true)
             {
                 return true;
@@ -367,13 +381,18 @@ namespace Doan_Web_CK.Controllers
         public async Task<IActionResult> AcceptFriendRequest(string userId, int nofId)
         {
             var friendShip = await _friendShipRepository.GetAllAsync();
-            var finded = friendShip.SingleOrDefault(p => p.FriendId == userId);
+            var nof = await _notifiticationRepository.GetByIdAsync(nofId);
+
+            var finded = friendShip.SingleOrDefault(p => p.FriendId == userId && p.UserId == nof.SenderAccountId);
             StringBuilder newHtml = new StringBuilder();
             if (finded != null)
             {
                 finded.IsConfirmed = true;
                 await _friendShipRepository.UpdateAsync(finded);
                 await _notifiticationRepository.DeleteAsync(nofId);
+
+                var account = await _accountRepository.GetByIdAsync(finded.FriendId);
+
                 //< a onclick = "handleAccept(' @currentUser?.Id ', @nof.Id)" class="btn btn-outline-dark">Accept</a>
                 //<a class="btn btn-outline-dark">Deny</a>
                 newHtml.Append("<a class=\"disabled btn btn-outline-dark\">Accepted</a>");
@@ -390,7 +409,6 @@ namespace Doan_Web_CK.Controllers
             });
         }
         public async Task<IActionResult> Index(string id)
-
         {
             var user = await _userManager.GetUserAsync(User);
             var account = await _accountRepository.GetByIdAsync(user.Id);

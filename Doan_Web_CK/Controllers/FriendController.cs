@@ -25,7 +25,7 @@ namespace Doan_Web_CK.Controllers
         {
             var currnentUser = await _userManager.GetUserAsync(User);
             var friendShips = await _friendShipRepository.GetAllAsync();
-            var finded = friendShips.SingleOrDefault(p => p.UserId == userId || p.UserId == friendId && p.FriendId == userId || p.FriendId == friendId);
+            var finded = friendShips.SingleOrDefault(p => p.UserId == userId && p.FriendId == friendId || p.UserId == friendId && p.FriendId == userId);
             StringBuilder sbProfile = new StringBuilder();
             StringBuilder sbBlogIndex = new StringBuilder();
 
@@ -34,18 +34,18 @@ namespace Doan_Web_CK.Controllers
             {
                 await _friendShipRepository.DeleteAsync(finded.Id);
                 //friendShips = await _friendShipRepository.GetAllAsync();
-                foreach (var f in friendShips)
+                //foreach (var f in friendShips)
+                //{
+                if (currnentUser.Id == userId)
                 {
-                    if (currnentUser.Id == userId)
-                    {
-                        sbFriendIndex.Append("<a class=\"btn btn-outline-light\" href=\"/Profile/Index/" + friendId + "\" >View Profile</a>");
-                    }
-                    else
-                    {
-                        sbFriendIndex.Append("<a class=\"btn btn-dark\" href=\"/Profile/Index/" + userId + "\" >View Profile</a>");
-                    }
-                    sbFriendIndex.Append("<a class=\"btn btn-outline-light disabled\">Add friend</a>");
+                    sbFriendIndex.Append("<a class=\"btn btn-outline-light\" href=\"/Profile/Index/" + friendId + "\" >View Profile</a>");
                 }
+                else
+                {
+                    sbFriendIndex.Append("<a class=\"btn btn-dark\" href=\"/Profile/Index/" + userId + "\" >View Profile</a>");
+                }
+                sbFriendIndex.Append("<a class=\"btn btn-outline-light disabled\">Add friend</a>");
+                //}
 
                 //<a asp - action = "Index" asp - controller = "Profile" asp - route - id = "@item.AccountId" class="btn btn-dark">View Profile</a>
                 //<a onclick = "handleAddFriend('@currentUser.Id', '@item.Id')" class="btn btn-dark">Add Friend</a>

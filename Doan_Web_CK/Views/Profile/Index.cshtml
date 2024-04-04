@@ -5,6 +5,7 @@
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+<script src="~/js/chat.js"></script>
 @{
     var account = ViewBag.Account;
     var blogList = ViewBag.blogList;
@@ -18,7 +19,7 @@
                 <div class="profile_img_container">
                     <img style="border-radius: 100%;" id="profile_photo" class="w-100 photo_image_border" src="@account.ImageUrl" />
                 </div>
-                @if ( currentUser.Id == account.Id )
+                @if (currentUser.Id == account.Id)
                 {
                     <div class="profile_changePhoto position-absolute top-0 w-100 h-100 justify-content-center align-items-center">
                         <a class="w-100">
@@ -36,7 +37,7 @@
                         @account.UserName
                     </h1>
                     <input type="text" oninput="syncInputs(this.value,'input2')" style="min-width: 100%; font-size: 1.4rem; background-color: #282b2d; margin-bottom: 8px;" value="@account.UserName" id="input_username_edit" class="hidden w-100 form-control text-white" />
-                    @if ( currentUser.Id == account.Id )
+                    @if (currentUser.Id == account.Id)
                     {
                         <a onclick="toogleEditUsername()" class="text-white hover_class">
                             <i class="pen_icon bi bi-pen"></i>
@@ -45,27 +46,29 @@
                 </div>
                 <p class="profile_date fst-italic">Date created: @account.DateCreated.ToShortDateString()</p>
                 <div id="profile_request_friend">
-                    @if ( currentUser.Id != account.Id )
+                    @if (currentUser.Id != account.Id)
                     {
-                        if ( ViewBag.IsRequested(currentUser.Id, account.Id) == false )
+                        if (ViewBag.IsRequested(currentUser.Id, account.Id) == false)
                         {
                             if (ViewBag.IsFriend(currentUser.Id, account.Id) == true)
                             {
                                 <div>
                                     <a onclick="handleUnFriend('@currentUser.Id', '@account.Id')" class="btn btn-outline-light">Unfriend</a>
                                 </div>
-                            } else
+                            }
+                            else
                             {
-                                
+
                                 <div>
                                     <a onclick="handleAddFriendProfile('@currentUser.Id', '@account.Id')" class="btn btn-outline-light">Add friend</a>
                                 </div>
                             }
-                        } else
+                        }
+                        else
                         {
                             <div>
                                 <a class="btn btn-outline-light disabled">Requested</a>
-                            </div>   
+                            </div>
                         }
                     }
                 </div>
@@ -73,7 +76,7 @@
         </div>
     </div>
 
-    @if ( currentUser.Id == account.Id )
+    @if (currentUser.Id == account.Id)
     {
         <div class="flex-column justify-content-end" id="saveChange_button">
             <form asp-action="Edit" method="Post" enctype="multipart/form-data">
@@ -86,16 +89,17 @@
         <div class="partial_section">
             <partial name="_LoginPartial" />
         </div>
-    } 
+    }
     <div class="blog_container">
-        @if ( currentUser.Id == account.Id )
+        @if (currentUser.Id == account.Id)
         {
             <h1>My Blogs</h1>
-        } else
+        }
+        else
         {
             <h1>Blogs</h1>
         }
-        @if (blogList.Count != 0 )
+        @if (blogList.Count != 0)
         {
             @foreach (var item in blogList)
             {
@@ -105,19 +109,19 @@
                             <div class="d-flex align-items-end">
                                 <div class="blog_card_img_container" style="width: 65px; height: 65px;">
                                     <img src="@(ViewBag.GetPhotoById(item.AccountId))"
-                                            class="w-100 h-100 photo_image_border"
-                                            style="border-radius: 100%; object-fit: cover;"
-                                        alt="user_profile image"
-                                    />
+                                         class="w-100 h-100 photo_image_border"
+                                         style="border-radius: 100%; object-fit: cover;"
+                                         alt="user_profile image" />
                                 </div>
                                 <p class="blog_username mb-0 fw-bold">@(ViewBag.GetUserName(item.AccountId))</p>
                             </div>
-                             @if ( item.ReferenceId == null )
+                            @if (item.ReferenceId == null)
                             {
                                 <p class="mt-2">
                                     Publish at: @item.PublishDate.ToShortDateString()
                                 </p>
-                            } else
+                            }
+                            else
                             {
                                 <p class="mt-2">
                                     Shared <a asp-action="Details" asp-controller="Blog" asp-route-id="@item.ReferenceId" class="text-white">@ViewBag.GetUserNameByBlogId(item.ReferenceId)</a>'s post - @item.PublishDate.ToShortDateString()
@@ -162,25 +166,26 @@
                     <div class="blog_actions mt-2 d-flex flex-column">
                         <div class="d-flex justify-content-around">
                             <div class="action_container">
-                                @if ( ViewBag.IsCurrentUserLiked(item.Id, currentUser?.Id) == true )
-                                        {
-                                            <a onclick="handleUnLike(@item.Id)" id="action_like_@item.Id" href="#" class="actions_item">
-                                                <p>Like</p>
-                                                <i style="color: #c66b6b;" id="like_icon_@item.Id" class="bi bi-heart-fill"></i>
-                                            </a>
-                                            <p class="badge bg-secondary text-center">@ViewBag.GetBlogLikesCount(item.Id)</p>
-                                        } else
-                                        {
-                                            <a onclick="handleLike(@item.Id)" id="action_like_@item.Id" href="#" class="actions_item">
-                                                <p>Like</p>
-                                                <i style="color: #c66b6b;" id="like_icon_@item.Id" class="bi bi-heart"></i>
-                                            </a>
-                                            <p class="badge bg-secondary text-center">@ViewBag.GetBlogLikesCount(item.Id)</p>
-                                        }
-                                    <form id="like_form_@item.Id" hidden method="post">
-                                        <input type="text" value="@currentUser?.Id" name="like_accountId" />
-                                        <input type="number" value="@item.Id" name="like_blogId" />
-                                    </form>
+                                @if (ViewBag.IsCurrentUserLiked(item.Id, currentUser?.Id) == true)
+                                {
+                                    <a onclick="handleUnLike(@item.Id)" id="action_like_@item.Id" href="#" class="actions_item">
+                                        <p>Like</p>
+                                        <i style="color: #c66b6b;" id="like_icon_@item.Id" class="bi bi-heart-fill"></i>
+                                    </a>
+                                    <p class="badge bg-secondary text-center">@ViewBag.GetBlogLikesCount(item.Id)</p>
+                                }
+                                else
+                                {
+                                    <a onclick="handleLike(@item.Id)" id="action_like_@item.Id" href="#" class="actions_item">
+                                        <p>Like</p>
+                                        <i style="color: #c66b6b;" id="like_icon_@item.Id" class="bi bi-heart"></i>
+                                    </a>
+                                    <p class="badge bg-secondary text-center">@ViewBag.GetBlogLikesCount(item.Id)</p>
+                                }
+                                <form id="like_form_@item.Id" hidden method="post">
+                                    <input type="text" value="@currentUser?.Id" name="like_accountId" />
+                                    <input type="number" value="@item.Id" name="like_blogId" />
+                                </form>
                             </div>
                             <div class="action_container">
                                 <label for="form_input_comment_@item.Id" class="actions_item">
@@ -196,7 +201,7 @@
                         <a onclick="handleLoadAllComments(@item.Id)" class="btn btn-outline-dark text-white">All Comments</a>
                     </div>
                     <div class="comment_container">
-                        @if ( currentUser != null )
+                        @if (currentUser != null)
                         {
                             <div class="comment_container_upper">
                                 <div class="user_photo_comment_container">
@@ -205,12 +210,12 @@
 
                                 @* <form id="form_comment_@item.Id" asp-action="AddComment" method="post"> *@
                                 <form id="form_comment_@item.Id" method="post">
-                                    <input value="@item.Id" type="number" hidden name="comment_blogid"/>
-                                    <input value="@currentUser.Id" type="text" hidden name="comment_accountid"/>
+                                    <input value="@item.Id" type="number" hidden name="comment_blogid" />
+                                    <input value="@currentUser.Id" type="text" hidden name="comment_accountid" />
                                     <input id="form_input_comment_@item.Id" onkeypress="handleKeyPress(event, @item.Id)" type="text" name="comment_content" style="background-color: #282b2d" class="form-control text-white" placeholder="Add comment..." />
                                 </form>
                             </div>
-                            @if (ViewBag.GetAllBlogComments(item.Id) != null )
+                            @if (ViewBag.GetAllBlogComments(item.Id) != null)
                             {
                                 <div id="comment_container_lower_@item.Id" class="comment_container_lower">
                                     @foreach (var comment in ViewBag.GetAllBlogComments(item.Id))
@@ -244,7 +249,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    } 
+                                    }
                                 </div>
                             }
                         }
@@ -295,7 +300,7 @@
                     </a>
                 </div>
                 <div id="nav_item_nofitications" class="hidden nav_item_nofitications position-absolute">
-                    
+
                     <div class="d-flex justify-content-between">
                         <strong>Nofitication</strong>
                         <a class="reload_icon" onclick="reloadAllNof('@currentUser?.Id')">
@@ -308,10 +313,10 @@
                         {
                             @foreach (var nof in ViewBag.GetAllNofOfUser(currentUser?.Id))
                             {
-                                switch ( nof.Type )
+                                switch (nof.Type)
                                 {
                                     case "Addfriend":
-                                        if (ViewBag.IsRequested(nof.SenderAccountId, nof.RecieveAccountId) == true )
+                                        if (ViewBag.IsRequested(nof.SenderAccountId, nof.RecieveAccountId) == true)
                                         {
                                             <div class="nofi_card">
                                                 <div class="nofi_card_content">
@@ -329,9 +334,9 @@
                                                 </div>
                                             </div>
                                         }
-                                    
+
                                         break;
-                                    case "Comment" :
+                                    case "Comment":
                                         <div class="nofi_card">
                                             <p class="nofi_card_content">
                                                 <a asp-action="Index" asp-controller="Profile" asp-route-id="@nof.SenderAccountId">@ViewBag.GetUserName(nof.SenderAccountId)</a> @nof.Content <a asp-route-id="@nof.BlogId" asp-action="Details" asp-controller="Blog">Link to blog</a>
@@ -344,7 +349,7 @@
                                             </div>
                                         </div>
                                         break;
-                                    case "Like" :
+                                    case "Like":
                                         <div class="nofi_card">
                                             <p class="nofi_card_content">
                                                 <a asp-action="Index" asp-controller="Profile" asp-route-id="@nof.SenderAccountId">@ViewBag.GetUserName(nof.SenderAccountId)</a> @nof.Content <a asp-route-id="@nof.BlogId" asp-action="Details" asp-controller="Blog">Link to blog</a>
@@ -358,7 +363,7 @@
                                         </div>
                                         break;
                                     default:
-                                
+
                                         break;
                                 }
                             }
@@ -378,429 +383,4 @@
         </a>
     </ul>
 }
-<script>
-    @* nof_icon_container *@
-    $(document).ready(function () {
-        var screenWidth = $(window).width();
-        var screenHeight = $(window).height();
-        console.log("Check width"+screenWidth)
-        // Kiểm tra kích thước màn hình
-        var ele = document.getElementById('nof_icon_container');
-       
-        if (screenWidth > 550) {
-            ele.innerHTML = `
-                <a onclick="handleToggleNofs()" id="navNofitication" class="nof_icon text-center">
-                    <i class="navIcon icon bi bi-bell-fill"></i>
-                    <p class="navTitle w-75 fs-4 text-start my-auto">Nofitications</p>
-                </a>
-            `
-        }
-    });
-
-    function handleAddFriendProfile(userId, friendId) {
-        
-        fetch(`/Profile/AddFriend?form_add_friend_userid=${userId}&form_add_friend_friendid=${friendId}`)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return response.json();
-            })
-            .then(data => {
-                // xử lý dữ liệu trả về
-                console.log(data);
-                var element = document.getElementById("profile_request_friend")
-                if (element) {
-                    element.innerHTML = ''
-                    element.innerHTML = data.newHtml
-                }
-            })
-            .catch(error => {
-                console.error('There was a problem with the fetch operation:', error);
-            });
-    }
-  function handleDeleteBlog(blogId) {
-        fetch(`/Blog/Delete?blogId=${blogId}`)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return response.json();
-            })
-            .then(data => {
-                // xử lý dữ liệu trả về
-                console.log(data);
-                var port = window.location.port;
-                if (window.location.href.indexOf("Profile") !== -1) { // Sử dụng indexOf() để kiểm tra chuỗi con
-                    window.location.href = "https://localhost:" + port + "/Profile";
-                } else {
-                    window.location.href = "https://localhost:" + port;
-                }
-            })
-            .catch(error => {
-                console.error('There was a problem with the fetch operation:', error);
-            });
-    }
-    function handleAccept(userId, nofId) {
-        fetch(`/Profile/AcceptFriendRequest?userId=${userId}&nofId=${nofId}`)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return response.json();
-            })
-            .then(data => {
-                // xử lý dữ liệu trả về
-                console.log(data.commentHtml);
-                // cập nhật giao diện người dùng với dữ liệu mới
-                var element = document.getElementById("nofi_card_actions_" + nofId);
-                if (element) {
-                    element.innerHTML = '';
-                    element.innerHTML = data.newHtml;
-                }
-            })
-            .catch(error => {
-                console.error('There was a problem with the fetch operation:', error);
-            });
-    }
-    function handleDeny(userId, nofId) {
-        fetch(`/Profile/DenyFriendRequest?userId=${userId}&nofId=${nofId}`)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return response.json();
-            })
-            .then(data => {
-                // xử lý dữ liệu trả về
-                console.log(data.commentHtml);
-                // cập nhật giao diện người dùng với dữ liệu mới
-                var element = document.getElementById("nofi_card_actions_" + nofId);
-                if (element) {
-                    element.innerHTML = '';
-                    element.innerHTML = data.newHtml;
-                }
-            })
-            .catch(error => {
-                console.error('There was a problem with the fetch operation:', error);
-            });
-    }
-    isDisplayAllCmt = true
-    function handleLoadAllComments(blogId) {
-        console.log("Typeof isDisplayAllCmt >>> ", typeof (isDisplayAllCmt))
-        fetch(`/Blog/GetAllCommentsOfBlogs?blogId=${blogId}&isDisplayAllCmt=${isDisplayAllCmt}`)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return response.json();
-            })
-            .then(data => {
-                // xử lý dữ liệu trả về
-                console.log(data.commentHtml);
-                // cập nhật giao diện người dùng với dữ liệu mới
-                var commentContainer = document.getElementById("comment_container_lower_" + blogId);
-                if (commentContainer) {
-                    commentContainer.innerHTML = '';
-                    commentContainer.innerHTML = data.commentHtml;
-                    isDisplayAllCmt = !isDisplayAllCmt;
-                }
-            })
-            .catch(error => {
-                console.error('There was a problem with the fetch operation:', error);
-            });
-    }
-    function handleToggleLike(id) {
-        event.preventDefault();
-        var formData = new FormData(document.getElementById("like_form_" + id));
-        var xhr = new XMLHttpRequest();
-        xhr.open("POST", "/Blog/AddLike", true);
-        xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest"); // Đảm bảo yêu cầu được nhận biết là AJAX
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState === XMLHttpRequest.DONE) {
-                if (xhr.status === 200) {
-                    var response = JSON.parse(xhr.responseText);
-                    if (response) {
-                        console.log("CHECK response >>> ", response)
-                    }
-                } else {
-                    // Xử lý lỗi
-                }
-            }
-        };
-        xhr.send(formData);
-    }
-    function handleChangeIcon(id) {
-        var icon = document.getElementById("like_icon_"+id);
-        if (!icon.classList.contains("bi-heart-fill")) {
-            icon.classList.remove("bi-heart")
-            icon.classList.add("bi-heart-fill")
-        } else {
-            icon.classList.remove("bi-heart-fill")
-            icon.classList.add("bi-heart")
-        }
-    }
-    function handleToggleUnLike(id) {
-        event.preventDefault();
-        var formData = new FormData(document.getElementById("like_form_" + id));
-        var xhr = new XMLHttpRequest();
-        xhr.open("POST", "/Blog/UnLike", true);
-        xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest"); // Đảm bảo yêu cầu được nhận biết là AJAX
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState === XMLHttpRequest.DONE) {
-                if (xhr.status === 200) {
-                    var response = JSON.parse(xhr.responseText);
-                    if (response) {
-                        console.log("CHECK response >>> ", response)
-                    }
-                } else {
-                    // Xử lý lỗi
-                }
-            }
-        };
-        xhr.send(formData);
-    }
-    function handleUnLike(id) {
-        handleChangeIcon(id)
-
-        let element = document.getElementById("action_like_" + id)
-        console.log(element);
-        element.onclick = function () { 
-            handleLike(id)
-        }
-        console.log(element);
-
-        handleToggleUnLike(id)
-    }
-    function handleLike(id) {
-        handleChangeIcon(id)
-
-        let element = document.getElementById("action_like_"+id)
-        console.log(element);
-        element.onclick = function () {
-            handleUnLike(id)
-        }
-        console.log(element);
-        handleToggleLike(id)
-    }
-    function toogleEditUsername() {
-        var h1 = document.getElementById("user_name_h1");
-        var input_username = document.getElementById("input_username_edit")
-        if (!h1.classList.contains("hidden"))
-        {
-            h1.classList.add("hidden")
-            input_username.classList.remove("hidden")
-        }
-        document.getElementById("saveChange_button").classList.remove("hidden")
-        document.getElementById("saveChange_button").classList.add("flex")
-        
-    }
-    function handleEdituserName() {
-        var input_username = document.getElementById("input_username_edit")
-        if (!input_username.classList.contains("hidden")) {
-            document.getElementById("saveChange_button").classList.remove("hidden")
-            document.getElementById("saveChange_button").classList.add("flex")
-        } else {
-            document.getElementById("saveChange_button").classList.remove("flex")
-            document.getElementById("saveChange_button").classList.add("hidden")
-        }
-        console.log("dang chay handleEdituserName")
-    }
-    function syncInputs(value, targetId) {
-        var targetInput = document.getElementById(targetId);
-        targetInput.value = value;
-        console.log("dang chay syncinput")
-    }
-    function handlePreviewPhoto() {
-        console.log("Da chay")
-        if (!this.files || !this.files[0]) return;
-
-        const FR = new FileReader();
-        var img = document.getElementById('profile_photo');
-
-        FR.addEventListener("load", function (evt) {
-            img.src = evt.target.result;
-        });
-
-        console.log("Check >>> " , img.src)
-
-        FR.readAsDataURL(this.files[0]);
-
-        if (document.getElementById("profile_photo_input").value != "") 
-        {
-            console.log("Chay lan hai")
-            document.getElementById("saveChange_button").classList.remove("hidden")
-            document.getElementById("saveChange_button").classList.add("flex")
-        } else {
-            console.log("Chay lan dau")
-            document.getElementById("saveChange_button").classList.remove("flex")
-            document.getElementById("saveChange_button").classList.add("hidden")
-        }
-    }
-
-    document.querySelector("#profile_photo_input").addEventListener("change", handlePreviewPhoto);
-
-    if (!document.getElementById("profile_photo_input").value != "") 
-    {
-        console.log("Chay lan dau")
-        document.getElementById("saveChange_button").classList.remove("flex")
-        document.getElementById("saveChange_button").classList.add("hidden")
-    }
-
-    function handleEditToggleComment(id) {
-        
-        var form = document.getElementById("comment_form_"+id)
-        var p = document.getElementById("p_content_" + id);
-        if ( !p.classList.contains("hidden") ) {
-            p.classList.add("hidden");
-            form.classList.remove("hidden");
-            form.focus();
-        } else {
-            p.classList.remove("hidden")
-            form.classList.add("hidden")
-        }
-        
-    }
-    function toggleActionComment(id) {
-        var element = document.getElementById("comments_actions_"+id)
-        if (element.classList.contains("hidden")) {
-            element.classList.remove("hidden");
-        } else {
-            element.classList.add("hidden");
-        }
-    }
-    function handleSubmitAddCmt(id) {
-        event.preventDefault(); 
-        var formData = new FormData(document.getElementById("form_comment_"+id));
-        var xhr = new XMLHttpRequest();
-        xhr.open("POST", "/Blog/AddComment", true);
-        xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest"); // Đảm bảo yêu cầu được nhận biết là AJAX
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState === XMLHttpRequest.DONE) {
-                if (xhr.status === 200) {
-                    var response = JSON.parse(xhr.responseText);
-
-                    // Cập nhật nội dung của phần tử commentContainer
-                    document.getElementById("form_input_comment_" + id).value = ""
-                    var commentContainer = document.getElementById("comment_container_lower_" + id);
-                    if (commentContainer) {
-                        commentContainer.innerHTML = '';
-                        commentContainer.innerHTML = response.commentHtml;
-                    }
-                } else {
-                    // Xử lý lỗi
-                }
-            }
-        };
-        xhr.send(formData);
-    }
-    function handleToggleMore(id) {
-        console.log(id)
-        const element = document.getElementById("content_"+id);
-        const toggle_icon = document.getElementById("toggle_icon_"+id)
-        var parentElement = element.parentElement
-        if (element.classList.contains("temp_hidden")) {
-            console.log("Da xoa")
-            element.classList.remove("temp_hidden")
-            toggle_icon.classList.remove("bi-arrow-down-circle")
-            toggle_icon.classList.add("bi-arrow-up-circle")
-
-        } else {
-            console.log("Da them")
-            parentElement.scrollIntoView({ behavior: 'smooth' })
-            element.classList.add("temp_hidden")
-            // scroll execute
-            console.log("da chay scroll")
-            toggle_icon.classList.remove("bi-arrow-up-circle")
-            toggle_icon.classList.add("bi-arrow-down-circle")
-        }
-    }
-   
-    function handleToggle(id) {
-        var element = document.getElementById(id);
-        if (element.classList.contains("hidden")) {
-            element.classList.remove("hidden");
-            element.classList.add("flex");
-        } else {
-            element.classList.add("hidden");
-            element.classList.remove("flex");
-        }
-    }
-    function handleSubmitEditCmt(id, cmtId) {
-        event.preventDefault();
-        console.log("Check cmtid >>> " , cmtId)
-        var formData = new FormData(document.getElementById("edit_form_cmt_" + cmtId));
-        var xhr = new XMLHttpRequest();
-        xhr.open("POST", "/Blog/UpdateComment", true);
-        xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest"); // Đảm bảo yêu cầu được nhận biết là AJAX
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState === XMLHttpRequest.DONE) {
-                if (xhr.status === 200) {
-                    var response = JSON.parse(xhr.responseText);
-
-                    var commentContainer = document.getElementById("comment_container_lower_" + id);
-                    if (commentContainer) {
-                        commentContainer.innerHTML = '';
-                        commentContainer.innerHTML = response.commentHtml;
-                    }
-                } else {
-                    // Xử lý lỗi
-                }
-            }
-        };
-        xhr.send(formData);
-    }
-    function handleKeyPressInputEditComment(event, id, commentId) {
-        if (event.key === 'Enter') {
-            handleSubmitEditCmt(id,commentId)
-
-            console.log("Check" + commentId);
-            handleEditToggleComment(commentId)
-        }
-    }
-
-    function handleKeyPress(event, id) {
-        // Kiểm tra xem phím được nhấn có phải là phím Enter không
-        if (event.key === "Enter") {
-            // Xử lý sự kiện tại đây, ví dụ: gọi một hàm JavaScript hoặc thực hiện một hành động khác
-            handleSubmitAddCmt(id)
-        }
-        return false;
-    }
-    function handleToggleFilter() {
-        console.log("Dang chay")
-        var element = document.getElementById("filter_modal");
-        if (element) {
-            if (element.classList.contains("hidden")) {
-                element.classList.remove("hidden");
-                element.classList.add("block");
-            } else {
-                element.classList.add("hidden");
-                element.classList.remove("block");
-            }
-        }
-    }
-    function reloadAllNof(userId) { 
-        fetch(`/Profile/GetReloadNofs?userId=${userId}`)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return response.json();
-            })
-            .then(data => {
-                // xử lý dữ liệu trả về
-                console.log(data.newHtml);
-                // cập nhật giao diện người dùng với dữ liệu mới
-                var element = document.getElementById("nav_item_nofitications_container")
-                if (element) {
-                    element.innerHTML = '';
-                    element.innerHTML = data.newHtml
-                }
-            })
-            .catch(error => {
-                console.error('There was a problem with the fetch operation:', error);
-            });
-    }
-</script>
 

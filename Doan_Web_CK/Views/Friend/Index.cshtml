@@ -12,20 +12,21 @@
 <h1>Friends</h1>
 <div class="body_container">
     <div class="friends_container">
-        @if (currentUser != null )
+        @if (currentUser != null)
         {
-            if (currentUser.Friendships != null || currentUser.Friendships.Count != 0 )
+            if (currentUser.Friendships != null || currentUser.Friendships.Count != 0)
             {
                 foreach (var f in Model)
                 {
-                    if ( f.IsConfirmed == true )
+                    if (f.IsConfirmed == true)
                     {
                         <div class="friend_card">
                             <div class="friend_card_img_container">
-                                @if ( f.UserId == currentUser.Id )
+                                @if (f.UserId == currentUser.Id)
                                 {
                                     <img class="friend_card_img" src="@f.Friend?.ImageUrl" />
-                                } else
+                                }
+                                else
                                 {
                                     <img class="friend_card_img" src="@f.User?.ImageUrl" />
                                 }

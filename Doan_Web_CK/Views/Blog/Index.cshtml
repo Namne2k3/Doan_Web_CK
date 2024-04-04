@@ -1,4 +1,4 @@
-﻿@model  Doan_Web_CK.Models.Blog
+﻿@model Doan_Web_CK.Models.Blog
 @using System.Net
 @using Microsoft.AspNetCore.Identity
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
@@ -13,10 +13,10 @@
 <div class="d-flex gap-4">
     <div class="body_container" style="width: 75%">
         <h1>Blogs</h1>
-        @if ( currentUser != null )
+        @if (currentUser != null)
         {
             <div class="mt-3 d-flex justify-content-between align-items-center">
-                <div class="d-flex flex-column gap-2"> 
+                <div class="d-flex flex-column gap-2">
                     <div class="input_add" style="width: 210px">
                         <input class="form-control w-50 text-white w-100" placeholder="Share your blog now..." style="background-color: #282b2d" data-bs-toggle="modal" data-bs-target="#exampleModal" />
                     </div>
@@ -28,12 +28,12 @@
                                 <input type="text" name="blog_title" id="searchInput" class="form-control" placeholder="Search your blog title..." />
                                 <input style="color: #989292;" name="blog_date" class="form-control" type="date" />
                             </div>
-                    
+
                             <div class="input-group mt-2">
-                                <label for="cate_filter"  class="input-group-text">Category</label>
+                                <label for="cate_filter" class="input-group-text">Category</label>
                                 <select name="cate_filter" id="cate_filter" class="form-select" asp-items="@ViewBag.Categories"></select>
                             </div>
-                    
+
                             <div class="form-check form-switch mt-2 d-flex align-items-center justify-content-between">
                                 <div class="d-flex gap-2">
                                     <input name="blog_newest" class="form-check-input" type="checkbox" id="newestBlogCb">
@@ -96,7 +96,7 @@
 
 
         <div class="blog_container">
-            @if (blogList.Count != 0 )
+            @if (blogList.Count != 0)
             {
                 @foreach (var item in blogList)
                 {
@@ -118,39 +118,38 @@
                                             <img src="@(ViewBag.GetPhotoById(item.AccountId))"
                                                  class="w-100 h-100 photo_image_border"
                                                  style="border-radius: 100%; object-fit: cover;"
-                                                alt="user_profile image"
-                                            />
+                                                 alt="user_profile image" />
                                         </a>
-                                        @if (SignInManager.IsSignedIn(User) )
+                                        @if (SignInManager.IsSignedIn(User))
                                         {
-                                                <div id="right_click_menu_@item.Id" class="right_click_menu hidden">
-                                                    <div id="right_click_menu_container_@item.Id" class="d-flex gap-2 flex-column">
-                                                        <a asp-action="Index" asp-controller="Profile" asp-route-id="@item.AccountId" class="btn btn-dark">View Profile</a>
-                                                        @if ( UserManager.GetUserId(User) != item.AccountId)
+                                            <div id="right_click_menu_@item.Id" class="right_click_menu hidden">
+                                                <div id="right_click_menu_container_@item.Id" class="d-flex gap-2 flex-column">
+                                                    <a asp-action="Index" asp-controller="Profile" asp-route-id="@item.AccountId" class="btn btn-dark">View Profile</a>
+                                                    @if (UserManager.GetUserId(User) != item.AccountId)
+                                                    {
+                                                        @if (ViewBag.IsRequested(UserManager.GetUserId(User), item.AccountId) == false)
                                                         {
-                                                            @if (ViewBag.IsRequested(UserManager.GetUserId(User), item.AccountId) == false)
+                                                            @if (ViewBag.IsFriend(UserManager.GetUserId(User), item.AccountId) == true)
                                                             {
-                                                                @if (ViewBag.IsFriend(UserManager.GetUserId(User), item.AccountId) == true)
-                                                                {
-                                                                    <a onclick="handleUnFriend('@currentUser.Id', '@item.AccountId', @item.Id)" class="btn btn-dark">Unfriend</a>
-                                                                }
-                                                                else
-                                                                {
-                                                                    <a onclick="handleAddFriend('@currentUser.Id', '@item.Id')" class="btn btn-dark">Add Friend</a>
-                                                                }
+                                                                <a onclick="handleUnFriend('@currentUser?.Id', '@item.AccountId', @item.Id)" class="btn btn-dark">Unfriend</a>
                                                             }
                                                             else
                                                             {
-                                                                <a class="btn btn-dark disabled">Requested</a>
+                                                                <a onclick="handleAddFriend('@currentUser?.Id', '@item.Id')" class="btn btn-dark">Add Friend</a>
                                                             }
                                                         }
-                                                    </div>
-
-                                                    <form hidden id="form_add_friend_@item.Id">
-                                                        <input value="@UserManager.GetUserId(User)" type="text" name="form_add_friend_userid"/>
-                                                        <input value="@item.AccountId" type="text" name="form_add_friend_friendid" />
-                                                    </form>
+                                                        else
+                                                        {
+                                                            <a class="btn btn-dark disabled">Requested</a>
+                                                        }
+                                                    }
                                                 </div>
+
+                                                <form hidden id="form_add_friend_@item.Id">
+                                                    <input value="@UserManager.GetUserId(User)" type="text" name="form_add_friend_userid" />
+                                                    <input value="@item.AccountId" type="text" name="form_add_friend_friendid" />
+                                                </form>
+                                            </div>
                                         }
                                     </div>
                                     <!-- End Section rightclick-->
@@ -158,12 +157,13 @@
                                         <p class="blog_username mb-0 fw-bold">@(ViewBag.GetUserName(item.AccountId))</p>
                                     </a>
                                 </div>
-                                @if ( item.ReferenceId == null )
+                                @if (item.ReferenceId == null)
                                 {
                                     <p class="mt-2">
                                         Publish at: @item.PublishDate.ToShortDateString()
                                     </p>
-                                } else
+                                }
+                                else
                                 {
                                     <p class="mt-2">
                                         Shared <a asp-action="Details" asp-controller="Blog" asp-route-id="@item.ReferenceId" class="text-white">@ViewBag.GetUserNameByBlogId(item.ReferenceId)</a>'s post - @item.PublishDate.ToShortDateString()
@@ -209,21 +209,22 @@
 
                                 <!-- Start Section likes action-->
                                 <div class="action_container">
-                                        @if ( ViewBag.IsCurrentUserLiked(item.Id, currentUser?.Id) == true )
-                                        {
-                                            <a onclick="handleUnLike(@item.Id)" id="action_like_@item.Id" href="#" class="actions_item">
-                                                <p>Like</p>
-                                                <i style="color: #c66b6b;" id="like_icon_@item.Id" class="bi bi-heart-fill"></i>
-                                            </a>
-                                            <p class="badge bg-secondary text-center">@ViewBag.GetBlogLikesCount(item.Id)</p>
-                                        } else
-                                        {
-                                            <a onclick="handleLike(@item.Id)" id="action_like_@item.Id" href="#" class="actions_item">
-                                                <p>Like</p>
-                                                <i style="color: #c66b6b;" id="like_icon_@item.Id" class="bi bi-heart"></i>
-                                            </a>
-                                            <p class="badge bg-secondary text-center">@ViewBag.GetBlogLikesCount(item.Id)</p>
-                                        }
+                                    @if (ViewBag.IsCurrentUserLiked(item.Id, currentUser?.Id) == true)
+                                    {
+                                        <a onclick="handleUnLike(@item.Id)" id="action_like_@item.Id" href="#" class="actions_item">
+                                            <p>Like</p>
+                                            <i style="color: #c66b6b;" id="like_icon_@item.Id" class="bi bi-heart-fill"></i>
+                                        </a>
+                                        <p class="badge bg-secondary text-center">@ViewBag.GetBlogLikesCount(item.Id)</p>
+                                    }
+                                    else
+                                    {
+                                        <a onclick="handleLike(@item.Id)" id="action_like_@item.Id" href="#" class="actions_item">
+                                            <p>Like</p>
+                                            <i style="color: #c66b6b;" id="like_icon_@item.Id" class="bi bi-heart"></i>
+                                        </a>
+                                        <p class="badge bg-secondary text-center">@ViewBag.GetBlogLikesCount(item.Id)</p>
+                                    }
                                     <form id="like_form_@item.Id" hidden method="post">
                                         <input type="text" value="@currentUser?.Id" name="like_accountId" />
                                         <input type="number" value="@item.Id" name="like_blogId" />
@@ -241,7 +242,7 @@
 
 
                                 <!-- Start Section share action-->
-                                @if ( currentUser?.Id != item.AccountId )
+                                @if (currentUser?.Id != item.AccountId)
                                 {
                                     <div class="action_container position-relative">
                                         <a onclick="handleToggleShareActions(@item.Id)" href="#" class="actions_item">
@@ -278,7 +279,7 @@
                         </div>
 
                         <div class="comment_container">
-                            @if ( currentUser != null )
+                            @if (currentUser != null)
                             {
                                 <div class="comment_container_upper">
                                     <div class="user_photo_comment_container">
@@ -287,13 +288,13 @@
 
                                     @* <form id="form_comment_@item.Id" asp-action="AddComment" method="post"> *@
                                     <form id="form_comment_@item.Id" method="post">
-                                        <input value="@item.Id" type="number" hidden name="comment_blogid"/>
-                                        <input value="@currentUser.Id" type="text" hidden name="comment_accountid"/>
+                                        <input value="@item.Id" type="number" hidden name="comment_blogid" />
+                                        <input value="@currentUser.Id" type="text" hidden name="comment_accountid" />
                                         <input id="form_input_comment_@item.Id" onkeypress="handleKeyPress(event, @item.Id)" type="text" name="comment_content" style="background-color: #282b2d" class="form-control text-white" placeholder="Add comment..." />
                                     </form>
                                 </div>
                             }
-                            @if ( item.Comments != null )
+                            @if (item.Comments != null)
                             {
                                 <div id="comment_container_lower_@item.Id" class="comment_container_lower">
                                     @foreach (var comment in ViewBag.GetAllBlogComments(item.Id))
@@ -327,7 +328,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    } 
+                                    }
                                 </div>
                                 <div id="update_success" class="p-4 text-white text-success bg-success rounded-3">
                                     Delete Success
@@ -348,9 +349,10 @@
         </div>
     </div>
     <div class="recently_post_container" style="width: 25%">
-        @if ( MyBlogs != null ) {
+        @if (MyBlogs != null)
+        {
             <h2>Recently Blogs</h2>
-            foreach (var blog in MyBlogs )
+            foreach (var blog in MyBlogs)
             {
                 <div id="@blog.Id" class="recent_card w-100">
                     <a asp-controller="Blog" asp-action="Details" asp-route-id="@blog.Id">
@@ -400,7 +402,7 @@
                     </a>
                 </div>
                 <div id="nav_item_nofitications" class="hidden nav_item_nofitications position-absolute">
-                    
+
                     <div class="d-flex justify-content-between">
                         <strong>Nofitication</strong>
                         <a class="reload_icon" onclick="reloadAllNof('@currentUser?.Id')">
@@ -413,10 +415,10 @@
                         {
                             @foreach (var nof in ViewBag.GetAllNofOfUser(currentUser?.Id))
                             {
-                                switch ( nof.Type )
+                                switch (nof.Type)
                                 {
                                     case "Addfriend":
-                                        if (ViewBag.IsRequested(nof.SenderAccountId, nof.RecieveAccountId) == true )
+                                        if (ViewBag.IsRequested(nof.SenderAccountId, nof.RecieveAccountId) == true)
                                         {
                                             <div class="nofi_card">
                                                 <div class="nofi_card_content">
@@ -434,9 +436,9 @@
                                                 </div>
                                             </div>
                                         }
-                                    
+
                                         break;
-                                    case "Comment" :
+                                    case "Comment":
                                         <div class="nofi_card">
                                             <p class="nofi_card_content">
                                                 <a asp-action="Index" asp-controller="Profile" asp-route-id="@nof.SenderAccountId">@ViewBag.GetUserName(nof.SenderAccountId)</a> @nof.Content <a asp-route-id="@nof.BlogId" asp-action="Details" asp-controller="Blog">Link to blog</a>
@@ -449,7 +451,7 @@
                                             </div>
                                         </div>
                                         break;
-                                    case "Like" :
+                                    case "Like":
                                         <div class="nofi_card">
                                             <p class="nofi_card_content">
                                                 <a asp-action="Index" asp-controller="Profile" asp-route-id="@nof.SenderAccountId">@ViewBag.GetUserName(nof.SenderAccountId)</a> @nof.Content <a asp-route-id="@nof.BlogId" asp-action="Details" asp-controller="Blog">Link to blog</a>
@@ -463,7 +465,7 @@
                                         </div>
                                         break;
                                     default:
-                                
+
                                         break;
                                 }
                             }
@@ -483,4 +485,3 @@
         </a>
     </ul>
 }
-

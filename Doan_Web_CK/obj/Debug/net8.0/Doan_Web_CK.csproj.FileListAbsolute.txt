@@ -572,3 +572,8 @@ D:\File\Code\ASP .NET Core\Doan_Web_CK_backup\Doan_Web_CK\Doan_Web_CK\obj\Debug\
 D:\File\Code\ASP .NET Core\Doan_Web_CK_backup\Doan_Web_CK\Doan_Web_CK\obj\Debug\net8.0\Doan_Web.8A3F7FE0.Up2Date
 D:\File\Code\ASP .NET Core\Doan_Web_CK_backup\Doan_Web_CK\Doan_Web_CK\obj\Debug\net8.0\Doan_Web_CK.genruntimeconfig.cache
 D:\File\Code\ASP .NET Core\Doan_Web_CK_backup\Doan_Web_CK\Doan_Web_CK\obj\Debug\net8.0\ref\Doan_Web_CK.dll
+D:\File\Code\ASP .NET Core\Doan_Web_CK\Doan_Web_CK\Doan_Web_CK\bin\Debug\net8.0\Microsoft.AspNetCore.Connections.Abstractions.dll
+D:\File\Code\ASP .NET Core\Doan_Web_CK\Doan_Web_CK\Doan_Web_CK\bin\Debug\net8.0\Microsoft.AspNetCore.SignalR.Common.dll
+D:\File\Code\ASP .NET Core\Doan_Web_CK\Doan_Web_CK\Doan_Web_CK\bin\Debug\net8.0\Microsoft.AspNetCore.SignalR.Protocols.Json.dll
+D:\File\Code\ASP .NET Core\Doan_Web_CK\Doan_Web_CK\Doan_Web_CK\bin\Debug\net8.0\Microsoft.Extensions.Features.dll
+D:\File\Code\ASP .NET Core\Doan_Web_CK\Doan_Web_CK\Doan_Web_CK\bin\Debug\net8.0\libman.json

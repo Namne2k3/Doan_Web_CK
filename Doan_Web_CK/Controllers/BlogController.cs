@@ -257,7 +257,9 @@ namespace Doan_Web_CK.Controllers
             var user = await _accountRepository.GetByIdAsync(userId);
 
             var nofitications = await _notifiticationRepository.GetAllNotifitions();
-            var filtered = nofitications.Where(p => p.RecieveAccountId == userId).ToList();
+            var filtered = nofitications.Where(p => p.RecieveAccountId == userId)
+                .OrderByDescending(p => p.Date)
+                .ToList();
             return filtered;
         }
         public IEnumerable<Nofitication> GetAllNofOfUser(string userId)
@@ -732,7 +734,7 @@ namespace Doan_Web_CK.Controllers
 
 
             // <a asp-action="Index" asp-controller="Profile" asp-route-id="@item.AccountId" class="btn btn-dark">View Profile</a>
-            newHtml.Append("<a asp-action=\"Index\" asp-controller=\"Profile\" asp-route-id=\"" + form_add_friend_friendid + "\" class=\"btn btn-dark\">View Profile</a>");
+            newHtml.Append("<a href=\"/Profile/Index/" + form_add_friend_friendid + "\" class=\"btn btn-dark\">View Profile</a>");
             newHtml.Append("<a class=\"btn btn-dark disabled\">Requested</a>");
             // <a onclick=" handleAddFriend(' @item.AccountId', @item.Id) " class="btn btn-dark disabled">Requested</a>
             string newCommentsHtmlString = newHtml.ToString();
@@ -889,7 +891,7 @@ namespace Doan_Web_CK.Controllers
         public async Task<bool> IsFriendAsync(string userId, string friendId)
         {
             var friendship = await _friendShipRepository.GetAllAsync();
-            var finded = friendship.SingleOrDefault(p => p.UserId == userId || p.FriendId == userId && p.UserId == friendId || p.FriendId == friendId);
+            var finded = friendship.SingleOrDefault(p => p.UserId == userId && p.FriendId == friendId || p.UserId == friendId && p.FriendId == userId);
             if (finded != null && finded.IsConfirmed == true)
             {
                 return true;
