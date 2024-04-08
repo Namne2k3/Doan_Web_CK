@@ -435,12 +435,48 @@ namespace Doan_Web_CK.Controllers
             ViewBag.IsRequested = new Func<string, string, bool>(IsRequested);
             ViewBag.GetAllNofOfUser = new Func<string, IEnumerable<Nofitication>>(GetAllNofOfUser);
             ViewBag.IsFriend = new Func<string, string, bool>(IsFriend);
+            ViewBag.IsBeingRequested = new Func<string, string, bool>(IsBeingRequested);
             return View();
+        }
+        public async Task<IActionResult> AcceptFriend(string userId, string friendId)
+        {
+            var friendShips = await _friendShipRepository.GetAllAsync();
+            var nofs = await _notifiticationRepository.GetAllNotifitions();
+
+            var finded = friendShips.SingleOrDefault(p => p.UserId == userId && p.FriendId == friendId || p.UserId == friendId && p.FriendId == userId && p.IsConfirmed == false);
+            var findedNof = nofs.SingleOrDefault(p => p.SenderAccountId == userId && p.RecieveAccountId == friendId || p.SenderAccountId == friendId && p.RecieveAccountId == userId && p.Type == "Addfriend");
+
+            if (finded != null)
+            {
+                finded.IsConfirmed = true;
+                await _friendShipRepository.UpdateAsync(finded);
+                if (findedNof != null)
+                {
+                    await _notifiticationRepository.DeleteAsync(findedNof.Id);
+                }
+            }
+            return RedirectToAction("Index", new { id = friendId });
+        }
+        public async Task<bool> IsBeingRequestedAsync(string currentUserId, string accountId)
+        {
+            var friendships = await _friendShipRepository.GetAllAsync();
+            var finded = friendships.SingleOrDefault(p => p.FriendId == currentUserId && p.UserId == accountId);
+            if (finded != null)
+            {
+                return true;
+            }
+            return false;
+        }
+        public bool IsBeingRequested(string currentUserId, string accountId)
+        {
+            var task = IsBeingRequestedAsync(currentUserId, accountId);
+            task.Wait();
+            return task.Result;
         }
         public async Task<bool> IsRequestedAsync(string userId, string friendId)
         {
             var friendships = await _friendShipRepository.GetAllAsync();
-            var finded = friendships.SingleOrDefault(p => p.UserId == userId && p.FriendId == friendId && p.IsConfirmed == false);
+            var finded = friendships.SingleOrDefault(p => p.UserId == userId && p.FriendId == friendId || p.UserId == friendId && p.FriendId == userId && p.IsConfirmed == false);
             if (finded != null)
             {
                 return true;

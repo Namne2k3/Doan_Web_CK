@@ -58,7 +58,6 @@
                             }
                             else
                             {
-
                                 <div>
                                     <a onclick="handleAddFriendProfile('@currentUser.Id', '@account.Id')" class="btn btn-outline-light">Add friend</a>
                                 </div>
@@ -66,9 +65,18 @@
                         }
                         else
                         {
-                            <div>
-                                <a class="btn btn-outline-light disabled">Requested</a>
-                            </div>
+                            if (ViewBag.IsBeingRequested(currentUser.Id, account.Id) == true)
+                            {
+                                <div>
+                                    <a asp-route-userId="@currentUser.Id" asp-route-friendId="@account.Id" asp-action="AcceptFriend" asp-controller="Profile" class="btn btn-outline-light">Accept Friend Request</a>
+                                </div>
+                            }
+                            else
+                            {
+                                <div>
+                                    <a class="btn btn-outline-light disabled">Requested</a>
+                                </div>
+                            }
                         }
                     }
                 </div>

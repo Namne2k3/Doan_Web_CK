@@ -1,11 +1,11 @@
 ﻿@model Doan_Web_CK.Models.Blog
 @using System.Net
 @using Microsoft.AspNetCore.Identity
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 @{
-    ViewData["Title"] = "Request Blogs";
+    ViewData["Title"] = "WebCommun";
     var blogList = ViewBag.BlogList;
     var currentUser = ViewBag?.CurrentUser;
     var MyBlogs = ViewBag?.MyBlogs;
@@ -140,7 +140,14 @@
                                                         }
                                                         else
                                                         {
-                                                            <a class="btn btn-dark disabled">Requested</a>
+                                                            if (ViewBag.IsBeingRequested(currentUser?.Id, item.AccountId) == true)
+                                                            {
+                                                                <a asp-route-userId="@currentUser?.Id" asp-route-friendId="@item.AccountId" asp-action="AcceptFriend" asp-controller="Profile" class="btn btn-dark">Accept</a>
+                                                            }
+                                                            else
+                                                            {
+                                                                <a class="btn btn-outline-light disabled">Requested</a>
+                                                            }
                                                         }
                                                     }
                                                 </div>
