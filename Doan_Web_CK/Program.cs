@@ -3,8 +3,9 @@ using Doan_Web_CK.Models;
 using Doan_Web_CK.Repository;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-var builder = WebApplication.CreateBuilder(args);
 
+var builder = WebApplication.CreateBuilder(args);
+var config = builder.Configuration;
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
@@ -27,8 +28,23 @@ builder.Services.AddScoped<INotifiticationRepository, EFNofiticationRepository>(
 builder.Services.AddScoped<IAccountRepository, EFAccountRepository>();
 builder.Services.AddScoped<ILikeRepository, EFLikeRepository>();
 builder.Services.AddScoped<IFriendShipRepository, EFFriendShipRepository>();
+builder.Services.AddTransient<ISenderEmail, EmailSender>();
+
 
 builder.Services.AddLogging(builder => builder.AddConsole());
+
+builder.Services.AddAuthentication()
+    .AddFacebook(op =>
+    {
+        op.ClientId = "2399387130253931";
+        op.ClientSecret = "e93ff81ddb2550deae351b2c79a616d5";
+    })
+    .AddGoogle(options =>
+    {
+
+        options.ClientId = "144668207253-4mn5jc9icnbkvu0uv3a5ml4vchoofit4.apps.googleusercontent.com";
+        options.ClientSecret = "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";
+    });
 
 
 
@@ -63,6 +79,11 @@ app.UseEndpoints(endpoints =>
     endpoints.MapControllerRoute(
         name: "default",
         pattern: "{controller=Blog}/{action=Index}/{id?}");
+
+    endpoints.MapControllerRoute(
+        name: "google-signin",
+        pattern: "signin-google",
+        defaults: new { controller = "Profile", action = "SignInWithGoogle" });
 
 });
 using (var scope = app.Services.CreateScope())

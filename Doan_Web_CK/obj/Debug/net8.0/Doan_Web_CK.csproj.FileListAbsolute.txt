@@ -577,3 +577,5 @@ D:\File\Code\ASP .NET Core\Doan_Web_CK\Doan_Web_CK\Doan_Web_CK\bin\Debug\net8.0\
 D:\File\Code\ASP .NET Core\Doan_Web_CK\Doan_Web_CK\Doan_Web_CK\bin\Debug\net8.0\Microsoft.AspNetCore.SignalR.Protocols.Json.dll
 D:\File\Code\ASP .NET Core\Doan_Web_CK\Doan_Web_CK\Doan_Web_CK\bin\Debug\net8.0\Microsoft.Extensions.Features.dll
 D:\File\Code\ASP .NET Core\Doan_Web_CK\Doan_Web_CK\Doan_Web_CK\bin\Debug\net8.0\libman.json
+D:\File\Code\ASP .NET Core\Doan_Web_CK\Doan_Web_CK\Doan_Web_CK\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.Facebook.dll
+D:\File\Code\ASP .NET Core\Doan_Web_CK\Doan_Web_CK\Doan_Web_CK\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.Google.dll

@@ -3,11 +3,12 @@ using Doan_Web_CK.Repository;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pages;
 using System.Text;
 
 namespace Doan_Web_CK.Controllers
 {
-    [Authorize(Roles = "Member, Admin")]
+    [Authorize]
     public class ProfileController : Controller
     {
         private readonly UserManager<ApplicationUser> _userManager;
@@ -18,6 +19,7 @@ namespace Doan_Web_CK.Controllers
         private readonly ICategoryRepository _categoryRepository;
         private readonly IFriendShipRepository _friendShipRepository;
         private readonly INotifiticationRepository _notifiticationRepository;
+        private readonly SignInManager<ApplicationUser> _signInManager;
         public ProfileController(
             UserManager<ApplicationUser> userManager,
             IAccountRepository accountRepository,
@@ -26,7 +28,8 @@ namespace Doan_Web_CK.Controllers
             ILikeRepository likeRepository,
             ICategoryRepository categoryRepository,
             IFriendShipRepository friendShipRepository,
-            INotifiticationRepository noticeRepository
+            INotifiticationRepository noticeRepository,
+            SignInManager<ApplicationUser> signInManager
         )
         {
             _userManager = userManager;
@@ -37,8 +40,37 @@ namespace Doan_Web_CK.Controllers
             _categoryRepository = categoryRepository;
             _friendShipRepository = friendShipRepository;
             _notifiticationRepository = noticeRepository;
+            _signInManager = signInManager;
         }
-
+        [HttpGet]
+        public IActionResult SignInWithGoogle()
+        {
+            var redirectUrl = Url.Action(nameof(HandleGoogleResponse), "Account");
+            var properties = _signInManager.ConfigureExternalAuthenticationProperties("Google", redirectUrl);
+            return Challenge(properties, "Google");
+        }
+        [HttpGet]
+        public async Task<IActionResult> HandleGoogleResponse()
+        {
+            var info = await _signInManager.GetExternalLoginInfoAsync();
+            if (info == null)
+            {
+                // Xử lý trường hợp không thể đăng nhập từ Google
+                return RedirectToAction(nameof(Login));
+            }
+            // Đăng nhập người dùng nếu thành công
+            var result = await _signInManager.ExternalLoginSignInAsync(info.LoginProvider, info.ProviderKey, isPersistent: false, bypassTwoFactor: true);
+            if (result.Succeeded)
+            {
+                // Chuyển hướng đến trang chủ hoặc URL ban đầu
+                return Redirect("/");
+            }
+            else
+            {
+                // Xử lý trường hợp người dùng chưa có tài khoản
+                return RedirectToAction(nameof(Login));
+            }
+        }
         [HttpPost]
         public async Task<IActionResult> UpdateProfile(string profile_email, string profile_cur_password, string profile_new_password, string profile_phone_num, string profile_confirm_password)
         {
@@ -87,7 +119,6 @@ namespace Doan_Web_CK.Controllers
                     });
                 }
             }
-
             return Json(new
             {
                 message = "success"
