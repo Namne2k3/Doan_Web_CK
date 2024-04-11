@@ -9,7 +9,11 @@ main {
 #update_success_blod {
     display: none
 }
-.share_status_failed, 
+.login_container {
+    display: flex;
+    gap: 16px;
+}
+.share_status_failed,
 .share_status_success {
     display: none;
     text-align: center;
@@ -93,7 +97,12 @@ main {
 @media (min-width: 768px) {
     html {
         font-size: 16px;
-    } 
+    }
+}
+@media (max-width: 768px) {
+    .login_container {
+        flex-direction: column!important;
+    }
 }
 .nofi_card {
     display: flex;
