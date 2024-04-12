@@ -927,17 +927,19 @@ namespace Doan_Web_CK.Controllers
             var update = await _blogRepository.GetByIdAsync(blog.Id);
             if (BlogImageUrl == null)
             {
-                var categories = await _categoryRepository.GetAllAsync();
-                ViewBag.Categories = new SelectList(categories, "Id", "Name");
-                return Json(new
-                {
-                    message = "failed"
-                });
+                var user = await _userManager.GetUserAsync(User);
+                update.Title = blog.Title;
+                update.Description = blog.Description;
+                update.Content = blog.Content;
+                update.IsAccepted = true;
+                update.AccountId = user.Id;
+                update.PublishDate = DateTime.Now;
             }
             else
             {
                 var user = await _userManager.GetUserAsync(User);
                 update.Title = blog.Title;
+                update.Description = blog.Description;
                 update.Content = blog.Content;
                 update.IsAccepted = true;
                 update.AccountId = user.Id;
