@@ -86,77 +86,7 @@ function handleSearchBlog(event) {
             console.log('There was a problem with the fetch operation:', error);
         });
 }
-function createUserRow(item) {
-    // Create <tr> element
-    var row = document.createElement("tr");
 
-    // Create <td> elements for each property of the user
-    var userNameCell = document.createElement("td");
-    userNameCell.textContent = item.userName;
-    row.appendChild(userNameCell);
-
-    var emailCell = document.createElement("td");
-    emailCell.textContent = item.email;
-    row.appendChild(emailCell);
-
-    var phoneNumberCell = document.createElement("td");
-    phoneNumberCell.textContent = item.phoneNumber;
-    row.appendChild(phoneNumberCell);
-
-    var dateCreatedCell = document.createElement("td");
-    dateCreatedCell.textContent = item.dateCreated;
-    row.appendChild(dateCreatedCell);
-
-    // Create buttons for Edit, Details, and Delete actions
-    var editButton = document.createElement("a");
-    editButton.setAttribute("class", "btn btn-outline-light");
-    editButton.setAttribute("href", "/Admin/Account/Edit/" + item.id);
-    editButton.textContent = "Edit";
-
-    var detailsButton = document.createElement("a");
-    detailsButton.setAttribute("class", "btn btn-outline-light");
-    detailsButton.setAttribute("href", "/Admin/Account/Details/" + item.id);
-    detailsButton.textContent = "Details";
-
-    var deleteButton = document.createElement("a");
-    deleteButton.setAttribute("class", "btn btn-outline-light");
-    deleteButton.setAttribute("href", "/Admin/Account/Delete/" + item.id);
-    deleteButton.textContent = "Delete";
-
-    var actionCell = document.createElement("td");
-    actionCell.appendChild(editButton);
-    actionCell.appendChild(detailsButton);
-    actionCell.appendChild(deleteButton);
-    row.appendChild(actionCell);
-
-    // Return the created <tr> element
-    return row;
-}
-
-var tbody = document.getElementById('tbody');
-function handleSearch(event) {
-    let search = event.target.value
-    fetch(`/Admin/Account/GetAllAccountAsync?search=${search}`)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            return response.json();
-        })
-        .then(data => {
-            console.log(data)
-            if (tbody) {
-                tbody.innerHTML = '';
-                data.accounts.forEach(item => {
-                    tbody.appendChild(createUserRow(item));
-                });
-            }
-
-        })
-        .catch(error => {
-            console.error('There was a problem with the fetch operation:', error);
-        });
-}
 function handleAddFriendProfile(userId, friendId) {
 
     fetch(`/Profile/AddFriend?form_add_friend_userid=${userId}&form_add_friend_friendid=${friendId}`)

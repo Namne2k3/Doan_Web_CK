@@ -995,13 +995,10 @@ namespace Doan_Web_CK.Controllers
         {
             var categories = await _categoryRepository.GetAllAsync();
             ViewBag.Categories = new SelectList(categories, "Id", "Name");
-
-
-
             return View();
         }
 
-        [Authorize(Roles = "Admin, Member")]
+        [Authorize]
         [HttpPost]
         public async Task<IActionResult> Add(Blog blog, IFormFile BlogImageUrl)
         {

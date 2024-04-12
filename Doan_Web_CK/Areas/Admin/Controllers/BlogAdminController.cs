@@ -52,7 +52,7 @@ namespace Doan_Web_CK.Areas.Admin.Controllers
         public async Task<IActionResult> Search(string blog_title, DateTime? blog_date, string blog_newest, string cate_filter)
         {
             var blogs = await _blogRepository.GetAllAsync();
-            var filteredBlogs = blogs.Where(p => p.IsAccepted == true);
+            var filteredBlogs = blogs;
             var categories = await _categoryRepository.GetAllAsync();
             if (cate_filter != null)
             {

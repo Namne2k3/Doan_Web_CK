@@ -33,7 +33,7 @@ builder.Services.AddTransient<ISenderEmail, EmailSender>();
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowSpecificOrigin",
-                builder => builder.WithOrigins("http://localhost:5102/")); // Thay origin tại đây bằng địa chỉ mà bạn muốn cho phép truy cập.
+                builder => builder.WithOrigins("http://localhost:7021/")); // Thay origin tại đây bằng địa chỉ mà bạn muốn cho phép truy cập.
 });
 
 builder.Services.AddAuthentication()
