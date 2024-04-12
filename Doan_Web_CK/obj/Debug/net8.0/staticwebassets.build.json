@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "U2e63hU7VBiRu0QAxT60z2/08D7+i7oPDTQgLLlxxiY=",
+  "Hash": "U1h52tkjELjdsIF4WjIdRVhYhbe6Wak2U+vw9VMvvMU=",
   "Source": "Doan_Web_CK",
   "BasePath": "_content/Doan_Web_CK",
   "Mode": "Default",
@@ -1839,6 +1839,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\z5282321523365-ecbe0f3620d4955-3599-2882-1711342559.jpg"
+    },
+    {
+      "Identity": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\images\\z5309858370371_490ea74d90c7bde63d7ae31125448165.jpg",
+      "SourceId": "Doan_Web_CK",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\",
+      "BasePath": "_content/Doan_Web_CK",
+      "RelativePath": "images/z5309858370371_490ea74d90c7bde63d7ae31125448165.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\z5309858370371_490ea74d90c7bde63d7ae31125448165.jpg"
     },
     {
       "Identity": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\js\\signalr\\dist\\browser\\signalr.js",

@@ -30,8 +30,11 @@ builder.Services.AddScoped<ILikeRepository, EFLikeRepository>();
 builder.Services.AddScoped<IFriendShipRepository, EFFriendShipRepository>();
 builder.Services.AddTransient<ISenderEmail, EmailSender>();
 
-
-builder.Services.AddLogging(builder => builder.AddConsole());
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowSpecificOrigin",
+                builder => builder.WithOrigins("http://localhost:5102/")); // Thay origin tại đây bằng địa chỉ mà bạn muốn cho phép truy cập.
+});
 
 builder.Services.AddAuthentication()
     .AddFacebook(op =>
@@ -67,6 +70,8 @@ app.UseAuthorization();
 
 app.MapRazorPages();
 
+app.UseCors("AllowSpecificOrigin");
+
 app.UseEndpoints(endpoints =>
 {
     endpoints.MapAreaControllerRoute(
@@ -75,15 +80,9 @@ app.UseEndpoints(endpoints =>
         pattern: "Admin/{controller=Admin}/{action=Index}"
     );
 
-
     endpoints.MapControllerRoute(
         name: "default",
         pattern: "{controller=Blog}/{action=Index}/{id?}");
-
-    endpoints.MapControllerRoute(
-        name: "google-signin",
-        pattern: "signin-google",
-        defaults: new { controller = "Profile", action = "SignInWithGoogle" });
 
 });
 using (var scope = app.Services.CreateScope())

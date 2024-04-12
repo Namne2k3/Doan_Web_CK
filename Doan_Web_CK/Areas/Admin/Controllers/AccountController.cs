@@ -18,6 +18,30 @@ namespace Doan_Web_CK.Areas.Admin.Controllers
             _userManager = userManager;
         }
 
+        [HttpGet]
+        [Route("/Admin/Account/GetAllAccountAsync")]
+        public async Task<IActionResult> GetAllAccountAsync(string search)
+        {
+            var accounts = await _accountRepository.GetAllAsync();
+            var currentUser = await _userManager.GetUserAsync(User);
+            var filterd = accounts.Where(p => p.Email != currentUser.Email).ToList();
+            if (search == null)
+            {
+                return Json(new
+                {
+                    message = "Found",
+                    accounts = filterd
+                });
+            }
+            var matched = filterd.Where(p => p.UserName.ToLower().Contains(search.ToLower()) || p.Email.ToLower().Contains(search.ToLower())).ToList();
+
+            return Json(new
+            {
+                message = "Found",
+                accounts = matched
+            });
+        }
+
         public async Task<IActionResult> Index()
         {
             var accounts = await _accountRepository.GetAllAsync();

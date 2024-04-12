@@ -11,7 +11,7 @@ namespace Doan_Web_CK.Models
 
         [Required]
         public string Content { get; set; }
-        public string AccountId { get; set; } // Khóa ngoại tham chiếu đến Id của Account
+        public string? AccountId { get; set; } // Khóa ngoại tham chiếu đến Id của Account
         public ApplicationUser? Account { get; set; }
 
         public string BlogImageUrl { get; set; }

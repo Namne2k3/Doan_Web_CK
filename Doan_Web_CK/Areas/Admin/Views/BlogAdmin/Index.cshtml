@@ -3,10 +3,30 @@
 @{
     ViewData["Title"] = "Manage Blogs";
 }
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <h1>Manage Blogs</h1>
+<div id="filter_modal" class="p-3 rounded-3 my-4" style="background-color: #282b2d; flex-direction: column;">
+    <h3>Filter</h3>
+    <form asp-area="Admin" asp-controller="BlogAdmin" asp-action="Search" method="post">
+        <div class="input-group">
+            <input type="text" name="blog_title" id="searchInput" class="form-control" placeholder="Search your blog title..." />
+            <input style="color: #989292;" name="blog_date" class="form-control" type="date" />
+        </div>
 
-<table class="table text-white" >
+        <div class="input-group mt-2">
+            <label for="cate_filter" class="input-group-text">Category</label>
+            <select name="cate_filter" id="cate_filter" class="form-select" asp-items="@ViewBag.Categories"></select>
+        </div>
+
+        <div class="form-check form-switch mt-2 d-flex align-items-center justify-content-between">
+            <div class="d-flex gap-2">
+                <input name="blog_newest" class="form-check-input" type="checkbox" id="newestBlogCb">
+                <label class="form-check-label" for="newestBlogCb">Newest Blog</label>
+            </div>
+            <button class="btn_search btn btn-outline-light">Search</button>
+        </div>
+    </form>
+</div>
+<table class="table text-white">
     <thead>
         <tr>
             <th>
@@ -30,67 +50,71 @@
             <th></th>
         </tr>
     </thead>
-    <tbody>
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Id)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Title)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.AccountId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.IsAccepted)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PublishDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Likes)
-        </td>
-        <td>
-            <div class="d-flex flex-column gap-2">
-                @if ( item.IsAccepted == false ) 
-                {
-                    <form asp-action="Accept" asp-route-id="@item.Id">
+    <tbody id="tbody">
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AccountId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsAccepted)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PublishDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Likes)
+                </td>
+                <td>
+                    <div class="d-flex flex-column gap-2">
+                        @if (item.IsAccepted == false)
+                        {
+                            <form asp-action="Accept" asp-route-id="@item.Id">
                                 <button class="w-100 btn btn-outline-light">Accept</button>
-                    </form>
-                } else
-                {
-                    <form asp-action="UnAccept" asp-route-id="@item.Id">
-                                <button class="w-100 btn btn-outline-light">UnAccept</button>
-                    </form>
-                }
-                <a class="btn btn-outline-light" asp-action="Details" asp-route-id="@item.Id">Details</a>
-                <button type="button" class="btn btn-outline-light" data-bs-toggle="modal" data-bs-target="#exampleModal">Delete</button>
-            </div>
-            <!-- Modal -->
-            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Confirm Deleting</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            Are you sure to delete blog <span class="badge text-bg-danger">@item.Title</span>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <form asp-controller="BlogAdmin" asp-action="Delete" asp-route-id="@item.Id" method="post">
-                                <button type="submit" class="btn btn-danger">Confirm Delete</button>
                             </form>
+                        }
+                        else
+                        {
+                            <form asp-action="UnAccept" asp-route-id="@item.Id">
+                                <button class="w-100 btn btn-outline-light">UnAccept</button>
+                            </form>
+                        }
+                        <a class="btn btn-outline-light" asp-action="Details" asp-route-id="@item.Id">Details</a>
+                        <button type="button" class="btn btn-outline-light" data-bs-toggle="modal"
+                            data-bs-target="#exampleModal">Delete</button>
+                    </div>
+                    <!-- Modal -->
+                    <div class="modal fade text-black" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Confirm Deleting</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    Are you sure to delete blog <span class="badge text-bg-danger">@item.Title</span>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <form asp-controller="BlogAdmin" asp-action="Delete" asp-route-id="@item.Id"
+                                        method="post">
+                                        <button type="submit" class="btn btn-danger">Confirm Delete</button>
+                                    </form>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        </td>
-    </tr>
-}
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
-<script>
-</script>

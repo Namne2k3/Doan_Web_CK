@@ -3,10 +3,8 @@
 @{
     ViewData["Title"] = "Manage Users";
 }
-
 <h1>Manage Users</h1>
-
-<table class="table">
+<table class="table text-white mt-2">
     <thead>
         <tr>
             <th>
@@ -24,7 +22,7 @@
             <th></th>
         </tr>
     </thead>
-    <tbody>
+    <tbody id="tbody">
         @foreach (var item in Model)
         {
             <tr>
@@ -41,9 +39,9 @@
                     @Html.DisplayFor(modelItem => item.DateCreated)
                 </td>
                 <td>
-                    <a class="btn btn-outline-dark" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
-                    <a class="btn btn-outline-dark" asp-action="Details" asp-route-id="@item.Id">Details</a>
-                    <a class="btn btn-outline-dark" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    <a class="btn btn-outline-light" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                    <a class="btn btn-outline-light" asp-action="Details" asp-route-id="@item.Id">Details</a>
+                    <a class="btn btn-outline-light" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
                 </td>
             </tr>
         }
