@@ -8,5 +8,6 @@ namespace Doan_Web_CK.Repository
         Task UpdateAsync(Friendship friendship);
         Task DeleteAsync(int id);
         Task<Friendship> GetByIdAsync(int id);
+        Task RemoveFriendsByUserId(string id);
     }
 }

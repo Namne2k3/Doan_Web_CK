@@ -43,6 +43,19 @@ namespace Doan_Web_CK.Repository
                 .SingleOrDefaultAsync(p => p.Id == id);
         }
 
+        public async Task RemoveCommentsByUserId(string id)
+        {
+            var comments = await _context.Comments.Where(p => p.AccountId == id).ToListAsync();
+            if (comments != null)
+            {
+                foreach (var item in comments)
+                {
+                    _context.Comments.Remove(item);
+                    await _context.SaveChangesAsync();
+                }
+            }
+        }
+
         public async Task UpdateAsync(Comment comment)
         {
             _context.Comments.Update(comment);

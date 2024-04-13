@@ -12,10 +12,10 @@ namespace Doan_Web_CK.Controllers
     {
         private readonly IBlogRepository _blogRepository;
         private readonly ICategoryRepository _categoryRepository;
-        private readonly ICommentRepository _commentRepository;
         private readonly INotifiticationRepository _notifiticationRepository;
         private readonly ILogger<BlogController> _logger;
         private readonly IAccountRepository _accountRepository;
+        private readonly ICommentRepository _commentRepository;
         private readonly ILikeRepository _likeRepository;
         private readonly IFriendShipRepository _friendShipRepository;
         private readonly UserManager<ApplicationUser> _userManager;
@@ -27,8 +27,8 @@ namespace Doan_Web_CK.Controllers
             ILogger<BlogController> logger,
             INotifiticationRepository notifiticationRepository,
             IAccountRepository accountRepository,
-            ICommentRepository commentRepository,
             ILikeRepository likeRepository,
+            ICommentRepository commentRepository,
             IFriendShipRepository friendShipRepository
         )
         {

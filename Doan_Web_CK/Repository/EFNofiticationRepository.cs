@@ -50,6 +50,19 @@ namespace Doan_Web_CK.Repository
                 .SingleOrDefaultAsync(p => p.Id == id);
         }
 
+        public async Task RemoveNofsByUserId(string id)
+        {
+            var nofs = await _context.Nofitications.Where(p => p.SenderAccountId == id || p.RecieveAccountId == id).ToListAsync();
+            if (nofs != null)
+            {
+                foreach (var item in nofs)
+                {
+                    _context.Nofitications.Remove(item);
+                    await _context.SaveChangesAsync();
+                }
+            }
+        }
+
         public Task UpdateAsync(Nofitication nofitication)
         {
             throw new NotImplementedException();

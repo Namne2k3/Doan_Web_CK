@@ -40,7 +40,7 @@ namespace Doan_Web_CK.Repository
             await _context.SaveChangesAsync();
         }
 
-        public async Task DeleteAsync(int id)
+        public async Task DeleteAsync(string id)
         {
             var account = await _context.ApplicationUsers.FindAsync(id);
             _context.ApplicationUsers.Remove(account);

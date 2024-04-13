@@ -117,15 +117,15 @@ using (var scope = app.Services.CreateScope())
         await UserManager.AddToRoleAsync(admin, "Admin");
 
     }
-    if (await UserManager.FindByEmailAsync(email2) == null)
-    {
-        var member = new ApplicationUser();
-        member.UserName = email2;
-        member.Email = email2;
-        member.DateCreated = DateTime.Now;
-        member.ImageUrl = "https://w7.pngwing.com/pngs/178/595/png-transparent-user-profile-computer-icons-login-user-avatars-thumbnail.png";
-        await UserManager.CreateAsync(member, password);
-        await UserManager.AddToRoleAsync(member, "Member");
-    }
+    //if (await UserManager.FindByEmailAsync(email2) == null)
+    //{
+    //    var member = new ApplicationUser();
+    //    member.UserName = email2;
+    //    member.Email = email2;
+    //    member.DateCreated = DateTime.Now;
+    //    member.ImageUrl = "https://w7.pngwing.com/pngs/178/595/png-transparent-user-profile-computer-icons-login-user-avatars-thumbnail.png";
+    //    await UserManager.CreateAsync(member, password);
+    //    await UserManager.AddToRoleAsync(member, "Member");
+    //}
 }
 app.Run();

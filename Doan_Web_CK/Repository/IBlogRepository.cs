@@ -14,5 +14,6 @@ namespace Doan_Web_CK.Repository
         Task AddLikeAsync(Blog blog, Like like);
         Task DeleteLikeAsync(Blog blog, Like like);
         Task<Blog> GetByIdAsync(int? id);
+        Task RemoveBlogsByUserId(string id);
     }
 }

@@ -8,49 +8,47 @@
     <input placeholder="Search account name or email..." class="form-control" type="text"
         oninput="handleSearch(event)" />
 </div>
-<table class="table text-white mt-2">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.UserName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Email)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PhoneNumber)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DateCreated)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody id="tbody">
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.UserName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Email)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.PhoneNumber)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.DateCreated)
-                </td>
-                <td>
-                    <a class="btn btn-outline-light" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
-                    <a class="btn btn-outline-light" asp-action="Details" asp-route-id="@item.Id">Details</a>
-                    <a class="btn btn-outline-light" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
+<div class="admin_account_section" id="tbody">
+    @foreach ( var item in Model )
+    {
+        <div class="admin_account_item">
+            <div class="admin_account_header_container">
+                <div class="admin_account_item_img_container">
+                    <img src="@item.ImageUrl" alt="image account" />
+                </div>
+                <div class="admin_account_item_username_container">
+                    <p>@@@item.UserName</p>
+                </div>
+            </div>
+            <div class="admin_account_action">
+                <a asp-action="Details" asp-route-id="@item.Id" asp-controller="Account" class="admin_account_action_item btn btn-outline-light">Details</a>
+                <button data-bs-target="#exampleModal_@item.Id" data-bs-toggle="modal" class="admin_account_action_item btn btn-outline-light">Delete</button>
+            </div>
+        </div>
+        <div class="modal fade text-black" id="exampleModal_@item.Id" tabindex="-1" aria-labelledby="exampleModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Confirm Deleting</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        Are you sure to delete this user <span class="badge text-bg-danger">@item.UserName</span>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <form asp-controller="Account" asp-action="Delete" asp-route-id="@item.Id"
+                              method="post">
+                            <button type="submit" class="btn btn-danger">Confirm Delete</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
 <script>
     function createUserRow(item) {
         // Create <tr> element

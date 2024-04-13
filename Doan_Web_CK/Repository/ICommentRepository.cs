@@ -9,5 +9,6 @@ namespace Doan_Web_CK.Repository
         Task AddAsync(Comment comment);
         Task DeleteAsync(int id);
         Task UpdateAsync(Comment comment);
+        Task RemoveCommentsByUserId(string id);
     }
 }

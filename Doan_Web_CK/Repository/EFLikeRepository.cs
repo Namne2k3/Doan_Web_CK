@@ -29,5 +29,18 @@ namespace Doan_Web_CK.Repository
         {
             return await _context.Likes.FindAsync(id);
         }
+
+        public async Task RemoveLikesByUserId(string id)
+        {
+            var likes = await _context.Likes.Where(p => p.ApplicationUserId == id).ToListAsync();
+            if (likes != null)
+            {
+                foreach (var item in likes)
+                {
+                    _context.Likes.Remove(item);
+                    await _context.SaveChangesAsync();
+                }
+            }
+        }
     }
 }

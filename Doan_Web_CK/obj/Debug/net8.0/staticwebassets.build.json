@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "pEmM4/WNZ0Y8XwbLf3dTevHbc+3kqKMs01rq5ZHcisc=",
+  "Hash": "wq4Tg87DZkxQnFobPDDs1iH60cxPfcRq9WrHfbuvMyQ=",
   "Source": "Doan_Web_CK",
   "BasePath": "_content/Doan_Web_CK",
   "Mode": "Default",
@@ -1421,6 +1421,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\huang-8025-1711281340.jpg"
+    },
+    {
+      "Identity": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\images\\iphone-4534-1712890018.jpg",
+      "SourceId": "Doan_Web_CK",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\",
+      "BasePath": "_content/Doan_Web_CK",
+      "RelativePath": "images/iphone-4534-1712890018.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\iphone-4534-1712890018.jpg"
     },
     {
       "Identity": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\images\\jim-5002-1711350034.jpg",

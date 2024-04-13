@@ -2,13 +2,49 @@ html {
     font-size: 14px;
     scroll-behavior: smooth;
 }
-.admin_container_body {
-    overflow-y: scroll;
-}
-.blog_admin_section {
-}
-.filter_modal {
 
+.admin_account_section {
+    margin-top: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+}
+.admin_account_item {
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid #ccc;
+    padding: 12px;
+    border-radius: 12px;
+}
+.admin_account_action {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    justify-content: center;
+}
+.admin_account_header_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.admin_account_item_username_container {
+    margin-left: 16px;
+}
+.admin_account_item_username_container p {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 0;
+}
+.admin_account_item_img_container {
+    width: 75px;
+    height: 75px;
+}
+.admin_account_item_img_container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 100%;
 }
 .blog_admin_section_header {
     display: flex;
@@ -187,12 +223,14 @@ main {
     border-right: 1px solid #ccc;
     padding: 12px;
 }
-    .admin_nav_container a {
-        font-size: 24px;
-    }
-    .admin_container_body {
-        width: 70%;
-    }
+.admin_nav_container a {
+    font-size: 24px;
+}
+.admin_container_body {
+    overflow-y: scroll;
+    scrollbar-width: none;
+    width: 70%;
+}
 .friend_card_name:hover {
     color: #ccc;
 }
@@ -708,8 +746,18 @@ input {
 }
 
 @media (max-width: 1065px) {
+    .admin_account_action .admin_account_action_item {
+        font-size: 14px !important;
+    }
+    .admin_account_item_img_container {
+        width: 50px !important;
+        height: 50px !important;
+    }
+    .admin_account_item_username_container p {
+        font-size: 14px !important;
+    }
     .recently_post_container {
-        display: none!important;
+        display: none !important;
     }
     .body_container {
         width: 100%!important;
@@ -741,7 +789,12 @@ input {
         margin: 12px !important;
     }
 }
+
 @media (max-width: 550px) {
+    .admin_account_item {
+        flex-direction: column!important;
+        gap: 16px;
+    }
     .blog_admin_item_header {
         flex-direction: column !important;
     }
@@ -853,6 +906,13 @@ input {
     }
 }
 @media (max-width: 400px) {
+    .admin_account_header_container {
+        flex-direction: column!important;
+        gap: 12px;
+    }
+    .admin_account_item_username_container {
+        margin: 0;
+    }
     .action_container a p {
         display: none;
     }
@@ -882,6 +942,9 @@ input {
     }
 }
 @media (max-width: 300px) {
+    .admin_account_item_username_container p {
+        font-size: 12px !important;
+    }
     main {
         margin: 12px !important;
     }

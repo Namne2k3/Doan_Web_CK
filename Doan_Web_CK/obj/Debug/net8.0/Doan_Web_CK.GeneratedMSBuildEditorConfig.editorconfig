@@ -26,6 +26,10 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = D:\File\Code\ASP .NET Core\Doan_Web_CK\Doan_Web_CK\Doan_Web_CK
 build_property._RazorSourceGeneratorDebug = 
 
+[D:/File/Code/ASP .NET Core/Doan_Web_CK/Doan_Web_CK/Doan_Web_CK/Areas/Admin/Views/Account/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWNjb3VudFxEZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/File/Code/ASP .NET Core/Doan_Web_CK/Doan_Web_CK/Doan_Web_CK/Areas/Admin/Views/Account/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWNjb3VudFxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 

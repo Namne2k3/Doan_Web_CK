@@ -32,6 +32,19 @@ namespace Doan_Web_CK.Repository
                                         .SingleOrDefaultAsync(p => p.Id == id);
         }
 
+        public async Task RemoveFriendsByUserId(string id)
+        {
+            var friends = await _context.Friendships.Where(p => p.UserId == id || p.FriendId == id).ToListAsync();
+            if (friends != null)
+            {
+                foreach (var item in friends)
+                {
+                    _context.Friendships.Remove(item);
+                    await _context.SaveChangesAsync();
+                }
+            }
+        }
+
         public async Task UpdateAsync(Friendship friendship)
         {
             _context.Friendships.Update(friendship);

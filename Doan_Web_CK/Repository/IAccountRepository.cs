@@ -7,7 +7,7 @@ namespace Doan_Web_CK.Repository
         Task<IEnumerable<ApplicationUser>> GetAllAsync();
         Task<ApplicationUser> GetByIdAsync(string id);
         Task AddAsync(ApplicationUser account);
-        Task DeleteAsync(int id);
+        Task DeleteAsync(string id);
         Task UpdateAsync(ApplicationUser account);
 
         Task AddBlogAsync(ApplicationUser user, Blog blog);

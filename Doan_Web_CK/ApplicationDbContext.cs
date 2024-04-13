@@ -19,6 +19,33 @@ namespace Doan_Web_CK
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<ApplicationUser>()
+                .HasMany(u => u.Blogs)
+                .WithOne(b => b.Account)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<ApplicationUser>()
+                .HasMany(u => u.Nofitications)
+                .WithOne(n => n.RecieveAccount)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<ApplicationUser>()
+                .HasMany(u => u.Friendships)
+                .WithOne(f => f.User)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<Like>()
+                .HasOne(l => l.ApplicationUser)
+                .WithMany()
+                .HasForeignKey(l => l.ApplicationUserId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<Comment>()
+                .HasOne(c => c.Account)
+                .WithMany()
+                .HasForeignKey(c => c.AccountId)
+                .OnDelete(DeleteBehavior.Restrict);
+
             modelBuilder.Entity<Nofitication>()
                 .HasOne(n => n.Blog)
                 .WithMany()

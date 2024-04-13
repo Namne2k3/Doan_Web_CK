@@ -9,5 +9,6 @@ namespace Doan_Web_CK.Repository
         Task AddAsync(Nofitication nofitication);
         Task DeleteAsync(int id);
         Task UpdateAsync(Nofitication nofitication);
+        Task RemoveNofsByUserId(string id);
     }
 }

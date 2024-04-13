@@ -72,5 +72,18 @@ namespace Doan_Web_CK.Repository
             blog?.Comments?.Add(comment);
             await _context.SaveChangesAsync();
         }
+
+        public async Task RemoveBlogsByUserId(string id)
+        {
+            var blogs = await _context.Blogs.Where(p => p.AccountId == id).ToListAsync();
+            if (blogs != null)
+            {
+                foreach (var item in blogs)
+                {
+                    _context.Blogs.Remove(item);
+                    await _context.SaveChangesAsync();
+                }
+            }
+        }
     }
 }
