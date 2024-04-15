@@ -10,6 +10,7 @@ html {
     gap: 12px;
 
 }
+
 .admin_account_item {
     display: flex;
     justify-content: space-between;
@@ -17,47 +18,57 @@ html {
     padding: 12px;
     border-radius: 12px;
 }
+
 .admin_account_action {
     display: flex;
     gap: 8px;
     align-items: center;
     justify-content: center;
 }
+
 .admin_account_header_container {
     display: flex;
     justify-content: center;
     align-items: center;
 }
+
 .admin_account_item_username_container {
     margin-left: 16px;
 }
+
 .admin_account_item_username_container p {
     font-size: 24px;
     font-weight: bold;
     margin: 0;
 }
+
 .admin_account_item_img_container {
     width: 75px;
     height: 75px;
 }
+
 .admin_account_item_img_container img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     border-radius: 100%;
 }
+
 .blog_admin_section_header {
     display: flex;
     flex-direction: column;
 }
+
 .blog_admin_container {
     display: flex;
     flex-direction: column;
     gap: 16px;
 }
+
 .blog_admin_container a {
     text-decoration: none;
 }
+
 .blog_admin_item {
     border: 1px solid #ccc;
     display: flex;
@@ -66,10 +77,12 @@ html {
 .blog_admin_item_img_container {
     width: 35%;
 }
+
 .blog_admin_item_header {
     display: flex;
     width: 85%;
 }
+
 .blog_admin_item_action {
     display: flex;
     flex-direction: column;
@@ -80,14 +93,17 @@ html {
     justify-content: center;
     align-items: center;
 }
-    .blog_admin_item_action button {
-        font-size: 14px;
-    }
-    .blog_admin_item_img_container img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
+
+.blog_admin_item_action button {
+    font-size: 14px;
+}
+
+.blog_admin_item_img_container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
 .blog_admin_item_info {
     width: 65%;
     display: flex;
@@ -99,30 +115,37 @@ html {
     color: #000;
     gap: 8px;
 }
+
 .blog_admin_item_info p {
     margin: 0;
 }
+
 .blog_admin_item_title {
     font-size: 22px;
     font-weight: bold;
 }
+
 .blog_admin_item_desc {
     font-style: italic;
     color: #212529;
 }
+
 main {
     margin: 1.5rem;
 }
+
 .admin_container {
     display: flex;
     width: 100%;
     height: 100vh;
 }
+
 .admin_section {
     display: flex;
     width: 100%;
     height: 100vh;
 }
+
 .admin_nav_item {
     color: #fff;
     text-decoration: none;
@@ -133,18 +156,22 @@ main {
     display: flex;
     padding: 12px;
 }
+
 .admin_nav_item p {
     font-size: 20px;
     margin: 0;
 }
+
 #update_fail_blog,
 #update_success_blod {
     display: none
 }
+
 .login_container {
     display: flex;
     gap: 16px;
 }
+
 .share_status_failed,
 .share_status_success {
     display: none;
@@ -152,26 +179,32 @@ main {
     padding: 8px;
     border-radius: 12px;
 }
+
 .share_status_failed p {
     font-weight: bold;
     margin: 0;
 }
+
 .share_status_success p {
     font-weight: bold;
     margin: 0;
 }
+
 #update_fail,
 #update_success {
     display: none;
 }
+
 .friend_card_status_success {
     padding: 12px;
     border-radius: 12px;
 }
+
 .friend_card_status_failed {
     padding: 12px;
     border-radius: 12px;
 }
+
 .friends_container {
     display: flex;
     flex-wrap: wrap;
@@ -181,6 +214,7 @@ main {
     scrollbar-width: none;
     margin-top: 12px;
 }
+
 .friend_card {
     flex: 1;
     display: flex;
@@ -189,23 +223,27 @@ main {
     border: 1px solid #ccc;
     border-radius: 12px;
 }
+
 .friend_card_img_container {
     width: 150px;
     height: 150px;
     border-radius: 100%;
     border: 2px solid #ccc;
 }
+
 .friend_card_img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     border-radius: 100%;
 }
+
 .friend_card_info_container {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
 }
+
 .friend_card_name {
     color: white;
     font-weight: bold;
@@ -214,6 +252,7 @@ main {
     font-size: 24px;
     font-style: italic;
 }
+
 .admin_nav_container {
     width: 30%;
     display: flex;
@@ -223,57 +262,71 @@ main {
     border-right: 1px solid #ccc;
     padding: 12px;
 }
+
 .admin_nav_container a {
     font-size: 24px;
 }
+
 .admin_container_body {
     overflow-y: scroll;
     scrollbar-width: none;
     width: 70%;
 }
+
 .friend_card_name:hover {
     color: #ccc;
 }
+
 .friend_card_date {
     font-style: italic;
     color: #ccc;
 }
+
 .friend_card_actions {
     display: flex;
     gap: 16px;
     align-items: center;
 }
+
 @media (min-width: 768px) {
     html {
         font-size: 16px;
     }
 }
+
 @media (max-width: 768px) {
     .admin_container_body {
         width: 100% !important;
     }
+
     .blog_admin_item_header {
         width: 100% !important;
     }
+
     .blog_admin_item_action {
         flex-direction: row !important;
         width: 100% !important;
         padding: 12px;
         gap: 16px;
     }
+
     .admin_nav_container {
         width: 100% !important;
         border-bottom: 1px solid #ccc;
     }
+
     .blog_admin_item {
         flex-direction: column !important;
     }
+
     .admin_section {
-        flex-direction: column!important;
+        flex-direction: column !important;
     }
+
     .admin_container {
         flex-direction: column !important;
     }
+
     .admin_nav_container {
         flex-direction: row !important;
         justify-content: space-between;
@@ -284,11 +337,13 @@ main {
         flex: 1 !important;
         font-size: 12px;
     }
+
     .login_container {
         flex-direction: column !important;
     }
 
 }
+
 .nofi_card {
     display: flex;
     padding: 8px;
@@ -300,43 +355,53 @@ main {
     border-radius: 12px;
     margin-top: 8px;
 }
+
 .nofi_card .close_icon {
     font-size: 24px;
 }
+
 .close_icon:hover {
     cursor: pointer;
     color: #ccc;
 }
+
 .nofi_card p {
     margin: 0;
 }
+
 .nofi_card a {
     color: #fff;
     text-decoration: none;
     font-weight: bold;
 }
+
 .nofi_card a:hover {
     color: #ccc;
 }
+
 .nofi_card_actions {
     display: flex;
     gap: 8px;
     border-radius: 12px;
 }
-.nofi_card_content {
-}
+
+.nofi_card_content {}
+
 .nofi_card_date {
     font-style: italic;
     color: #ccc;
     font-weight: lighter;
 }
+
 .reload_icon {
     color: #fff;
 }
+
 .reload_icon:hover {
     cursor: pointer;
     color: #ccc;
 }
+
 .nav_item_nofitications {
     left: 100%;
     top: 0;
@@ -357,50 +422,66 @@ main {
     position: fixed;
     background-color: #36393b;
 }
+
 .share_actions {
     top: 32px;
 }
+
 .share_actions a {
     font-size: 14px;
 }
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+
+.btn:focus,
+.btn:active:focus,
+.btn-link.nav-link:focus,
+.form-control:focus,
+.form-check-input:focus {
     box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
 }
+
 .nofitications_content_container {
     display: flex;
     max-width: 100%;
 }
+
 .hover:hover {
     color: red;
 }
+
 html {
     position: relative;
     min-height: 100%;
 }
+
 .photo_image_border {
     border: 2px solid #fff;
 }
+
 body {
     /*margin-bottom: 60px;*/
     background-color: #212529;
 }
+
 .nav_item {
     padding: 1rem;
-    border-radius: 12px;  
+    border-radius: 12px;
     background-color: #212529;
     display: flex;
     align-content: center;
     text-decoration: none;
     color: #fff;
 }
-    .nav_item:hover {
-        color: #ccc;
-        cursor: pointer;
-    }
-    .comment_card {
-        display: flex;
-        gap: 6px;
-    }
+
+.nav_item:hover {
+    color: #ccc;
+    cursor: pointer;
+}
+
+.comment_card {
+    display: flex;
+    gap: 6px;
+}
+
 .comment_card_img_container {
     max-width: 40px;
     max-height: 40px;
@@ -423,9 +504,10 @@ body {
     padding: 8px 12px;
     border-radius: 12px;
 }
-    .comment_card_content p {
-        margin: 0;
-    }
+
+.comment_card_content p {
+    margin: 0;
+}
 
 .comment_card_actions {
     display: flex;
@@ -445,12 +527,14 @@ body {
 .comment_container input {
     width: 100%;
 }
+
 .comment_card_date {
     font-size: small;
     color: #ccc;
     font-weight: 300;
     font-style: italic;
 }
+
 .comments_inputs {
     background-color: #33373b;
 }
@@ -461,9 +545,11 @@ body {
     gap: 0.5rem;
     color: #fff;
 }
+
 .actions_item:hover {
     color: #ccc;
 }
+
 .comment_container {
     display: flex;
     gap: 12px;
@@ -485,6 +571,7 @@ body {
     flex-direction: column;
     gap: 16px;
 }
+
 .comments_actions a {
     font-size: 12px;
     cursor: pointer;
@@ -501,9 +588,10 @@ body {
     flex-direction: column;
     gap: 4px;
 }
+
 .user_photo_comment_container {
-    max-width: 45px;
-    max-height: 45px;
+    width: 45px;
+    height: 45px;
 }
 
 .user_photo_comment {
@@ -512,14 +600,17 @@ body {
     border-radius: 100%;
     object-fit: cover;
 }
+
 .blog_actions {
     border-top: 1px solid #ccc;
     padding-top: 12px;
 }
+
 .action_container {
     display: flex;
     gap: 8px;
 }
+
 .action_container i {
     margin-top: 2px;
 }
@@ -536,9 +627,11 @@ body {
     display: flex;
     gap: 8px;
 }
+
 .block {
     display: block;
 }
+
 .recently_post_container {
     display: flex;
     flex-direction: column;
@@ -549,18 +642,22 @@ body {
     overflow-y: scroll;
     scrollbar-width: none;
 }
+
 .recent_card {
     background-color: #36393b;
     padding: 12px;
     border-radius: 12px;
     display: flex;
-    transition: transform 0.2s; /* Animation */
+    transition: transform 0.2s;
+    /* Animation */
     flex-direction: column;
     border: 1px solid #585b5d;
 }
+
 .recent_card:hover {
     transform: scale(1.1);
 }
+
 .nof_icon {
     padding: 1rem;
     border-radius: 12px;
@@ -570,14 +667,16 @@ body {
     text-decoration: none;
     color: #fff;
 }
-    .nof_icon:hover {
-        color: #ccc;
-        cursor: pointer;
-    }
-    .recent_card a {
-        color: #ccc;
-        text-decoration: none;
-    }
+
+.nof_icon:hover {
+    color: #ccc;
+    cursor: pointer;
+}
+
+.recent_card a {
+    color: #ccc;
+    text-decoration: none;
+}
 
 .recent_card a:hover {
     opacity: 0.6;
@@ -587,12 +686,15 @@ body {
     max-height: 200px;
     overflow: hidden;
 }
+
 .icon {
     font-size: 32px;
 }
+
 .partial_section ul {
-    margin: 0!important;
+    margin: 0 !important;
 }
+
 .blog_container {
     /*my-4 d-flex flex-column gap-4*/
     margin: 16px 0;
@@ -601,6 +703,7 @@ body {
     gap: 12px;
     max-height: 100%;
 }
+
 .body_container {
     overflow-y: scroll;
     height: 100vh;
@@ -612,19 +715,23 @@ body {
     justify-content: space-between;
     align-items: center;
 }
+
 .blog_img_date img {
     max-width: 65px;
 }
+
 .blog_img_date p {
     margin-left: 6px;
     color: #ccc;
     font-style: italic;
 }
+
 .BlogCard_Img {
     display: flex;
     align-items: center;
     justify-content: center;
 }
+
 .blog_card {
     display: flex;
     flex-direction: column;
@@ -636,10 +743,12 @@ body {
     gap: 16px;
     margin: 6px 0;
 }
+
 .blog_img_date {
     display: flex;
     flex-direction: column;
 }
+
 .BlogCard_Img img {
     max-width: 100%;
     border-radius: 12px;
@@ -649,53 +758,67 @@ body {
     width: 75px;
     height: 75px;
 }
+
 .logo_image {
     width: 100%;
     height: 100%;
 }
+
 .navIcon {
     width: 25%;
 }
+
 .nav_container {
     max-height: 100vh;
     display: flex;
 }
+
 img {
     object-fit: contain;
 }
+
 input {
-    background-color: #212529!important;
-    color: #fff!important;
+    background-color: #212529 !important;
+    color: #fff !important;
 }
+
 .filter_modal {
     animation: fadeInAnimation ease 0.5s;
     margin-top: 14px;
 }
+
 .navIcons {
     max-height: 100vh;
     z-index: 100;
 }
+
 .profile_username {
     font-size: 1.5rem;
 }
+
 .profile_info {
     margin-left: 12px;
 }
+
 .profile_changePhoto {
     display: none;
 }
+
 .profile_img_container {
     width: 150px;
     height: 150px;
 }
+
 .profile_img_container img {
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
+
 .profile_photo {
     z-index: 1;
 }
+
 .profile_photo:hover .profile_changePhoto {
     display: flex;
     cursor: pointer;
@@ -703,32 +826,39 @@ input {
     justify-content: center;
     align-items: center;
 }
+
 .profile_changePhoto .profile_icon {
     font-size: 24px;
     color: white;
 }
+
 .profile_icon:hover {
     opacity: 0.5;
     cursor: pointer;
 }
+
 .actions_ud {
     display: flex;
     gap: 6px;
 }
+
 .blog_card_author_img {
-    width:65px;
+    width: 65px;
     height: 65px;
     position: relative;
     z-index: 0;
 }
+
 .blog_card_author_img:hover {
     cursor: pointer;
 }
+
 .body_section {
     max-height: 100vh;
     overflow-y: scroll;
     scrollbar-width: none;
 }
+
 .right_click_menu {
     width: 100px;
     position: absolute;
@@ -741,6 +871,7 @@ input {
     background-color: #424040;
     flex-direction: column;
 }
+
 .right_click_menu a {
     font-size: 12px;
 }
@@ -749,41 +880,53 @@ input {
     .admin_account_action .admin_account_action_item {
         font-size: 14px !important;
     }
+
     .admin_account_item_img_container {
         width: 50px !important;
         height: 50px !important;
     }
+
     .admin_account_item_username_container p {
         font-size: 14px !important;
     }
+
     .recently_post_container {
         display: none !important;
     }
+
     .body_container {
-        width: 100%!important;
+        width: 100% !important;
     }
+
     .navTitle {
         display: none;
     }
+
     .nav_item {
         justify-content: center;
     }
+
     .navIcon {
         justify-content: center;
         width: 100%;
     }
+
     .navActions {
         display: none;
     }
+
     .body_section {
         width: 85%;
     }
+
     .logoImage {
         width: 70%;
     }
+
     .navIcons {
         width: 15%;
     }
+
     .navLog_Res {
         font-size: 16px !important;
         margin: 12px !important;
@@ -792,194 +935,246 @@ input {
 
 @media (max-width: 550px) {
     .admin_account_item {
-        flex-direction: column!important;
+        flex-direction: column !important;
         gap: 16px;
     }
+
     .blog_admin_item_header {
         flex-direction: column !important;
     }
+
     .blog_admin_item_info,
     .blog_admin_item_img_container {
         width: 100% !important;
     }
+
     .admin_nav_item p {
         display: none;
     }
+
     .comments_actions {
         left: -45px;
         bottom: 70px;
     }
+
     .form-select {
         font-size: 10px;
     }
+
     .bi-filter {
-        font-size: 20px!important;
+        font-size: 20px !important;
     }
+
     .input-group label {
         font-size: 10px;
     }
+
     .form-check-label {
-        font-size: 9px!important;
+        font-size: 9px !important;
     }
+
     .btn_search {
-        font-size: 9px!important;
+        font-size: 9px !important;
     }
+
     .blog_card_author_img {
         width: 45px;
         height: 45px;
     }
+
     .actions_ud {
         padding: 0 !important;
         right: -10px !important;
         bottom: 55px !important;
         top: -40px !important;
     }
+
     .nav_item_nofitications {
         top: 100% !important;
         left: -32px !important;
         width: 200px;
     }
+
     .user_photo_comment_container {
         max-width: 45px;
         max-height: 45px;
     }
+
     .profile_header {
         flex-direction: column;
     }
+
     .blog_username {
         display: none;
     }
+
     .navIcons .navLog_Res {
         display: none;
     }
+
     .nav_container {
         flex-direction: column;
     }
+
     .navIcons {
         flex-direction: row !important;
         width: 100%;
         position: fixed;
     }
+
     .navIcons ul {
         flex-direction: row !important;
     }
+
     .body_section {
         width: 100%;
         height: 100vh;
         margin-top: 90px;
     }
+
     .logo_container {
         justify-content: start !important;
     }
+
     .logoImage {
         display: none;
     }
+
     .navItems {
         justify-content: space-around;
         width: 100%;
     }
+
     .nav_item:first-child {
         display: none !important;
     }
+
     .profile_img_container {
         width: 75px;
         height: 75px;
     }
+
     .friends_container {
         padding: 0;
     }
+
     .friend_card {
         padding: 12px;
     }
+
     .friend_card_img_container {
         width: 75px;
         height: 75px;
     }
+
     .friend_card_name {
         font-size: 16px;
     }
+
     .friend_card_date {
         font-size: 12px;
     }
+
     .friend_card_actions a {
         font-size: 12px;
     }
 }
+
 @media (max-width: 400px) {
     .admin_account_header_container {
-        flex-direction: column!important;
+        flex-direction: column !important;
         gap: 12px;
     }
+
     .admin_account_item_username_container {
         margin: 0;
     }
+
     .action_container a p {
         display: none;
     }
+
     .action_container label p:first-child {
         display: none;
     }
 }
+
 @media (max-width: 390px) {
     .nav_item_nofitications {
         top: 100% !important;
         left: -50px !important;
         width: 200px;
     }
+
     .friend_card_img_container {
         width: 35px;
         height: 35px;
     }
+
     .blog_card_img_container {
-        width: 40px!important;
-        height: 40px!important;
+        width: 40px !important;
+        height: 40px !important;
     }
+
     .actions_ud a {
         font-size: 12px;
     }
+
     .actions_ud {
         margin-right: 16px;
     }
 }
+
 @media (max-width: 300px) {
     .admin_account_item_username_container p {
         font-size: 12px !important;
     }
+
     main {
         margin: 12px !important;
     }
+
     .icon {
         font-size: 22px;
     }
+
     .comment_card_img_container {
         max-width: 30px;
         max-height: 30px;
     }
+
     .comment_card_content {
         margin: 0;
     }
+
     .comment_card_content span,
     .comment_card_content p {
         font-size: 12px;
     }
+
     .comment_card_actions i {
         font-size: 16px;
     }
+
     .blog_card {
         padding: 8px !important;
     }
+
     .comment_container input {
         font-size: 10px !important;
     }
+
     .user_photo_comment_container {
         max-width: 30px;
         max-height: 30px;
     }
+
     .nav_item_nofitications {
         top: 100% !important;
         left: -100px !important;
         width: 200px;
     }
+
     .body_section {
         margin-top: 75px;
     }
@@ -992,18 +1187,18 @@ input {
         margin-right: 26px;
     }
 
-        .filter_modal h3 {
-            font-size: 12px;
-        }
+    .filter_modal h3 {
+        font-size: 12px;
+    }
 
-        .filter_modal button,
-        .filter_modal label {
-            font-size: 12px;
-        }
+    .filter_modal button,
+    .filter_modal label {
+        font-size: 12px;
+    }
 
-        .filter_modal input {
-            font-size: 9px;
-        }
+    .filter_modal input {
+        font-size: 9px;
+    }
 
     .input_add {
         max-width: 180px;

@@ -31,6 +31,7 @@ namespace Doan_Web_CK.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("AccountId")
+                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("BlogImageUrl")
@@ -434,7 +435,8 @@ namespace Doan_Web_CK.Migrations
                     b.HasOne("Doan_Web_CK.Models.ApplicationUser", "Account")
                         .WithMany("Blogs")
                         .HasForeignKey("AccountId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("Doan_Web_CK.Models.Category", "Category")
                         .WithMany("Blogs")
@@ -488,8 +490,7 @@ namespace Doan_Web_CK.Migrations
                 {
                     b.HasOne("Doan_Web_CK.Models.ApplicationUser", "ApplicationUser")
                         .WithMany()
-                        .HasForeignKey("ApplicationUserId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("ApplicationUserId");
 
                     b.HasOne("Doan_Web_CK.Models.Blog", "Blog")
                         .WithMany("Likes")
@@ -506,8 +507,7 @@ namespace Doan_Web_CK.Migrations
                 {
                     b.HasOne("Doan_Web_CK.Models.Blog", "Blog")
                         .WithMany()
-                        .HasForeignKey("BlogId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("BlogId");
 
                     b.HasOne("Doan_Web_CK.Models.ApplicationUser", "RecieveAccount")
                         .WithMany("Nofitications")

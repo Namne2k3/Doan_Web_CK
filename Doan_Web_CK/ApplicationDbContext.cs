@@ -34,11 +34,11 @@ namespace Doan_Web_CK
                 .WithOne(f => f.User)
                 .OnDelete(DeleteBehavior.Cascade);
 
-            modelBuilder.Entity<Like>()
-                .HasOne(l => l.ApplicationUser)
-                .WithMany()
-                .HasForeignKey(l => l.ApplicationUserId)
-                .OnDelete(DeleteBehavior.Cascade);
+            //modelBuilder.Entity<Like>()
+            //    .HasOne(l => l.ApplicationUser)
+            //    .WithMany()
+            //    .HasForeignKey(l => l.ApplicationUserId)
+            //    .OnDelete(DeleteBehavior.Cascade);
 
             modelBuilder.Entity<Comment>()
                 .HasOne(c => c.Account)
@@ -46,11 +46,11 @@ namespace Doan_Web_CK
                 .HasForeignKey(c => c.AccountId)
                 .OnDelete(DeleteBehavior.Restrict);
 
-            modelBuilder.Entity<Nofitication>()
-                .HasOne(n => n.Blog)
-                .WithMany()
-                .HasForeignKey(n => n.BlogId)
-                .OnDelete(DeleteBehavior.Cascade);
+            //modelBuilder.Entity<Nofitication>()
+            //    .HasOne(n => n.Blog)
+            //    .WithMany()
+            //    .HasForeignKey(n => n.BlogId)
+            //    .OnDelete(DeleteBehavior.Cascade);
 
             // friendShip
             modelBuilder.Entity<Friendship>()

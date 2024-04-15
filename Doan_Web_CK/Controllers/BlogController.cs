@@ -112,6 +112,7 @@ namespace Doan_Web_CK.Controllers
             ViewBag.GetAllNofOfUser = new Func<string, IEnumerable<Nofitication>>(GetAllNofOfUser);
             ViewBag.HasRelation = new Func<string, string, bool>(HasRelation);
             ViewBag.IsBeingRequested = new Func<string, string, bool>(IsBeingRequested);
+            ViewBag.IsFriend = new Func<string, string, bool>(IsFriend);
             if (currentUser != null)
             {
                 ViewBag.MyBlogs = blogs.Where(p => p.AccountId == currentUser.Id);
@@ -525,10 +526,7 @@ namespace Doan_Web_CK.Controllers
             var currentUser = await _userManager.GetUserAsync(User);
             if (blog != null)
             {
-                if (blog.AccountId != currentUser?.Id)
-                {
-                    return NotFound();
-                }
+
                 blog.Likes.Clear();
                 blog.Comments.Clear();
                 await _blogRepository.DeleteAsync(blogId);
