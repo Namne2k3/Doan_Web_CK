@@ -136,7 +136,10 @@ namespace Doan_Web_CK.Controllers
             }
 
             var account = await _accountRepository.GetByIdAsync(currentUser?.Id);
-
+            if (currentUser.Id != account?.Id)
+            {
+                return NotFound();
+            }
             if (id != null)
             {
                 account = await _accountRepository.GetByIdAsync(id);
@@ -507,8 +510,8 @@ namespace Doan_Web_CK.Controllers
         public async Task<bool> IsRequestedAsync(string userId, string friendId)
         {
             var friendships = await _friendShipRepository.GetAllAsync();
-            var finded = friendships.SingleOrDefault(p => p.UserId == userId && p.FriendId == friendId || p.UserId == friendId && p.FriendId == userId && p.IsConfirmed == false);
-            if (finded != null)
+            var finded = friendships.SingleOrDefault(p => p.UserId == userId && p.FriendId == friendId || p.UserId == friendId && p.FriendId == userId);
+            if (finded != null && finded.IsConfirmed == false)
             {
                 return true;
             }

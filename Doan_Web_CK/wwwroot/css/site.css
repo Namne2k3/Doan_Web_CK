@@ -268,16 +268,12 @@ main {
     .blog_admin_item {
         flex-direction: column !important;
     }
-    .login_container {
-        flex-direction: column !important;
-    }
     .admin_section {
         flex-direction: column!important;
     }
     .admin_container {
         flex-direction: column !important;
     }
-
     .admin_nav_container {
         flex-direction: row !important;
         justify-content: space-between;
@@ -288,6 +284,10 @@ main {
         flex: 1 !important;
         font-size: 12px;
     }
+    .login_container {
+        flex-direction: column !important;
+    }
+
 }
 .nofi_card {
     display: flex;
@@ -434,9 +434,9 @@ body {
     align-items: center;
 }
 
-    .comment_card_actions i {
-        font-size: 24px;
-    }
+.comment_card_actions i {
+    font-size: 24px;
+}
 
 .comment_container form {
     width: 100%;

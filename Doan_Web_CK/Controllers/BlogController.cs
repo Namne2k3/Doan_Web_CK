@@ -288,8 +288,8 @@ namespace Doan_Web_CK.Controllers
         public async Task<bool> IsRequestedAsync(string userId, string friendId)
         {
             var friendships = await _friendShipRepository.GetAllAsync();
-            var finded = friendships.SingleOrDefault(p => p.UserId == userId && p.FriendId == friendId || p.UserId == friendId && p.FriendId == userId && p.IsConfirmed == false);
-            if (finded != null)
+            var finded = friendships.SingleOrDefault(p => p.UserId == userId && p.FriendId == friendId || p.UserId == friendId && p.FriendId == userId);
+            if (finded != null && finded.IsConfirmed == false)
             {
                 return true;
             }
@@ -522,8 +522,13 @@ namespace Doan_Web_CK.Controllers
         public async Task<IActionResult> Delete(int blogId)
         {
             var blog = await _blogRepository.GetByIdAsync(blogId);
+            var currentUser = await _userManager.GetUserAsync(User);
             if (blog != null)
             {
+                if (blog.AccountId != currentUser?.Id)
+                {
+                    return NotFound();
+                }
                 blog.Likes.Clear();
                 blog.Comments.Clear();
                 await _blogRepository.DeleteAsync(blogId);
@@ -547,6 +552,10 @@ namespace Doan_Web_CK.Controllers
 
             if (commentFind != null)
             {
+                if (commentFind.AccountId != currentUser?.Id)
+                {
+                    return NotFound();
+                }
                 await _commentRepository.DeleteAsync(commentId);
                 var comments = await GetAllBlogCommentsAsync(commentFind.BlogId);
 
@@ -764,11 +773,15 @@ namespace Doan_Web_CK.Controllers
         public async Task<IActionResult> Edit(int id)
         {
             var blog = await _blogRepository.GetByIdAsync(id);
+            var currentUser = await _userManager.GetUserAsync(User);
             if (blog == null)
             {
                 return NotFound();
             }
-
+            if (blog.AccountId != currentUser?.Id)
+            {
+                return NotFound();
+            }
             var categories = await _categoryRepository.GetAllAsync();
             ViewBag.Categories = new SelectList(categories, "Id", "Name");
             var user = await _userManager.GetUserAsync(User);
