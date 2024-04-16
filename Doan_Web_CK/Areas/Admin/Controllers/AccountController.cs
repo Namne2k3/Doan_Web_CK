@@ -70,11 +70,13 @@ namespace Doan_Web_CK.Areas.Admin.Controllers
         public async Task<IActionResult> Delete(string id)
         {
             var account = await _accountRepository.GetByIdAsync(id);
+
             await _friendShipRepository.RemoveFriendsByUserId(account.Id);
             await _blogRepository.RemoveBlogsByUserId(account.Id);
             await _commentRepository.RemoveCommentsByUserId(account.Id);
             await _likeRepository.RemoveLikesByUserId(account.Id);
             await _notifiticationRepository.RemoveNofsByUserId(account.Id);
+
             if (account == null)
             {
                 return NotFound();

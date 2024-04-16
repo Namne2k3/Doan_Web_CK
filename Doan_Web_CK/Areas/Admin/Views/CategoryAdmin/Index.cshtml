@@ -1,10 +1,11 @@
 ﻿@model IEnumerable<Doan_Web_CK.Models.Category>
 
 @{
-    ViewData["Title"] = "Manage Categories";
+    ViewData["Title"] = "Category";
 }
 
-<h1>Manage Categories</h1>
+<h1>Category</h1>
+
 <p>
     <a class="btn btn-outline-light" asp-action="Create">Create New</a>
 </p>
@@ -24,9 +25,9 @@
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
             <td>
-                    <a class="btn btn-outline-light" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
-                    <a class="btn btn-outline-light" asp-action="Details" asp-route-id="@item.Id">Details</a>
-                    <a class="btn btn-outline-light" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                <a class="btn btn-outline-light" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                <a class="btn btn-outline-light" asp-action="Details" asp-route-id="@item.Id">Details</a>
+                <a class="btn btn-outline-light" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
             </td>
         </tr>
 }

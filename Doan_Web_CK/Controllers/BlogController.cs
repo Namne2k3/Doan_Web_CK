@@ -69,7 +69,9 @@ namespace Doan_Web_CK.Controllers
             ViewBag.GetPhotoById = new Func<string, string>(GetPhotoById);
             return View(nofs);
         }
-
+        // 01a1f5db-07a6-4189-be91-6aad0cb1be92
+        // aa8f1ccd-edc6-45fe-ba3d-bf401d4e6e4c
+        // eef7be95-9feb-49b9-a189-2f8dea3b5977
         [HttpPost]
         public async Task<IActionResult> Search(string blog_title, DateTime? blog_date, string blog_newest, string cate_filter)
         {
@@ -95,6 +97,10 @@ namespace Doan_Web_CK.Controllers
                 {
                     filteredBlogs = filteredBlogs.OrderByDescending(p => p.PublishDate).ToList();
                 }
+            }
+            if (filteredBlogs == null)
+            {
+                return RedirectToAction("Index");
             }
             var categories = await _categoryRepository.GetAllAsync();
             var currentUser = await _userManager.GetUserAsync(User);
@@ -529,6 +535,7 @@ namespace Doan_Web_CK.Controllers
 
                 blog.Likes.Clear();
                 blog.Comments.Clear();
+                //await _notifiticationRepository.DeleteAllNofsByBlogId(blogId);
                 await _blogRepository.DeleteAsync(blogId);
                 return Json(new
                 {

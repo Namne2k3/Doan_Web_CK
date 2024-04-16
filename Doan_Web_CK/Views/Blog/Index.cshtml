@@ -311,7 +311,7 @@
                                                 <img src="@(ViewBag.GetPhotoById(comment.AccountId))" class="comment_card_img" />
                                             </div>
                                             <div class="comment_card_content">
-                                                <p class="fw-bold">@(ViewBag.GetUserName(comment.AccountId)) <span class="comment_card_date">@comment.CommentDate</span> </p>
+                                                <a asp-controller="Profile" asp-action="Index" asp-route-id="@comment.AccountId" class="fw-bold text-white text-decoration-none ">@(ViewBag.GetUserName(comment.AccountId)) <span class="comment_card_date">@comment.CommentDate</span> </a>
                                                 <p id="p_content_@comment.Id" class="fw-normal">@comment.Content</p>
                                                 <form method="post" id="edit_form_cmt_@comment.Id">
                                                     <input type="number" name="edit_cmt_id" hidden value="@comment.Id" />

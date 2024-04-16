@@ -47,19 +47,19 @@
                     @if (item.IsAccepted == false)
                     {
                         <form asp-action="Accept" asp-route-id="@item.Id">
-                            <button class="w-100 btn btn-outline-success">Accept</button>
+                            <button class="w-100 btn btn-success">Accept</button>
                         </form>
                     }
                     else
                     {
                         <form asp-action="UnAccept" asp-route-id="@item.Id">
-                            <button class="w-100 btn btn-outline-warning">Deny</button>
+                            <button class="w-100 btn btn-warning">Deny</button>
                         </form>
                     }
                     <form asp-action="Details" asp-route-id="@item.Id">
-                        <button class="w-100 btn btn-outline-info">Details</button>
+                        <button class="w-100 btn btn-info">Details</button>
                     </form>
-                    <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal"
+                    <button type="button" class="btn btn-danger" data-bs-toggle="modal"
                             data-bs-target="#exampleModal_@item.Id">
                         Delete
                     </button>

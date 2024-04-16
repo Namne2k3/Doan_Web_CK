@@ -1,0 +1,23 @@
+﻿@model Doan_Web_CK.Models.Category
+
+@{
+    ViewData["Title"] = "Details Category";
+}
+
+<h1>Details Category</h1>
+
+<div>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a class="btn btn-outline-light" asp-action="Edit" asp-route-id="@Model?.Id">Edit</a>
+</div>
+<a class="mt-4 btn btn-outline-light" asp-action="Index">Back to List</a>

@@ -65,6 +65,10 @@
       "PackagePath": "staticwebassets\\images\\Wb8pUe4iWjBf2Gx8ky5rLA-1200-80-1846-2148-1711726599.jpg"
     },
     {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\images\\Xe.jfif",
+      "PackagePath": "staticwebassets\\images\\Xe.jfif"
+    },
+    {
       "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\images\\a1-2752-1712909280.jpg",
       "PackagePath": "staticwebassets\\images\\a1-2752-1712909280.jpg"
     },
@@ -113,6 +117,26 @@
       "PackagePath": "staticwebassets\\images\\m1-vs-m2-air-feature-toned-dow-5823-4792-1711124712.jpg"
     },
     {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\images\\momo-upload-api-200413164421-637223930616357559.jpg",
+      "PackagePath": "staticwebassets\\images\\momo-upload-api-200413164421-637223930616357559.jpg"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\images\\momo-upload-api-200413164440-637223930807417161.jpg",
+      "PackagePath": "staticwebassets\\images\\momo-upload-api-200413164440-637223930807417161.jpg"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\images\\momo-upload-api-200413165202-637223935222094710.jpg",
+      "PackagePath": "staticwebassets\\images\\momo-upload-api-200413165202-637223935222094710.jpg"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\images\\momo-upload-api-200413165257-637223935770065647.jpg",
+      "PackagePath": "staticwebassets\\images\\momo-upload-api-200413165257-637223935770065647.jpg"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\images\\momo-upload-api-200413165322-637223936022123167.jpg",
+      "PackagePath": "staticwebassets\\images\\momo-upload-api-200413165322-637223936022123167.jpg"
+    },
+    {
       "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\images\\nu-dieu-duong-ep-tim-cuu-du-khach-nga-guc-o-da-nang-1711517649.jpg",
       "PackagePath": "staticwebassets\\images\\nu-dieu-duong-ep-tim-cuu-du-khach-nga-guc-o-da-nang-1711517649.jpg"
     },
@@ -151,6 +175,10 @@
     {
       "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\images\\windows-11-stock-orange-abstract-dark-background-3840x2400-8960.png",
       "PackagePath": "staticwebassets\\images\\windows-11-stock-orange-abstract-dark-background-3840x2400-8960.png"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\images\\xedien.png",
+      "PackagePath": "staticwebassets\\images\\xedien.png"
     },
     {
       "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Web_CK\\Doan_Web_CK\\Doan_Web_CK\\wwwroot\\images\\z3394636124217_acf172236cf388992dd2d2d53a4110e3.jpg",

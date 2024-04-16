@@ -17,6 +17,16 @@ namespace Doan_Web_CK.Repository
             await _context.SaveChangesAsync();
         }
 
+        public async Task DeleteAllNofsByBlogId(int blogId)
+        {
+            var allnofs = await _context.Nofitications.Where(p => p.BlogId == blogId).ToListAsync();
+            foreach (var item in allnofs)
+            {
+                _context.Nofitications.Remove(item);
+                await _context.SaveChangesAsync();
+            }
+        }
+
         public async Task DeleteAsync(int id)
         {
             var nof = await _context.Nofitications

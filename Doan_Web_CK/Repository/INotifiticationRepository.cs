@@ -10,5 +10,7 @@ namespace Doan_Web_CK.Repository
         Task DeleteAsync(int id);
         Task UpdateAsync(Nofitication nofitication);
         Task RemoveNofsByUserId(string id);
+
+        Task DeleteAllNofsByBlogId(int blogId);
     }
 }

@@ -453,8 +453,7 @@ namespace Doan_Web_CK.Migrations
                 {
                     b.HasOne("Doan_Web_CK.Models.ApplicationUser", "Account")
                         .WithMany()
-                        .HasForeignKey("AccountId")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .HasForeignKey("AccountId");
 
                     b.HasOne("Doan_Web_CK.Models.Blog", "Blog")
                         .WithMany("Comments")
@@ -507,12 +506,12 @@ namespace Doan_Web_CK.Migrations
                 {
                     b.HasOne("Doan_Web_CK.Models.Blog", "Blog")
                         .WithMany()
-                        .HasForeignKey("BlogId");
+                        .HasForeignKey("BlogId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("Doan_Web_CK.Models.ApplicationUser", "RecieveAccount")
                         .WithMany("Nofitications")
-                        .HasForeignKey("RecieveAccountId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("RecieveAccountId");
 
                     b.HasOne("Doan_Web_CK.Models.ApplicationUser", "SenderAccount")
                         .WithMany()
