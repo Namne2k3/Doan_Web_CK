@@ -16,6 +16,7 @@ namespace Doan_Web_CK
         public DbSet<Nofitication> Nofitications { get; set; }
         public DbSet<Friendship> Friendships { get; set; }
         public DbSet<Like> Likes { get; set; }
+        public DbSet<BlogImage> BlogImages { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

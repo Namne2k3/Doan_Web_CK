@@ -292,8 +292,22 @@ namespace Doan_Web_CK.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> Delete(int id)
         {
-            await _blogRepository.DeleteAsync(id);
-            return RedirectToAction("Index");
+            var blog = await _blogRepository.GetByIdAsync(id);
+            var currentUser = await _userManager.GetUserAsync(User);
+            if (currentUser.Id != blog.AccountId)
+            {
+                return NotFound();
+            }
+            if (blog != null)
+            {
+
+                blog.Likes.Clear();
+                blog.Comments.Clear();
+                blog.BlogImages.Clear();
+                await _blogRepository.DeleteAsync(blog.Id);
+                return Redirect("/Admin/BlogAdmin");
+            }
+            return NotFound();
         }
     }
 }

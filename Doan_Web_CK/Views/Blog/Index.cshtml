@@ -82,9 +82,17 @@
                                 <span asp-validation-for="BlogImageUrl" class="text-danger"></span>
                             </div>
                             <div class="input-group">
+                                <label class="input-group-text" asp-for="BlogImages">
+                                    Maximum additional images: 2
+                                </label>
+                                <input multiple type="file" accept="image/*" asp-for="BlogImages" class="form-control" />
+                                <span asp-validation-for="BlogImages" class="text-danger"></span>
+                            </div>
+                            <div class="input-group">
                                 <label for="categorySelect" asp-for="CategoryId" class="input-group-text">Category</label>
                                 <select id="categorySelect" asp-for="CategoryId" class="form-select" asp-items="@ViewBag.Categories"></select>
                             </div>
+                            
                             <div class="form-group mt-4">
                                 <button type="submit" class="btn btn-outline-light w-100">Submit</button>
                             </div>
@@ -197,8 +205,40 @@
                             <p class="mt-4">@item.Description</p>
                         </div>
 
-                        <div class="BlogCard_Img">
-                            <img src="@item.BlogImageUrl" />
+                        <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+                            <div class="carousel-indicators">
+                                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                            </div>
+                            <div class="carousel-inner">
+                                @if (item.BlogImages.Count != 0)
+                                {
+                                    <div class="carousel-item active">
+                                        <img src="@item.BlogImageUrl" class="d-block w-100" alt="blog thumbnail" />
+                                    </div>
+                                    @foreach (var blogImg in item.BlogImages)
+                                    {
+                                        <div class="carousel-item">
+                                            <img src="@blogImg.Url" class="d-block w-100" alt="blog thumbnail">
+                                        </div>
+                                    }
+                                }
+                                else
+                                {
+                                    <div class="BlogCard_Img">
+                                        <img src="@item.BlogImageUrl" alt="blog thumbnail" />
+                                    </div>
+                                }
+                            </div>
+                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                            </button>
                         </div>
 
                         <div id="content_@item.Id" class="Blogcard_Content mt-4 temp_hidden">

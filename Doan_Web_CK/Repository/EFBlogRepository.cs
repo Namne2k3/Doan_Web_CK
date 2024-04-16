@@ -35,6 +35,7 @@ namespace Doan_Web_CK.Repository
                 .Include(x => x.Comments)
                 .Include(x => x.Account)
                 .Include(x => x.Category)
+                .Include(x => x.BlogImages)
                 .ToListAsync();
         }
         public Task DeleteCommentsAsync()
@@ -64,6 +65,7 @@ namespace Doan_Web_CK.Repository
                 .Include(x => x.Comments)
                 .Include(x => x.Account)
                 .Include(x => x.Category)
+                .Include(x => x.BlogImages)
                 .SingleOrDefaultAsync(x => x.Id == blogId);
         }
 

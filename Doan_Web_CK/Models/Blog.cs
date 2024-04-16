@@ -22,5 +22,6 @@ namespace Doan_Web_CK.Models
         public Category? Category { get; set; }
         public List<Like>? Likes { get; set; }
         public List<Comment>? Comments { get; set; }
+        public List<BlogImage>? BlogImages { get; set; }
     }
 }

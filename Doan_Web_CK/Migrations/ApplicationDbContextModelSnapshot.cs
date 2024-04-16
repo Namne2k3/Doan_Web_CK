@@ -71,6 +71,28 @@ namespace Doan_Web_CK.Migrations
                     b.ToTable("Blogs");
                 });
 
+            modelBuilder.Entity("Doan_Web_CK.Models.BlogImage", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("BlogId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Url")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BlogId");
+
+                    b.ToTable("BlogImages");
+                });
+
             modelBuilder.Entity("Doan_Web_CK.Models.Category", b =>
                 {
                     b.Property<int>("Id")
@@ -449,6 +471,17 @@ namespace Doan_Web_CK.Migrations
                     b.Navigation("Category");
                 });
 
+            modelBuilder.Entity("Doan_Web_CK.Models.BlogImage", b =>
+                {
+                    b.HasOne("Doan_Web_CK.Models.Blog", "Blog")
+                        .WithMany("BlogImages")
+                        .HasForeignKey("BlogId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Blog");
+                });
+
             modelBuilder.Entity("Doan_Web_CK.Models.Comment", b =>
                 {
                     b.HasOne("Doan_Web_CK.Models.ApplicationUser", "Account")
@@ -577,6 +610,8 @@ namespace Doan_Web_CK.Migrations
 
             modelBuilder.Entity("Doan_Web_CK.Models.Blog", b =>
                 {
+                    b.Navigation("BlogImages");
+
                     b.Navigation("Comments");
 
                     b.Navigation("Likes");

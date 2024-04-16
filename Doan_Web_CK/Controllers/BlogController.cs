@@ -530,12 +530,20 @@ namespace Doan_Web_CK.Controllers
         {
             var blog = await _blogRepository.GetByIdAsync(blogId);
             var currentUser = await _userManager.GetUserAsync(User);
+            if (currentUser.Id != blog.AccountId)
+            {
+                return Json(new
+                {
+                    message = "failed"
+                });
+            }
             if (blog != null)
             {
 
                 blog.Likes.Clear();
                 blog.Comments.Clear();
-                //await _notifiticationRepository.DeleteAllNofsByBlogId(blogId);
+                blog.BlogImages.Clear();
+
                 await _blogRepository.DeleteAsync(blogId);
                 return Json(new
                 {
@@ -1020,7 +1028,7 @@ namespace Doan_Web_CK.Controllers
 
         [Authorize]
         [HttpPost]
-        public async Task<IActionResult> Add(Blog blog, IFormFile BlogImageUrl)
+        public async Task<IActionResult> Add(Blog blog, IFormFile BlogImageUrl, List<IFormFile> BlogImages)
         {
 
             var user = await _userManager.GetUserAsync(User);
@@ -1029,6 +1037,8 @@ namespace Doan_Web_CK.Controllers
             {
                 account.Blogs = new List<Blog>();
             }
+
+
             var newBlog = new Blog
             {
                 Title = blog.Title,
@@ -1038,6 +1048,16 @@ namespace Doan_Web_CK.Controllers
                 PublishDate = DateTime.Now,
                 AccountId = user.Id,
             };
+            if (newBlog.BlogImages == null)
+            {
+                newBlog.BlogImages = new List<BlogImage>();
+            }
+
+            if (BlogImages.Count > 2)
+            {
+                return RedirectToAction("Index");
+            }
+
             if (BlogImageUrl == null)
             {
                 return RedirectToAction("Index");
@@ -1046,6 +1066,20 @@ namespace Doan_Web_CK.Controllers
             {
                 newBlog.BlogImageUrl = await SaveImage(BlogImageUrl);
             }
+
+            if (BlogImages != null || BlogImages.Count > 0)
+            {
+                foreach (var item in BlogImages)
+                {
+                    var blogImage = new BlogImage
+                    {
+                        Url = await SaveImage(item),
+                        BlogId = newBlog.Id,
+                    };
+                    newBlog?.BlogImages?.Add(blogImage);
+                }
+            }
+
             await _accountRepository.AddBlogAsync(account, newBlog);
             return RedirectToAction("Index");
 
